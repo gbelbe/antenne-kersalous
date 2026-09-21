@@ -1,0 +1,74 @@
+# ══════════════════════════════════════════════════════════════
+#  Requêtes de pilotage — à coller dans « 🔍 Query Graph SPARQL »
+# ══════════════════════════════════════════════════════════════
+PREFIX ant:  <https://kersalous.bzh/ontology/antenne#>
+PREFIX skt:  <https://kersalous.bzh/taxonomie/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+# ── 1. Ma to-do list, par échéance ────────────────────────────
+SELECT ?echeance ?action ?destinataire WHERE {
+  ?a a ant:Action ; rdfs:label ?action ; ant:statut skt:a-faire .
+  OPTIONAL { ?a ant:echeance ?echeance }
+  OPTIONAL { ?a ant:cible/rdfs:label ?destinataire }
+} ORDER BY ?echeance
+
+# ── 2. Quels moyens restent à vérifier, et par quelle action ──
+SELECT ?moyen ?action WHERE {
+  ?m a ant:MoyenJuridique ; rdfs:label ?moyen ; ant:force skt:force-a-verifier .
+  OPTIONAL { ?a ant:soutient ?m ; rdfs:label ?action }
+}
+
+# ── 3. Les moyens forts et leurs preuves manquantes ───────────
+SELECT ?moyen ?preuve WHERE {
+  ?m a ant:MoyenJuridique ; rdfs:label ?moyen ; ant:force skt:force-forte .
+  OPTIONAL { ?m ant:etayePar/rdfs:label ?preuve }
+}
+
+# ── 4. Contraintes réglementaires pesant sur la parcelle ──────
+SELECT ?zone ?type WHERE {
+  <https://kersalous.bzh/dossier/parcelle-yx26> ant:concerneParZone ?z .
+  ?z rdfs:label ?zone ; ant:typeDeZone/skos:prefLabel ?type .
+}
+
+# ── 5. Délais : lesquels sont déclenchés, lesquels dorment ────
+SELECT ?delai ?debut ?fin ?declencheur WHERE {
+  ?d a ant:Delai ; rdfs:label ?delai .
+  OPTIONAL { ?d ant:debuteLe ?debut }
+  OPTIONAL { ?d ant:expireLe ?fin }
+  OPTIONAL { ?d ant:declenchePar/rdfs:label ?declencheur }
+}
+
+# ── 6. Qui fait quoi : acteurs et rôles ───────────────────────
+SELECT ?acteur ?role WHERE {
+  ?a ant:aRole ?r . ?a rdfs:label ?acteur . ?r rdfs:label ?role .
+} ORDER BY ?role
+
+# ── 7. Toutes les mesures opposables, avec leur source ────────
+SELECT ?mesure ?valeur ?unite ?methode WHERE {
+  ?m a ant:Mesure ; rdfs:label ?mesure ; ant:valeur ?valeur ;
+     ant:unite ?unite ; ant:methode ?methode .
+} ORDER BY ?valeur
+
+# ── 8. Qu'est-ce qui n'est PAS sourcé sérieusement ? ──────────
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX src:  <https://kersalous.bzh/provenance/>
+SELECT ?fait ?source WHERE {
+  ?f prov:wasDerivedFrom ?s . ?s src:niveauDePreuve src:assertion-modele .
+  ?f rdfs:label ?fait . ?s rdfs:label ?source .
+}
+
+# ── 9. Fraîcheur : quand chaque source a-t-elle été consultée ─
+SELECT ?source ?consultee ?millesime WHERE {
+  ?s a/rdfs:subClassOf* src:Source ; rdfs:label ?source ;
+     prov:generatedAtTime ?consultee .
+  OPTIONAL { ?s src:dateDonnees ?millesime }
+} ORDER BY ?consultee
+
+# ── 10. Traçabilité d'un fait : d'où vient la distance de 23 m ?
+SELECT ?source ?activite ?quand WHERE {
+  <https://kersalous.bzh/dossier/m-dist-maison1> prov:wasGeneratedBy ?a .
+  ?a rdfs:label ?activite ; prov:used ?s .
+  OPTIONAL { ?a prov:endedAtTime ?quand }
+  ?s rdfs:label ?source .
+}

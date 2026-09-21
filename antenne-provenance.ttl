@@ -1,0 +1,527 @@
+@prefix src:     <https://kersalous.bzh/provenance/> .
+@prefix dos:     <https://kersalous.bzh/dossier/> .
+@prefix skt:     <https://kersalous.bzh/taxonomie/> .
+@prefix ant:     <https://kersalous.bzh/ontology/antenne#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix note:    <https://example.org/ontology/kai-internal-knowledge#> .
+
+<https://kersalous.bzh/provenance> a owl:Ontology ;
+    dcterms:title "Provenance des données du dossier"@fr ;
+    dcterms:description "D'où vient chaque fait du graphe : quelle source, quelle date, quel niveau de preuve. Fichier autonome et supprimable sans toucher au reste."@fr ;
+    rdfs:label "Provenance (PROV-O)"@fr ;
+    owl:versionInfo "0.1.0" ;
+    note:note """# Lire ce fichier
+
+Trois questions, trois réponses, pour chaque donnée du dossier :
+
+- **d'où** — `prov:wasDerivedFrom` vers une source décrite ici ;
+- **comment** — `prov:wasGeneratedBy` vers l'activité qui l'a produite ;
+- **à quel point s'y fier** — `src:niveauDePreuve`, qui distingue une réponse
+  d'API d'un résumé de moteur de recherche et d'une assertion non vérifiée.
+
+Le dernier point est le plus important. Une distance calculée sur une géométrie
+IGN et une référence d'arrêté lue dans un résumé de recherche n'ont pas la même
+valeur devant un tribunal, et rien dans un graphe ne le dit si on ne l'écrit pas.
+
+Deux dates, jamais une seule : `prov:generatedAtTime` dit **quand j'ai consulté**,
+`src:dateDonnees` dit **de quand date la donnée**. Tout a été consulté le
+15 septembre 2026 ; certains millésimes servis ce jour-là remontaient à neuf mois.
+
+Ce qui se périme le plus vite, par ordre : la décision de non-opposition et les
+délais (jours), les données d'entreprise (mois), le zonage du GPU et la BD TOPO
+(un à trois ans), le cadastre (stable), l'arrêté d'inscription de 1977 (jamais).
+
+Le préfixe `prov:` fait partie des espaces de noms que kai-ster considère comme
+métadonnées : ces liens n'encombrent ni les filtres de la carte ni les facettes.""" .
+
+# ═══════════════════════════════════════════════════════════════
+#  VOCABULAIRE LOCAL
+# ═══════════════════════════════════════════════════════════════
+
+src:Source a owl:Class ; rdfs:subClassOf prov:Entity ;
+    rdfs:label "Source de données"@fr ;
+    rdfs:comment "Jeu de données, document ou page dont un fait du dossier est tiré."@fr .
+
+src:JeuDeDonnees a owl:Class ; rdfs:subClassOf src:Source ;
+    rdfs:label "Jeu de données interrogeable"@fr ;
+    rdfs:comment "API ou fichier ouvert, réinterrogeable à l'identique."@fr .
+
+src:DocumentSource a owl:Class ; rdfs:subClassOf src:Source ;
+    rdfs:label "Document source"@fr ;
+    rdfs:comment "PDF, page web ou pièce physique lue une fois."@fr .
+
+src:RechercheWeb a owl:Class ; rdfs:subClassOf src:Source ;
+    rdfs:label "Résultat de recherche web"@fr ;
+    rdfs:comment "Résumé de moteur de recherche : la page primaire n'a pas été lue intégralement."@fr .
+
+src:Interrogation a owl:Class ; rdfs:subClassOf prov:Activity ;
+    rdfs:label "Interrogation d'une source"@fr .
+
+src:Calcul a owl:Class ; rdfs:subClassOf prov:Activity ;
+    rdfs:label "Calcul dérivé"@fr ;
+    rdfs:comment "Mesure, simplification ou rendu produit à partir de données récupérées."@fr .
+
+src:NiveauDePreuve a owl:Class ; rdfs:subClassOf prov:Entity ;
+    rdfs:label "Niveau de preuve"@fr .
+
+src:niveauDePreuve a owl:ObjectProperty ;
+    rdfs:label "niveau de preuve"@fr ;
+    rdfs:domain prov:Entity ; rdfs:range src:NiveauDePreuve .
+
+src:dateDonnees a owl:DatatypeProperty ;
+    rdfs:label "millésime de la donnée"@fr ; rdfs:domain prov:Entity ; rdfs:range xsd:string ;
+    note:note """Date de **la donnée elle-même**, à ne pas confondre avec `prov:generatedAtTime`,
+qui est la date de consultation. Une réponse d'API récupérée aujourd'hui peut servir un millésime
+vieux de neuf mois — et c'est ce millésime-là qui se périme.""" .
+
+src:requete a owl:DatatypeProperty ;
+    rdfs:label "requête exécutée"@fr ; rdfs:domain prov:Activity ; rdfs:range xsd:string .
+
+# ── Les trois niveaux ──────────────────────────────────────────
+
+src:primaire a owl:NamedIndividual, src:NiveauDePreuve ;
+    rdfs:label "Source primaire lue"@fr ;
+    note:note "Réponse d'API ou document intégralement lu au cours de la session. Réinterrogeable, opposable." .
+
+src:resume-recherche a owl:NamedIndividual, src:NiveauDePreuve ;
+    rdfs:label "Résumé de recherche web"@fr ;
+    note:note "**À revérifier avant tout usage contentieux.** L'information vient d'un résumé de moteur de recherche, pas de la page d'origine consultée." .
+
+src:assertion-modele a owl:NamedIndividual, src:NiveauDePreuve ;
+    rdfs:label "Assertion du modèle, non récupérée"@fr ;
+    note:note "**Le niveau le plus fragile.** Énoncé produit de mémoire par l'assistant, sans document récupéré pour l'étayer : articles de code cités, délais de procédure, doctrine. Exact dans les grandes lignes, à faire confirmer par un avocat ou par Légifrance avant d'être opposé." .
+
+# ═══════════════════════════════════════════════════════════════
+#  AGENTS
+# ═══════════════════════════════════════════════════════════════
+
+src:claude a owl:NamedIndividual, prov:SoftwareAgent ;
+    rdfs:label "Claude (assistant)"@fr ;
+    note:note "A exécuté toutes les interrogations et tous les calculs du 15 septembre 2026." .
+
+src:utilisateur a owl:NamedIndividual, prov:Person, prov:Agent ;
+    rdfs:label "Porteur du dossier"@fr ;
+    note:note "A fourni la photographie de l'avis de dépôt affiché en mairie, point de départ de tout le graphe." .
+
+src:ign a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "IGN — Géoplateforme"@fr ; foaf:homepage "https://data.geopf.fr"^^xsd:anyURI .
+src:dgfip a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "DGFiP"@fr .
+src:insee a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "INSEE"@fr .
+src:dila a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "DILA — BODACC"@fr .
+src:etalab a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "DINUM / Etalab"@fr .
+src:culture a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "Ministère de la Culture"@fr .
+src:commune-ploneour a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "Commune de Plonéour-Lanvern"@fr .
+src:phoenix a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "Phoenix Tower International"@fr ;
+    note:note "Source intéressée : ce qu'elle publie sur elle-même sert à la décrire, jamais à la contredire." .
+
+# ═══════════════════════════════════════════════════════════════
+#  SOURCES — GÉOGRAPHIE ET CADASTRE
+# ═══════════════════════════════════════════════════════════════
+
+src:apicarto-cadastre a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "réponse horodatée 2026-09-15T19:33:12Z par le service" ;
+    rdfs:label "APIcarto — module cadastre (IGN)"@fr ;
+    dcat:accessURL "https://apicarto.ign.fr/api/cadastre/parcelle"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Contour, identifiant et contenance de la parcelle YX 26, et des 8 parcelles voisines vendues. Réponse exacte : une seule parcelle, 3 440 m², conforme à l'avis de dépôt." .
+
+src:apicarto-gpu a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "document d'urbanisme DU_29174 ; assiettes SUP publiées au GPU le 2026-01-20" ;
+    rdfs:label "APIcarto — Géoportail de l'urbanisme"@fr ;
+    dcat:accessURL "https://apicarto.ign.fr/api/gpu"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note """Points d'entrée interrogés : `municipality`, `zone-urba`, `prescription-surf`,
+`prescription-lin`, `prescription-pct`, `info-surf`, `secteur-cc`, `assiette-sup-s/l/p`.
+Origine du zonage A, des deux haies/talus protégés, de la zone humide, de l'EBC,
+du périmètre des abords AC1 et des servitudes I4.
+**Réserve :** la couverture du GPU dépend de ce que la commune y a téléversé — une
+servitude absente de l'API n'est pas une servitude inexistante.""" .
+
+src:apicarto-nature a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "APIcarto — module nature"@fr ;
+    dcat:accessURL "https://apicarto.ign.fr/api/nature"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; src:niveauDePreuve src:primaire ;
+    note:note "Natura 2000, ZNIEFF 1 et 2 : **résultat négatif** sur la parcelle. Un résultat négatif est une donnée, et il est conservé ici pour ne pas être re-cherché." .
+
+src:bdtopo-wfs a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "BD TOPO V3, millésime servi par la Géoplateforme au 2026-09-15" ;
+    rdfs:label "IGN BD TOPO — WFS bâtiment"@fr ;
+    dcat:accessURL "https://data.geopf.fr/wfs/ows?TYPENAMES=BDTOPO_V3:batiment"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "26 bâtiments dans l'emprise interrogée, dont 9 à usage résidentiel à moins de 150 m. Nature, usage et nombre de logements viennent de là." .
+
+src:rge-alti a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "IGN RGE ALTI — service altimétrique"@fr ;
+    dcat:accessURL "https://data.geopf.fr/altimetrie/1.0/calcul/alti/rest/elevation.json"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "**Modèle de terrain nu.** Ni bâti ni végétation : c'est la limite de l'étude de covisibilité, et elle doit être dite avant qu'un adversaire ne la dise." .
+
+src:bdortho-wms a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "IGN BD ORTHO — WMS raster"@fr ;
+    dcat:accessURL "https://data.geopf.fr/wms-r/wms?LAYERS=ORTHOIMAGERY.ORTHOPHOTOS"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire .
+
+src:geopf-wmts a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Géoplateforme — tuiles WMTS"@fr ;
+    dcat:accessURL "https://data.geopf.fr/wmts"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Fonds de la vue carte : ORTHOPHOTOS, PLANIGNV2, PARCELLAIRE_EXPRESS. Les trois ont été testées tuile par tuile (HTTP 200) avant d'être déclarées." .
+
+src:ban a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Base Adresse Nationale"@fr ;
+    dcat:accessURL "https://api-adresse.data.gouv.fr"^^xsd:anyURI ;
+    dcterms:publisher src:etalab ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Géocodage inverse : l'adresse la plus proche de la parcelle est 14 Kerfilin, à Saint-Jean-Trolimon, 67 m. C'est ce qui a révélé que « Kersalous » désigne un lieu-dit situé 860 m plus au nord." .
+
+src:geocodage-ign a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Géocodeur IGN"@fr ;
+    dcat:accessURL "https://data.geopf.fr/geocodage/search"^^xsd:anyURI ;
+    dcterms:publisher src:ign ; src:niveauDePreuve src:primaire ;
+    note:note "Position du Manoir de Trévilit et du lieu-dit Kersalous." .
+
+src:geo-api-communes a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "API Découpage administratif"@fr ;
+    dcat:accessURL "https://geo.api.gouv.fr/communes/29174"^^xsd:anyURI ;
+    dcterms:publisher src:etalab ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Contour communal, ayant servi à confirmer que la parcelle est bien dans Plonéour-Lanvern malgré sa proximité avec Saint-Jean-Trolimon." .
+
+# ═══════════════════════════════════════════════════════════════
+#  SOURCES — ACTEURS, ENTREPRISES, FONCIER
+# ═══════════════════════════════════════════════════════════════
+
+src:recherche-entreprises a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "INSEE mis à jour le 2025-12-06 ; RNE le 2026-07-27 ; fiche le 2026-09-15" ;
+    rdfs:label "API Recherche d'entreprises"@fr ;
+    dcat:accessURL "https://recherche-entreprises.api.gouv.fr/search"^^xsd:anyURI ;
+    dcterms:publisher src:etalab ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "SIREN, forme juridique, siège, NAF, effectif, dirigeants et comptes 2024 de Phoenix France Infrastructures, de PFI 2 et de Phoenix Tower France. Données INSEE et RNE rediffusées." .
+
+src:bodacc a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "annonces du 2019-09-24 au 2026-06-26" ;
+    rdfs:label "BODACC — annonces commerciales"@fr ;
+    dcat:accessURL "https://bodacc-datadila.opendatasoft.com/api/explore/v2.1/catalog/datasets/annonces-commerciales"^^xsd:anyURI ;
+    dcterms:publisher src:dila ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "15 annonces depuis 2019 : immatriculation, quatre augmentations de capital, dépôts de comptes, deux modifications d'administration. Ne nomme pas les dirigeants." .
+
+src:dvf a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "millésimes 2021 à 2025" ;
+    rdfs:label "DVF géolocalisé — mutations foncières"@fr ;
+    dcat:accessURL "https://files.data.gouv.fr/geo-dvf/latest/csv/"^^xsd:anyURI ;
+    dcterms:publisher src:dgfip ; dcterms:license "Licence Ouverte 2.0" ;
+    dcterms:temporal "2021/2025" ;
+    src:niveauDePreuve src:primaire ;
+    note:note """**Absence de mutation sur YX 26 sur la période servie (2021-2025).**
+Deux limites à énoncer avec le résultat : les millésimes antérieurs à 2021 ne sont plus
+servis à cette adresse, et DVF exclut par construction successions, donations et partages.
+Une absence n'est donc pas une preuve de non-transmission.""" .
+
+src:pop-merimee a owl:NamedIndividual, src:RechercheWeb ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    dcterms:date "1977-09-07"^^xsd:date ;
+    rdfs:label "Base Mérimée — Manoir de Trévilit (PA00090200)"@fr ;
+    dcat:accessURL "https://pop.culture.gouv.fr/notice/merimee/PA00090200"^^xsd:anyURI ;
+    dcterms:publisher src:culture ;
+    src:niveauDePreuve src:resume-recherche ;
+    note:note "Inscription par arrêté du 7 septembre 1977, portant sur les façades, les toitures, le mur de clôture sud et le portail. **Connu par un résumé de recherche** : la notice n'a pas été ouverte. À confirmer sur POP avant d'écrire à l'UDAP." .
+
+src:sup-ac1 a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    dcterms:date "1977-09-07"^^xsd:date ;
+    rdfs:label "Servitude AC1 — Manoir de Trévilit (acte de 1977)"@fr ;
+    dcterms:identifier "AC1_Manoir-de-Trevilit-IEKR3L_19770907_act.pdf" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Référence de l'acte portée par l'assiette SUP du GPU. Le PDF lui-même n'a pas été téléchargé ; son existence et son millésime sont, eux, attestés par l'API." .
+
+# ═══════════════════════════════════════════════════════════════
+#  SOURCES — DOCUMENTS ET DROIT
+# ═══════════════════════════════════════════════════════════════
+
+src:avis-depot-photo a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "avis déposé le 2026-08-18, affiché le 2026-08-21" ;
+    dcterms:date "2026-08-21"^^xsd:date ;
+    rdfs:label "Photographie de l'avis de dépôt affiché en mairie"@fr ;
+    dcterms:identifier "antenne.JPG" ;
+    dcterms:creator src:utilisateur ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Source unique du numéro de dossier, des dates, du nom du demandeur, de l'adresse déclarée, de la référence cadastrale et de la description des travaux. Tout le graphe en découle." .
+
+src:plu-reglement a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "PLU de Plonéour-Lanvern — règlement écrit"@fr ;
+    dcat:accessURL "https://ploneour-lanvern.bzh/wp-content/uploads/2022/08/4_1_PLONEOUR_LANVERN_PLU_REGLEMENT_ECRIT_APPRO.pdf"^^xsd:anyURI ;
+    dcterms:publisher src:commune-ploneour ;
+    dcterms:date "2022-02-01"^^xsd:date ;
+    src:niveauDePreuve src:primaire ;
+    note:note "124 pages, téléchargées et lues. Origine des articles A I-2 §3 (conditions en zone A), 6 (éléments paysagers, commission de suppression des talus) et 9 (ouvrages techniques). Approuvé le 1er février 2022." .
+
+src:mairie-antennes a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Mairie — page « dossiers d'information antennes »"@fr ;
+    dcat:accessURL "https://ploneour-lanvern.bzh/4985-2/"^^xsd:anyURI ;
+    dcterms:publisher src:commune-ploneour ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Ne mentionne que deux dossiers de 2024 (Bouygues à la ZA de Kerganet, Free Mobile à Keryan). Rien sur le projet de Kersalous — c'est ce silence qui fonde le moyen tiré de l'absence de dossier d'information." .
+
+src:mairie-contact a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Mairie — page contact et horaires"@fr ;
+    dcat:accessURL "https://ploneour-lanvern.bzh/ma-mairie/"^^xsd:anyURI ;
+    dcterms:publisher src:commune-ploneour ; src:niveauDePreuve src:primaire .
+
+src:notice-3241 a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    src:dateDonnees "édition 02-2026" ;
+    dcterms:date "2026-02-01"^^xsd:date ;
+    rdfs:label "DGFiP — notice 3241-NOT-SD (02-2026)"@fr ;
+    dcat:accessURL "https://www.impots.gouv.fr/sites/default/files/formulaires/3241-not-sd/2026/3241-not-sd_5447.pdf"^^xsd:anyURI ;
+    dcterms:publisher src:dgfip ;
+    src:niveauDePreuve src:primaire ;
+    note:note "PDF téléchargé et lu. Origine des règles opposables : un exemplaire si réponse par courriel, deux par courrier ; 12 € par immeuble pour une demande réelle ; envoi par courriel gratuit ; période délivrée depuis le 1er janvier 1956." .
+
+src:annuaire-sp a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Annuaire de l'administration — service-public.gouv.fr"@fr ;
+    dcat:accessURL "https://lannuaire.service-public.gouv.fr/bretagne/finistere"^^xsd:anyURI ;
+    dcterms:publisher src:etalab ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Coordonnées du SPFE de Quimper et des deux SDIF du Finistère (Brest et Châteaulin). **La répartition territoriale entre les deux SDIF n'y figure pas** : le choix de Châteaulin reste une hypothèse, d'où la clause de réacheminement dans le courriel." .
+
+src:phoenix-site a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "phoenixintnl.com — page Phoenix France Infrastructures"@fr ;
+    dcat:accessURL "https://www.phoenixintnl.com/fr/phoenix-france-infrastructures"^^xsd:anyURI ;
+    dcterms:publisher src:phoenix ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Coentreprise PTI / Bouygues Telecom créée en mars 2020, adresse de correspondance parisienne, guichet patrimoine. Déclaratif d'une partie au dossier." .
+
+src:recherche-culver a owl:NamedIndividual, src:RechercheWeb ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Recherche web — Timothy Culver"@fr ;
+    src:niveauDePreuve src:resume-recherche ;
+    note:note "Executive Chairman de PTI, ancien general counsel de Global Tower Partners, ancien président du conseil de surveillance de PFI d'après Pappers. **Aucune page consultée directement** — pappers.fr a renvoyé un 403. Aucune URL de profil LinkedIn personnel n'a été trouvée." .
+
+src:recherche-seuil-pc a owl:NamedIndividual, src:RechercheWeb ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Recherche web — seuil DP / permis de construire"@fr ;
+    src:niveauDePreuve src:resume-recherche ;
+    note:note "Décret du 10 décembre 2018 modifiant R. 421-9 : DP entre 5 et 20 m², permis au-delà. Concordant entre plusieurs cabinets d'avocats, **mais le texte lui-même n'a pas été lu sur Légifrance**. C'est le moyen le plus fort du dossier : à vérifier au texte avant de l'écrire dans un recours." .
+
+src:recherche-littoral a owl:NamedIndividual, src:RechercheWeb ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Recherche web — loi Littoral et Plonéour-Lanvern"@fr ;
+    src:niveauDePreuve src:resume-recherche ;
+    note:note "La commune, pourtant à moins d'un kilomètre de la côte, n'est pas soumise à la loi Littoral. Point défavorable au dossier — donc à vérifier d'autant plus sérieusement, sur la liste officielle des communes littorales." .
+
+src:connaissance-modele a owl:NamedIndividual, src:Source ;
+    prov:generatedAtTime "2026-09-15"^^xsd:date ;
+    rdfs:label "Connaissance propre de l'assistant"@fr ;
+    dcterms:creator src:claude ;
+    src:niveauDePreuve src:assertion-modele ;
+    note:note """**Rien de tout cela n'a été récupéré en ligne.** Sont dans ce cas :
+le contenu des articles R. 600-1, R. 600-2, R. 111-27, L. 424-5, L. 151-23,
+L. 311-9 du CRPA, L. 621-30 et L. 621-31 du code du patrimoine, L. 411-32 du code
+rural, L. 34-9-1 et L. 34-9-1-1 du CPCE ; la jurisprudence du Conseil d'État du
+26 octobre 2011 sur la police des ondes ; le délai d'instruction d'un mois ;
+la doctrine de la CADA sur les documents préparatoires.
+Fiable dans les grandes lignes, jamais opposable en l'état : à confirmer sur
+Légifrance ou par un avocat avant tout usage contentieux.""" .
+
+# ═══════════════════════════════════════════════════════════════
+#  ACTIVITÉS
+# ═══════════════════════════════════════════════════════════════
+
+src:act-cadastre a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Interrogation du cadastre"@fr ;
+    prov:used src:apicarto-cadastre ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T19:33:12"^^xsd:dateTime ;
+    src:requete "code_insee=29174&section=YX&numero=0026" .
+
+src:act-gpu a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Interrogation du Géoportail de l'urbanisme"@fr ;
+    prov:used src:apicarto-gpu ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T19:45:00"^^xsd:dateTime ;
+    src:requete "geom = polygone de la parcelle YX 26, puis tampons de 800 m et 2 km" .
+
+src:act-bati a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Extraction du bâti riverain"@fr ;
+    prov:used src:bdtopo-wfs ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T19:36:00"^^xsd:dateTime ;
+    src:requete "BBOX=-4.2790,47.8720,-4.2700,47.8780 (CRS84)" .
+
+src:act-altimetrie a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Profil altimétrique manoir ▸ parcelle"@fr ;
+    prov:used src:rge-alti ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T21:55:00"^^xsd:dateTime ;
+    src:requete "31 points échantillonnés sur 705 m, ressource ign_rge_alti_wld" .
+
+src:act-entreprises a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Interrogation du registre des entreprises"@fr ;
+    prov:used src:recherche-entreprises, src:bodacc ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T19:34:00"^^xsd:dateTime .
+
+src:act-dvf a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Recherche des mutations foncières"@fr ;
+    prov:used src:dvf ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T22:20:00"^^xsd:dateTime ;
+    src:requete "commune 29174, millésimes 2021 à 2025, filtre id_parcelle commençant par 29174000YX" .
+
+src:act-lecture-plu a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Lecture du règlement du PLU"@fr ;
+    prov:used src:plu-reglement ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T21:48:00"^^xsd:dateTime .
+
+src:act-calcul-distances a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Calcul des distances"@fr ;
+    prov:used src:apicarto-cadastre, src:bdtopo-wfs, src:apicarto-gpu ;
+    prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T21:59:00"^^xsd:dateTime ;
+    note:note "Formule de haversine entre sommets de géométries, **pas** distance au segment : la valeur réelle peut être légèrement inférieure à celle affichée. Suffisant pour hiérarchiser, insuffisant pour un mémoire — un géomètre s'impose si une distance devient décisive." .
+
+src:act-covisibilite a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Analyse de covisibilité"@fr ;
+    prov:used src:rge-alti ; prov:wasDerivedFrom src:act-altimetrie ;
+    prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T21:56:00"^^xsd:dateTime ;
+    note:note "Ligne de visée depuis un œil à 5 m au manoir vers un sommet de pylône à 30 m. Aucun obstacle de relief. Terrain nu : la végétation n'est pas modélisée." .
+
+src:act-simplification a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Simplification des contours"@fr ;
+    prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T22:05:00"^^xsd:dateTime ;
+    note:note """**Les géométries du graphe ne sont pas les géométries d'origine.**
+Périmètre des abords : 425 sommets ramenés à 37 (un sur douze) — écart maximal
+mesuré **2,31 m**, moyen 1,40 m, toujours vers l'intérieur ; 11,8 Ko de littéral
+ramenés à 1,0 Ko. Emprise du monument : un sommet sur deux. Zone humide : 87 ramenés
+à 80 environ. EBC : 33 conservés. **Parcelle YX 26 et haies : exactes, non simplifiées.**
+
+Les distances du dossier ont toutes été calculées sur les géométries **complètes**
+renvoyées par l'API, avant simplification : la distance parcelle → abords vaut
+162,9 m sur les deux versions. La simplification n'affecte que le dessin.
+
+Règle : ne jamais simplifier la géométrie qui porte la décision. Ici l'écart de
+2,3 m serait décisif pour un projet situé à un mètre de la limite des abords ;
+il est sans effet à 163 m. Pour toute mesure opposable, repartir de l'API.""" .
+
+src:act-cartes a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Production des cartes d'illustration"@fr ;
+    prov:used src:bdortho-wms, src:apicarto-cadastre, src:apicarto-gpu ;
+    prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-09-15T22:00:00"^^xsd:dateTime ;
+    prov:generated dos:doc-carte-covisibilite .
+
+# ═══════════════════════════════════════════════════════════════
+#  RATTACHEMENT DES DONNÉES DU DOSSIER À LEUR SOURCE
+# ═══════════════════════════════════════════════════════════════
+
+dos:parcelle-yx26     prov:wasDerivedFrom src:apicarto-cadastre, src:avis-depot-photo ;
+                      prov:wasGeneratedBy src:act-cadastre .
+dos:zone-plu-a        prov:wasDerivedFrom src:apicarto-gpu ; prov:wasGeneratedBy src:act-gpu .
+dos:haie-nord         prov:wasDerivedFrom src:apicarto-gpu ; prov:wasGeneratedBy src:act-gpu .
+dos:haie-sud          prov:wasDerivedFrom src:apicarto-gpu ; prov:wasGeneratedBy src:act-gpu .
+dos:zone-humide-voisine prov:wasDerivedFrom src:apicarto-gpu ; prov:wasGeneratedBy src:act-gpu, src:act-simplification .
+dos:ebc-voisin        prov:wasDerivedFrom src:apicarto-gpu ; prov:wasGeneratedBy src:act-gpu .
+dos:abords-trevilit   prov:wasDerivedFrom src:apicarto-gpu, src:sup-ac1 ;
+                      prov:wasGeneratedBy src:act-gpu, src:act-simplification .
+dos:mh-trevilit       prov:wasDerivedFrom src:pop-merimee, src:apicarto-gpu, src:geocodage-ign ;
+                      prov:wasGeneratedBy src:act-simplification .
+dos:maison-1          prov:wasDerivedFrom src:bdtopo-wfs ; prov:wasGeneratedBy src:act-bati, src:act-calcul-distances .
+dos:maison-2          prov:wasDerivedFrom src:bdtopo-wfs ; prov:wasGeneratedBy src:act-bati, src:act-calcul-distances .
+dos:maison-3          prov:wasDerivedFrom src:bdtopo-wfs ; prov:wasGeneratedBy src:act-bati, src:act-calcul-distances .
+dos:commune-ploneour  prov:wasDerivedFrom src:geo-api-communes .
+dos:commune-stjean    prov:wasDerivedFrom src:ban, src:apicarto-gpu .
+dos:lieudit-kersalous prov:wasDerivedFrom src:geocodage-ign, src:ban .
+dos:hameau-kerfilin   prov:wasDerivedFrom src:ban .
+dos:lieudit-trevilit  prov:wasDerivedFrom src:geocodage-ign .
+
+dos:m-dist-maison1     prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-dist-maison2     prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-dist-zone-humide prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-dist-ebc         prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-dist-abords      prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-dist-manoir      prov:wasGeneratedBy src:act-calcul-distances .
+dos:m-covisibilite     prov:wasGeneratedBy src:act-covisibilite ; prov:wasDerivedFrom src:rge-alti .
+
+dos:projet-pylone     prov:wasDerivedFrom src:avis-depot-photo .
+dos:ouvrage-pylone    prov:wasDerivedFrom src:avis-depot-photo .
+dos:ouvrage-zone-technique prov:wasDerivedFrom src:avis-depot-photo .
+dos:ouvrage-cloture   prov:wasDerivedFrom src:avis-depot-photo .
+dos:dp-29174-26-00122 prov:wasDerivedFrom src:avis-depot-photo .
+dos:ev-depot          prov:wasDerivedFrom src:avis-depot-photo .
+dos:ev-affichage-mairie prov:wasDerivedFrom src:avis-depot-photo .
+dos:ev-decision       prov:wasDerivedFrom src:connaissance-modele .
+dos:doc-avis-depot    prov:wasDerivedFrom src:avis-depot-photo .
+
+dos:phoenix-france    prov:wasDerivedFrom src:recherche-entreprises, src:bodacc, src:phoenix-site, src:avis-depot-photo ;
+                      prov:wasGeneratedBy src:act-entreprises .
+dos:phoenix-tower-international prov:wasDerivedFrom src:phoenix-site, src:recherche-culver .
+dos:bouygues-telecom  prov:wasDerivedFrom src:recherche-entreprises, src:phoenix-site .
+dos:personne-culver   prov:wasDerivedFrom src:avis-depot-photo, src:recherche-culver .
+dos:proprietaire-yx26 prov:wasDerivedFrom src:dvf ; prov:wasGeneratedBy src:act-dvf .
+dos:mairie-ploneour   prov:wasDerivedFrom src:mairie-contact .
+dos:spf-quimper       prov:wasDerivedFrom src:annuaire-sp, src:notice-3241 .
+dos:sdif-chateaulin   prov:wasDerivedFrom src:annuaire-sp .
+dos:udap-29           prov:wasDerivedFrom src:connaissance-modele .
+
+dos:plu-regle-a-i-2-3 prov:wasDerivedFrom src:plu-reglement ; prov:wasGeneratedBy src:act-lecture-plu .
+dos:plu-art-6         prov:wasDerivedFrom src:plu-reglement ; prov:wasGeneratedBy src:act-lecture-plu .
+dos:art-r421-9        prov:wasDerivedFrom src:recherche-seuil-pc, src:connaissance-modele .
+dos:art-r600-1        prov:wasDerivedFrom src:connaissance-modele .
+dos:art-r600-2        prov:wasDerivedFrom src:connaissance-modele .
+dos:art-r111-27       prov:wasDerivedFrom src:connaissance-modele .
+dos:art-l151-23       prov:wasDerivedFrom src:plu-reglement, src:connaissance-modele .
+dos:art-l424-5        prov:wasDerivedFrom src:connaissance-modele .
+dos:art-l311-9-crpa   prov:wasDerivedFrom src:connaissance-modele .
+dos:art-l621-30-patrimoine prov:wasDerivedFrom src:connaissance-modele .
+dos:art-l411-32-rural prov:wasDerivedFrom src:connaissance-modele .
+dos:art-l34-9-1-cpce  prov:wasDerivedFrom src:connaissance-modele .
+dos:ce-2011-ondes     prov:wasDerivedFrom src:connaissance-modele .
+
+dos:moyen-seuil-pc    prov:wasDerivedFrom src:recherche-seuil-pc, src:avis-depot-photo .
+dos:moyen-talus       prov:wasDerivedFrom src:apicarto-gpu, src:plu-reglement .
+dos:moyen-zone-humide prov:wasDerivedFrom src:apicarto-gpu, src:plu-reglement .
+dos:moyen-zone-a      prov:wasDerivedFrom src:plu-reglement .
+dos:moyen-covisibilite prov:wasDerivedFrom src:pop-merimee, src:apicarto-gpu, src:rge-alti .
+dos:moyen-affichage   prov:wasDerivedFrom src:connaissance-modele .
+dos:moyen-dim         prov:wasDerivedFrom src:mairie-antennes, src:connaissance-modele .
+dos:moyen-ondes       prov:wasDerivedFrom src:connaissance-modele .
+
+dos:doc-mail-matrice  prov:wasDerivedFrom src:annuaire-sp .
+dos:doc-mail-spf      prov:wasDerivedFrom src:notice-3241, src:annuaire-sp .
+dos:doc-carte-covisibilite prov:wasGeneratedBy src:act-cartes .

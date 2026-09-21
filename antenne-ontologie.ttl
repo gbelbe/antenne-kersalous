@@ -1,0 +1,366 @@
+@prefix ant:     <https://kersalous.bzh/ontology/antenne#> .
+@prefix skt:     <https://kersalous.bzh/taxonomie/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo:     <http://www.opengis.net/ont/geosparql#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix sm:      <https://ster.dev/ns/map#> .
+@prefix st:      <https://ster.dev/ns/time#> .
+@prefix note:    <https://example.org/ontology/kai-internal-knowledge#> .
+
+<https://kersalous.bzh/ontology/antenne> a owl:Ontology ;
+    dcterms:title "Opposition à un projet d'antenne-relais — ontologie de pilotage"@fr ;
+    dcterms:description "Ontologie de suivi d'un dossier d'urbanisme contesté : territoire, acteurs, corpus juridique, procédure, moyens et actions. Conçue pour piloter l'action, pas pour décrire le monde."@fr ;
+    rdfs:label "Antenne — ontologie de pilotage"@fr ;
+    owl:versionInfo "0.1.0" ;
+    note:note """# Comment utiliser ce graphe
+
+Quatre modules : **Territoire**, **Acteurs**, **Corpus**, **Procédure & Action**.
+La classe pivot est `ant:MoyenJuridique` : elle relie un fondement de droit, des preuves
+et les actions à mener. Commencez toujours par elle quand vous vous demandez quoi faire.
+
+Deux règles de modélisation :
+1. Une **classe OWL** si l'objet porte ses propres attributs ou relations.
+   Un **concept SKOS** si c'est une simple valeur de vocabulaire (type de zone, statut).
+2. Si vous avez envie de poser une date ou une source **sur une relation**,
+   c'est que cette relation est en fait une classe (Mesure, Délai, Action).""" .
+
+#################################################################
+#  MODULE 1 — TERRITOIRE  (le « où »)
+#################################################################
+
+ant:ObjetGeographique a owl:Class ;
+    rdfs:subClassOf geo:Feature ;
+    rdfs:label "Objet géographique"@fr ;
+    rdfs:comment "Toute entité localisée du dossier. Classe chapeau : ne pas instancier directement."@fr ;
+    note:note "Porte la géométrie et les relations topologiques. Les sous-classes se distinguent par ce qu'on en fait, pas par leur forme." .
+
+ant:Parcelle a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Parcelle cadastrale"@fr ;
+    rdfs:comment "Unité foncière identifiée par son IDU (commune + section + numéro)."@fr ;
+    note:note "L'ancrage de tout le dossier. Tout se raccroche à elle : zonage, prescriptions, propriétaire, projet." .
+
+ant:Commune a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Commune"@fr ;
+    rdfs:comment "Collectivité et son territoire. Attention : l'autorité qui décide et les riverains impactés peuvent relever de deux communes différentes."@fr .
+
+ant:LieuDit a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Lieu-dit"@fr ;
+    rdfs:comment "Toponyme local. À distinguer de la parcelle : l'adresse déclarée peut désigner un lieu-dit éloigné du terrain réel."@fr .
+
+ant:Batiment a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Bâtiment"@fr ;
+    rdfs:comment "Construction existante, notamment les habitations riveraines dont on mesure l'éloignement."@fr .
+
+ant:ZoneReglementaire a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Zone réglementaire"@fr ;
+    rdfs:comment "Emprise porteuse d'une règle : zonage PLU, prescription, servitude, périmètre de protection."@fr ;
+    note:note """Une seule classe pour toutes les zones, différenciées par `ant:typeDeZone`
+vers la taxonomie SKOS. **Ne créez pas** ZoneHumide, EBC, ZoneAgricole comme sous-classes OWL :
+le graphe VOWL deviendrait illisible et la taxonomie fait le travail bien mieux.""" .
+
+ant:MonumentHistorique a owl:Class ;
+    rdfs:subClassOf ant:ObjetGeographique ;
+    rdfs:label "Monument historique"@fr ;
+    rdfs:comment "Immeuble protégé (inscrit ou classé). Porte sa référence Mérimée et son arrêté."@fr .
+
+ant:Mesure a owl:Class ;
+    rdfs:label "Mesure"@fr ;
+    rdfs:comment "Fait quantifié et sourcé : distance, altitude, covisibilité, surface."@fr ;
+    note:note """Classe réifiée **volontairement**. Une distance n'est pas une propriété :
+elle a une valeur, une unité, une méthode, une source et une date.
+C'est ce qui la rend opposable — et contestable.""" .
+
+#################################################################
+#  MODULE 2 — PROJET
+#################################################################
+
+ant:ProjetAntenne a owl:Class ;
+    rdfs:label "Projet d'antenne"@fr ;
+    rdfs:comment "L'installation projetée, prise comme un tout."@fr .
+
+ant:Ouvrage a owl:Class ;
+    rdfs:label "Ouvrage"@fr ;
+    rdfs:comment "Composant physique du projet : pylône, zone technique, clôture, armoire, accès."@fr ;
+    note:note "C'est ici que se joue le seuil des 20 m² : l'emprise au sol cumulée des ouvrages détermine si une DP suffit ou si un permis de construire est requis." .
+
+#################################################################
+#  MODULE 3 — ACTEURS  (le « qui »)
+#################################################################
+
+ant:Acteur a owl:Class ;
+    rdfs:subClassOf prov:Agent ;
+    rdfs:label "Acteur"@fr ;
+    rdfs:comment "Toute entité capable d'agir dans le dossier."@fr .
+
+ant:Personne a owl:Class ;
+    rdfs:subClassOf ant:Acteur, foaf:Person ;
+    rdfs:label "Personne"@fr ;
+    rdfs:comment "Personne physique."@fr ;
+    note:note """**Ne créez jamais** de sous-classes comme « RiverainPropriétaire ».
+Un même voisin peut être riverain, propriétaire et exploitant à la fois.
+Utilisez `ant:aRole` vers des individus de `ant:Role`.""" .
+
+ant:Organisation a owl:Class ;
+    rdfs:subClassOf ant:Acteur, org:Organization ;
+    rdfs:label "Organisation"@fr .
+
+ant:Entreprise a owl:Class ;
+    rdfs:subClassOf ant:Organisation ;
+    rdfs:label "Entreprise"@fr ;
+    rdfs:comment "Société commerciale : demandeur, opérateur, groupe, filiale."@fr .
+
+ant:Administration a owl:Class ;
+    rdfs:subClassOf ant:Organisation ;
+    rdfs:label "Administration"@fr ;
+    rdfs:comment "Service public : mairie, DDFiP, UDAP, préfecture, ANFR, SAFER."@fr .
+
+ant:Juridiction a owl:Class ;
+    rdfs:subClassOf ant:Organisation ;
+    rdfs:label "Juridiction"@fr ;
+    rdfs:comment "Tribunal ou autorité de recours : TA, CADA, tribunal paritaire des baux ruraux."@fr .
+
+ant:Association a owl:Class ;
+    rdfs:subClassOf ant:Organisation ;
+    rdfs:label "Association"@fr ;
+    rdfs:comment "Groupement susceptible d'agir en justice. Attention à la condition d'antériorité des statuts."@fr .
+
+ant:Role a owl:Class ;
+    rdfs:label "Rôle"@fr ;
+    rdfs:comment "Qualité tenue par un acteur : propriétaire, bailleur, exploitant, riverain, demandeur, mandataire, maire, avocat."@fr ;
+    note:note "Le rôle est un individu, pas une classe. C'est ce qui permet à une personne d'en cumuler plusieurs sans dupliquer les entités." .
+
+#################################################################
+#  MODULE 4 — CORPUS  (normes et documents)
+#################################################################
+
+ant:TexteJuridique a owl:Class ;
+    rdfs:label "Texte juridique"@fr ;
+    rdfs:comment "Norme opposable : article de code, règle de PLU, décision de justice."@fr ;
+    note:note """Séparez **la norme** (stable, réutilisable d'un dossier à l'autre)
+de **votre argument** (`ant:MoyenJuridique`, propre à ce dossier).
+C'est cette séparation qui rend le graphe réutilisable.""" .
+
+ant:ArticleDeCode a owl:Class ;
+    rdfs:subClassOf ant:TexteJuridique ;
+    rdfs:label "Article de code"@fr .
+
+ant:RegleDeZone a owl:Class ;
+    rdfs:subClassOf ant:TexteJuridique ;
+    rdfs:label "Règle de zone (PLU)"@fr ;
+    rdfs:comment "Disposition du règlement écrit applicable à une zone. Souvent plus efficace en contentieux qu'une règle générale."@fr .
+
+ant:Jurisprudence a owl:Class ;
+    rdfs:subClassOf ant:TexteJuridique ;
+    rdfs:label "Jurisprudence"@fr .
+
+ant:Document a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "Document"@fr ;
+    rdfs:comment "Pièce du dossier, courrier, preuve, photo, décision."@fr ;
+    note:note "Un document a toujours un statut d'obtention : détenu, demandé, à obtenir. C'est ce statut qui alimente votre liste d'actions." .
+
+#################################################################
+#  MODULE 5 — PROCÉDURE, TEMPS ET ACTION  (le moteur)
+#################################################################
+
+ant:Procedure a owl:Class ;
+    rdfs:label "Procédure d'urbanisme"@fr ;
+    rdfs:comment "L'instance administrative elle-même : la déclaration préalable et son instruction."@fr .
+
+ant:Evenement a owl:Class ;
+    rdfs:label "Événement"@fr ;
+    rdfs:comment "Fait daté qui fait courir ou éteindre un droit : dépôt, affichage, décision, notification."@fr ;
+    note:note "L'événement est le déclencheur du délai. Sans événement daté, un délai n'est qu'une intention." .
+
+ant:Delai a owl:Class ;
+    st:interval [ st:from ant:debuteLe ; st:to ant:expireLe ] ;
+    rdfs:label "Délai"@fr ;
+    rdfs:comment "Fenêtre temporelle ouverte par un événement et fondée sur un texte."@fr ;
+    note:note """Le délai de recours ne court que si le panneau d'affichage est régulier.
+Modélisez donc `ant:declenchePar` vers l'événement d'affichage **et** le document qui le prouve.
+Tant que la preuve manque, le délai est réputé non déclenché.""" .
+
+ant:Action a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "Action"@fr ;
+    rdfs:comment "Démarche concrète : demande, envoi, relance, consultation, rendez-vous, paiement, recours."@fr ;
+    note:note "Toute action a un porteur, une cible, une échéance et un statut. Une action sans échéance n'existe pas." .
+
+ant:MoyenJuridique a owl:Class ;
+    rdfs:label "Moyen juridique"@fr ;
+    rdfs:comment "Argument mobilisable contre le projet, avec son fondement, ses preuves et sa force estimée."@fr ;
+    note:note """**Classe pivot du graphe.**
+Un moyen relie : un fondement (`ant:fondementJuridique`), des preuves (`ant:etayePar`,
+`ant:etayeParMesure`), une force (`ant:force`) et un statut de vérification.
+Modélisez aussi les moyens **écartés** : cela évite de les re-plaider indéfiniment.""" .
+
+#################################################################
+#  CLASSES DE FACETTES  (filtres de la vue carte)
+#################################################################
+#
+#  kai-ster construit un menu de filtres par *classe* des valeurs pointées.
+#  Sous-classer skos:Concept donne un menu distinct par axe — sinon tout
+#  atterrit dans un unique tiroir « Concept ». La classe la plus spécifique
+#  gagne : skos:Concept est implicite, donc masqué.
+
+ant:TypeDeZone a owl:Class ; rdfs:subClassOf skos:Concept ;
+    rdfs:label "Type de zone"@fr ;
+    rdfs:comment "Axe de filtrage : zonage, protection environnementale, patrimoine, servitude."@fr .
+
+ant:Statut a owl:Class ; rdfs:subClassOf skos:Concept ;
+    rdfs:label "Statut d'avancement"@fr .
+
+ant:Force a owl:Class ; rdfs:subClassOf skos:Concept ;
+    rdfs:label "Force d'un moyen"@fr .
+
+ant:NatureDocument a owl:Class ; rdfs:subClassOf skos:Concept ;
+    rdfs:label "Nature de document"@fr .
+
+ant:Axe a owl:Class ; rdfs:subClassOf skos:Concept ;
+    rdfs:label "Axe de regroupement"@fr ;
+    rdfs:comment "Famille à laquelle appartient un concept : zonage, protection environnementale, patrimoine, servitude."@fr ;
+    note:note "Remplace skos:broader pour les valeurs de facette. Donne un second menu de filtres, plus large que le premier." .
+
+#################################################################
+#  PROPRIÉTÉS D'OBJET
+#################################################################
+
+geo:asWKT a owl:DatatypeProperty ;
+    rdfs:label "contour (WKT)"@fr ; rdfs:domain ant:ObjetGeographique ; rdfs:range geo:wktLiteral ;
+    note:note """**Posé directement sur l'entité**, sans nœud géométrie intermédiaire.
+kai-ster reconnaît une géométrie au *type du littéral* (`geo:wktLiteral`), sous n'importe quel
+prédicat. Un nœud `geo:hasGeometry` séparé marche aussi, mais il porte lui-même le littéral :
+il est alors dessiné une seconde fois, en doublon, sans parent dans la hiérarchie des lieux.""" .
+ant:dansLieu a owl:ObjectProperty ;
+    rdfs:label "situé dans"@fr ;
+    rdfs:domain ant:ObjetGeographique ; rdfs:range ant:ObjetGeographique ;
+    note:note """**Propriété de contenance.** kai-ster reconnaît une hiérarchie de lieux à une seule
+condition : une propriété d'objet dont le domaine et la portée sont *le même ensemble de classes*,
+et qui n'est pas symétrique. D'où `ObjetGeographique → ObjetGeographique` et non `→ Commune`.
+C'est elle qui fait le zoom par niveaux : commune ▸ lieu-dit ▸ parcelle.""" .
+ant:concerneParZone a owl:ObjectProperty ;
+    rdfs:label "concerné par la zone"@fr ; rdfs:domain ant:Parcelle ; rdfs:range ant:ZoneReglementaire .
+ant:typeDeZone a owl:ObjectProperty ;
+    rdfs:label "type de zone"@fr ; rdfs:domain ant:ObjetGeographique ; rdfs:range ant:TypeDeZone ;
+    note:note "Portée volontairement élargie à tout objet géographique : porter les contraintes directement sur la parcelle la rend filtrable sur la carte, alors qu'une zone voisine, qui est elle-même un lieu dessiné, n'est pas remontée comme facette." .
+ant:axe a owl:ObjectProperty ;
+    rdfs:label "axe"@fr ; rdfs:domain skos:Concept ; rdfs:range ant:Axe .
+
+ant:natureDocument a owl:ObjectProperty ;
+    rdfs:label "nature du document"@fr ; rdfs:domain ant:Document ; rdfs:range ant:NatureDocument .
+ant:porteSurObjet a owl:ObjectProperty ;
+    rdfs:label "porte sur l'objet"@fr ; rdfs:domain ant:Mesure ; rdfs:range ant:ObjetGeographique .
+ant:parRapportA a owl:ObjectProperty ;
+    rdfs:label "par rapport à"@fr ; rdfs:domain ant:Mesure ; rdfs:range ant:ObjetGeographique .
+ant:implanteSur a owl:ObjectProperty ;
+    rdfs:label "implanté sur"@fr ; rdfs:domain ant:ProjetAntenne ; rdfs:range ant:Parcelle .
+ant:comprendOuvrage a owl:ObjectProperty ;
+    rdfs:label "comprend l'ouvrage"@fr ; rdfs:domain ant:ProjetAntenne ; rdfs:range ant:Ouvrage .
+ant:aRole a owl:ObjectProperty ;
+    rdfs:label "a le rôle de"@fr ; rdfs:domain ant:Acteur ; rdfs:range ant:Role .
+ant:estProprietaireDe a owl:ObjectProperty ;
+    rdfs:label "est propriétaire de"@fr ; rdfs:domain ant:Acteur ; rdfs:range ant:Parcelle .
+ant:exploite a owl:ObjectProperty ;
+    rdfs:label "exploite"@fr ; rdfs:domain ant:Acteur ; rdfs:range ant:Parcelle .
+ant:habite a owl:ObjectProperty ;
+    rdfs:label "habite"@fr ; rdfs:domain ant:Personne ; rdfs:range ant:Batiment .
+ant:representantLegal a owl:ObjectProperty ;
+    rdfs:label "représentant légal"@fr ; rdfs:domain ant:Organisation ; rdfs:range ant:Personne .
+ant:filialeDe a owl:ObjectProperty ;
+    rdfs:label "filiale de"@fr ; rdfs:domain ant:Entreprise ; rdfs:range ant:Entreprise .
+ant:demandeur a owl:ObjectProperty ;
+    rdfs:label "demandeur"@fr ; rdfs:domain ant:Procedure ; rdfs:range ant:Organisation .
+ant:instruitePar a owl:ObjectProperty ;
+    rdfs:label "instruite par"@fr ; rdfs:domain ant:Procedure ; rdfs:range ant:Administration .
+ant:porteSurProjet a owl:ObjectProperty ;
+    rdfs:label "porte sur le projet"@fr ; rdfs:domain ant:Procedure ; rdfs:range ant:ProjetAntenne .
+ant:pieceDuDossier a owl:ObjectProperty ;
+    rdfs:label "pièce du dossier"@fr ; rdfs:domain ant:Procedure ; rdfs:range ant:Document .
+ant:evenementDe a owl:ObjectProperty ;
+    rdfs:label "événement de la procédure"@fr ; rdfs:domain ant:Evenement ; rdfs:range ant:Procedure .
+ant:declenchePar a owl:ObjectProperty ;
+    rdfs:label "déclenché par"@fr ; rdfs:domain ant:Delai ; rdfs:range ant:Evenement .
+ant:prouvePar a owl:ObjectProperty ;
+    rdfs:label "prouvé par"@fr ; rdfs:domain ant:Evenement ; rdfs:range ant:Document .
+ant:fondementJuridique a owl:ObjectProperty ;
+    rdfs:label "fondement juridique"@fr ; rdfs:domain ant:MoyenJuridique ; rdfs:range ant:TexteJuridique .
+ant:fondementDuDelai a owl:ObjectProperty ;
+    rdfs:label "fondement du délai"@fr ; rdfs:domain ant:Delai ; rdfs:range ant:TexteJuridique .
+ant:etayePar a owl:ObjectProperty ;
+    rdfs:label "étayé par le document"@fr ; rdfs:domain ant:MoyenJuridique ; rdfs:range ant:Document .
+ant:etayeParMesure a owl:ObjectProperty ;
+    rdfs:label "étayé par la mesure"@fr ; rdfs:domain ant:MoyenJuridique ; rdfs:range ant:Mesure .
+ant:viseProcedure a owl:ObjectProperty ;
+    rdfs:label "vise la procédure"@fr ; rdfs:domain ant:MoyenJuridique ; rdfs:range ant:Procedure .
+ant:force a owl:ObjectProperty ;
+    rdfs:label "force estimée"@fr ; rdfs:domain ant:MoyenJuridique ; rdfs:range ant:Force .
+ant:menePar a owl:ObjectProperty ;
+    rdfs:label "menée par"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Acteur .
+ant:cible a owl:ObjectProperty ;
+    rdfs:label "adressée à"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Acteur .
+ant:produit a owl:ObjectProperty ;
+    rdfs:label "produit le document"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Document .
+ant:soutient a owl:ObjectProperty ;
+    rdfs:label "soutient le moyen"@fr ; rdfs:domain ant:Action ; rdfs:range ant:MoyenJuridique .
+ant:relance a owl:ObjectProperty ;
+    rdfs:label "relance l'action"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Action .
+ant:sousEcheanceDe a owl:ObjectProperty ;
+    rdfs:label "sous l'échéance du délai"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Delai .
+ant:statut a owl:ObjectProperty ;
+    rdfs:label "statut"@fr ; rdfs:domain ant:Action ; rdfs:range ant:Statut .
+
+#################################################################
+#  PROPRIÉTÉS DE DONNÉES
+#################################################################
+
+ant:identifiantCadastral a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "identifiant cadastral (IDU)"@fr ; rdfs:domain ant:Parcelle ; rdfs:range xsd:string .
+ant:contenance a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "contenance (m²)"@fr ; rdfs:domain ant:Parcelle ; rdfs:range xsd:decimal .
+ant:codeInsee a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "code INSEE"@fr ; rdfs:domain ant:Commune ; rdfs:range xsd:string .
+ant:siren a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "SIREN"@fr ; rdfs:domain ant:Organisation ; rdfs:range xsd:string .
+ant:numeroDossier a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "numéro de dossier"@fr ; rdfs:domain ant:Procedure ; rdfs:range xsd:string .
+ant:hauteur a owl:DatatypeProperty ;
+    rdfs:label "hauteur (m)"@fr ; rdfs:domain ant:Ouvrage ; rdfs:range xsd:decimal .
+ant:empriseAuSol a owl:DatatypeProperty ;
+    rdfs:label "emprise au sol (m²)"@fr ; rdfs:domain ant:Ouvrage ; rdfs:range xsd:decimal .
+ant:valeur a owl:DatatypeProperty ;
+    rdfs:label "valeur"@fr ; rdfs:domain ant:Mesure ; rdfs:range xsd:decimal .
+ant:unite a owl:DatatypeProperty ;
+    rdfs:label "unité"@fr ; rdfs:domain ant:Mesure ; rdfs:range xsd:string .
+ant:methode a owl:DatatypeProperty ;
+    rdfs:label "méthode / source"@fr ; rdfs:domain ant:Mesure ; rdfs:range xsd:string .
+ant:dateEvenement a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "date de l'événement"@fr ; rdfs:domain ant:Evenement ; rdfs:range xsd:date .
+ant:debuteLe a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "commence le"@fr ; rdfs:domain ant:Delai ; rdfs:range xsd:date .
+ant:expireLe a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "expire le"@fr ; rdfs:domain ant:Delai ; rdfs:range xsd:date .
+ant:duree a owl:DatatypeProperty ;
+    rdfs:label "durée"@fr ; rdfs:domain ant:Delai ; rdfs:range xsd:string .
+ant:echeance a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "échéance"@fr ; rdfs:domain ant:Action ; rdfs:range xsd:date .
+ant:reference a owl:DatatypeProperty ;
+    rdfs:label "référence"@fr ; rdfs:domain ant:TexteJuridique ; rdfs:range xsd:string .
+ant:urlSource a owl:DatatypeProperty ;
+    rdfs:label "URL source"@fr ; rdfs:range xsd:anyURI .
+ant:distanceParcelle a owl:DatatypeProperty ;
+    rdfs:label "distance à la parcelle (m)"@fr ; rdfs:domain ant:ObjetGeographique ; rdfs:range xsd:decimal ;
+    note:note "Recopiée sur l'entité dessinée, en plus de la classe Mesure qui en porte la provenance : kai-ster n'expose comme chiffre d'un lieu que les littéraux numériques posés *sur ce lieu*." .
+
+ant:sourceGeoJSON a owl:DatatypeProperty ;
+    rdfs:label "fichier GeoJSON source"@fr ; rdfs:domain ant:ObjetGeographique ; rdfs:range xsd:string .

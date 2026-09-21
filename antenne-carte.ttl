@@ -1,0 +1,43 @@
+@prefix carte: <https://kersalous.bzh/carte/> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <https://ster.dev/ns/map#> .
+
+<antenne.org> a owl:Ontology ;
+    rdfs:label "antenne" .
+
+carte:cadastre a owl:NamedIndividual,
+        sm:MapLayer ;
+    rdfs:label "Parcellaire cadastral"@fr ;
+    note:note "Superposition utile : toutes les parcelles voisines apparaissent sans avoir à les charger une à une dans le graphe. N'ajoutez au graphe que celles sur lesquelles vous avez quelque chose à dire." ;
+    sm:attribution "IGN / DGFiP — Parcellaire Express" ;
+    sm:opacity "0.85" ;
+    sm:tileUrl "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=CADASTRALPARCELS.PARCELLAIRE_EXPRESS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/png" .
+
+carte:ign-ortho a owl:NamedIndividual,
+        sm:MapLayer ;
+    rdfs:label "IGN — photographie aérienne"@fr ;
+    note:note "Le fond le plus parlant ici : on voit la bande cultivée, le talus et les toits du hameau." ;
+    sm:attribution "IGN — BD ORTHO" ;
+    sm:opacity "1" ;
+    sm:tileUrl "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/jpeg" .
+
+carte:ign-plan a owl:NamedIndividual,
+        sm:MapLayer ;
+    rdfs:label "IGN — plan"@fr ;
+    sm:attribution "IGN — Plan IGN v2" ;
+    sm:opacity "1" ;
+    sm:tileUrl "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&FORMAT=image/png" .
+
+carte:plu a owl:NamedIndividual,
+        sm:MapLayer ;
+    rdfs:label "Zonage PLU (GPU)"@fr ;
+    note:note "Couche WMS — kai-ster bascule en requête WMS dès que sm:wmsLayers est présent. À vérifier au premier affichage : le GPU renomme parfois ses couches." ;
+    sm:attribution "Géoportail de l'urbanisme" ;
+    sm:opacity "0.6" ;
+    sm:tileUrl "https://data.geopf.fr/wms-v/ows" ;
+    sm:wmsFormat "image/png" ;
+    sm:wmsLayers "wms-v:Zone_urba" ;
+    sm:wmsTransparent "true" .
+

@@ -1,0 +1,478 @@
+@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
+@prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:  <http://www.opengis.net/ont/geosparql#> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+
+# ═══════════════════════════════════════════════════════════════
+#  TERRITOIRE
+# ═══════════════════════════════════════════════════════════════
+
+dos:commune-ploneour a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Plonéour-Lanvern"@fr ; ant:codeInsee "29174" ;
+    note:note "Commune qui instruit et décide. **N'est pas** soumise à la loi Littoral, bien qu'à moins d'un kilomètre de la côte." .
+
+dos:commune-stjean a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Saint-Jean-Trolimon"@fr ; ant:codeInsee "29252" ;
+    note:note "Commune des riverains les plus proches (hameau de Kerfilin). Elle ne décide pas, mais ses habitants subissent le projet — levier politique." .
+
+dos:parcelle-yx26 a owl:NamedIndividual, ant:Parcelle ;
+    rdfs:label "Parcelle YX 26 — Plonéour-Lanvern"@fr ;
+    ant:identifiantCadastral "29174000YX0026" ;
+    ant:contenance 3440 ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    geo:asWKT "POLYGON((-4.275170 47.874985, -4.274414 47.875150, -4.273628 47.875313, -4.273560 47.875077, -4.274161 47.874945, -4.274859 47.874745, -4.274979 47.874708, -4.275156 47.874955, -4.275170 47.874985))"^^geo:wktLiteral ;
+    ant:typeDeZone skt:zone-A, skt:haie-talus ;
+    ant:concerneParZone dos:zone-plu-a, dos:haie-nord, dos:haie-sud ;
+    ant:sourceGeoJSON "parcelle_YX26.geojson" ;
+    note:note "Bande de 190 m sur 25 m, à l'extrémité sud de la commune. L'avis de dépôt la situe à « Kersalous », lieu-dit pourtant distant de 860 m au nord." .
+
+dos:lieudit-kersalous a owl:NamedIndividual, ant:LieuDit ;
+    rdfs:label "Kersalous"@fr ; ant:dansLieu dos:commune-ploneour .
+
+dos:lieudit-kerfilin-sud a owl:NamedIndividual, ant:LieuDit ;
+    rdfs:label "Secteur sud — limite Kerfilin"@fr ; ant:dansLieu dos:commune-ploneour ;
+    note:note "Niveau intermédiaire créé pour le zoom : la parcelle se rattache ici, et non à Kersalous dont elle est distante de 860 m." .
+
+dos:lieudit-trevilit a owl:NamedIndividual, ant:LieuDit ;
+    rdfs:label "Trévilit"@fr ; ant:dansLieu dos:commune-ploneour .
+
+dos:hameau-kerfilin a owl:NamedIndividual, ant:LieuDit ;
+    rdfs:label "Kerfilin"@fr ; ant:dansLieu dos:commune-stjean ;
+    ant:distanceParcelle 67 ;
+    note:note "Hameau riverain, classé en zone d'habitat Ub au PLU de Saint-Jean-Trolimon." .
+
+dos:zone-plu-a a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Zone A du PLU de Plonéour-Lanvern"@fr ; ant:typeDeZone skt:zone-A .
+
+dos:haie-nord a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Haie/talus protégé — 183 m"@fr ; ant:typeDeZone skt:haie-talus ;
+    geo:asWKT "LINESTRING(-4.274979 47.874708, -4.275156 47.874955, -4.275170 47.874985, -4.275308 47.875279, -4.275340 47.875604, -4.275304 47.875673, -4.275325 47.875886, -4.275347 47.876306)"^^geo:wktLiteral .
+dos:haie-sud a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Haie/talus protégé — 121 m"@fr ; ant:typeDeZone skt:haie-talus ;
+    geo:asWKT "LINESTRING(-4.275170 47.874985, -4.274414 47.875150, -4.273628 47.875313)"^^geo:wktLiteral .
+dos:zone-humide-voisine a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Zone humide protégée (à 8 m)"@fr ; ant:typeDeZone skt:zone-humide ;
+    ant:distanceParcelle 8 ;
+    geo:asWKT "POLYGON((-4.269292 47.873784, -4.269192 47.873433, -4.269338 47.873374, -4.269647 47.873205, -4.269825 47.872985, -4.269868 47.872967, -4.270457 47.872797, -4.270677 47.872763, -4.271848 47.872584, -4.272081 47.872721, -4.272394 47.872896, -4.272493 47.872951, -4.272611 47.873017, -4.272594 47.873029, -4.272577 47.873042, -4.272561 47.873120, -4.272423 47.873147, -4.272178 47.873180, -4.271976 47.873258, -4.271722 47.873288, -4.271459 47.873314, -4.271236 47.873370, -4.271146 47.873424, -4.271096 47.873648, -4.271218 47.873958, -4.271329 47.874046, -4.271627 47.874081, -4.271945 47.874068, -4.272324 47.873978, -4.272649 47.873892, -4.272758 47.873903, -4.273000 47.873965, -4.273254 47.873956, -4.273438 47.873879, -4.273878 47.873786, -4.273878 47.873786, -4.273878 47.873786, -4.274935 47.874640, -4.274536 47.874759, -4.273960 47.874116, -4.273688 47.874144, -4.273457 47.874147, -4.273272 47.874093, -4.273086 47.874058, -4.272857 47.874107, -4.272610 47.874122, -4.272398 47.874135, -4.272334 47.874181, -4.272333 47.874311, -4.272456 47.874544, -4.272315 47.874624, -4.271987 47.874633, -4.271777 47.874592, -4.271675 47.874561, -4.271511 47.874190, -4.270950 47.874340, -4.271079 47.874770, -4.271303 47.875524, -4.270604 47.875657, -4.269964 47.875797, -4.269707 47.875876, -4.269578 47.875834, -4.269543 47.875757, -4.269581 47.875355, -4.269663 47.874738, -4.269631 47.874676, -4.269521 47.874558, -4.268469 47.874100, -4.267888 47.873837, -4.267657 47.873601, -4.267629 47.873513, -4.267895 47.873550, -4.268131 47.873636, -4.268155 47.873735, -4.268137 47.873837, -4.268207 47.873882, -4.268417 47.873934, -4.268510 47.873914, -4.268734 47.873835, -4.268906 47.873846, -4.269025 47.873860, -4.269132 47.873861, -4.269158 47.873974, -4.269247 47.874076, -4.269421 47.874228, -4.269437 47.874281, -4.269292 47.873784))"^^geo:wktLiteral ;
+    note:note "Bord situé à 8 m de la parcelle. Vérifier le tracé de la piste d'accès et l'exutoire des eaux de la dalle béton." .
+
+dos:ebc-voisin a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Espace boisé classé (à 34 m)"@fr ; ant:typeDeZone skt:ebc ;
+    ant:distanceParcelle 34 ;
+    geo:asWKT "POLYGON((-4.275304 47.876159, -4.275321 47.876078, -4.275332 47.875903, -4.275315 47.875771, -4.275292 47.875683, -4.275309 47.875638, -4.275342 47.875591, -4.275318 47.875503, -4.275295 47.875285, -4.275418 47.875237, -4.275616 47.875587, -4.276450 47.875385, -4.276836 47.875292, -4.276421 47.874568, -4.276732 47.874463, -4.276736 47.874467, -4.277425 47.875202, -4.277859 47.875855, -4.278006 47.875863, -4.278164 47.876166, -4.277872 47.876212, -4.277886 47.876254, -4.277747 47.876280, -4.277166 47.876387, -4.277006 47.876407, -4.276962 47.876325, -4.276603 47.876379, -4.276457 47.876392, -4.276195 47.876411, -4.275456 47.876564, -4.275354 47.876399, -4.275323 47.876251, -4.275304 47.876159))"^^geo:wktLiteral .
+
+dos:abords-trevilit a owl:NamedIndividual, ant:ZoneReglementaire ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    rdfs:label "Périmètre des abords — Manoir de Trévilit"@fr ;
+    ant:distanceParcelle 163 ;
+    ant:typeDeZone skt:perimetre-abords, skt:sup-ac1 ;
+    geo:asWKT "POLYGON((-4.267990 47.876865, -4.269122 47.876603, -4.270378 47.876470, -4.271647 47.876500, -4.272886 47.876690, -4.274049 47.877035, -4.275093 47.877522, -4.275983 47.878132, -4.276684 47.878845, -4.277142 47.879568, -4.277464 47.880259, -4.277629 47.881107, -4.277567 47.881892, -4.277274 47.882719, -4.276755 47.883494, -4.276082 47.884149, -4.275340 47.884664, -4.274326 47.885194, -4.273179 47.885584, -4.271963 47.885830, -4.270734 47.885918, -4.269458 47.885857, -4.268222 47.885634, -4.267073 47.885256, -4.266051 47.884738, -4.265194 47.884099, -4.264534 47.883362, -4.264056 47.882653, -4.263733 47.881843, -4.263638 47.880988, -4.263785 47.880137, -4.264170 47.879320, -4.264779 47.878566, -4.265589 47.877904, -4.266570 47.877357, -4.267688 47.876946, -4.267990 47.876865))"^^geo:wktLiteral ;
+    note:note "Rayon de 500 m par défaut (pas de PDA). Son bord sud s'arrête **163 m avant** la parcelle : aucun avis conforme de l'ABF n'est requis." .
+dos:mh-trevilit a owl:NamedIndividual, ant:MonumentHistorique ;
+    rdfs:label "Manoir de Trévilit"@fr ;
+    ant:typeDeZone skt:mh-inscrit ;
+    ant:dansLieu dos:lieudit-trevilit ;
+    ant:distanceParcelle 648 ;
+    geo:asWKT "POLYGON((-4.270537 47.881362, -4.270571 47.881328, -4.270690 47.880993, -4.270782 47.880962, -4.270800 47.881024, -4.270878 47.881239, -4.270918 47.881244, -4.270941 47.881256, -4.270943 47.881265, -4.270922 47.881283, -4.270902 47.881288, -4.270866 47.881301, -4.270845 47.881326, -4.270771 47.881366, -4.270746 47.881393, -4.270645 47.881418, -4.270637 47.881404, -4.270537 47.881362, -4.270665 47.880999, -4.270615 47.881061, -4.270325 47.881081, -4.270534 47.881033, -4.270351 47.881131, -4.270536 47.881034, -4.270596 47.881028, -4.270536 47.881034, -4.270537 47.881362))"^^geo:wktLiteral ;
+    ant:urlSource "https://pop.culture.gouv.fr/notice/merimee/PA00090200"^^xsd:anyURI ;
+    note:note "Inscrit par arrêté du 7 septembre 1977 (PA00090200) : façades, toitures, mur de clôture sud et portail. Son propriétaire est un requérant potentiel très crédible." .
+dos:maison-1 a owl:NamedIndividual, ant:Batiment ;
+    rdfs:label "Habitation riveraine 1 (Kerfilin)"@fr ; ant:dansLieu dos:hameau-kerfilin ;
+    ant:distanceParcelle 23 ;
+    geo:asWKT "POINT(-4.27546 47.87469)"^^geo:wktLiteral .
+dos:maison-2 a owl:NamedIndividual, ant:Batiment ;
+    rdfs:label "Habitation riveraine 2 (Kerfilin)"@fr ; ant:dansLieu dos:hameau-kerfilin ;
+    ant:distanceParcelle 32 ;
+    geo:asWKT "POINT(-4.27572 47.87448)"^^geo:wktLiteral .
+dos:maison-3 a owl:NamedIndividual, ant:Batiment ;
+    rdfs:label "Habitation riveraine 3 (Kerfilin)"@fr ; ant:dansLieu dos:hameau-kerfilin ;
+    ant:distanceParcelle 32 ;
+    geo:asWKT "POINT(-4.27605 47.87432)"^^geo:wktLiteral .
+# ── Mesures ────────────────────────────────────────────────────
+
+dos:m-dist-maison1 a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance parcelle → habitation 1 : 23 m"@fr ;
+    ant:valeur 23 ; ant:unite "m" ; ant:methode "IGN BD TOPO, distance au bord de parcelle" ;
+    ant:porteSurObjet dos:parcelle-yx26 ; ant:parRapportA dos:maison-1 .
+
+dos:m-dist-maison2 a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance parcelle → habitation 2 : 32 m"@fr ;
+    ant:valeur 32 ; ant:unite "m" ; ant:methode "IGN BD TOPO" ;
+    ant:porteSurObjet dos:parcelle-yx26 ; ant:parRapportA dos:maison-2 .
+
+dos:m-dist-zone-humide a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance parcelle → zone humide : 8 m"@fr ;
+    ant:valeur 8 ; ant:unite "m" ; ant:methode "APIcarto GPU, prescriptions surfaciques" ;
+    ant:porteSurObjet dos:parcelle-yx26 ; ant:parRapportA dos:zone-humide-voisine .
+
+dos:m-dist-ebc a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance parcelle → EBC : 34 m"@fr ;
+    ant:valeur 34 ; ant:unite "m" ; ant:methode "APIcarto GPU" ;
+    ant:porteSurObjet dos:parcelle-yx26 ; ant:parRapportA dos:ebc-voisin .
+
+dos:m-dist-abords a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance parcelle → périmètre des abords : 163 m"@fr ;
+    ant:valeur 163 ; ant:unite "m" ; ant:methode "APIcarto GPU, assiette SUP AC1" ;
+    ant:porteSurObjet dos:parcelle-yx26 ; ant:parRapportA dos:abords-trevilit ;
+    note:note "Mesure défavorable, à connaître avant de plaider le patrimoine : la parcelle est **hors** périmètre." .
+
+dos:m-dist-manoir a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Distance manoir → bord de parcelle : 648 m"@fr ;
+    ant:valeur 648 ; ant:unite "m" ; ant:methode "calcul géodésique sur géométries IGN" ;
+    ant:porteSurObjet dos:mh-trevilit ; ant:parRapportA dos:parcelle-yx26 .
+
+dos:m-covisibilite a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Covisibilité manoir ↔ parcelle : directe"@fr ;
+    ant:valeur 1 ; ant:unite "booléen" ;
+    ant:methode "Profil IGN RGE ALTI, 31 points : parcelle à 25,8 m NGF, manoir à 21,6 m NGF, aucun obstacle de relief. Modèle de terrain nu : la végétation n'est pas prise en compte." ;
+    ant:porteSurObjet dos:mh-trevilit ; ant:parRapportA dos:parcelle-yx26 .
+
+# ═══════════════════════════════════════════════════════════════
+#  PROJET
+# ═══════════════════════════════════════════════════════════════
+
+dos:projet-pylone a owl:NamedIndividual, ant:ProjetAntenne ;
+    rdfs:label "Relais radioélectrique de Kersalous"@fr ;
+    ant:implanteSur dos:parcelle-yx26 ;
+    geo:asWKT "POINT(-4.274491 47.874985)"^^geo:wktLiteral ;
+    ant:comprendOuvrage dos:ouvrage-pylone, dos:ouvrage-zone-technique, dos:ouvrage-cloture .
+
+dos:ouvrage-pylone a owl:NamedIndividual, ant:Ouvrage ;
+    rdfs:label "Pylône treillis 30 m"@fr ; ant:hauteur 30 .
+
+dos:ouvrage-zone-technique a owl:NamedIndividual, ant:Ouvrage ;
+    rdfs:label "Zone technique sur dalle béton"@fr ;
+    note:note "**Emprise au sol inconnue** — case laissée vide sur l'avis de dépôt. C'est la donnée la plus importante du dossier : au-delà de 20 m², un permis de construire est obligatoire et la DP est illégale." .
+
+dos:ouvrage-cloture a owl:NamedIndividual, ant:Ouvrage ;
+    rdfs:label "Clôture grillagée RAL 6005, 2 m"@fr ; ant:hauteur 2 .
+
+# ═══════════════════════════════════════════════════════════════
+#  ACTEURS
+# ═══════════════════════════════════════════════════════════════
+
+dos:role-proprietaire a owl:NamedIndividual, ant:Role ; rdfs:label "Propriétaire"@fr .
+dos:role-bailleur    a owl:NamedIndividual, ant:Role ; rdfs:label "Bailleur"@fr .
+dos:role-exploitant  a owl:NamedIndividual, ant:Role ; rdfs:label "Exploitant agricole"@fr .
+dos:role-riverain    a owl:NamedIndividual, ant:Role ; rdfs:label "Riverain"@fr .
+dos:role-demandeur   a owl:NamedIndividual, ant:Role ; rdfs:label "Demandeur"@fr .
+dos:role-autorite    a owl:NamedIndividual, ant:Role ; rdfs:label "Autorité décisionnaire"@fr .
+dos:role-conseil     a owl:NamedIndividual, ant:Role ; rdfs:label "Conseil juridique"@fr .
+dos:role-requerant   a owl:NamedIndividual, ant:Role ; rdfs:label "Requérant potentiel"@fr .
+
+dos:phoenix-france a owl:NamedIndividual, ant:Entreprise ;
+    rdfs:label "Phoenix France Infrastructures"@fr ; ant:siren "853958650" ;
+    ant:aRole dos:role-demandeur ; ant:representantLegal dos:personne-culver ;
+    ant:filialeDe dos:phoenix-tower-international ;
+    note:note "SAS, siège 4 rue de Marivaux 75002 Paris. CA 2024 : 40,9 M€, résultat net +17,2 M€. Coentreprise Phoenix Tower International / Bouygues Telecom créée en mars 2020." .
+
+dos:phoenix-tower-international a owl:NamedIndividual, ant:Entreprise ;
+    rdfs:label "Phoenix Tower International"@fr ;
+    note:note "Groupe américain, siège à Boca Raton (Floride). Plus de 3 600 sites en France." .
+
+dos:bouygues-telecom a owl:NamedIndividual, ant:Entreprise ;
+    rdfs:label "Bouygues Telecom"@fr ; ant:siren "397480930" ;
+    note:note "Coactionnaire. L'adresse du demandeur sur l'avis de dépôt (76 rue des Français Libres à Nantes) est en réalité son agence Ouest." .
+
+dos:personne-culver a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Timothy Culver"@fr ;
+    note:note "Nommé comme demandeur sur l'avis de dépôt. Executive Chairman de Phoenix Tower International ; ancien président du conseil de surveillance de PFI au registre français." .
+
+dos:proprietaire-yx26 a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Propriétaire de la parcelle YX 26 — à identifier"@fr ;
+    ant:aRole dos:role-proprietaire, dos:role-bailleur ;
+    ant:estProprietaireDe dos:parcelle-yx26 ;
+    note:note """**Inconnu modélisé volontairement.**
+Aucune mutation dans DVF entre 2021 et 2025 : la parcelle n'a pas été vendue récemment.
+Hypothèse la plus probable : bail de longue durée consenti par le propriétaire en place.
+À identifier par l'extrait de matrice cadastrale (6815-EM-SD) puis le 3233-SD.
+Données personnelles : ne pas publier, ne pas diffuser le nom.""" .
+
+dos:exploitant-yx26 a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Exploitant agricole de la parcelle — à vérifier"@fr ;
+    ant:aRole dos:role-exploitant ; ant:exploite dos:parcelle-yx26 ;
+    note:note "S'il existe un bail rural, la résiliation partielle (L.411-32 c. rural) peut être contestée devant le tribunal paritaire. Levier sous-utilisé." .
+
+dos:proprietaire-manoir a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Propriétaire du Manoir de Trévilit"@fr ;
+    ant:aRole dos:role-proprietaire, dos:role-requerant .
+
+dos:vous a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Vous (porteur du dossier)"@fr ; ant:aRole dos:role-riverain, dos:role-requerant .
+
+dos:mairie-ploneour a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "Mairie de Plonéour-Lanvern"@fr ; ant:aRole dos:role-autorite ;
+    note:note "mairie@ploneour-lanvern.fr — 02 98 82 66 00 — lun-ven 8h30-12h / 13h30-17h45, sam 8h30-12h." .
+
+dos:udap-29 a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "UDAP du Finistère (ABF)"@fr ;
+    note:note "Hors périmètre des abords, son avis n'est pas requis — mais il peut être sollicité à titre simple, et pèse lourd en contentieux." .
+
+dos:spf-quimper a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "Service de la publicité foncière — Quimper"@fr ;
+    note:note "spf.quimper@dgfip.finances.gouv.fr — 3 bd du Finistère, 29107 Quimper Cedex. Formulaire 3233-SD, 12 € par immeuble, réponse par courriel gratuite." .
+
+dos:sdif-chateaulin a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "SDIF Finistère — Châteaulin"@fr ;
+    note:note "sdif29.chateaulin@dgfip.finances.gouv.fr — formulaire 6815-EM-SD, gratuit." .
+
+dos:safer-bretagne a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "SAFER Bretagne"@fr ;
+    note:note "Notifiée de toute vente de terrain agricole. Sait si la parcelle a changé de mains." .
+
+dos:prefecture-29 a owl:NamedIndividual, ant:Administration ;
+    rdfs:label "Préfecture du Finistère"@fr ;
+    note:note "Peut déférer au tribunal administratif une décision de non-opposition illégale." .
+
+dos:ta-rennes a owl:NamedIndividual, ant:Juridiction ; rdfs:label "Tribunal administratif de Rennes"@fr .
+dos:cada a owl:NamedIndividual, ant:Juridiction ; rdfs:label "CADA"@fr ;
+    note:note "Saisine possible dans les 2 mois suivant un refus, exprès ou tacite, de communication." .
+
+dos:sites-et-monuments a owl:NamedIndividual, ant:Association ;
+    rdfs:label "Sites & Monuments (SPPEF)"@fr ; ant:aRole dos:role-requerant ;
+    note:note "Association ancienne, donc recevable au regard de L.600-1-1 — contrairement à une association créée aujourd'hui. Plaide régulièrement les dossiers antenne / covisibilité." .
+
+# ═══════════════════════════════════════════════════════════════
+#  CORPUS JURIDIQUE
+# ═══════════════════════════════════════════════════════════════
+
+dos:art-r421-9 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. R. 421-9"@fr ; ant:reference "R. 421-9" ;
+    note:note "DP si surface de plancher **et** emprise au sol > 5 m² et ≤ 20 m². Au-delà de 20 m², permis de construire obligatoire." .
+dos:art-r600-1 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. R. 600-1"@fr ; ant:reference "R. 600-1" ;
+    note:note "Notification du recours par LRAR à l'auteur de la décision **et** au bénéficiaire, dans les 15 jours. À peine d'irrecevabilité." .
+dos:art-r600-2 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. R. 600-2"@fr ; ant:reference "R. 600-2" ;
+    note:note "Recours dans les 2 mois à compter du premier jour d'un affichage continu de 2 mois sur le terrain." .
+dos:art-r111-27 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. R. 111-27"@fr ; ant:reference "R. 111-27" ;
+    note:note "Atteinte au caractère ou à l'intérêt des lieux avoisinants. Le juge peut tenir compte d'un monument situé hors périmètre." .
+dos:art-l151-23 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. L. 151-23"@fr ; ant:reference "L. 151-23" .
+dos:art-l424-5 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. L. 424-5"@fr ; ant:reference "L. 424-5" ;
+    note:note "Retrait d'une décision illégale possible dans les 3 mois." .
+dos:art-l311-9-crpa a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "CRPA art. L. 311-9"@fr ; ant:reference "L. 311-9" ;
+    note:note "Le demandeur choisit la modalité : consultation sur place, copie, ou envoi électronique gratuit." .
+dos:art-l621-30-patrimoine a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. patrimoine art. L. 621-30"@fr ; ant:reference "L. 621-30" ;
+    note:note "Depuis la loi LCAP de 2016, le périmètre des abords remplace le champ de visibilité : hors périmètre, aucun contrôle de l'ABF." .
+dos:art-l411-32-rural a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. rural art. L. 411-32"@fr ; ant:reference "L. 411-32" .
+dos:art-l34-9-1-cpce a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "CPCE art. L. 34-9-1"@fr ; ant:reference "L. 34-9-1" ;
+    note:note "Dossier d'information transmis au maire, et simulation d'exposition aux ondes à sa demande." .
+
+dos:plu-regle-a-i-2-3 a owl:NamedIndividual, ant:RegleDeZone ;
+    rdfs:label "PLU Plonéour-Lanvern — art. A I-2 §3"@fr ;
+    note:note "Équipements d'intérêt collectif admis en zone A seulement s'ils ne sont pas incompatibles avec l'activité agricole de l'unité foncière **et** ne portent pas atteinte aux espaces naturels et aux paysages. Double condition cumulative : c'est là que se joue le fond." .
+
+dos:plu-art-6 a owl:NamedIndividual, ant:RegleDeZone ;
+    rdfs:label "PLU Plonéour-Lanvern — art. 6, éléments paysagers"@fr ;
+    note:note "Toute suppression de haie ou de talus protégé exige une DP distincte, examinée par une commission créée par le maire, qui peut refuser ou imposer des compensations." .
+
+dos:ce-2011-ondes a owl:NamedIndividual, ant:Jurisprudence ;
+    rdfs:label "CE, 26 octobre 2011 — police des ondes"@fr ;
+    note:note "La police des ondes relève exclusivement de l'État. Un refus fondé sur la santé est illégal : ce moyen est perdu d'avance en contentieux d'urbanisme." .
+
+# ═══════════════════════════════════════════════════════════════
+#  DOCUMENTS
+# ═══════════════════════════════════════════════════════════════
+
+dos:doc-avis-depot a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Avis de dépôt affiché en mairie"@fr ; ant:natureDocument skt:doc-avis-depot ;
+    note:note "Détenu (photographie). Cases emprise au sol, surface de plancher, hauteur et zonage laissées vides." .
+
+dos:doc-dossier-dp a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Dossier complet de la DP (pièces DP1 à DP8)"@fr ; ant:natureDocument skt:doc-plan ;
+    note:note "**À obtenir — pièce maîtresse.** Contient l'emprise au sol, les photomontages, l'attestation de propriété et l'attestation de mandat." .
+
+dos:doc-panneau a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Panneau d'affichage sur le terrain"@fr ; ant:natureDocument skt:doc-panneau ;
+    note:note "À photographier daté, chaque semaine, dès son apparition. Un panneau absent ou incomplet ne déclenche pas le délai de recours." .
+
+dos:doc-mail-mairie a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Courriel de demande de communication à la mairie"@fr ; ant:natureDocument skt:doc-courriel ;
+    ant:urlSource "mail_mairie.txt"^^xsd:anyURI .
+dos:doc-mail-matrice a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Courriel 6815-EM-SD au SDIF"@fr ; ant:natureDocument skt:doc-matrice ;
+    ant:urlSource "mail_matrice_cadastrale.txt"^^xsd:anyURI .
+dos:doc-mail-spf a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Courriel 3233-SD au SPF de Quimper"@fr ; ant:natureDocument skt:doc-spf ;
+    ant:urlSource "mail_publicite_fonciere.txt"^^xsd:anyURI .
+dos:doc-carte-covisibilite a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Carte de covisibilité manoir / parcelle"@fr ; ant:natureDocument skt:doc-preuve ;
+    ant:urlSource "covisibilite_manoir_trevilit.jpg"^^xsd:anyURI .
+
+# ═══════════════════════════════════════════════════════════════
+#  PROCÉDURE, ÉVÉNEMENTS, DÉLAIS
+# ═══════════════════════════════════════════════════════════════
+
+dos:dp-29174-26-00122 a owl:NamedIndividual, ant:Procedure ;
+    rdfs:label "DP 029 174 26 00122"@fr ; ant:numeroDossier "DP 029 174 26 00122" ;
+    ant:demandeur dos:phoenix-france ;
+    ant:instruitePar dos:mairie-ploneour ;
+    ant:porteSurProjet dos:projet-pylone ;
+    ant:pieceDuDossier dos:doc-avis-depot, dos:doc-dossier-dp .
+
+dos:ev-depot a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Dépôt de la déclaration préalable"@fr ; ant:dateEvenement "2026-08-18"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-avis-depot .
+
+dos:ev-affichage-mairie a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Affichage de l'avis de dépôt en mairie"@fr ; ant:dateEvenement "2026-08-21"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-avis-depot ;
+    note:note "Cet affichage ne fait **pas** courir le délai de recours. Seul l'affichage sur le terrain le déclenche." .
+
+dos:ev-decision a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Non-opposition tacite (date estimée)"@fr ; ant:dateEvenement "2026-09-18"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ;
+    note:note "Estimation : un mois d'instruction à compter du dépôt. Décalée si des pièces complémentaires ont été demandées. **À confirmer auprès de la mairie.**" .
+
+dos:ev-affichage-terrain a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Affichage sur le terrain — date inconnue"@fr ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-panneau ;
+    note:note "**Événement pivot de tout le calendrier contentieux.** Tant qu'il n'est ni daté ni prouvé, le délai de recours est réputé non déclenché." .
+
+dos:delai-instruction a owl:NamedIndividual, ant:Delai ;
+    rdfs:label "Délai d'instruction (1 mois)"@fr ; ant:duree "1 mois" ;
+    ant:debuteLe "2026-08-18"^^xsd:date ; ant:expireLe "2026-09-18"^^xsd:date ;
+    ant:declenchePar dos:ev-depot .
+
+dos:delai-recours a owl:NamedIndividual, ant:Delai ;
+    rdfs:label "Délai de recours contentieux (2 mois)"@fr ; ant:duree "2 mois" ;
+    ant:declenchePar dos:ev-affichage-terrain ; ant:fondementDuDelai dos:art-r600-2 ;
+    note:note "Non déclenché tant que l'affichage sur le terrain n'est pas constaté. Délai de forclusion, et non de prescription." .
+
+dos:delai-notification a owl:NamedIndividual, ant:Delai ;
+    rdfs:label "Notification du recours (15 jours)"@fr ; ant:duree "15 jours" ;
+    ant:fondementDuDelai dos:art-r600-1 ;
+    note:note "À peine d'irrecevabilité. Erreur la plus fréquente et la plus fatale des recours de riverains." .
+
+dos:delai-retrait a owl:NamedIndividual, ant:Delai ;
+    rdfs:label "Retrait d'une décision illégale (3 mois)"@fr ; ant:duree "3 mois" ;
+    ant:declenchePar dos:ev-decision ; ant:fondementDuDelai dos:art-l424-5 .
+
+# ═══════════════════════════════════════════════════════════════
+#  MOYENS JURIDIQUES
+# ═══════════════════════════════════════════════════════════════
+
+dos:moyen-seuil-pc a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Emprise > 20 m² : un permis de construire était requis"@fr ;
+    ant:fondementJuridique dos:art-r421-9 ; ant:etayePar dos:doc-dossier-dp ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-forte ;
+    note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée." .
+
+dos:moyen-talus a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Destruction de haies/talus protégés non déclarée"@fr ;
+    ant:fondementJuridique dos:art-l151-23, dos:plu-art-6 ;
+    ant:etayePar dos:doc-dossier-dp ; ant:viseProcedure dos:dp-29174-26-00122 ;
+    ant:force skt:force-forte ;
+    note:note "Deux linéaires protégés (121 m et 183 m) touchent la parcelle. Vérifier le tracé de l'accès sur le plan de masse." .
+
+dos:moyen-zone-humide a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Atteinte à la zone humide voisine"@fr ;
+    ant:fondementJuridique dos:art-l151-23 ; ant:etayeParMesure dos:m-dist-zone-humide ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    note:note "Dépend du tracé de la piste d'accès et de la gestion des eaux pluviales de la dalle. À trancher sur plans." .
+
+dos:moyen-zone-a a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Violation des conditions de la zone A (paysage, activité agricole)"@fr ;
+    ant:fondementJuridique dos:plu-regle-a-i-2-3 ;
+    ant:etayeParMesure dos:m-covisibilite, dos:m-dist-maison1 ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-moyenne ;
+    note:note "Règle du PLU, donc plus solide qu'un standard général comme R. 111-27." .
+
+dos:moyen-covisibilite a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Atteinte aux abords du Manoir de Trévilit"@fr ;
+    ant:fondementJuridique dos:art-r111-27, dos:art-l621-30-patrimoine ;
+    ant:etayeParMesure dos:m-covisibilite, dos:m-dist-manoir, dos:m-dist-abords ;
+    ant:etayePar dos:doc-carte-covisibilite ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-moyenne ;
+    note:note "Moyen de renfort, jamais autonome : la parcelle est hors périmètre des abords. Apporte surtout un requérant crédible de plus." .
+
+dos:moyen-affichage a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Irrégularité de l'affichage sur le terrain"@fr ;
+    ant:fondementJuridique dos:art-r600-2 ; ant:etayePar dos:doc-panneau ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    note:note "N'annule pas l'autorisation, mais empêche le délai de courir. Le moyen qui achète du temps." .
+
+dos:moyen-dim a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Absence de dossier d'information mairie"@fr ;
+    ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
+    ant:force skt:force-a-verifier ;
+    note:note "La page « dossiers d'information » de la commune ne mentionne que deux dossiers de 2024. À vérifier auprès du service urbanisme." .
+
+dos:moyen-ondes a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Exposition aux ondes / santé publique"@fr ;
+    ant:fondementJuridique dos:ce-2011-ondes ; ant:viseProcedure dos:dp-29174-26-00122 ;
+    ant:force skt:force-ecarte ;
+    note:note "**Écarté volontairement.** La police des ondes appartient à l'État seul. Invoqué en contentieux d'urbanisme, ce moyen est rejeté et décrédibilise les autres. Conservé dans le graphe pour ne pas être reproposé." .
+
+# ═══════════════════════════════════════════════════════════════
+#  ACTIONS
+# ═══════════════════════════════════════════════════════════════
+
+dos:act-mail-mairie a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Envoyer la demande de communication à la mairie"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:produit dos:doc-mail-mairie ;
+    ant:soutient dos:moyen-seuil-pc, dos:moyen-talus, dos:moyen-dim ;
+    ant:sousEcheanceDe dos:delai-instruction ;
+    ant:statut skt:a-faire ; ant:echeance "2026-09-16"^^xsd:date .
+
+dos:act-visite-mairie a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Se présenter au service urbanisme et consulter le dossier"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ;
+    ant:soutient dos:moyen-seuil-pc ; ant:statut skt:a-faire ; ant:echeance "2026-09-17"^^xsd:date ;
+    note:note "Avant la décision, le dossier est un document préparatoire : un refus est licite. Revenir dès le 19 septembre." .
+
+dos:act-relance-mairie a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Relancer la mairie si silence"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:relance dos:act-mail-mairie ;
+    ant:statut skt:a-faire ; ant:echeance "2026-09-23"^^xsd:date .
+
+dos:act-mail-matrice a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Envoyer le 6815-EM-SD au SDIF"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:sdif-chateaulin ; ant:produit dos:doc-mail-matrice ;
+    ant:statut skt:a-faire ; ant:echeance "2026-09-16"^^xsd:date .
+
+dos:act-mail-spf a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Envoyer le 3233-SD au SPF de Quimper"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:spf-quimper ; ant:produit dos:doc-mail-spf ;
+    ant:statut skt:a-faire ; ant:echeance "2026-09-16"^^xsd:date .
+
+dos:act-photo-panneau a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Photographier le panneau daté, chaque semaine"@fr ;
+    ant:menePar dos:vous ; ant:produit dos:doc-panneau ; ant:soutient dos:moyen-affichage ;
+    ant:sousEcheanceDe dos:delai-recours ; ant:statut skt:a-faire ;
+    note:note "Action récurrente. Un constat de commissaire de justice sécurise définitivement la preuve." .
+
+dos:act-contact-proprietaire a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Rencontrer le propriétaire de la parcelle"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:proprietaire-yx26 ; ant:statut skt:a-faire ;
+    note:note "L'action à plus fort effet de levier du dossier : un bail assorti d'une condition suspensive peut encore ne pas être levé. Approche courtoise impérative." .
+
+dos:act-avocat a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Consulter un avocat en droit de l'urbanisme"@fr ;
+    ant:menePar dos:vous ; ant:statut skt:a-faire ; ant:echeance "2026-09-22"^^xsd:date .
+
+dos:act-sites-monuments a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Contacter Sites & Monuments"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:sites-et-monuments ; ant:soutient dos:moyen-covisibilite ;
+    ant:statut skt:a-faire .
+
+dos:act-udap a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Saisir l'UDAP pour un avis simple"@fr ;
+    ant:menePar dos:proprietaire-manoir ; ant:cible dos:udap-29 ; ant:soutient dos:moyen-covisibilite ;
+    ant:statut skt:a-faire .
