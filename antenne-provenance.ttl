@@ -525,3 +525,75 @@ dos:moyen-ondes       prov:wasDerivedFrom src:connaissance-modele .
 dos:doc-mail-matrice  prov:wasDerivedFrom src:annuaire-sp .
 dos:doc-mail-spf      prov:wasDerivedFrom src:notice-3241, src:annuaire-sp .
 dos:doc-carte-covisibilite prov:wasGeneratedBy src:act-cartes .
+
+# ═══════════════════════════════════════════════════════════════
+#  RÉSEAUX MOBILES EXISTANTS (ANFR) — octobre 2026
+# ═══════════════════════════════════════════════════════════════
+
+src:anfr a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "ANFR — Agence nationale des fréquences"@fr .
+
+src:anfr-observatoire a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-10-13"^^xsd:date ;
+    prov:wasAttributedTo src:anfr ;
+    src:dateDonnees "fichier observatoireod_20261001.csv, champ date_maj 2026-10-01" ;
+    rdfs:label "ANFR — Observatoire des réseaux mobiles 2G/3G/4G/5G"@fr ;
+    dcat:accessURL "https://data.anfr.fr/d4c/api/records/2.0/search/?resource_id=88ef0887-6b0f-4d3f-8545-6d64c8f597da"^^xsd:anyURI ;
+    dcterms:publisher src:anfr ; dcterms:license "Licence Ouverte 2.0" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Une ligne par système radio (ex. LTE 800) d'une station d'opérateur sur un support. Hors périmètre : installations de moins de 5 W, Défense, Intérieur, aviation civile. Coordonnées arrondies à la seconde d'arc (≈ 30 m). La nature du support (NAT_ID) n'a pas pu être décodée : table de correspondance non retrouvée dans l'API." .
+
+src:act-anfr a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Interrogation de l'observatoire ANFR"@fr ;
+    prov:used src:anfr-observatoire ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-10-13T18:40:00"^^xsd:dateTime ;
+    src:requete "q=029 (texte intégral, 10 659 lignes), puis filtre local : supports à moins de 10 km du centre de la parcelle YX 26 (haversine) — 32 supports, 78 stations." ;
+    note:note "L'API ne filtre pas sur la colonne département ; le filtre repose sur la recherche plein texte « 029 ». Vérifié : les 10 659 lignes ont sta_nm_dpt = 029. **Correction (2026-10-13)** : la première extraction paginait sans tri et perdait des lignes (30 supports, 68 stations au lieu de 32 et 78 ; un support Free à 2,6 km manquait). L'extraction a été refaite avec `sort=_id` : 10 659 identifiants distincts, sans doublon. Le total n'a pas été comparé à une autre source." .
+
+src:act-distances-anfr a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Distance des supports à la parcelle"@fr ;
+    prov:used src:anfr-observatoire, src:apicarto-cadastre ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-10-13T18:45:00"^^xsd:dateTime ;
+    note:note "Distance du point ANFR au bord du polygone de la parcelle (projection plane locale, 0 si le point est dans la parcelle), arrondie à 10 m. Précision limitée par l'arrondi des coordonnées ANFR (≈ 30 m)." .
+
+src:act-affirmation-operateur a owl:NamedIndividual, prov:Activity ;
+    rdfs:label "Affirmation de l'opérateur du site projeté"@fr ;
+    prov:wasAssociatedWith src:utilisateur ;
+    prov:endedAtTime "2026-10-13T19:30:00"^^xsd:dateTime ;
+    note:note "Fait énoncé par l'utilisateur : l'antenne projetée à Kersalous est celle de Bouygues Telecom. Source déclarative, non étayée par une pièce du dossier (niveau « assertion »). À remplacer par un renvoi vers l'avis de dépôt, le CERFA ou le courrier de l'opérateur quand l'un d'eux le confirme." .
+
+# ═══════════════════════════════════════════════════════════════
+#  COUVERTURE MOBILE THÉORIQUE (ARCEP) — T2 2026
+# ═══════════════════════════════════════════════════════════════
+
+src:arcep a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "ARCEP — Autorité de régulation des communications électroniques"@fr .
+
+src:arcep-couv-bouy-4g a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-10-13"^^xsd:date ;
+    prov:wasAttributedTo src:arcep ;
+    src:dateDonnees "couverture simulée au 2026-06-30, publiée par l'ARCEP le 2026-09-24 (millésime 2026_T2)" ;
+    rdfs:label "ARCEP — couverture 4G data Bouygues Telecom, métropole, 2026 T2"@fr ;
+    dcat:accessURL "https://data.arcep.fr/mobile/couvertures_theoriques/2026_T2/Metropole/00_Metropole/2026_T2_couv_Metropole_BOUY_4G_data.gpkg.7z"^^xsd:anyURI ;
+    dcterms:publisher src:arcep ;
+    src:niveauDePreuve src:primaire ;
+    note:note "GeoPackage national (RGF93 / Lambert-93), une géométrie par département et par niveau (TBC, BC, CL) ; 323 195 833 octets compressés, SHA-256 de l'archive : bbf8b7b3329029cba0ef4998e7ee1fe38654b235482c6e7533ce60335d798a76. Couverture **simulée par l'opérateur**, vérifiée par échantillonnage par l'ARCEP, extérieure uniquement. Licence : non vérifiée — la fiche data.gouv.fr n'était pas accessible depuis l'environnement ; à confirmer avant toute republication. Les couvertures Orange, SFR, Free, la 3G et la 5G ne sont pas chargées (5G absente de la publication ouverte)." .
+
+src:act-telechargement-arcep a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Téléchargement du fichier ARCEP Bouygues 4G"@fr ;
+    prov:used src:arcep-couv-bouy-4g ; prov:wasAssociatedWith src:claude, src:utilisateur ;
+    prov:endedAtTime "2026-10-13T22:01:00"^^xsd:dateTime ;
+    src:requete "curl simple (GET), sans en-tête ni donnée d'identification ajoutée, repris sur un fichier partiel (-C -). Taille finale égale au Content-Length annoncé." ;
+    note:note "Téléchargement demandé par l'utilisateur ; deux premières tentatives interrompues, 256 Mo partiels écartés." .
+
+src:act-arcep-decoupe a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Découpe et simplification des zones de couverture"@fr ;
+    prov:used src:arcep-couv-bouy-4g ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-10-13T22:10:00"^^xsd:dateTime ;
+    note:note "Département 29 ; intersection avec un disque de 10 km autour du site projeté (Lambert-93) ; simplification de Douglas-Peucker à 30 m avec préservation de la topologie (environ 1,5 % de la surface en écart) ; reprojection en WGS84, 5 décimales. Outils : shapely 2.2.0, pyproj. La simplification ne sert qu'à l'affichage." .
+
+src:act-arcep-mesures a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Mesures de redondance de couverture au site projeté"@fr ;
+    prov:used src:arcep-couv-bouy-4g, src:geo-api-communes, src:act-arcep-decoupe ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-10-13T22:15:00"^^xsd:dateTime ;
+    note:note "Calculées sur les polygones complets, non simplifiés. Le masque terrestre est l'union des contours communaux du Finistère (geo.api.gouv.fr) : sans lui, la mer comptait comme « non couverte ». Marge d'erreur : contours communaux et simulation ARCEP n'ont pas la même résolution ; une lacune de moins d'un km² en bord de côte peut être un artefact." .

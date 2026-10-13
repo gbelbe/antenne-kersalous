@@ -72,3 +72,46 @@ SELECT ?source ?activite ?quand WHERE {
   OPTIONAL { ?a prov:endedAtTime ?quand }
   ?s rdfs:label ?source .
 }
+
+# ══════════════════════════════════════════════════════════════
+#  Réseaux mobiles (v0.2.0) — les supports sont dessinés sur la carte
+# ══════════════════════════════════════════════════════════════
+PREFIX geo:  <http://www.opengis.net/ont/geosparql#>
+
+# ── 11. Carte : tous les supports d'antenne, existants ET projeté
+SELECT ?support ?wkt ?statut ?hauteur ?distance WHERE {
+  ?s a ant:SupportAntenne ; rdfs:label ?support ; geo:asWKT ?wkt ;
+     ant:statutInstallation/skos:prefLabel ?statut .
+  OPTIONAL { ?s ant:hauteurSupport ?hauteur }
+  OPTIONAL { ?s ant:distanceParcelle ?distance }
+} ORDER BY ?distance
+
+# ── 12. Supports à moins de 3 km, avec opérateurs et générations
+SELECT ?support ?distance
+       (GROUP_CONCAT(DISTINCT ?op; separator=", ") AS ?operateurs)
+       (GROUP_CONCAT(DISTINCT ?gen; separator="/") AS ?generations) WHERE {
+  ?s a ant:SupportAntenne ; rdfs:label ?support ; ant:distanceParcelle ?distance ;
+     ant:operateurPresent/rdfs:label ?op ; ant:generationPresente/skos:prefLabel ?gen .
+  FILTER (?distance < 3000)
+} GROUP BY ?support ?distance ORDER BY ?distance
+
+# ── 13. Mutualisation : supports déjà partagés par 3 opérateurs ou plus
+SELECT ?support ?n ?hauteur ?distance WHERE {
+  ?s a ant:SupportAntenne ; rdfs:label ?support ; ant:nombreOperateurs ?n ;
+     ant:hauteurSupport ?hauteur ; ant:distanceParcelle ?distance .
+  FILTER (?n >= 3)
+} ORDER BY ?distance
+
+# ── 14. Couverture par opérateur : stations et systèmes en service
+SELECT ?operateur (COUNT(DISTINCT ?st) AS ?stations) (COUNT(DISTINCT ?sup) AS ?supports) WHERE {
+  ?st a ant:StationRadio ; ant:exploiteePar/rdfs:label ?operateur ; ant:surSupport ?sup .
+} GROUP BY ?operateur ORDER BY DESC(?stations)
+
+# ── 15. Provenance PROV-O des antennes : d'où vient chaque support
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?support ?source ?activite ?agent ?quand WHERE {
+  ?s a ant:SupportAntenne ; rdfs:label ?support ;
+     prov:wasDerivedFrom ?src ; prov:wasGeneratedBy ?a ; prov:wasAttributedTo ?ag ;
+     prov:generatedAtTime ?quand .
+  ?src rdfs:label ?source . ?a rdfs:label ?activite . ?ag rdfs:label ?agent .
+}

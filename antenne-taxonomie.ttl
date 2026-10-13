@@ -442,3 +442,66 @@ skt:TypeDeZone a skos:ConceptScheme ;
 Chaque concept répond à une question opérationnelle : *qu'est-ce que cela interdit,
 et qui doit être consulté ?* Mettez la réponse dans `skos:scopeNote`.""" .
 
+
+# ═══════════════════════════════════════════════════════════════
+#  RÉSEAUX MOBILES — générations, systèmes radio, statuts d'installation
+# ═══════════════════════════════════════════════════════════════
+
+skt:Generation a skos:ConceptScheme ;
+    rdfs:label "Générations de réseau mobile"@fr ;
+    skos:hasTopConcept skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g .
+
+skt:gen-2g a skos:Concept, ant:Generation ; rdfs:label "2G"@fr ; skos:prefLabel "2G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "GSM : voix et SMS."@fr .
+skt:gen-3g a skos:Concept, ant:Generation ; rdfs:label "3G"@fr ; skos:prefLabel "3G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "UMTS : premières données mobiles."@fr .
+skt:gen-4g a skos:Concept, ant:Generation ; rdfs:label "4G"@fr ; skos:prefLabel "4G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "LTE."@fr .
+skt:gen-5g a skos:Concept, ant:Generation ; rdfs:label "5G"@fr ; skos:prefLabel "5G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "5G NR, dont la bande 3,5 GHz."@fr .
+
+skt:SystemeRadio a skos:ConceptScheme ;
+    rdfs:label "Systèmes radio (technologie et bande)"@fr ;
+    skos:hasTopConcept skt:sys-gsm-900, skt:sys-umts-900, skt:sys-lte-700, skt:sys-lte-800, skt:sys-lte-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-5g-nr-700, skt:sys-5g-nr-2100, skt:sys-5g-nr-3500 .
+
+skt:sys-gsm-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "GSM 900"@fr ; skos:prefLabel "GSM 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-2g .
+skt:sys-umts-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 900"@fr ; skos:prefLabel "UMTS 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-3g .
+skt:sys-lte-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 700"@fr ; skos:prefLabel "LTE 700"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 800"@fr ; skos:prefLabel "LTE 800"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 900"@fr ; skos:prefLabel "LTE 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-1800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 1800"@fr ; skos:prefLabel "LTE 1800"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2100"@fr ; skos:prefLabel "LTE 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-2600 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2600"@fr ; skos:prefLabel "LTE 2600"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-5g-nr-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 700"@fr ; skos:prefLabel "5G NR 700"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
+skt:sys-5g-nr-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 2100"@fr ; skos:prefLabel "5G NR 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
+skt:sys-5g-nr-3500 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 3500"@fr ; skos:prefLabel "5G NR 3500"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
+
+skt:StatutInstallation a skos:ConceptScheme ;
+    rdfs:label "Statuts d'une installation radio"@fr ;
+    skos:hasTopConcept skt:statut-en-service, skt:statut-techniquement-operationnel, skt:statut-projet-approuve, skt:statut-projete-dp .
+
+skt:statut-en-service a skos:Concept, ant:StatutInstallation ; rdfs:label "En service"@fr ; skos:prefLabel "En service"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : installation émettant."@fr .
+skt:statut-techniquement-operationnel a skos:Concept, ant:StatutInstallation ; rdfs:label "Techniquement opérationnel"@fr ; skos:prefLabel "Techniquement opérationnel"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : installation prête techniquement, pas encore commercialement ouverte."@fr .
+skt:statut-projet-approuve a skos:Concept, ant:StatutInstallation ; rdfs:label "Projet approuvé"@fr ; skos:prefLabel "Projet approuvé"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : accord de l'ANFR obtenu, installation non encore en service."@fr .
+skt:statut-projete-dp a skos:Concept, ant:StatutInstallation ; rdfs:label "Projeté — déclaration préalable déposée"@fr ; skos:prefLabel "Projeté — déclaration préalable déposée"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Valeur propre au dossier (hors ANFR) : support dont l'autorisation d'urbanisme est demandée ou en instruction, avant toute construction."@fr .
+
+skt:Operateur a skos:ConceptScheme ;
+    rdfs:label "Opérateurs de réseau mobile"@fr ;
+    skos:hasTopConcept <https://kersalous.bzh/dossier/operateur-orange>,
+        <https://kersalous.bzh/dossier/operateur-sfr>,
+        <https://kersalous.bzh/dossier/bouygues-telecom>,
+        <https://kersalous.bzh/dossier/operateur-free> .
+
+skt:gen-inconnue a skos:Concept, ant:Generation ;
+    rdfs:label "Inconnue"@fr ; skos:prefLabel "Inconnue"@fr ;
+    skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ;
+    skos:definition "Technologie non précisée (site projeté, pas encore déclaré à l'ANFR). Valeur d'attente : elle garde le site visible quand on coche toutes les générations, et doit être remplacée dès que la technologie est connue."@fr .
+
+skt:Generation skos:hasTopConcept skt:gen-inconnue .
+
+skt:NiveauDeCouverture a skos:ConceptScheme ;
+    rdfs:label "Niveaux de couverture mobile (ARCEP)"@fr ;
+    skos:hasTopConcept skt:niv-tres-bonne, skt:niv-bonne, skt:niv-limitee .
+
+skt:niv-tres-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Très bonne couverture"@fr ; skos:prefLabel "Très bonne couverture"@fr ; skos:altLabel "TBC" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 3 ; skos:definition "Code ARCEP TBC. Meilleur niveau de la simulation ; les seuils de signal sont définis par l'ARCEP et ne sont pas recopiés ici."@fr .
+skt:niv-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Bonne couverture"@fr ; skos:prefLabel "Bonne couverture"@fr ; skos:altLabel "BC" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 2 ; skos:definition "Code ARCEP BC."@fr .
+skt:niv-limitee a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Couverture limitée"@fr ; skos:prefLabel "Couverture limitée"@fr ; skos:altLabel "CL" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 1 ; skos:definition "Code ARCEP CL. Réception possible en extérieur mais dégradée."@fr .
+
+skt:sys-umts-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 2100"@fr ; skos:prefLabel "UMTS 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-3g .
+skt:SystemeRadio skos:hasTopConcept skt:sys-umts-2100 .

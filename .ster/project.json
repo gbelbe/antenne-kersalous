@@ -2,5 +2,15 @@
   "files": [
     "antenne-carte.ttl"
   ],
-  "lang": "fr"
+  "lang": "fr",
+  "context": {
+    "antenne-carte.ttl": [
+      "antenne-dossier.ttl",
+      "antenne-ontologie.ttl",
+      "antenne-provenance.ttl",
+      "antenne-taxonomie.ttl",
+      "antenne-reseaux.ttl",
+      "antenne-couverture.ttl"
+    ]
+  }
 }

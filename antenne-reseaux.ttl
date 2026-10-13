@@ -1,0 +1,1283 @@
+@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
+@prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix geo:  <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix src:  <https://kersalous.bzh/provenance/> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+
+# ═══════════════════════════════════════════════════════════════
+#  RÉSEAUX MOBILES — supports et stations existants dans un rayon de 10 km
+#  Source : ANFR, observatoire 2G/3G/4G/5G (fichier du 2026-10-01).
+#  Fichier généré ; les coordonnées ANFR sont arrondies (≈ 30 m).
+# ═══════════════════════════════════════════════════════════════
+
+# ── Opérateurs et réseaux ─────────────────────────────────────
+dos:operateur-orange a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
+    rdfs:label "Orange"@fr ; skos:prefLabel "Orange"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+dos:reseau-orange a owl:NamedIndividual, ant:ReseauMobile ;
+    rdfs:label "Réseau Orange"@fr ; ant:operePar dos:operateur-orange .
+
+dos:operateur-sfr a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
+    rdfs:label "SFR"@fr ; skos:prefLabel "SFR"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+dos:reseau-sfr a owl:NamedIndividual, ant:ReseauMobile ;
+    rdfs:label "Réseau SFR"@fr ; ant:operePar dos:operateur-sfr .
+
+
+dos:reseau-bouygues-telecom a owl:NamedIndividual, ant:ReseauMobile ;
+    rdfs:label "Réseau Bouygues Telecom"@fr ; ant:operePar dos:bouygues-telecom .
+
+dos:operateur-free a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
+    rdfs:label "Free Mobile"@fr ; skos:prefLabel "Free Mobile"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+dos:reseau-free a owl:NamedIndividual, ant:ReseauMobile ;
+    rdfs:label "Réseau Free Mobile"@fr ; ant:operePar dos:operateur-free .
+
+# Bouygues Telecom existe déjà (module Acteurs) : on le qualifie comme opérateur ET comme valeur de facette.
+# Les opérateurs sont des concepts SKOS pour que la carte puisse filtrer dessus.
+dos:bouygues-telecom a ant:OperateurMobile, skos:Concept ;
+    skos:prefLabel "Bouygues Telecom"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+
+# ── Communes voisines ────────────────────────────────────────
+dos:commune-plomeur a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Plomeur"@fr ; ant:codeInsee "29171" .
+dos:commune-pont-l-abbe a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Pont-l'Abbé"@fr ; ant:codeInsee "29220" .
+dos:commune-penmarch a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Penmarch"@fr ; ant:codeInsee "29158" .
+dos:commune-loctudy a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Loctudy"@fr ; ant:codeInsee "29135" .
+dos:commune-plobannalec-lesconil a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Plobannalec-Lesconil"@fr ; ant:codeInsee "29165" .
+dos:commune-guilvinec a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Guilvinec"@fr ; ant:codeInsee "29072" .
+dos:commune-treffiagat a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Treffiagat"@fr ; ant:codeInsee "29284" .
+dos:commune-combrit a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Combrit"@fr ; ant:codeInsee "29037" .
+dos:commune-ile-tudy a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Île-Tudy"@fr ; ant:codeInsee "29085" .
+dos:commune-plogastel-saint-germain a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Plogastel-Saint-Germain"@fr ; ant:codeInsee "29167" .
+dos:commune-plomelin a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Plomelin"@fr ; ant:codeInsee "29170" .
+dos:commune-tremeoc a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Tréméoc"@fr ; ant:codeInsee "29296" .
+
+# ── Supports d'antenne (dessinés sur la carte) et leurs stations ──
+dos:support-anfr-3011804 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 3011804 — 21 All  Anjela Duval (Plonéour-Lanvern)"@fr ;
+    ant:identifiantSupportAnfr "3011804" ;
+    geo:asWKT "POINT(-4.244167 47.868333)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ploneour ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30.5 ;
+    ant:distanceParcelle 2320 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 21 ALL  ANJELA DUVAL 29720. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292700630 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700630 (21 All  Anjela Duval)"@fr ;
+    ant:numeroStationAnfr "0292700630" ; ant:surSupport dos:support-anfr-3011804 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-umts-900
+    ; ant:azimuts "110|230|350"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750655 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750655 (21 All  Anjela Duval)"@fr ;
+    ant:numeroStationAnfr "0292750655" ; ant:surSupport dos:support-anfr-3011804 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-umts-900
+    ; ant:azimuts "110|230|350"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2293830 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2293830 — Keryan (Plonéour-Lanvern)"@fr ;
+    ant:identifiantSupportAnfr "2293830" ;
+    geo:asWKT "POINT(-4.295833 47.890833)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ploneour ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30 ;
+    ant:distanceParcelle 2330 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Près D57 29720. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990455 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990455 (Keryan)"@fr ;
+    ant:numeroStationAnfr "0290990455" ; ant:surSupport dos:support-anfr-2293830 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "30|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290447 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290447 (Keryan)"@fr ;
+    ant:numeroStationAnfr "0292290447" ; ant:surSupport dos:support-anfr-2293830 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700650 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700650 (Keryan)"@fr ;
+    ant:numeroStationAnfr "0292700650" ; ant:surSupport dos:support-anfr-2293830 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-lte-2100, skt:sys-umts-900
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750686 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750686 (Keryan)"@fr ;
+    ant:numeroStationAnfr "0292750686" ; ant:surSupport dos:support-anfr-2293830 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-lte-2100
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2580002 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2580002 — An Hanvod Nevez (Plomeur)"@fr ;
+    ant:identifiantSupportAnfr "2580002" ;
+    geo:asWKT "POINT(-4.281944 47.853611)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plomeur ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 29.8 ;
+    ant:distanceParcelle 2390 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : D57 Trévinou 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290576 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290576 (An Hanvod Nevez)"@fr ;
+    ant:numeroStationAnfr "0292290576" ; ant:surSupport dos:support-anfr-2580002 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-800
+    ; ant:azimuts "50|170|290"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700312 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700312 (An Hanvod Nevez)"@fr ;
+    ant:numeroStationAnfr "0292700312" ; ant:surSupport dos:support-anfr-2580002 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750560 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750560 (An Hanvod Nevez)"@fr ;
+    ant:numeroStationAnfr "0292750560" ; ant:surSupport dos:support-anfr-2580002 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1484536 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1484536 — Kerlavar (Plonéour-Lanvern)"@fr ;
+    ant:identifiantSupportAnfr "1484536" ;
+    geo:asWKT "POINT(-4.268889 47.898333)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ploneour ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 33 ;
+    ant:distanceParcelle 2570 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : zi 29720. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990087 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990087 (Kerlavar)"@fr ;
+    ant:numeroStationAnfr "0290990087" ; ant:surSupport dos:support-anfr-1484536 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700326 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700326 (Kerlavar)"@fr ;
+    ant:numeroStationAnfr "0292700326" ; ant:surSupport dos:support-anfr-1484536 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750200 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750200 (Kerlavar)"@fr ;
+    ant:numeroStationAnfr "0292750200" ; ant:surSupport dos:support-anfr-1484536 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1938124 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1938124 — Poullelestr (Plomeur)"@fr ;
+    ant:identifiantSupportAnfr "1938124" ;
+    geo:asWKT "POINT(-4.287778 47.852500)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plomeur ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 26 ;
+    ant:distanceParcelle 2640 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-free ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990249 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990249 (Poullelestr)"@fr ;
+    ant:numeroStationAnfr "0290990249" ; ant:surSupport dos:support-anfr-1938124 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "40|170|290"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2215753 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2215753 — Le Sequer Nevez (Pont-l'Abbé)"@fr ;
+    ant:identifiantSupportAnfr "2215753" ;
+    geo:asWKT "POINT(-4.242500 47.860833)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-pont-l-abbe ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30 ;
+    ant:distanceParcelle 2800 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:operateur-free, dos:operateur-orange ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 1 RUE CHARLES DARWIN 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990315 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990315 (Le Sequer Nevez)"@fr ;
+    ant:numeroStationAnfr "0290990315" ; ant:surSupport dos:support-anfr-2215753 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "60|140|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290385 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290385 (Le Sequer Nevez)"@fr ;
+    ant:numeroStationAnfr "0292290385" ; ant:surSupport dos:support-anfr-2215753 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "50|140|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-506183 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 506183 — Le Flescou (Pont-l'Abbé)"@fr ;
+    ant:identifiantSupportAnfr "506183" ;
+    geo:asWKT "POINT(-4.224722 47.877222)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-pont-l-abbe ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 70.5 ;
+    ant:distanceParcelle 3650 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 21 R PEN ENEZ 29120. Nature du support (code ANFR NAT_ID) : 4. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990281 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990281 (Le Flescou)"@fr ;
+    ant:numeroStationAnfr "0290990281" ; ant:surSupport dos:support-anfr-506183 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "30|130|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290184 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290184 (Le Flescou)"@fr ;
+    ant:numeroStationAnfr "0292290184" ; ant:surSupport dos:support-anfr-506183 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "30|150|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700007 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700007 (Le Flescou)"@fr ;
+    ant:numeroStationAnfr "0292700007" ; ant:surSupport dos:support-anfr-506183 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|190|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750019 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750019 (Le Flescou)"@fr ;
+    ant:numeroStationAnfr "0292750019" ; ant:surSupport dos:support-anfr-506183 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|190|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1603152 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1603152 — 8 Rue Isidore Le Garo (Plomeur)"@fr ;
+    ant:identifiantSupportAnfr "1603152" ;
+    geo:asWKT "POINT(-4.282222 47.840556)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plomeur ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 27.9 ;
+    ant:distanceParcelle 3810 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 8 RUE ISIDORE LE GARO 29120. Nature du support (code ANFR NAT_ID) : 17. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292700343 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700343 (8 Rue Isidore Le Garo)"@fr ;
+    ant:numeroStationAnfr "0292700343" ; ant:surSupport dos:support-anfr-1603152 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750154 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750154 (8 Rue Isidore Le Garo)"@fr ;
+    ant:numeroStationAnfr "0292750154" ; ant:surSupport dos:support-anfr-1603152 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-773868 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 773868 — R Roger Signor (Pont-l'Abbé)"@fr ;
+    ant:identifiantSupportAnfr "773868" ;
+    geo:asWKT "POINT(-4.222222 47.863333)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-pont-l-abbe ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 31 ;
+    ant:distanceParcelle 4050 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-orange ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : r roger signor 29120. Nature du support (code ANFR NAT_ID) : 17. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290214 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290214 (R Roger Signor)"@fr ;
+    ant:numeroStationAnfr "0292290214" ; ant:surSupport dos:support-anfr-773868 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|160|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-504325 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 504325 — Kersonis Vihan (Plonéour-Lanvern)"@fr ;
+    ant:identifiantSupportAnfr "504325" ;
+    geo:asWKT "POINT(-4.270000 47.913611)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ploneour ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 52 ;
+    ant:distanceParcelle 4240 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-orange ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 29720. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290013 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290013 (Kersonis Vihan)"@fr ;
+    ant:numeroStationAnfr "0292290013" ; ant:surSupport dos:support-anfr-504325 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|130|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2293826 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2293826 — Kerven (Plomeur)"@fr ;
+    ant:identifiantSupportAnfr "2293826" ;
+    geo:asWKT "POINT(-4.279444 47.833889)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plomeur ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 36 ;
+    ant:distanceParcelle 4530 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:operateur-free, dos:operateur-orange ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Route de Prat Don 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990450 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990450 (Kerven)"@fr ;
+    ant:numeroStationAnfr "0290990450" ; ant:surSupport dos:support-anfr-2293826 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "100|220|340"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290299 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290299 (Kerven)"@fr ;
+    ant:numeroStationAnfr "0292290299" ; ant:surSupport dos:support-anfr-2293826 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|140|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-506236 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 506236 — Kerviligou (Plonéour-Lanvern)"@fr ;
+    ant:identifiantSupportAnfr "506236" ;
+    geo:asWKT "POINT(-4.293611 47.917778)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ploneour ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 48 ;
+    ant:distanceParcelle 4930 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 29720. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990099 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990099 (Kerviligou)"@fr ;
+    ant:numeroStationAnfr "0290990099" ; ant:surSupport dos:support-anfr-506236 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700329 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700329 (Kerviligou)"@fr ;
+    ant:numeroStationAnfr "0292700329" ; ant:surSupport dos:support-anfr-506236 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "140|220|315"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750115 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750115 (Kerviligou)"@fr ;
+    ant:numeroStationAnfr "0292750115" ; ant:surSupport dos:support-anfr-506236 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "140|220|315"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2629302 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2629302 — Rue Jeanne Boher (Pont-l'Abbé)"@fr ;
+    ant:identifiantSupportAnfr "2629302" ;
+    geo:asWKT "POINT(-4.211389 47.855278)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-pont-l-abbe ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 37.6 ;
+    ant:distanceParcelle 5130 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-free ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : RUE JEANNE BOHER 29120. Nature du support (code ANFR NAT_ID) : 48. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990380 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990380 (Rue Jeanne Boher)"@fr ;
+    ant:numeroStationAnfr "0290990380" ; ant:surSupport dos:support-anfr-2629302 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "90|210|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-549806 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 549806 — Kerradennec (Penmarch)"@fr ;
+    ant:identifiantSupportAnfr "549806" ;
+    geo:asWKT "POINT(-4.308611 47.816389)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-penmarch ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 36.6 ;
+    ant:distanceParcelle 6920 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 29760. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990283 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990283 (Kerradennec)"@fr ;
+    ant:numeroStationAnfr "0290990283" ; ant:surSupport dos:support-anfr-549806 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:systemeEnProjet skt:sys-5g-nr-3500
+    ; ant:azimuts "0|120|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700057 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700057 (Kerradennec)"@fr ;
+    ant:numeroStationAnfr "0292700057" ; ant:surSupport dos:support-anfr-549806 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750215 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750215 (Kerradennec)"@fr ;
+    ant:numeroStationAnfr "0292750215" ; ant:surSupport dos:support-anfr-549806 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1559301 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1559301 — Kervereguen (Loctudy)"@fr ;
+    ant:identifiantSupportAnfr "1559301" ;
+    geo:asWKT "POINT(-4.197500 47.833611)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-loctudy ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 42 ;
+    ant:distanceParcelle 7300 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Déchetterie municipale 29750. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990384 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990384 (Kervereguen)"@fr ;
+    ant:numeroStationAnfr "0290990384" ; ant:surSupport dos:support-anfr-1559301 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "50|170|290"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700070 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700070 (Kervereguen)"@fr ;
+    ant:numeroStationAnfr "0292700070" ; ant:surSupport dos:support-anfr-1559301 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "110|210|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750369 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750369 (Kervereguen)"@fr ;
+    ant:numeroStationAnfr "0292750369" ; ant:surSupport dos:support-anfr-1559301 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "110|210|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-3105337 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 3105337 — Rte De St Alour (Plobannalec-Lesconil)"@fr ;
+    ant:identifiantSupportAnfr "3105337" ;
+    geo:asWKT "POINT(-4.228056 47.815833)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plobannalec-lesconil ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 24.5 ;
+    ant:distanceParcelle 7380 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : RTE DE ST ALOUR 29740. Nature du support (code ANFR NAT_ID) : 26. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292700643 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700643 (Rte De St Alour)"@fr ;
+    ant:numeroStationAnfr "0292700643" ; ant:surSupport dos:support-anfr-3105337 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-umts-900
+    ; ant:azimuts "120|240|340"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750675 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750675 (Rte De St Alour)"@fr ;
+    ant:numeroStationAnfr "0292750675" ; ant:surSupport dos:support-anfr-3105337 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:systemeEnProjet skt:sys-umts-900
+    ; ant:azimuts "120|240|340"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2285473 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2285473 — Poulguen (Penmarch)"@fr ;
+    ant:identifiantSupportAnfr "2285473" ;
+    geo:asWKT "POINT(-4.305833 47.810556)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-penmarch ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30 ;
+    ant:distanceParcelle 7460 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Route de Kerigou 29760. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290453 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290453 (Poulguen)"@fr ;
+    ant:numeroStationAnfr "0292290453" ; ant:surSupport dos:support-anfr-2285473 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-2100, skt:sys-umts-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700652 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700652 (Poulguen)"@fr ;
+    ant:numeroStationAnfr "0292700652" ; ant:surSupport dos:support-anfr-2285473 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:azimuts "60|150|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750690 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750690 (Poulguen)"@fr ;
+    ant:numeroStationAnfr "0292750690" ; ant:surSupport dos:support-anfr-2285473 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:azimuts "60|150|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-464029 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 464029 — R De Lagat-Yar (Guilvinec)"@fr ;
+    ant:identifiantSupportAnfr "464029" ;
+    geo:asWKT "POINT(-4.276944 47.806389)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-guilvinec ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 35 ;
+    ant:distanceParcelle 7560 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-orange ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : r de lagat-yar 29730. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290055 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290055 (R De Lagat-Yar)"@fr ;
+    ant:numeroStationAnfr "0292290055" ; ant:surSupport dos:support-anfr-464029 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-517165 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 517165 — Kergavec (Treffiagat)"@fr ;
+    ant:identifiantSupportAnfr "517165" ;
+    geo:asWKT "POINT(-4.271111 47.806111)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-treffiagat ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 46 ;
+    ant:distanceParcelle 7590 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : R STANG AN DOUR 29730. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990024 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990024 (Kergavec)"@fr ;
+    ant:numeroStationAnfr "0290990024" ; ant:surSupport dos:support-anfr-517165 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "120|230|340"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700465 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700465 (Kergavec)"@fr ;
+    ant:numeroStationAnfr "0292700465" ; ant:surSupport dos:support-anfr-517165 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|130|220"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750073 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750073 (Kergavec)"@fr ;
+    ant:numeroStationAnfr "0292750073" ; ant:surSupport dos:support-anfr-517165 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|130|220"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2295994 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2295994 — Merlot (Treffiagat)"@fr ;
+    ant:identifiantSupportAnfr "2295994" ;
+    geo:asWKT "POINT(-4.253333 47.805556)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-treffiagat ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30 ;
+    ant:distanceParcelle 7820 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:operateur-free, dos:operateur-orange ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Rue du Grand Large 29730. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990494 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990494 (Merlot)"@fr ;
+    ant:numeroStationAnfr "0290990494" ; ant:surSupport dos:support-anfr-2295994 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290449 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290449 (Merlot)"@fr ;
+    ant:numeroStationAnfr "0292290449" ; ant:surSupport dos:support-anfr-2295994 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|130|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-692546 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 692546 — Kerbénoën (Combrit)"@fr ;
+    ant:identifiantSupportAnfr "692546" ;
+    geo:asWKT "POINT(-4.166111 47.882222)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-combrit ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 48 ;
+    ant:distanceParcelle 8060 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Zone Artisanale de Kerbénoën 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990062 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990062 (Kerbénoën)"@fr ;
+    ant:numeroStationAnfr "0290990062" ; ant:surSupport dos:support-anfr-692546 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "50|170|290"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290355 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290355 (Kerbénoën)"@fr ;
+    ant:numeroStationAnfr "0292290355" ; ant:surSupport dos:support-anfr-692546 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "30|150|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700074 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700074 (Kerbénoën)"@fr ;
+    ant:numeroStationAnfr "0292700074" ; ant:surSupport dos:support-anfr-692546 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750243 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750243 (Kerbénoën)"@fr ;
+    ant:numeroStationAnfr "0292750243" ; ant:surSupport dos:support-anfr-692546 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2195779 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2195779 — Kerdéval (Penmarch)"@fr ;
+    ant:identifiantSupportAnfr "2195779" ;
+    geo:asWKT "POINT(-4.356389 47.824444)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-penmarch ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 34 ;
+    ant:distanceParcelle 8240 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-orange ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : r du musée préhistorique 29760. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290075 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290075 (Kerdéval)"@fr ;
+    ant:numeroStationAnfr "0292290075" ; ant:surSupport dos:support-anfr-2195779 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "10|150|230"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2904925 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2904925 — Dineou (Tréméoc)"@fr ;
+    ant:identifiantSupportAnfr "2904925" ;
+    geo:asWKT "POINT(-4.197222 47.930000)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-tremeoc ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 38 ;
+    ant:distanceParcelle 8310 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : CHEMIN D'EXPLOITATION 29120. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292700498 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700498 (Dineou)"@fr ;
+    ant:numeroStationAnfr "0292700498" ; ant:surSupport dos:support-anfr-2904925 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "80|170|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750634 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750634 (Dineou)"@fr ;
+    ant:numeroStationAnfr "0292750634" ; ant:surSupport dos:support-anfr-2904925 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-lte-1800, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "80|170|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-773854 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 773854 — Pennareun (Plobannalec-Lesconil)"@fr ;
+    ant:identifiantSupportAnfr "773854" ;
+    geo:asWKT "POINT(-4.226111 47.804722)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plobannalec-lesconil ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 25 ;
+    ant:distanceParcelle 8550 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : d.102 -vc 29740. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990280 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990280 (Pennareun)"@fr ;
+    ant:numeroStationAnfr "0290990280" ; ant:surSupport dos:support-anfr-773854 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "0|120|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290119 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290119 (Pennareun)"@fr ;
+    ant:numeroStationAnfr "0292290119" ; ant:surSupport dos:support-anfr-773854 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700206 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700206 (Pennareun)"@fr ;
+    ant:numeroStationAnfr "0292700206" ; ant:surSupport dos:support-anfr-773854 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|140|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750384 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750384 (Pennareun)"@fr ;
+    ant:numeroStationAnfr "0292750384" ; ant:surSupport dos:support-anfr-773854 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|140|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-397103 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 397103 — Keryet (Penmarch)"@fr ;
+    ant:identifiantSupportAnfr "397103" ;
+    geo:asWKT "POINT(-4.345278 47.813056)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-penmarch ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 18 ;
+    ant:distanceParcelle 8600 ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:operateur-orange ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Stade de football de Keryet 29760. Nature du support (code ANFR NAT_ID) : 26. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290277 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290277 (Keryet)"@fr ;
+    ant:numeroStationAnfr "0292290277" ; ant:surSupport dos:support-anfr-397103 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "80|170|270"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-559898 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 559898 — 1 Pl Dixmude (Guilvinec)"@fr ;
+    ant:identifiantSupportAnfr "559898" ;
+    geo:asWKT "POINT(-4.283333 47.795556)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-guilvinec ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 25.8 ;
+    ant:distanceParcelle 8770 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 1 pl dixmude 29730. Nature du support (code ANFR NAT_ID) : 20. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292290304 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290304 (1 Pl Dixmude)"@fr ;
+    ant:numeroStationAnfr "0292290304" ; ant:surSupport dos:support-anfr-559898 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-lte-2100
+    ; ant:systemeEnProjet skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:azimuts "82|172|262|352, 262"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700123 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700123 (1 Pl Dixmude)"@fr ;
+    ant:numeroStationAnfr "0292700123" ; ant:surSupport dos:support-anfr-559898 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "75|255|345"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750360 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750360 (1 Pl Dixmude)"@fr ;
+    ant:numeroStationAnfr "0292750360" ; ant:surSupport dos:support-anfr-559898 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "75|255|345"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-3038507 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 3038507 — 3 Rue Des Roitelets (Île-Tudy)"@fr ;
+    ant:identifiantSupportAnfr "3038507" ;
+    geo:asWKT "POINT(-4.156389 47.860000)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-ile-tudy ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 25 ;
+    ant:distanceParcelle 8910 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:operateur-free, dos:operateur-orange ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 3 Rue des Roitelets 29980. Nature du support (code ANFR NAT_ID) : 26. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990477 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990477 (3 Rue Des Roitelets)"@fr ;
+    ant:numeroStationAnfr "0290990477" ; ant:surSupport dos:support-anfr-3038507 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "90|210|330"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290548 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290548 (3 Rue Des Roitelets)"@fr ;
+    ant:numeroStationAnfr "0292290548" ; ant:surSupport dos:support-anfr-3038507 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800
+    ; ant:azimuts "85|215|345"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-3201270 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 3201270 — Saint Roch (Plomelin)"@fr ;
+    ant:identifiantSupportAnfr "3201270" ;
+    geo:asWKT "POINT(-4.166944 47.912778)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plomelin ;
+    ant:statutInstallation skt:statut-projet-approuve ;
+    ant:hauteurSupport 36 ;
+    ant:distanceParcelle 8980 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : Route des chateaux 29700. Nature du support (code ANFR NAT_ID) : 26. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m. Aucun système en service ni opérationnel : les générations indiquées sont celles des systèmes seulement approuvés." .
+
+dos:station-anfr-0290990511 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990511 (Saint Roch)"@fr ;
+    ant:numeroStationAnfr "0290990511" ; ant:surSupport dos:support-anfr-3201270 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-projet-approuve
+    ; ant:systemeEnProjet skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|230"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290580 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290580 (Saint Roch)"@fr ;
+    ant:numeroStationAnfr "0292290580" ; ant:surSupport dos:support-anfr-3201270 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-projet-approuve
+    ; ant:systemeEnProjet skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|230"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700664 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700664 (Saint Roch)"@fr ;
+    ant:numeroStationAnfr "0292700664" ; ant:surSupport dos:support-anfr-3201270 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-projet-approuve
+    ; ant:systemeEnProjet skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|230"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750702 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750702 (Saint Roch)"@fr ;
+    ant:numeroStationAnfr "0292750702" ; ant:surSupport dos:support-anfr-3201270 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-projet-approuve
+    ; ant:systemeEnProjet skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "0|120|230"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1584809 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1584809 — 96 Rue De Kerontec (Penmarch)"@fr ;
+    ant:identifiantSupportAnfr "1584809" ;
+    geo:asWKT "POINT(-4.351111 47.809722)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-penmarch ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30 ;
+    ant:distanceParcelle 9160 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 96 RUE DE KERONTEC 29760. Nature du support (code ANFR NAT_ID) : 26. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0292700330 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700330 (96 Rue De Kerontec)"@fr ;
+    ant:numeroStationAnfr "0292700330" ; ant:surSupport dos:support-anfr-1584809 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:systemeEnProjet skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750334 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750334 (96 Rue De Kerontec)"@fr ;
+    ant:numeroStationAnfr "0292750334" ; ant:surSupport dos:support-anfr-1584809 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:systemeEnProjet skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-lte-700
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-462707 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 462707 — R De Glevian (Loctudy)"@fr ;
+    ant:identifiantSupportAnfr "462707" ;
+    geo:asWKT "POINT(-4.171667 47.826944)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-loctudy ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 30.5 ;
+    ant:distanceParcelle 9280 ;
+    ant:nombreOperateurs 4 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-orange, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : R DE GLEVIAN 29750. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990025 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990025 (R De Glevian)"@fr ;
+    ant:numeroStationAnfr "0290990025" ; ant:surSupport dos:support-anfr-462707 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "40|160|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290161 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290161 (R De Glevian)"@fr ;
+    ant:numeroStationAnfr "0292290161" ; ant:surSupport dos:support-anfr-462707 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "20|180|280"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700362 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700362 (R De Glevian)"@fr ;
+    ant:numeroStationAnfr "0292700362" ; ant:surSupport dos:support-anfr-462707 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "20|140|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750133 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750133 (R De Glevian)"@fr ;
+    ant:numeroStationAnfr "0292750133" ; ant:surSupport dos:support-anfr-462707 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-5g-nr-3500, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "20|140|260"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-2892711 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 2892711 — Poullal (Loctudy)"@fr ;
+    ant:identifiantSupportAnfr "2892711" ;
+    geo:asWKT "POINT(-4.191389 47.810556)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-loctudy ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 26 ;
+    ant:distanceParcelle 9410 ;
+    ant:nombreOperateurs 2 ;
+    ant:operateurPresent dos:operateur-free, dos:operateur-orange ;
+    ant:generationPresente skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : CHEMIN DE POULALANNIC 29750. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990434 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990434 (Poullal)"@fr ;
+    ant:numeroStationAnfr "0290990434" ; ant:surSupport dos:support-anfr-2892711 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "60|150|240"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292290315 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Orange — station 0292290315 (Poullal)"@fr ;
+    ant:numeroStationAnfr "0292290315" ; ant:surSupport dos:support-anfr-2892711 ;
+    ant:exploiteePar dos:operateur-orange ; ant:appartientAuReseau dos:reseau-orange ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-3500, skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "80|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:support-anfr-1454903 a owl:NamedIndividual, ant:SupportAntenne ;
+    rdfs:label "Support ANFR 1454903 — Penfrat Huella Goaren (Plogastel-Saint-Germain)"@fr ;
+    ant:identifiantSupportAnfr "1454903" ;
+    geo:asWKT "POINT(-4.308056 47.961944)"^^geo:wktLiteral ;
+    ant:dansLieu dos:commune-plogastel-saint-germain ;
+    ant:statutInstallation skt:statut-en-service ;
+    ant:hauteurSupport 45 ;
+    ant:distanceParcelle 9920 ;
+    ant:nombreOperateurs 3 ;
+    ant:operateurPresent dos:bouygues-telecom, dos:operateur-free, dos:operateur-sfr ;
+    ant:generationPresente skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g ;
+    prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr, src:act-distances-anfr ;
+    prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime ;
+    note:note "Adresse ANFR : 29710. Nature du support (code ANFR NAT_ID) : 23. Position arrondie par l’ANFR (≈ 30 m) ; distance mesurée au bord de la parcelle YX 26, arrondie à 10 m." .
+
+dos:station-anfr-0290990064 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Free Mobile — station 0290990064 (Penfrat Huella Goaren)"@fr ;
+    ant:numeroStationAnfr "0290990064" ; ant:surSupport dos:support-anfr-1454903 ;
+    ant:exploiteePar dos:operateur-free ; ant:appartientAuReseau dos:reseau-free ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-700, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292700068 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "SFR — station 0292700068 (Penfrat Huella Goaren)"@fr ;
+    ant:numeroStationAnfr "0292700068" ; ant:surSupport dos:support-anfr-1454903 ;
+    ant:exploiteePar dos:operateur-sfr ; ant:appartientAuReseau dos:reseau-sfr ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+dos:station-anfr-0292750449 a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station 0292750449 (Penfrat Huella Goaren)"@fr ;
+    ant:numeroStationAnfr "0292750449" ; ant:surSupport dos:support-anfr-1454903 ;
+    ant:exploiteePar dos:bouygues-telecom ; ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-en-service
+    ; ant:systemeRadio skt:sys-5g-nr-2100, skt:sys-gsm-900, skt:sys-lte-1800, skt:sys-lte-2600, skt:sys-lte-700, skt:sys-lte-800, skt:sys-umts-900
+    ; ant:azimuts "60|180|300"
+    ; prov:wasDerivedFrom src:anfr-observatoire ; prov:wasGeneratedBy src:act-anfr ; prov:wasAttributedTo src:anfr ; prov:generatedAtTime "2026-10-13T00:00:00"^^xsd:dateTime .
+
+# ── Le site projeté, versé au même registre que les supports existants ──
+# Même nœud que le projet : avant construction, projet et support sont un seul objet.
+# Il réutilise la géométrie déjà posée (aucun doublon sur la carte).
+dos:projet-pylone a ant:SupportAntenne ;
+    ant:statutInstallation skt:statut-projete-dp ;
+    ant:hauteurSupport 30 ;
+    ant:dansLieu dos:lieudit-kerfilin-sud ;
+    ant:porteurDuSupport dos:phoenix-france ;
+    ant:nombreOperateurs 1 ;
+    ant:operateurPresent dos:bouygues-telecom ;
+    ant:generationPresente skt:gen-inconnue ;
+    prov:wasGeneratedBy src:act-affirmation-operateur ;
+    note:note """**Antenne potentielle, opérateur : Bouygues Telecom** — selon l'utilisateur (2026-10-13). L'avis de dépôt ne nomme aucun opérateur : seule la capacité d'accueil d'opérateurs supplémentaires y est annoncée, donc d'autres pourraient s'ajouter. Cohérent avec la coentreprise Phoenix France Infrastructures / Bouygues Telecom, mais non démontré par une pièce du dossier. Aucune station ANFR n'existe encore ; `generationPresente` vaut « Inconnue » (technologies non précisées) pour que le site reste visible quand on coche toutes les générations.""" .
+
+dos:station-projetee-kersalous a owl:NamedIndividual, ant:StationRadio ;
+    rdfs:label "Bouygues Telecom — station projetée (Kersalous)"@fr ;
+    ant:surSupport dos:projet-pylone ; ant:exploiteePar dos:bouygues-telecom ;
+    ant:appartientAuReseau dos:reseau-bouygues-telecom ;
+    ant:statutInstallation skt:statut-projete-dp ;
+    prov:wasGeneratedBy src:act-affirmation-operateur ;
+    note:note "Pas de numéro ANFR : la station n'est pas encore déclarée au registre." .
