@@ -575,9 +575,9 @@ src:arcep-couv-bouy-4g a owl:NamedIndividual, src:JeuDeDonnees ;
     src:dateDonnees "couverture simulée au 2026-06-30, publiée par l'ARCEP le 2026-09-24 (millésime 2026_T2)" ;
     rdfs:label "ARCEP — couverture 4G data Bouygues Telecom, métropole, 2026 T2"@fr ;
     dcat:accessURL "https://data.arcep.fr/mobile/couvertures_theoriques/2026_T2/Metropole/00_Metropole/2026_T2_couv_Metropole_BOUY_4G_data.gpkg.7z"^^xsd:anyURI ;
-    dcterms:publisher src:arcep ;
+    dcterms:publisher src:arcep ; dcterms:license "Licence Ouverte (Etalab)" ;
     src:niveauDePreuve src:primaire ;
-    note:note "GeoPackage national (RGF93 / Lambert-93), une géométrie par département et par niveau (TBC, BC, CL) ; 323 195 833 octets compressés, SHA-256 de l'archive : bbf8b7b3329029cba0ef4998e7ee1fe38654b235482c6e7533ce60335d798a76. Couverture **simulée par l'opérateur**, vérifiée par échantillonnage par l'ARCEP, extérieure uniquement. Licence : non vérifiée — la fiche data.gouv.fr n'était pas accessible depuis l'environnement ; à confirmer avant toute republication. Les couvertures Orange, SFR, Free, la 3G et la 5G ne sont pas chargées (5G absente de la publication ouverte)." .
+    note:note "GeoPackage national (RGF93 / Lambert-93), une géométrie par département et par niveau (TBC, BC, CL) ; 323 195 833 octets compressés, SHA-256 de l'archive : bbf8b7b3329029cba0ef4998e7ee1fe38654b235482c6e7533ce60335d798a76. Couverture **simulée par l'opérateur**, vérifiée par échantillonnage par l'ARCEP, extérieure uniquement. Licence : Licence Ouverte (Etalab), identifiant « fr-lo » dans l'API data.gouv.fr (jeu « Mon Réseau Mobile », producteur ARCEP, lu le 2026-10-14) ; republication permise avec mention de la source (ARCEP). Les couvertures Orange, SFR, Free, la 3G et la 5G ne sont pas chargées (5G absente de la publication ouverte)." .
 
 src:act-telechargement-arcep a owl:NamedIndividual, src:Interrogation ;
     rdfs:label "Téléchargement du fichier ARCEP Bouygues 4G"@fr ;
