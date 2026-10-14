@@ -314,65 +314,65 @@ skt:zone-humide a skos:Concept,
 skt:doc-correspondance a skos:Concept,
         ant:Axe ;
     rdfs:label "Correspondance"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Correspondance"@fr ;
-    skos:topConceptOf skt:NatureDocument .
+    skos:topConceptOf skt:Axe .
 
 skt:doc-foncier a skos:Concept,
         ant:Axe ;
     rdfs:label "Document foncier"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Document foncier"@fr ;
-    skos:topConceptOf skt:NatureDocument .
+    skos:topConceptOf skt:Axe .
 
 skt:doc-preuve a skos:Concept,
         ant:Axe ;
     rdfs:label "Preuve"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Preuve"@fr ;
-    skos:topConceptOf skt:NatureDocument .
+    skos:topConceptOf skt:Axe .
 
 skt:en-cours a skos:Concept,
         ant:Axe ;
     rdfs:label "En cours"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "En cours"@fr ;
-    skos:topConceptOf skt:Statut .
+    skos:topConceptOf skt:Axe .
 
 skt:servitude a skos:Concept,
         ant:Axe ;
     rdfs:label "Servitude d'utilité publique"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Servitude d'utilité publique"@fr ;
-    skos:topConceptOf skt:TypeDeZone .
+    skos:topConceptOf skt:Axe .
 
 skt:doc-urbanisme a skos:Concept,
         ant:Axe ;
     rdfs:label "Pièce d'urbanisme"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Pièce d'urbanisme"@fr ;
-    skos:topConceptOf skt:NatureDocument .
+    skos:topConceptOf skt:Axe .
 
 skt:protection-patrimoine a skos:Concept,
         ant:Axe ;
     rdfs:label "Protection patrimoniale"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Protection patrimoniale"@fr ;
-    skos:topConceptOf skt:TypeDeZone .
+    skos:topConceptOf skt:Axe .
 
 skt:zonage a skos:Concept,
         ant:Axe ;
     rdfs:label "Zonage d'urbanisme"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Zonage d'urbanisme"@fr ;
-    skos:topConceptOf skt:TypeDeZone .
+    skos:topConceptOf skt:Axe .
 
 skt:protection-env a skos:Concept,
         ant:Axe ;
     rdfs:label "Protection environnementale"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Axe ;
     skos:prefLabel "Protection environnementale"@fr ;
-    skos:topConceptOf skt:TypeDeZone .
+    skos:topConceptOf skt:Axe .
 
 skt:Force a skos:ConceptScheme ;
     rdfs:label "Force d'un moyen juridique"@fr ;
@@ -387,7 +387,6 @@ skt:Force a skos:ConceptScheme ;
 skt:Statut a skos:ConceptScheme ;
     rdfs:label "Statuts d'avancement"@fr ;
     skos:hasTopConcept skt:a-faire,
-        skt:en-cours,
         skt:envoye,
         skt:obtenu,
         skt:refuse,
@@ -401,18 +400,14 @@ skt:NatureDocument a skos:ConceptScheme ;
     rdfs:label "Natures de document"@fr ;
     skos:hasTopConcept skt:doc-avis-depot,
         skt:doc-constat,
-        skt:doc-correspondance,
         skt:doc-courriel,
         skt:doc-decision,
-        skt:doc-foncier,
         skt:doc-lrar,
         skt:doc-matrice,
         skt:doc-panneau,
         skt:doc-photo,
         skt:doc-plan,
-        skt:doc-preuve,
-        skt:doc-spf,
-        skt:doc-urbanisme ;
+        skt:doc-spf ;
     skos:prefLabel "Natures de document"@fr .
 
 skt:TypeDeZone a skos:ConceptScheme ;
@@ -424,14 +419,10 @@ skt:TypeDeZone a skos:ConceptScheme ;
         skt:natura2000,
         skt:pda,
         skt:perimetre-abords,
-        skt:protection-env,
-        skt:protection-patrimoine,
-        skt:servitude,
         skt:sup-ac1,
         skt:sup-as1,
         skt:sup-i4,
         skt:znieff,
-        skt:zonage,
         skt:zone-A,
         skt:zone-AU,
         skt:zone-N,
@@ -505,3 +496,18 @@ skt:niv-limitee a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Couverture 
 
 skt:sys-umts-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 2100"@fr ; skos:prefLabel "UMTS 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-3g .
 skt:SystemeRadio skos:hasTopConcept skt:sys-umts-2100 .
+
+skt:Axe a skos:ConceptScheme ;
+    rdfs:label "Axes de regroupement"@fr ;
+    skos:hasTopConcept skt:doc-correspondance,
+        skt:doc-foncier,
+        skt:doc-preuve,
+        skt:doc-urbanisme,
+        skt:en-cours,
+        skt:protection-env,
+        skt:protection-patrimoine,
+        skt:servitude,
+        skt:zonage ;
+    skos:prefLabel "Axes de regroupement"@fr ;
+    note:note """Les **familles** auxquelles se rattachent les valeurs des autres vocabulaires, reliées par `ant:axe` (pas par `skos:broader`).
+Elles forment un vocabulaire à part : une valeur (« Avis de dépôt ») et sa famille (« Pièce d'urbanisme ») ne sont pas du même niveau, et les mettre dans un même schéma les rendait indiscernables dans la vue taxonomie. Chaque axe reste filtrable sur la carte comme avant (classe `ant:Axe`)."""@fr .
