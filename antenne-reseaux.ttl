@@ -18,12 +18,12 @@
 
 # ── Opérateurs et réseaux ─────────────────────────────────────
 dos:operateur-orange a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
-    rdfs:label "Orange"@fr ; skos:prefLabel "Orange"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+    rdfs:label "Orange"@fr ; skos:prefLabel "Orange"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau .
 dos:reseau-orange a owl:NamedIndividual, ant:ReseauMobile ;
     rdfs:label "Réseau Orange"@fr ; ant:operePar dos:operateur-orange .
 
 dos:operateur-sfr a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
-    rdfs:label "SFR"@fr ; skos:prefLabel "SFR"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+    rdfs:label "SFR"@fr ; skos:prefLabel "SFR"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau .
 dos:reseau-sfr a owl:NamedIndividual, ant:ReseauMobile ;
     rdfs:label "Réseau SFR"@fr ; ant:operePar dos:operateur-sfr .
 
@@ -32,14 +32,14 @@ dos:reseau-bouygues-telecom a owl:NamedIndividual, ant:ReseauMobile ;
     rdfs:label "Réseau Bouygues Telecom"@fr ; ant:operePar dos:bouygues-telecom .
 
 dos:operateur-free a owl:NamedIndividual, ant:OperateurMobile, skos:Concept ;
-    rdfs:label "Free Mobile"@fr ; skos:prefLabel "Free Mobile"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+    rdfs:label "Free Mobile"@fr ; skos:prefLabel "Free Mobile"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau .
 dos:reseau-free a owl:NamedIndividual, ant:ReseauMobile ;
     rdfs:label "Réseau Free Mobile"@fr ; ant:operePar dos:operateur-free .
 
 # Bouygues Telecom existe déjà (module Acteurs) : on le qualifie comme opérateur ET comme valeur de facette.
 # Les opérateurs sont des concepts SKOS pour que la carte puisse filtrer dessus.
 dos:bouygues-telecom a ant:OperateurMobile, skos:Concept ;
-    skos:prefLabel "Bouygues Telecom"@fr ; skos:inScheme skt:Operateur ; skos:topConceptOf skt:Operateur .
+    skos:prefLabel "Bouygues Telecom"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau .
 
 # ── Communes voisines ────────────────────────────────────────
 dos:commune-plomeur a owl:NamedIndividual, ant:Commune ;

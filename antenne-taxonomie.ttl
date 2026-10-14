@@ -1,4 +1,5 @@
 @prefix ant: <https://kersalous.bzh/ontology/antenne#> .
+@prefix dos: <https://kersalous.bzh/dossier/> .
 @prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -7,376 +8,376 @@
 skt:a-faire a skos:Concept,
         ant:Statut ;
     rdfs:label "À faire"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "À faire"@fr ;
-    skos:topConceptOf skt:Statut .
+    skos:topConceptOf skt:Dossier .
 
 skt:doc-avis-depot a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Avis de dépôt"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Avis de dépôt"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-urbanisme .
 
 skt:doc-constat a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Constat de commissaire de justice"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Constat de commissaire de justice"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-preuve .
 
 skt:doc-courriel a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Courriel"@fr ;
     skos:altLabel "email"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Courriel"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-correspondance .
 
 skt:doc-decision a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Décision"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Décision"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-urbanisme .
 
 skt:doc-lrar a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Lettre recommandée avec AR"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Lettre recommandée avec AR"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-correspondance .
 
 skt:doc-matrice a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Extrait de matrice cadastrale"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Extrait de matrice cadastrale"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-foncier .
 
 skt:doc-panneau a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Panneau d'affichage"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Panneau d'affichage"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-urbanisme .
 
 skt:doc-photo a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Photographie datée"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Photographie datée"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-preuve .
 
 skt:doc-plan a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Plan (DP1 à DP8)"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Plan (DP1 à DP8)"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-urbanisme .
 
 skt:doc-spf a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Renseignement de publicité foncière"@fr ;
-    skos:inScheme skt:NatureDocument ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Renseignement de publicité foncière"@fr ;
-    skos:topConceptOf skt:NatureDocument ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-foncier .
 
 skt:ebc a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Espace boisé classé"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Espace boisé classé"@fr ;
     skos:scopeNote "Rejet de plein droit de toute demande de défrichement."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-env .
 
 skt:envoye a skos:Concept,
         ant:Statut ;
     rdfs:label "Envoyé"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Envoyé"@fr ;
-    skos:topConceptOf skt:Statut ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:en-cours .
 
 skt:force-a-verifier a skos:Concept,
         ant:Force ;
     rdfs:label "À vérifier"@fr ;
-    skos:inScheme skt:Force ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "À vérifier"@fr ;
     skos:scopeNote "Force inconnue tant qu'une pièce manque. Génère une action prioritaire."@fr ;
-    skos:topConceptOf skt:Force .
+    skos:topConceptOf skt:Dossier .
 
 skt:force-ecarte a skos:Concept,
         ant:Force ;
     rdfs:label "Écarté"@fr ;
-    skos:inScheme skt:Force ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Écarté"@fr ;
     skos:scopeNote "Moyen juridiquement condamné. À documenter pour ne pas le re-plaider."@fr ;
-    skos:topConceptOf skt:Force .
+    skos:topConceptOf skt:Dossier .
 
 skt:force-faible a skos:Concept,
         ant:Force ;
     rdfs:label "Faible"@fr ;
-    skos:inScheme skt:Force ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Faible"@fr ;
-    skos:topConceptOf skt:Force .
+    skos:topConceptOf skt:Dossier .
 
 skt:force-forte a skos:Concept,
         ant:Force ;
     rdfs:label "Forte"@fr ;
-    skos:inScheme skt:Force ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Forte"@fr ;
     skos:scopeNote "Violation objective et vérifiable sur pièces ; annulation probable si établie."@fr ;
-    skos:topConceptOf skt:Force .
+    skos:topConceptOf skt:Dossier .
 
 skt:force-moyenne a skos:Concept,
         ant:Force ;
     rdfs:label "Moyenne"@fr ;
-    skos:inScheme skt:Force ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Moyenne"@fr ;
     skos:scopeNote "Appréciation de fait laissée au juge ; utile en soutien d'un moyen fort."@fr ;
-    skos:topConceptOf skt:Force .
+    skos:topConceptOf skt:Dossier .
 
 skt:haie-talus a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Haie ou talus à préserver"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Haie ou talus à préserver (L.151-23)"@fr ;
     skos:scopeNote "Toute suppression, même partielle, exige une DP distincte examinée par une commission municipale qui peut refuser ou imposer des compensations."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-env .
 
 skt:mh-classe a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Monument historique classé"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Monument historique classé"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-patrimoine .
 
 skt:mh-inscrit a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Monument historique inscrit"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Monument historique inscrit"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-patrimoine .
 
 skt:natura2000 a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Site Natura 2000"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Site Natura 2000"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-env .
 
 skt:obtenu a skos:Concept,
         ant:Statut ;
     rdfs:label "Obtenu / fait"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Obtenu / fait"@fr ;
-    skos:topConceptOf skt:Statut .
+    skos:topConceptOf skt:Dossier .
 
 skt:pda a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Périmètre délimité des abords"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Périmètre délimité des abords (PDA)"@fr ;
     skos:scopeNote "Peut dépasser 500 m. Créé sur proposition de l'ABF, après enquête publique et accord de la commune."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-patrimoine .
 
 skt:perimetre-abords a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Périmètre des abords (500 m)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Périmètre des abords (500 m)"@fr ;
     skos:scopeNote "Avis conforme de l'ABF à l'intérieur. En dehors, aucun contrôle de l'ABF, même en cas de covisibilité."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-patrimoine .
 
 skt:refuse a skos:Concept,
         ant:Statut ;
     rdfs:label "Refusé"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Refusé"@fr ;
-    skos:topConceptOf skt:Statut .
+    skos:topConceptOf skt:Dossier .
 
 skt:relance a skos:Concept,
         ant:Statut ;
     rdfs:label "Relancé"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Relancé"@fr ;
-    skos:topConceptOf skt:Statut ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:en-cours .
 
 skt:sans-objet a skos:Concept,
         ant:Statut ;
     rdfs:label "Sans objet / abandonné"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Sans objet / abandonné"@fr ;
-    skos:topConceptOf skt:Statut .
+    skos:topConceptOf skt:Dossier .
 
 skt:sans-reponse a skos:Concept,
         ant:Statut ;
     rdfs:label "Sans réponse"@fr ;
-    skos:inScheme skt:Statut ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Sans réponse"@fr ;
     skos:scopeNote "Déclencheur de relance. Pour une demande de documents administratifs, un mois de silence vaut refus et ouvre la saisine de la CADA."@fr ;
-    skos:topConceptOf skt:Statut ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:en-cours .
 
 skt:sup-ac1 a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "AC1 — monuments historiques"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "AC1 — monuments historiques"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:servitude .
 
 skt:sup-as1 a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "AS1 — captage d'eau potable"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "AS1 — captage d'eau potable"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:servitude .
 
 skt:sup-i4 a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "I4 — lignes électriques"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "I4 — lignes électriques"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:servitude .
 
 skt:znieff a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "ZNIEFF"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "ZNIEFF"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-env .
 
 skt:zone-A a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Zone agricole (A)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zone agricole (A)"@fr ;
     skos:scopeNote "Équipements d'intérêt collectif admis sous double condition : compatibilité avec l'activité agricole de l'unité foncière et absence d'atteinte aux paysages."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:zonage .
 
 skt:zone-AU a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Zone à urbaniser (AU)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zone à urbaniser (AU)"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:zonage .
 
 skt:zone-N a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Zone naturelle (N)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zone naturelle (N)"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:zonage .
 
 skt:zone-U a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Zone urbaine (U)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zone urbaine (U)"@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:zonage .
 
 skt:zone-humide a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Zone humide protégée (L.151-23)"@fr ;
-    skos:inScheme skt:TypeDeZone ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zone humide protégée (L.151-23)"@fr ;
     skos:scopeNote "Construction, remblaiement, exhaussement, affouillement et imperméabilisation interdits par le PLU."@fr ;
-    skos:topConceptOf skt:TypeDeZone ;
+    skos:topConceptOf skt:Dossier ;
     ant:axe skt:protection-env .
 
 skt:doc-correspondance a skos:Concept,
         ant:Axe ;
     rdfs:label "Correspondance"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Correspondance"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:doc-foncier a skos:Concept,
         ant:Axe ;
     rdfs:label "Document foncier"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Document foncier"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:doc-preuve a skos:Concept,
         ant:Axe ;
     rdfs:label "Preuve"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Preuve"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:en-cours a skos:Concept,
         ant:Axe ;
     rdfs:label "En cours"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "En cours"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:servitude a skos:Concept,
         ant:Axe ;
     rdfs:label "Servitude d'utilité publique"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Servitude d'utilité publique"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:doc-urbanisme a skos:Concept,
         ant:Axe ;
     rdfs:label "Pièce d'urbanisme"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Pièce d'urbanisme"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:protection-patrimoine a skos:Concept,
         ant:Axe ;
     rdfs:label "Protection patrimoniale"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Protection patrimoniale"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:zonage a skos:Concept,
         ant:Axe ;
     rdfs:label "Zonage d'urbanisme"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Zonage d'urbanisme"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
 skt:protection-env a skos:Concept,
         ant:Axe ;
     rdfs:label "Protection environnementale"@fr ;
-    skos:inScheme skt:Axe ;
+    skos:inScheme skt:Dossier ;
     skos:prefLabel "Protection environnementale"@fr ;
-    skos:topConceptOf skt:Axe .
+    skos:topConceptOf skt:Dossier .
 
-skt:Force a skos:ConceptScheme ;
+skt:Force a skos:Collection ;
     rdfs:label "Force d'un moyen juridique"@fr ;
-    skos:hasTopConcept skt:force-a-verifier,
+    skos:member skt:force-a-verifier,
         skt:force-ecarte,
         skt:force-faible,
         skt:force-forte,
@@ -384,9 +385,9 @@ skt:Force a skos:ConceptScheme ;
     skos:prefLabel "Force d'un moyen juridique"@fr ;
     note:note "Évaluation honnête, à réviser après lecture du dossier. Un moyen faible surévalué coûte plus cher qu'un moyen faible assumé." .
 
-skt:Statut a skos:ConceptScheme ;
+skt:Statut a skos:Collection ;
     rdfs:label "Statuts d'avancement"@fr ;
-    skos:hasTopConcept skt:a-faire,
+    skos:member skt:a-faire,
         skt:envoye,
         skt:obtenu,
         skt:refuse,
@@ -396,9 +397,9 @@ skt:Statut a skos:ConceptScheme ;
     skos:prefLabel "Statuts d'avancement"@fr ;
     note:note "Un seul vocabulaire pour les actions, les documents et les vérifications. Filtrez dessus pour obtenir votre to-do list." .
 
-skt:NatureDocument a skos:ConceptScheme ;
+skt:NatureDocument a skos:Collection ;
     rdfs:label "Natures de document"@fr ;
-    skos:hasTopConcept skt:doc-avis-depot,
+    skos:member skt:doc-avis-depot,
         skt:doc-constat,
         skt:doc-courriel,
         skt:doc-decision,
@@ -410,9 +411,9 @@ skt:NatureDocument a skos:ConceptScheme ;
         skt:doc-spf ;
     skos:prefLabel "Natures de document"@fr .
 
-skt:TypeDeZone a skos:ConceptScheme ;
+skt:TypeDeZone a skos:Collection ;
     rdfs:label "Types de zones et de protections"@fr ;
-    skos:hasTopConcept skt:ebc,
+    skos:member skt:ebc,
         skt:haie-talus,
         skt:mh-classe,
         skt:mh-inscrit,
@@ -438,68 +439,68 @@ et qui doit être consulté ?* Mettez la réponse dans `skos:scopeNote`.""" .
 #  RÉSEAUX MOBILES — générations, systèmes radio, statuts d'installation
 # ═══════════════════════════════════════════════════════════════
 
-skt:Generation a skos:ConceptScheme ;
+skt:Generation a skos:Collection ;
     rdfs:label "Générations de réseau mobile"@fr ;
-    skos:hasTopConcept skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g .
+    skos:member skt:gen-2g, skt:gen-3g, skt:gen-4g, skt:gen-5g .
 
-skt:gen-2g a skos:Concept, ant:Generation ; rdfs:label "2G"@fr ; skos:prefLabel "2G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "GSM : voix et SMS."@fr .
-skt:gen-3g a skos:Concept, ant:Generation ; rdfs:label "3G"@fr ; skos:prefLabel "3G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "UMTS : premières données mobiles."@fr .
-skt:gen-4g a skos:Concept, ant:Generation ; rdfs:label "4G"@fr ; skos:prefLabel "4G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "LTE."@fr .
-skt:gen-5g a skos:Concept, ant:Generation ; rdfs:label "5G"@fr ; skos:prefLabel "5G"@fr ; skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ; skos:definition "5G NR, dont la bande 3,5 GHz."@fr .
+skt:gen-2g a skos:Concept, ant:Generation ; rdfs:label "2G"@fr ; skos:prefLabel "2G"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "GSM : voix et SMS."@fr .
+skt:gen-3g a skos:Concept, ant:Generation ; rdfs:label "3G"@fr ; skos:prefLabel "3G"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "UMTS : premières données mobiles."@fr .
+skt:gen-4g a skos:Concept, ant:Generation ; rdfs:label "4G"@fr ; skos:prefLabel "4G"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "LTE."@fr .
+skt:gen-5g a skos:Concept, ant:Generation ; rdfs:label "5G"@fr ; skos:prefLabel "5G"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "5G NR, dont la bande 3,5 GHz."@fr .
 
-skt:SystemeRadio a skos:ConceptScheme ;
+skt:SystemeRadio a skos:Collection ;
     rdfs:label "Systèmes radio (technologie et bande)"@fr ;
-    skos:hasTopConcept skt:sys-gsm-900, skt:sys-umts-900, skt:sys-lte-700, skt:sys-lte-800, skt:sys-lte-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-5g-nr-700, skt:sys-5g-nr-2100, skt:sys-5g-nr-3500 .
+    skos:member skt:sys-gsm-900, skt:sys-umts-900, skt:sys-lte-700, skt:sys-lte-800, skt:sys-lte-900, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-5g-nr-700, skt:sys-5g-nr-2100, skt:sys-5g-nr-3500 .
 
-skt:sys-gsm-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "GSM 900"@fr ; skos:prefLabel "GSM 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-2g .
-skt:sys-umts-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 900"@fr ; skos:prefLabel "UMTS 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-3g .
-skt:sys-lte-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 700"@fr ; skos:prefLabel "LTE 700"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-lte-800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 800"@fr ; skos:prefLabel "LTE 800"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-lte-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 900"@fr ; skos:prefLabel "LTE 900"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-lte-1800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 1800"@fr ; skos:prefLabel "LTE 1800"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-lte-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2100"@fr ; skos:prefLabel "LTE 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-lte-2600 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2600"@fr ; skos:prefLabel "LTE 2600"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-4g .
-skt:sys-5g-nr-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 700"@fr ; skos:prefLabel "5G NR 700"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
-skt:sys-5g-nr-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 2100"@fr ; skos:prefLabel "5G NR 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
-skt:sys-5g-nr-3500 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 3500"@fr ; skos:prefLabel "5G NR 3500"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-5g .
+skt:sys-gsm-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "GSM 900"@fr ; skos:prefLabel "GSM 900"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-2g .
+skt:sys-umts-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 900"@fr ; skos:prefLabel "UMTS 900"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-3g .
+skt:sys-lte-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 700"@fr ; skos:prefLabel "LTE 700"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 800"@fr ; skos:prefLabel "LTE 800"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-900 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 900"@fr ; skos:prefLabel "LTE 900"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-1800 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 1800"@fr ; skos:prefLabel "LTE 1800"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2100"@fr ; skos:prefLabel "LTE 2100"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-lte-2600 a skos:Concept, ant:SystemeRadio ; rdfs:label "LTE 2600"@fr ; skos:prefLabel "LTE 2600"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-4g .
+skt:sys-5g-nr-700 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 700"@fr ; skos:prefLabel "5G NR 700"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-5g .
+skt:sys-5g-nr-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 2100"@fr ; skos:prefLabel "5G NR 2100"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-5g .
+skt:sys-5g-nr-3500 a skos:Concept, ant:SystemeRadio ; rdfs:label "5G NR 3500"@fr ; skos:prefLabel "5G NR 3500"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-5g .
 
-skt:StatutInstallation a skos:ConceptScheme ;
+skt:StatutInstallation a skos:Collection ;
     rdfs:label "Statuts d'une installation radio"@fr ;
-    skos:hasTopConcept skt:statut-en-service, skt:statut-techniquement-operationnel, skt:statut-projet-approuve, skt:statut-projete-dp .
+    skos:member skt:statut-en-service, skt:statut-techniquement-operationnel, skt:statut-projet-approuve, skt:statut-projete-dp .
 
-skt:statut-en-service a skos:Concept, ant:StatutInstallation ; rdfs:label "En service"@fr ; skos:prefLabel "En service"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : installation émettant."@fr .
-skt:statut-techniquement-operationnel a skos:Concept, ant:StatutInstallation ; rdfs:label "Techniquement opérationnel"@fr ; skos:prefLabel "Techniquement opérationnel"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : installation prête techniquement, pas encore commercialement ouverte."@fr .
-skt:statut-projet-approuve a skos:Concept, ant:StatutInstallation ; rdfs:label "Projet approuvé"@fr ; skos:prefLabel "Projet approuvé"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Statut ANFR : accord de l'ANFR obtenu, installation non encore en service."@fr .
-skt:statut-projete-dp a skos:Concept, ant:StatutInstallation ; rdfs:label "Projeté — déclaration préalable déposée"@fr ; skos:prefLabel "Projeté — déclaration préalable déposée"@fr ; skos:inScheme skt:StatutInstallation ; skos:topConceptOf skt:StatutInstallation ; skos:definition "Valeur propre au dossier (hors ANFR) : support dont l'autorisation d'urbanisme est demandée ou en instruction, avant toute construction."@fr .
+skt:statut-en-service a skos:Concept, ant:StatutInstallation ; rdfs:label "En service"@fr ; skos:prefLabel "En service"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "Statut ANFR : installation émettant."@fr .
+skt:statut-techniquement-operationnel a skos:Concept, ant:StatutInstallation ; rdfs:label "Techniquement opérationnel"@fr ; skos:prefLabel "Techniquement opérationnel"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "Statut ANFR : installation prête techniquement, pas encore commercialement ouverte."@fr .
+skt:statut-projet-approuve a skos:Concept, ant:StatutInstallation ; rdfs:label "Projet approuvé"@fr ; skos:prefLabel "Projet approuvé"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "Statut ANFR : accord de l'ANFR obtenu, installation non encore en service."@fr .
+skt:statut-projete-dp a skos:Concept, ant:StatutInstallation ; rdfs:label "Projeté — déclaration préalable déposée"@fr ; skos:prefLabel "Projeté — déclaration préalable déposée"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; skos:definition "Valeur propre au dossier (hors ANFR) : support dont l'autorisation d'urbanisme est demandée ou en instruction, avant toute construction."@fr .
 
-skt:Operateur a skos:ConceptScheme ;
+skt:Operateur a skos:Collection ;
     rdfs:label "Opérateurs de réseau mobile"@fr ;
-    skos:hasTopConcept <https://kersalous.bzh/dossier/operateur-orange>,
+    skos:member <https://kersalous.bzh/dossier/operateur-orange>,
         <https://kersalous.bzh/dossier/operateur-sfr>,
         <https://kersalous.bzh/dossier/bouygues-telecom>,
         <https://kersalous.bzh/dossier/operateur-free> .
 
 skt:gen-inconnue a skos:Concept, ant:Generation ;
     rdfs:label "Inconnue"@fr ; skos:prefLabel "Inconnue"@fr ;
-    skos:inScheme skt:Generation ; skos:topConceptOf skt:Generation ;
+    skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ;
     skos:definition "Technologie non précisée (site projeté, pas encore déclaré à l'ANFR). Valeur d'attente : elle garde le site visible quand on coche toutes les générations, et doit être remplacée dès que la technologie est connue."@fr .
 
-skt:Generation skos:hasTopConcept skt:gen-inconnue .
+skt:Generation skos:member skt:gen-inconnue .
 
-skt:NiveauDeCouverture a skos:ConceptScheme ;
+skt:NiveauDeCouverture a skos:Collection ;
     rdfs:label "Niveaux de couverture mobile (ARCEP)"@fr ;
-    skos:hasTopConcept skt:niv-tres-bonne, skt:niv-bonne, skt:niv-limitee .
+    skos:member skt:niv-tres-bonne, skt:niv-bonne, skt:niv-limitee .
 
-skt:niv-tres-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Très bonne couverture"@fr ; skos:prefLabel "Très bonne couverture"@fr ; skos:altLabel "TBC" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 3 ; skos:definition "Code ARCEP TBC. Meilleur niveau de la simulation ; les seuils de signal sont définis par l'ARCEP et ne sont pas recopiés ici."@fr .
-skt:niv-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Bonne couverture"@fr ; skos:prefLabel "Bonne couverture"@fr ; skos:altLabel "BC" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 2 ; skos:definition "Code ARCEP BC."@fr .
-skt:niv-limitee a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Couverture limitée"@fr ; skos:prefLabel "Couverture limitée"@fr ; skos:altLabel "CL" ; skos:inScheme skt:NiveauDeCouverture ; skos:topConceptOf skt:NiveauDeCouverture ; ant:rang 1 ; skos:definition "Code ARCEP CL. Réception possible en extérieur mais dégradée."@fr .
+skt:niv-tres-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Très bonne couverture"@fr ; skos:prefLabel "Très bonne couverture"@fr ; skos:altLabel "TBC" ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:rang 3 ; skos:definition "Code ARCEP TBC. Meilleur niveau de la simulation ; les seuils de signal sont définis par l'ARCEP et ne sont pas recopiés ici."@fr .
+skt:niv-bonne a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Bonne couverture"@fr ; skos:prefLabel "Bonne couverture"@fr ; skos:altLabel "BC" ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:rang 2 ; skos:definition "Code ARCEP BC."@fr .
+skt:niv-limitee a skos:Concept, ant:NiveauDeCouverture ; rdfs:label "Couverture limitée"@fr ; skos:prefLabel "Couverture limitée"@fr ; skos:altLabel "CL" ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:rang 1 ; skos:definition "Code ARCEP CL. Réception possible en extérieur mais dégradée."@fr .
 
-skt:sys-umts-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 2100"@fr ; skos:prefLabel "UMTS 2100"@fr ; skos:inScheme skt:SystemeRadio ; skos:topConceptOf skt:SystemeRadio ; ant:generationDuSysteme skt:gen-3g .
-skt:SystemeRadio skos:hasTopConcept skt:sys-umts-2100 .
+skt:sys-umts-2100 a skos:Concept, ant:SystemeRadio ; rdfs:label "UMTS 2100"@fr ; skos:prefLabel "UMTS 2100"@fr ; skos:inScheme skt:Reseau ; skos:topConceptOf skt:Reseau ; ant:generationDuSysteme skt:gen-3g .
+skt:SystemeRadio skos:member skt:sys-umts-2100 .
 
-skt:Axe a skos:ConceptScheme ;
+skt:Axe a skos:Collection ;
     rdfs:label "Axes de regroupement"@fr ;
-    skos:hasTopConcept skt:doc-correspondance,
+    skos:member skt:doc-correspondance,
         skt:doc-foncier,
         skt:doc-preuve,
         skt:doc-urbanisme,
@@ -511,3 +512,92 @@ skt:Axe a skos:ConceptScheme ;
     skos:prefLabel "Axes de regroupement"@fr ;
     note:note """Les **familles** auxquelles se rattachent les valeurs des autres vocabulaires, reliées par `ant:axe` (pas par `skos:broader`).
 Elles forment un vocabulaire à part : une valeur (« Avis de dépôt ») et sa famille (« Pièce d'urbanisme ») ne sont pas du même niveau, et les mettre dans un même schéma les rendait indiscernables dans la vue taxonomie. Chaque axe reste filtrable sur la carte comme avant (classe `ant:Axe`)."""@fr .
+
+skt:Dossier a skos:ConceptScheme ;
+    rdfs:label "Vocabulaire du dossier (juridique et procédure)"@fr ;
+    skos:hasTopConcept skt:a-faire,
+        skt:doc-avis-depot,
+        skt:doc-constat,
+        skt:doc-correspondance,
+        skt:doc-courriel,
+        skt:doc-decision,
+        skt:doc-foncier,
+        skt:doc-lrar,
+        skt:doc-matrice,
+        skt:doc-panneau,
+        skt:doc-photo,
+        skt:doc-plan,
+        skt:doc-preuve,
+        skt:doc-spf,
+        skt:doc-urbanisme,
+        skt:ebc,
+        skt:en-cours,
+        skt:envoye,
+        skt:force-a-verifier,
+        skt:force-ecarte,
+        skt:force-faible,
+        skt:force-forte,
+        skt:force-moyenne,
+        skt:haie-talus,
+        skt:mh-classe,
+        skt:mh-inscrit,
+        skt:natura2000,
+        skt:obtenu,
+        skt:pda,
+        skt:perimetre-abords,
+        skt:protection-env,
+        skt:protection-patrimoine,
+        skt:refuse,
+        skt:relance,
+        skt:sans-objet,
+        skt:sans-reponse,
+        skt:servitude,
+        skt:sup-ac1,
+        skt:sup-as1,
+        skt:sup-i4,
+        skt:znieff,
+        skt:zonage,
+        skt:zone-A,
+        skt:zone-AU,
+        skt:zone-N,
+        skt:zone-U,
+        skt:zone-humide ;
+    skos:prefLabel "Vocabulaire du dossier (juridique et procédure)"@fr ;
+    skos:definition "Tout ce qui sert à instruire le dossier et à agir : force des moyens, statuts d'avancement, natures de document, types de zones réglementaires, et les axes qui regroupent leurs valeurs."@fr ;
+    note:note """Les anciens vocabulaires (Force, Statut, NatureDocument, TypeDeZone, Axe) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
+Pas de `skos:broader` ici, exprès : ster le lit comme une contenance (comme « situé dans »), ce qui ferait des valeurs des « lieux » et les retirerait des filtres de la carte. Ce qui distingue encore une valeur d'une autre est sa classe (`ant:Statut`, `ant:TypeDeZone`...)."""@fr .
+
+skt:Reseau a skos:ConceptScheme ;
+    rdfs:label "Vocabulaire des réseaux mobiles"@fr ;
+    skos:hasTopConcept dos:bouygues-telecom,
+        dos:operateur-free,
+        dos:operateur-orange,
+        dos:operateur-sfr,
+        skt:gen-2g,
+        skt:gen-3g,
+        skt:gen-4g,
+        skt:gen-5g,
+        skt:gen-inconnue,
+        skt:niv-bonne,
+        skt:niv-limitee,
+        skt:niv-tres-bonne,
+        skt:statut-en-service,
+        skt:statut-projet-approuve,
+        skt:statut-projete-dp,
+        skt:statut-techniquement-operationnel,
+        skt:sys-5g-nr-2100,
+        skt:sys-5g-nr-3500,
+        skt:sys-5g-nr-700,
+        skt:sys-gsm-900,
+        skt:sys-lte-1800,
+        skt:sys-lte-2100,
+        skt:sys-lte-2600,
+        skt:sys-lte-700,
+        skt:sys-lte-800,
+        skt:sys-lte-900,
+        skt:sys-umts-2100,
+        skt:sys-umts-900 ;
+    skos:prefLabel "Vocabulaire des réseaux mobiles"@fr ;
+    skos:definition "Tout ce qui décrit les antennes et les réseaux : générations, systèmes radio, statuts d'installation, opérateurs, niveaux de couverture ARCEP."@fr ;
+    note:note """Les anciens vocabulaires (Generation, SystemeRadio, StatutInstallation, Operateur, NiveauDeCouverture) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
+Pas de `skos:broader` ici, exprès : ster le lit comme une contenance (comme « situé dans »), ce qui ferait des valeurs des « lieux » et les retirerait des filtres de la carte. Ce qui distingue encore une valeur d'une autre est sa classe (`ant:Statut`, `ant:TypeDeZone`...)."""@fr .

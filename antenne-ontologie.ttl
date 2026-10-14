@@ -353,7 +353,7 @@ ant:Axe a owl:Class ;
     rdfs:label "Axe de regroupement"@fr ;
     rdfs:comment "Famille à laquelle appartient un concept : zonage, protection environnementale, patrimoine, servitude."@fr ;
     rdfs:subClassOf skos:Concept ;
-    note:note "Remplace skos:broader pour les valeurs de facette. Donne un second menu de filtres, plus large que le premier. Les axes forment leur propre schéma (`skt:Axe`), distinct des schémas de valeurs qu'ils regroupent." .
+    note:note "Remplace skos:broader pour les valeurs de facette. Donne un second menu de filtres, plus large que le premier. Les axes forment leur propre collection (`skt:Axe`) dans le schéma `skt:Dossier`, distincte des collections de valeurs qu'ils regroupent." .
 
 ant:Batiment a owl:Class ;
     rdfs:label "Bâtiment"@fr ;
@@ -532,7 +532,7 @@ ant:OperateurMobile a owl:Class ;
     rdfs:label "Opérateur mobile"@fr ;
     rdfs:comment "Opérateur de réseau mobile : Orange, SFR, Bouygues Telecom, Free Mobile. À distinguer de la société de pylônes (ex. Phoenix France Infrastructures), qui construit et loue le support."@fr ;
     rdfs:subClassOf ant:Entreprise, skos:Concept ;
-    note:note "Aussi concept SKOS (schéma `skt:Operateur`) : c'est ce qui en fait une valeur de facette pour filtrer la carte par opérateur." .
+    note:note "Aussi concept SKOS (schéma `skt:Reseau`, collection `skt:Operateur`) : c'est ce qui en fait une valeur de facette pour filtrer la carte par opérateur." .
 
 ant:Generation a owl:Class ;
     rdfs:label "Génération de réseau"@fr ;
