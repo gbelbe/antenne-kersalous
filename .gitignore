@@ -1,2 +1,5 @@
 # ster temp files
 .ster_session
+
+# generated ontology docs (pyLODE embeds the local file path)
+html/
