@@ -4,8 +4,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sm: <https://ster.dev/ns/map#> .
 
-<antenne.org> a owl:Ontology ;
-    rdfs:label "antenne" .
+<https://kersalous.bzh/carte> a owl:Ontology ;
+    rdfs:label "Antenne — fonds de carte"@fr .
 
 carte:cadastre a owl:NamedIndividual,
         sm:MapLayer ;
