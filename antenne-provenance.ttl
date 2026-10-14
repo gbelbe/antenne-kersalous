@@ -597,3 +597,18 @@ src:act-arcep-mesures a owl:NamedIndividual, src:Calcul ;
     prov:used src:arcep-couv-bouy-4g, src:geo-api-communes, src:act-arcep-decoupe ; prov:wasAssociatedWith src:claude ;
     prov:endedAtTime "2026-10-13T22:15:00"^^xsd:dateTime ;
     note:note "Calculées sur les polygones complets, non simplifiés. Le masque terrestre est l'union des contours communaux du Finistère (geo.api.gouv.fr) : sans lui, la mer comptait comme « non couverte ». Marge d'erreur : contours communaux et simulation ARCEP n'ont pas la même résolution ; une lacune de moins d'un km² en bord de côte peut être un artefact." .
+
+# ── Comparaison nationale de la couverture (2026-10-14) ──
+src:geo-api-communes-france a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-10-14"^^xsd:date ;
+    rdfs:label "API Découpage administratif — toutes les communes de France (nom, population, surface, centre)"@fr ;
+    dcat:accessURL "https://geo.api.gouv.fr/communes?fields=nom,code,codeDepartement,population,surface,centre&format=json&geometry=centre"^^xsd:anyURI ;
+    dcterms:publisher src:etalab ; dcterms:license "Licence Ouverte 2.0" ;
+    prov:wasAttributedTo src:etalab ;
+    note:note "34 969 communes téléchargées, dont 34 746 métropolitaines retenues. La population est celle publiée par l'INSEE via l'API (recensement légal) ; la surface est en hectares. SHA-256 du fichier téléchargé : 0b079c8334303a6117b8b9a3476a27a0ecaf96ca9ac930f61611f37cbb65094d." .
+
+src:act-comparaison-rurale a owl:NamedIndividual, src:Calcul ;
+    rdfs:label "Comparaison de la couverture 4G Bouygues Telecom du secteur avec les autres zones rurales"@fr ;
+    prov:used src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasAssociatedWith src:claude ;
+    prov:endedAtTime "2026-10-14T00:00:00"^^xsd:dateTime ;
+    note:note "Pour chaque commune métropolitaine, test du centre dans les polygones ARCEP du département (très bonne, bonne, limitée), puis agrégation par ensemble. Seuils « rural » fixés par l'auteur (< 40 hab/km², < 2 500 habitants) : un autre seuil déplace légèrement les pourcentages. Le centre d'une commune ne dit rien des hameaux ni des routes. Un seul opérateur et une seule génération (4G Bouygues)." .

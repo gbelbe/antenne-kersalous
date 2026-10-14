@@ -1,0 +1,98 @@
+@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix src:  <https://kersalous.bzh/provenance/> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+
+# ═══════════════════════════════════════════════════════════════
+#  COMPARAISON DE LA COUVERTURE AVEC LES AUTRES ZONES RURALES
+#  Fichier généré. Même méthode que les mesures de redondance : zones ARCEP 4G Bouygues Telecom.
+#  Unité d'analyse : le centre de chaque commune ; « rural » = < 40 hab/km² et < 2 500 habitants.
+# ═══════════════════════════════════════════════════════════════
+
+dos:m-cmp-rural-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes rurales de France métropolitaine couverte au moins « bonne » — Bouygues Telecom 4G"@fr ; ant:valeur 92.7 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 17240 communes de moins de 40 hab/km² et de moins de 2 500 habitants." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-rural-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes rurales de France métropolitaine en « très bonne » couverture — Bouygues Telecom 4G"@fr ; ant:valeur 67.3 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 17240 communes de moins de 40 hab/km² et de moins de 2 500 habitants." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-fin_rural-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes rurales du Finistère couverte au moins « bonne » — Bouygues Telecom 4G"@fr ; ant:valeur 98.1 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 54 communes rurales (mêmes seuils) du département 29." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-fin_rural-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes rurales du Finistère en « très bonne » couverture — Bouygues Telecom 4G"@fr ; ant:valeur 72.2 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 54 communes rurales (mêmes seuils) du département 29." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-similar-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes de taille et densité proches de Plonéour-Lanvern couverte au moins « bonne » — Bouygues Telecom 4G"@fr ; ant:valeur 98.4 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 2434 communes de 60 à 200 hab/km² et de 1 500 à 6 000 habitants." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-similar-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes de taille et densité proches de Plonéour-Lanvern en « très bonne » couverture — Bouygues Telecom 4G"@fr ; ant:valeur 86.6 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 2434 communes de 60 à 200 hab/km² et de 1 500 à 6 000 habitants." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-near10-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes dans les 10 km du site couverte au moins « bonne » — Bouygues Telecom 4G"@fr ; ant:valeur 100.0 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 16 communes dont le centre est à moins de 10 km du site projeté." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-near10-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes dans les 10 km du site en « très bonne » couverture — Bouygues Telecom 4G"@fr ; ant:valeur 75.0 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 16 communes dont le centre est à moins de 10 km du site projeté." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-france-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes de France métropolitaine couverte au moins « bonne » — Bouygues Telecom 4G"@fr ; ant:valeur 95.4 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 34746 communes de France métropolitaine." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-france-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Part des communes de France métropolitaine en « très bonne » couverture — Bouygues Telecom 4G"@fr ; ant:valeur 76.4 ; ant:unite "%" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : 34746 communes de France métropolitaine." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-rang-finistere-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Rang du Finistère parmi les départements pour la part de communes rurales couvertes au moins « bonne » (1 = meilleur)"@fr ; ant:valeur 5 ; ant:unite "rang sur 90" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne » ou « bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : Départements comptant au moins 15 communes rurales (90 départements). Médiane des départements : 93.65 %.." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .
+
+dos:m-cmp-rang-finistere-tres-bonne a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Rang du Finistère parmi les départements pour la part de communes rurales en « très bonne » couverture (1 = meilleur)"@fr ; ant:valeur 30 ; ant:unite "rang sur 90" ;
+    ant:methode "Part des communes dont le centre (point de l'API geo.api.gouv.fr) tombe dans la zone 4G Bouygues Telecom « très bonne ». Couverture théorique ARCEP 2026 T2 (données au 2026-06-30), simulée par l'opérateur : extérieur uniquement, capacité non évaluée. Ensemble : Départements comptant au moins 15 communes rurales (90 départements).." ;
+    ant:porteSurObjet dos:projet-pylone ;
+    prov:wasDerivedFrom src:arcep-couv-bouy-4g, src:geo-api-communes-france ; prov:wasGeneratedBy src:act-comparaison-rurale ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-14T00:00:00"^^xsd:dateTime .

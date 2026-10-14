@@ -10,7 +10,8 @@
       "antenne-provenance.ttl",
       "antenne-taxonomie.ttl",
       "antenne-reseaux.ttl",
-      "antenne-couverture.ttl"
+      "antenne-couverture.ttl",
+      "antenne-comparaison.ttl"
     ]
   }
 }
