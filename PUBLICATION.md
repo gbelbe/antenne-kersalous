@@ -60,3 +60,13 @@ Les masquages s'appliquent aux données **et** aux relations : une entité masqu
 | Ajouter une décision de justice | le graphe : `ant:Jurisprudence` (voir `antenne-jurisprudence.ttl`) |
 
 La chronologie, la jurisprudence, les moyens, les propriétaires et les sources sont **lus dans le graphe** : aucune de ces pages n'est écrite à la main.
+
+## Identité des commits
+
+Les commits doivent porter uniquement l'adresse `385068+gbelbe@users.noreply.github.com`. Trois protections :
+
+- **Réglage git** : identité du dépôt (`git config user.name/user.email`) et, au niveau du dossier, `[includeIf "gitdir:~/Documents/adeo_ster/antenne/"]` dans `~/.gitconfig` vers `~/.gitconfig-perso`. `user.useConfigOnly = true` empêche git de deviner une identité.
+- **Hooks locaux** (`.githooks/`, activés par `git config core.hooksPath .githooks` — à refaire après un nouveau clone) : `commit-msg` refuse un commit dont l'auteur n'est pas l'adresse autorisée ou dont le message contient une adresse professionnelle ; `pre-push` contrôle les commits avant l'envoi.
+- **CI** (`.github/workflows/identity.yml`) : alerte après coup si un commit poussé porte une autre identité.
+
+Les règles sont dans `tools/check_identity.sh` (`ALLOWED_EMAIL`, `BLOCKED_PATTERNS`). Contrôle manuel : `git log --all --format='%ae %ce' | sort | uniq -c`.

@@ -1,0 +1,26 @@
+# Alerte si un commit poussé porte une identité non autorisée (adresse professionnelle, adresse deviné par git, etc.).
+name: Contrôle d'identité des commits
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  identity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Vérifier les commits de ce push
+        run: |
+          before="${{ github.event.before }}"
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            range="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          elif [ -z "$before" ] || [ "$before" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "$before^{commit}" 2>/dev/null; then
+            range="${{ github.sha }}"          # nouvelle branche ou réécriture d'historique : tout l'historique est contrôlé
+          else
+            range="$before..${{ github.sha }}"
+          fi
+          echo "plage contrôlée : $range"
+          tools/check_identity.sh $range

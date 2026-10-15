@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Refuse un commit dont l'adresse d'auteur n'est pas l'adresse autorisée, ou dont le message contient un motif bloqué.
+ALLOWED_EMAIL="${ALLOWED_EMAIL:-385068+gbelbe@users.noreply.github.com}"
+BLOCKED_PATTERNS="${BLOCKED_PATTERNS:-leroymerlin|\.hq\.corp|@adeo}"
+author=$(git var GIT_AUTHOR_IDENT | sed -E 's/.*<([^>]*)>.*/\1/')
+if [ "$author" != "$ALLOWED_EMAIL" ]; then
+  echo "Commit refusé : adresse d'auteur <$author>, attendue <$ALLOWED_EMAIL>."
+  echo "Réglez : git config user.email $ALLOWED_EMAIL"; exit 1
+fi
+if grep -Eiq "$BLOCKED_PATTERNS" "$1"; then
+  echo "Commit refusé : le message contient une adresse ou un nom d'entreprise bloqué (ex. ligne Signed-off-by)."; exit 1
+fi
