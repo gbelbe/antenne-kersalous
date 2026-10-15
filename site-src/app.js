@@ -50,11 +50,11 @@ async function home() {
   $("#app").innerHTML = `
     <h1>${esc(meta.title)}</h1>
     <p class="lead">${esc(meta.subtitle)}. Une antenne-relais de 30 m (32,65 m avec ses équipements) est projetée sur la parcelle YX 26, à proximité d'habitations.
-      Ce site rassemble les faits, les délais, les précédents de justice et les données sur les propriétaires de pylônes, avec leurs sources.</p>
+      Ce site rassemble les faits, les délais, les précédents de justice et ce que l'on sait de Phoenix et de Bouygues dans le Finistère, avec les sources.</p>
     <div class="banner">${esc(meta.disclaimer)}</div>
     <div class="grid">
       <div class="card"><div class="stat">${s.supports}<small>supports d'antennes cartographiés</small></div></div>
-      <div class="card"><div class="stat">${s.phoenix_supports}<small>supports de Phoenix en Bretagne</small></div></div>
+      <div class="card"><div class="stat">${s.phoenix_supports}<small>supports de Phoenix dans le Finistère</small></div></div>
       <div class="card"><div class="stat">${s.decisions}<small>décisions de justice comparées</small></div></div>
       <div class="card"><div class="stat">${s.sources}<small>sources documentées</small></div></div>
     </div>
@@ -64,7 +64,7 @@ async function home() {
       <a class="card" href="#/chronologie"><h3>🕒 Chronologie</h3><p class="muted">Dépôt, décision, panneau, délais de recours, travaux prévus : ce qui est passé et ce qui arrive.</p></a>
       <a class="card" href="#/dossier"><h3>⚖️ Moyens &amp; actions</h3><p class="muted">Les arguments juridiques, leur force estimée, leurs preuves et ce qu'il reste à faire.</p></a>
       <a class="card" href="#/jurisprudence"><h3>📚 Jurisprudence</h3><p class="muted">Ce qui a fonctionné, retardé ou échoué dans d'autres affaires d'antennes-relais.</p></a>
-      <a class="card" href="#/reseau"><h3>🏗️ Pylônes &amp; propriétaires</h3><p class="muted">Qui possède les pylônes en Bretagne et en France ; Phoenix et ses opérations.</p></a>
+      <a class="card" href="#/reseau"><h3>🏗️ Pylônes &amp; propriétaires</h3><p class="muted">Phoenix, Bouygues et leurs pylônes dans le Finistère ; les opérations de Phoenix.</p></a>
       <a class="card" href="#/sources"><h3>🔎 Sources</h3><p class="muted">D'où vient chaque information et à quel point s'y fier. Téléchargements.</p></a>
     </div>
     ${up.length ? `<h2>À venir</h2><div class="tl">${up.map((i) => tlItem(i)).join("")}</div><p><a href="#/chronologie">Toute la chronologie →</a></p>` : ""}
@@ -87,7 +87,7 @@ async function carte() {
     </div>
     <div id="mapzone"></div>
     <div class="legend" id="legend"></div>
-    <p class="muted small">Positions des supports arrondies par l'ANFR (≈ 30 m). Le point rouge est le centre de la parcelle ; l'opérateur place le pylône à son angle, côté route, à environ 64 m de là. Propriétaire d'un support = code du registre ANFR (fichier du 8 octobre 2026), à lire comme un plancher pour Phoenix.</p>`;
+    <p class="muted small">Positions des supports arrondies par l'ANFR (≈ 30 m). Le point rouge est le centre de la parcelle ; l'opérateur place le pylône à son angle, côté route, à environ 64 m de là. Propriétaire d'un support = code du registre ANFR (fichier du 8 octobre 2026), à lire comme un plancher pour Phoenix. Seuls les supports de Phoenix du Finistère sont tracés, avec les supports existants à moins de 10 km du site.</p>`;
   const show = (eng) => {
     document.querySelectorAll("[data-eng]").forEach((b) => b.classList.toggle("sel", b.dataset.eng === eng));
     if (LMAP) { LMAP.remove(); LMAP = null; }
@@ -232,21 +232,21 @@ async function reseau() {
     const rows = mode === "all" ? e.owners : e.bouygues_owners;
     const tot = mode === "all" ? e.total : e.bouygues_total;
     $("#bars").innerHTML = `<h3>${esc(e.label)} — ${tot ?? "?"} supports${mode === "bouygues" ? " hébergeant Bouygues Telecom" : ""}</h3>
-      <div class="bars">${bars(rows) || '<p class="muted">Pas de mesure détaillée pour cet ensemble (seul Phoenix est mesuré).</p>'}</div>`;
+      <div class="bars">${bars(rows) || '<p class="muted">Pas de mesure pour ce territoire.</p>'}</div>`;
   };
   const lim = ents["src:act-proprietaires-anfr"]?.note || "";
-  $("#app").innerHTML = `<h1>Pylônes &amp; propriétaires</h1>
-    <p class="lead">Qui possède les supports d'antennes ? Les chiffres viennent du registre de l'ANFR (fichier du 8 octobre 2026). Phoenix France Infrastructures, demandeur de la déclaration préalable, est une société de pylônes liée à Bouygues Telecom ; la part mesurée est un <b>plancher</b>.</p>
+  $("#app").innerHTML = `<h1>Phoenix &amp; Bouygues dans le Finistère</h1>
+    <p class="lead">Phoenix France Infrastructures, demandeur de la déclaration préalable, est une société de pylônes liée à Bouygues Telecom. Part de leurs supports parmi ceux du Finistère, d'après le registre de l'ANFR (fichier du 8 octobre 2026) ; la part de Phoenix est un <b>plancher</b>. Pas de comparaison avec d'autres propriétaires ni d'autres territoires.</p>
     <div class="banner md">${md(lim)}</div>
-    <div class="toolbar"><label>Territoire <select id="ens">${r.ensembles.map((e) => `<option value="${esc(e.id)}"${e.id === ensId ? " selected" : ""}>${esc(e.label)}</option>`).join("")}</select></label>
+    <div class="toolbar">${r.ensembles.length > 1 ? `<label>Territoire <select id="ens">${r.ensembles.map((e) => `<option value="${esc(e.id)}"${e.id === ensId ? " selected" : ""}>${esc(e.label)}</option>`).join("")}</select></label>` : ""}
       <button class="chip sel" data-m="all">Tous les supports</button><button class="chip" data-m="bouygues">Seulement ceux qui hébergent Bouygues Telecom</button></div>
     <div id="bars"></div>
     <h2>Phoenix et ses opérations</h2>
     <div class="tl">${r.operations.map((o) => `<div class="it"><div><span class="when">${fmtDate(o.date)}</span> ${chip(o.sites.toLocaleString("fr-FR") + " sites", "info")}</div>
       <div><a href="#/e/${encodeURIComponent(o.id)}">${esc(o.label)}</a></div><div class="small muted">Acquéreur : ${esc(o.buyer)}${o.sellers.length ? " · Cédant(s) : " + esc(o.sellers.join(", ")) : ""}</div></div>`).join("")}</div>
-    <h2>Sociétés de pylônes</h2><div class="scroll"><table><tr><th>Société</th><th>Code ANFR</th><th>Groupe</th></tr>
+    <h2>Phoenix et sociétés liées</h2><div class="scroll"><table><tr><th>Société</th><th>Code ANFR</th><th>Groupe</th></tr>
       ${r.societes.map((t) => `<tr><td><a href="#/e/${encodeURIComponent(t.id)}">${esc(t.label)}</a></td><td>${t.code ?? ""}</td><td>${esc(t.parent)}</td></tr>`).join("")}</table></div>`;
-  $("#ens").onchange = (ev) => { ensId = ev.target.value; draw(); };
+  if ($("#ens")) $("#ens").onchange = (ev) => { ensId = ev.target.value; draw(); };
   document.querySelectorAll("[data-m]").forEach((b) => (b.onclick = () => { mode = b.dataset.m; document.querySelectorAll("[data-m]").forEach((x) => x.classList.toggle("sel", x === b)); draw(); }));
   draw();
 }

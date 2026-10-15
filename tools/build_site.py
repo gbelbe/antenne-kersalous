@@ -380,7 +380,7 @@ class Site:
             bouy.sort(key=lambda r: -r["pct"])
             ens.append({"id": sid, "label": self.label(s), "total": total, "bouygues_total": btotal,
                         "owners": owners, "bouygues_owners": bouy})
-        ens.sort(key=lambda e: (e["id"] != "dos:ens-france", e["id"] != "dos:ens-bretagne", e["label"]))
+        ens.sort(key=lambda e: e["label"])
         ops = []
         for s in g.subjects(RDF.type, A("OperationSurSites")):
             acq = self.val(s, A("acquereur"))
