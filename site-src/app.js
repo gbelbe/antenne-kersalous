@@ -19,7 +19,7 @@ const gm = (ll) => `https://www.google.com/maps/search/?api=1&query=${ll[0]},${l
 const gsv = (ll) => `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${ll[0]},${ll[1]}`;
 
 const ROUTES = {
-  "": home, carte, chronologie, dossier, jurisprudence, reseau, sources, explorer,
+  "": home, carte, chronologie, dossier, jurisprudence, corpus, reseau, sources, explorer,
 };
 
 async function router() {
@@ -30,6 +30,7 @@ async function router() {
   const app = $("#app");
   try {
     if (name === "e") await entity(rest.join("/"));
+    else if (name === "corpus") await corpus(rest.join("/"));
     else if (name === "recherche") await recherche(rest.join("/"));
     else await (ROUTES[name] || home)();
   } catch (e) {
@@ -223,6 +224,81 @@ async function jurisprudence() {
 }
 
 /* ───────────────────────── Pylônes & propriétaires ───────────────────────── */
+/* ───────────────────────── Corpus : décisions classées par la taxonomie ───────────────────────── */
+async function corpus(preset) {
+  const [meta, data] = await Promise.all([load("meta"), load("corpus")]);
+  const byId = Object.fromEntries(data.concepts.map((c) => [c.id, c]));
+  const kids = {};
+  data.concepts.forEach((c) => (kids[c.broader || c.scheme] ||= []).push(c.id));
+  const depth = (c) => (c.broader ? 1 + depth(byId[c.broader]) : 0);
+  const MODE = { ev: "évoqué", re: "retenu", ec: "écarté" };
+  const st = { sel: new Set(preset && byId[preset] ? [preset] : []), mode: "any", q: "", near: false, page: 0, sort: "score" };
+  const hasC = (d, id) => d.c.includes(id) || (st.mode === "any" ? d.ev.includes(id) || d.re.includes(id) || d.ec.includes(id) || d.ed.includes(id) : st.mode === "ec" ? d.ec.includes(id) || d.ed.includes(id) : d[st.mode].includes(id));
+  const below = (id) => [id, ...(kids[id] || []).flatMap(below)];
+  const matches = (d, skip) => {
+    if (st.near && d.score < 50) return false;
+    if (st.q) {
+      const t = [d.label, d.ref, d.court, d.am, ...d.as.map((x) => x.label), ...d.ar.map((x) => x.label), ...d.aa.map((x) => x.label)].join(" ").toLowerCase();
+      if (!st.q.split(/\s+/).every((w) => t.includes(w))) return false;
+    }
+    const bySchemeSel = {};
+    st.sel.forEach((id) => { if (id !== skip) (bySchemeSel[byId[id].scheme] ||= []).push(id); });
+    return Object.values(bySchemeSel).every((ids) => ids.some((id) => below(id).some((x) => hasC(d, x))));
+  };
+  const count = (id) => data.decisions.filter((d) => matches(d, id) && below(id).some((x) => hasC(d, x))).length;
+  const nm = (x) => `<a href="#" data-q="${esc(x.label)}">${esc(x.label)}</a>`;
+  const card = (d) => {
+    const cl = (ids, k) => ids.map((id) => chip(byId[id] ? byId[id].label : id, k)).join("");
+    const first = (sc) => d.c.filter((id) => byId[id] && byId[id].scheme === "skt:" + sc);
+    return `<div class="card" style="margin:0 0 12px">
+      <div>${cl(first("Resultat"), "info")}${cl(first("EffetProjet"), "")}${cl(first("Requerant"), "")}${chip("proximité " + d.score, d.score >= 75 ? "ok" : d.score >= 50 ? "info" : "")}${d.c.includes("skt:l-lu") ? chip("lue", "ok") : d.c.includes("skt:l-partiel") ? chip("lue en partie", "info") : chip("classement automatique", "warn")}</div>
+      <h3 style="margin:6px 0">${esc(d.label)}</h3>
+      <p class="small muted">${first("ActeAttaque").map((i) => byId[i].label).join(", ")}${d.c.some((i) => i === "skt:p-fond" || i === "skt:p-refere" || i === "skt:p-appel" || i === "skt:p-cassation") ? " · " + d.c.filter((i) => /^skt:p-(fond|refere|appel|cassation)$/.test(i)).map((i) => byId[i].label).join(", ") : ""}</p>
+      ${d.re.length ? `<p class="small"><b>Moyens retenus :</b> ${cl(d.re, "ok")}</p>` : ""}${d.ec.length ? `<p class="small"><b>Moyens écartés :</b> ${cl(d.ec, "bad")}</p>` : ""}${d.ed.length ? `<p class="small"><b>Moyens écartés (déduits du rejet, non relus) :</b> ${cl(d.ed, "bad")}</p>` : ""}
+      ${d.ev.length ? `<p class="small"><b>Moyens évoqués :</b> ${cl(d.ev, "")}</p>` : ""}
+      ${d.as.length ? `<p class="small"><b>Association :</b> ${d.as.map(nm).join(", ")}</p>` : ""}
+      ${d.ar.length ? `<p class="small"><b>Avocat du requérant :</b> ${d.ar.map(nm).join(", ")}</p>` : ""}${d.aa.length ? `<p class="small"><b>Avocat adverse :</b> ${d.aa.map(nm).join(", ")}</p>` : ""}
+      <details><summary>Source et détail du classement</summary>
+        <p class="small">Score : ${esc(d.why || "—")}.</p>
+        <p class="small">${d.url ? `<a href="${esc(d.url)}" target="_blank" rel="noopener">Copie du texte dans le dépôt ↗</a> · ` : ""}${d.zip ? `<a href="${esc(d.zip)}" target="_blank" rel="noopener">Archive officielle du mois ↗</a> · ` : ""}Empreinte SHA-256 : <code>${esc((d.sha || "").slice(0, 16))}…</code></p>
+        ${d.am ? `<p class="small muted">Avocat selon la métadonnée de l'open data (côté non garanti) : ${esc(d.am)}</p>` : ""}</details></div>`;
+  };
+  const facets = () => data.schemes.map((sc) => {
+    const rows = (parent, lvl) => (kids[parent] || []).map((id) => {
+      const c = byId[id], n = count(id);
+      return `<label class="fct" style="padding-left:${lvl * 14}px" title="${esc(c.definition)}"><input type="checkbox" data-c="${esc(id)}" ${st.sel.has(id) ? "checked" : ""}> ${esc(c.label)} <span class="muted">(${n})</span></label>${rows(id, lvl + 1)}`;
+    }).join("");
+    const open = [...st.sel].some((id) => byId[id].scheme === sc.id) || ["skt:Moyens", "skt:Proximite"].includes(sc.id);
+    return `<details ${open ? "open" : ""}><summary><b>${esc(sc.label)}</b></summary>${rows(sc.id, 0)}</details>`;
+  }).join("");
+  const draw = () => {
+    const list = data.decisions.filter((d) => matches(d)).sort(st.sort === "date" ? (a, b) => (b.date || "").localeCompare(a.date || "") : (a, b) => b.score - a.score || (b.date || "").localeCompare(a.date || ""));
+    const per = 40, pages = Math.max(1, Math.ceil(list.length / per));
+    st.page = Math.min(st.page, pages - 1);
+    $("#cf").innerHTML = facets();
+    $("#cl").innerHTML = `<p class="muted">${list.length} décision${list.length > 1 ? "s" : ""} sur ${data.decisions.length}</p>${list.slice(st.page * per, st.page * per + per).map(card).join("") || '<p class="muted">Aucune décision.</p>'}
+      <div class="toolbar"><button class="chip" data-p="-1" ${st.page ? "" : "disabled"}>← Précédentes</button><span class="small muted">page ${st.page + 1} / ${pages}</span><button class="chip" data-p="1" ${st.page < pages - 1 ? "" : "disabled"}>Suivantes →</button></div>`;
+    $("#cn").classList.toggle("sel", st.near);
+    document.querySelectorAll("[data-c]").forEach((i) => (i.onchange = () => { i.checked ? st.sel.add(i.dataset.c) : st.sel.delete(i.dataset.c); st.page = 0; draw(); }));
+    document.querySelectorAll("[data-p]").forEach((b) => (b.onclick = () => { st.page += Number(b.dataset.p); draw(); window.scrollTo(0, 0); }));
+    document.querySelectorAll("[data-q]").forEach((a) => (a.onclick = (e) => { e.preventDefault(); st.q = a.dataset.q.toLowerCase(); $("#cq").value = a.dataset.q; st.page = 0; draw(); }));
+  };
+  $("#app").innerHTML = `<h1>Corpus de décisions</h1>
+    <p class="lead">${data.decisions.length} décisions de la justice administrative sur les antennes-relais (open data, Licence Ouverte 2.0), classées par la taxonomie du contentieux. Les moyens « évoqués », le type de requérant, le résultat et la proximité avec Kersalous sont <b>repérés automatiquement</b> et approximatifs ; seules les décisions marquées « lue » ont été lues. Les particuliers sont pseudonymisés par les juridictions. <b>Rien ici n'est un avis juridique.</b></p>
+    <p class="small muted">Source des décisions : <a href="https://opendata.justice-administrative.fr" target="_blank" rel="noopener">open data de la justice administrative</a> (Conseil d'État, cours administratives d'appel, tribunaux administratifs), réutilisé sous <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a>, données collectées le 15 octobre 2026. Chaque fiche renvoie à l'archive officielle d'origine ; le classement (taxonomie, moyens, score) est un travail de ce dossier, non de la justice administrative.</p>
+    <div class="toolbar"><button class="chip" id="cn">Cas proches de Kersalous (score ≥ 50)</button>
+      <select id="cm" aria-label="Rôle du moyen"><option value="any">Moyen : tout rôle</option><option value="ev">Moyen évoqué</option><option value="re">Moyen retenu</option><option value="ec">Moyen écarté</option></select>
+      <select id="cs" aria-label="Tri"><option value="score">Tri : proximité</option><option value="date">Tri : date</option></select>
+      <input type="search" id="cq" placeholder="Numéro, tribunal, association, avocat…"> <button class="chip" id="cr">Tout effacer</button></div>
+    <div class="corpus"><aside id="cf" class="facets"></aside><section id="cl"></section></div>`;
+  $("#cn").onclick = () => { st.near = !st.near; st.page = 0; draw(); };
+  $("#cm").onchange = (e) => { st.mode = e.target.value; st.page = 0; draw(); };
+  $("#cs").onchange = (e) => { st.sort = e.target.value; draw(); };
+  $("#cq").oninput = (e) => { st.q = e.target.value.toLowerCase().trim(); st.page = 0; draw(); };
+  $("#cr").onclick = () => { st.sel.clear(); st.q = ""; st.near = false; st.mode = "any"; st.page = 0; $("#cq").value = ""; $("#cm").value = "any"; draw(); };
+  draw();
+}
+
 async function reseau() {
   const [r, ents] = await Promise.all([load("reseau"), load("entities")]);
   let ensId = "dos:ens-finistere", mode = "all";

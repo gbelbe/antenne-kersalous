@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2307476_20230921.xml</Identification>
+<Date_Mise_Jour>2023-09-23</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA69</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Lyon</Nom_Juridiction>
+<Numero_Dossier>2307476</Numero_Dossier>
+<Date_Lecture>2023-09-21</Date_Lecture>
+<Avocat_Requerant>CENTAURE AVOCATS</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>C</Code_Publication>
+<Solution>Rejet défaut de doute sérieux</Solution>
+</Dossier>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête et un mémoire, enregistrés les 7 et 20 septembre 2023, les sociétés Towerlink France et Bouygues Télécom, représentées par Me Hamri, doivent être regardées comme demandant au juge des référés :</p>
+<p>1°) d'ordonner, sur le fondement de l'article L. 521-1 du code de justice administrative et jusqu'à ce qu'il soit statué au fond sur leur légalité, la suspension de l'exécution de l'arrêté du 14 mars 2023 par lequel le maire d'Irigny a refusé d'accorder un permis de construire à la société Towerlink France en vue de la construction d'un site de collecte de données et de la décision du 16 juin 2023 rejetant le recours gracieux de cette société ; </p>
+<p>2°) d'enjoindre au maire d'Irigny de reprendre l'instruction de la demande de permis de construire, à compter de la notification de l'ordonnance à intervenir, sous astreinte de 500 euros par jour de retard ;</p>
+<p>3°) de mettre à la charge de la commune d'Irigny le paiement d'une somme de 5 000 euros au titre de l'article L. 761-1 du code de justice administrative.</p>
+<p>Elles soutiennent que :</p>
+<p>- l'urgence est constituée compte tenu de l'intérêt public qui s'attache à la couverture du territoire national par le réseau de téléphonie mobile et de l'entrave portée à leurs activités ; le projet en litige permettrait aux usagers de bénéficier d'un meilleur service et de garantir le respect des obligations de couverture et d'acheminement des appels d'urgence ; l'évolution technique du réseau et l'augmentation du volume du trafic des données impliquent la mise en place de nouvelles infrastructures, la circonstance que la commune d'Irigny serait déjà couverte par le réseau étant à cet égard sans incidence ; l'arrêté litigieux fait ainsi obstacle à la continuité du service public des télécommunications auquel la société Bouygues Télécom participe ; le délai mis à saisir le juge des référés n'est pas, par lui-même, de nature à retirer le caractère d'urgence à la demande ; en outre, ce délai s'explique en l'espèce par la tentative de règlement gracieux du litige et la nécessité d'établir des cartes de couverture ; </p>
+<p>- il existe un doute sérieux quant à la légalité des décisions attaquées ; en effet :</p>
+<p>. l'arrêté contesté n'est pas suffisamment motivé ;</p>
+<p>. le centre de communications électroniques et de collecte de données en litige, qui est directement en lien avec les activités de l'opérateur Bouygues Télécom, participe au fonctionnement du réseau de télécommunication ; or, les équipements nécessaires au déploiement des réseaux de télécommunication entrent dans la catégorie " équipements d'intérêt collectif et services publics " ; dès lors que sont autorisés en zone A 2 du plan local d'urbanisme et de l'habitat (PLU-H) de la métropole de Lyon  " les constructions, installations et ouvrages nécessaires aux équipements d'intérêt collectif ou à des services publics ", et notamment " les constructions, travaux et installations nécessaires au fonctionnement des différents réseaux ", le projet litigieux peut donc être autorisé dans cette zone, contrairement à ce que le maire a estimé.</p>
+<p>Par un mémoire en défense, enregistré le 18 septembre 2023, la ville d'Irigny, représentée par le cabinet Centaure avocats, conclut au rejet de la requête et à ce qu'une somme de 4 000 euros soit mise à la charge des sociétés Towerlink France et Bouygues Télécom au titre de l'article L. 761-1 du code de justice administrative.</p>
+<p>Elle soutient que :</p>
+<p>- les sociétés requérantes ont introduit leur requête en référé-suspension près de sept mois après l'édiction de l'arrêté litigieux et plus d'un mois et demi après l'enregistrement de la requête en annulation ; alors que le territoire communal est déjà suffisamment couvert par le réseau 5G de la société Bouygues Télécom, les requérantes n'avancent aucun élément pour établir la nécessité du projet au regard des obligations imposées à cette société ; la condition d'urgence n'est ainsi pas démontrée ;</p>
+<p>- aucun des moyens invoqués n'est de nature à faire naître un doute sérieux quant à la légalité des décisions attaquées ; en effet :</p>
+<p>. l'arrêté litigieux est suffisamment motivé ;</p>
+<p>. le PLU-H renvoie expressément, s'agissant de la question de la destination des constructions, à l'arrêté du 10 novembre 2016 ; en application de cet arrêté, les centres de données appartiennent à la sous-destination " entrepôt " ; la circonstance que le projet litigieux participe au déploiement du réseau de téléphonie mobile n'est pas de nature à changer la qualification devant ainsi s'appliquer aux centres de données ; le projet n'entre dans aucune des hypothèses dans lesquelles les travaux sont autorisés par l'article 1.2 du règlement applicable à la zone A 2 ; par suite, c'est à juste titre que le maire a estimé que la construction projetée ne figure pas parmi les destinations autorisées dans cette zone.  </p>
+<p>Vu :</p>
+<p>- les autres pièces du dossier ;</p>
+<p>- la requête, enregistrée le 23 juillet 2023 sous le n° 2306531, par laquelle les sociétés Towerlink France et Bouygues Télécom demandent au tribunal d'annuler les décisions dont elles demandent la suspension dans la présente requête.</p>
+<p>Vu :</p>
+<p>- le code de l'urbanisme ; </p>
+<p>- l'arrêté du 10 novembre 2016 définissant les destinations et sous-destinations de constructions pouvant être réglementées par le règlement national d'urbanisme et les règlements des plans locaux d'urbanisme ou les documents en tenant lieu ;</p>
+<p>- le code de justice administrative.</p>
+<p>La présidente du tribunal a désigné M. Chenevey, président de la 2ème chambre, pour statuer sur les demandes de référé.</p>
+<p>   Les parties ayant été régulièrement averties du jour de l'audience. </p>
+<p>Ont été entendus au cours de l'audience publique :</p>
+<p>- le rapport de M. Chenevey, juge des référés ;</p>
+<p>- Me Coquillon, pour, la commune d'Irigny, qui a repris les faits, moyens et conclusions exposés dans le mémoire en défense.</p>
+<p>La clôture de l'instruction a été prononcée à l'issue de l'audience.</p>
+<p>    Considérant ce qui suit :</p>
+<p>1. Aux termes du 1er alinéa de l'article L. 521-1 du code de justice administrative : " Quand une décision administrative, même de rejet, fait l'objet d'une requête en annulation ou en réformation, le juge des référés, saisi d'une demande en ce sens, peut ordonner la suspension de l'exécution de cette décision, ou de certains de ses effets, lorsque l'urgence le justifie et qu'il est fait état d'un moyen propre à créer, en l'état de l'instruction, un doute sérieux quant à la légalité de la décision. " </p>
+<p>2. En l'état de l'instruction, les moyens visés ci-dessus invoqués par les sociétés Towerlink France et Bouygues Télécom ne sont pas propres à créer un doute sérieux quant à la légalité des décisions attaquées. Dès lors, et sans qu'il soit besoin de se prononcer sur l'urgence, les conclusions aux fins de suspension de l'exécution de ces décisions doivent être rejetées. Doivent être rejetées par voie de conséquence les conclusions à fin d'injonction.</p>
+<p>3.  Les dispositions de l'article L. 761-1 du code de justice administrative font obstacle à ce que la commune d'Irigny, qui n'est pas, dans la présente instance, partie perdante, verse aux sociétés requérantes la somme qu'elles demandent au titre des frais exposés et non compris dans les dépens. Dans les circonstances de l'espèce, il n'y a pas lieu de faire droit aux conclusions présentées par cette commune au titre de cet article.</p>
+<p>ORDONNE :</p>
+<p>Article 1er : La requête de sociétés Towerlink et Bouygues Télécom est rejetée. </p>
+<p>Article 2 : Les conclusions présentées par la commune d'Irigny au titre de l'article L. 761-1 du code de justice administrative sont rejetées. </p>
+<p>Article 3 : La présente ordonnance sera notifiée à la société Bouygues Télécom, représentante unique des requérantes, et à la commune d'Irigny.</p>
+<p> Fait à Lyon le 21 septembre 2023. </p>
+<p> Le juge des référés La greffière</p>
+<p>      J.-P. Chenevey                        A. Baviera </p>
+<p>La République mande et ordonne à la préfète du Rhône en ce qui la concerne ou à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+<p>Pour expédition,</p>
+<p>Un greffier</p>
+</Texte_Integral>
+</Decision>
+</Document>

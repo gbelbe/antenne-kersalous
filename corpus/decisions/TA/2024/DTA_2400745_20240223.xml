@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2400745_20240223.xml</Identification>
+<Date_Mise_Jour>2024-02-27</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA31</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Toulouse</Nom_Juridiction>
+<Numero_Dossier>2400745</Numero_Dossier>
+<Date_Lecture>2024-02-23</Date_Lecture>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>D</Code_Publication>
+<Solution>Satisfaction totale</Solution>
+</Dossier>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête et un mémoire complémentaire, enregistrés le 8 février 2024 et le 21 février 2024, la société Free mobile, représentée par Me Martin, demande au juge des référés sur le fondement de l'article L. 521-1 du code de justice administrative :</p>
+<p>1°) de suspendre l'exécution de la décision du 27 octobre 2023 du maire de la commune de Rouffiac-Tolosan portant opposition à la déclaration préalable qu'elle a déposée le 6 octobre 2023 pour l'implantation d'une station relais de téléphonie mobile sur un terrain cadastré section AT n° 20 sis lieudit " Coral Bas " ;</p>
+<p>2°) d'enjoindre au maire de Rouffiac-Tolosan, à titre principal, de lui délivrer une décision de non-opposition dans un délai d'un mois à compter de la notification de l'ordonnance à intervenir, sous astreinte de 500 euros par jour de retard et, à titre subsidiaire, de procéder à une nouvelle instruction de sa déclaration préalable en prenant une décision dans un délai d'un mois à compter de la notification de l'ordonnance à intervenir ;</p>
+<p>3°) de mettre à la charge de la commune de Rouffiac-Tolosan la somme de 5 000 euros en application des dispositions de l'article L. 761-1 du code de justice administrative.</p>
+<p>Elle soutient que :</p>
+<p>- sa requête est recevable ;</p>
+<p>s'agissant de la condition tenant à l'urgence :</p>
+<p>-la décision contestée porte atteinte à l'intérêt public qui s'attache à la couverture du territoire national par les réseaux de téléphonie mobile ;</p>
+<p>-cette décision porte également atteinte à ses intérêts propres, les objectifs de couverture qui lui ont été imposés par l'Etat n'étant pas encore atteints en ce qui concerne les réseaux 4G, THD et 5G ;</p>
+<p>-alors même qu'elle aurait satisfait à ses engagements de couverture vis-à-vis de l'ARCEP, la condition d'urgence est remplie dès lors que la partie du territoire de la commune sur laquelle la station relais litigieuse doit être implantée n'est pas couverte par ses réseaux et, en tout état de cause, ce territoire comporte des trous de couverture, les cartes issues du site internet de l'ARCEP dont la commune se prévaut étant insuffisamment précises et ne tenant compte ni des obstacles, ni du nombre d'utilisateurs ;</p>
+<p>-seule la couverture en bande de fréquences 3,4/3,8 Ghz doit être prise en considération puisque c'est celle qui lui est imposée par le cahier des charges qui la lie à l'ARCEP ;</p>
+<p>-l'annexe 3 de ce cahier des charges ne limite pas les obligations de déploiement aux seules communes qui y sont listées ;</p>
+<p>-la station relais en cause est nécessaire au déploiement du réseau et la décision attaquée fait obstacle à ce qu'elle puisse lancer ses travaux ;</p>
+<p>s'agissant de la condition tenant à l'existence d'un doute sérieux quant à la légalité de la décision contestée :</p>
+<p>-en retenant dans la décision contestée le motif tiré de ce que le projet méconnaît les dispositions de l'article A2 du règlement de son plan local d'urbanisme, alors qu'il dispose que dans tous les secteurs de la zone A, sont autorisés " les ouvrages techniques à condition qu'ils soient nécessaires au fonctionnement des services publics ", ainsi que celles de l'article R 151-23 du code de l'urbanisme, le maire de Rouffiac-Tolosan a commis une erreur de droit ;</p>
+<p>-le motif tiré de la méconnaissance des dispositions de l'article L. 34-9-1 du code des postes et des communications électroniques à défaut de production du dossier d'information qu'elles prévoient est inopérant dès lors que ces dispositions relèvent d'une législation distincte et indépendante de celle régissant la déclaration préalable en litige ;</p>
+<p>-les dispositions de l'article D. 98-6-1 du code des postes et communications électroniques n'imposent pas de partage d'infrastructures aux opérateurs de téléphonie mobile ;</p>
+<p>-le motif tiré de la méconnaissance de l'article A7 du règlement du plan local d'urbanisme relatif à la distance des implantations en limites séparatives est en tout état de cause entaché d'une erreur de droit dès lors que, en vertu de l'article A10 de ce règlement, ces dispositions ne s'appliquent pas aux stations relais ;</p>
+<p>-le motif tiré de la méconnaissance de l'article A8 du règlement du plan local d'urbanisme est entaché d'une erreur de droit dès lors qu'une station relais, en ce et y compris le système d'accroche des antennes, sont unis par un lien fonctionnel indissociable de telle sorte qu'ils forment une seule et même construction ;</p>
+<p>-le projet litigieux ne porte pas une atteinte à la sauvegarde des espaces naturels et des paysages.</p>
+<p>Par un mémoire en défense, enregistré le 20 février 2024, la commune de Rouffiac-Tolosan conclut au rejet de la requête.</p>
+<p>Elle fait valoir que :</p>
+<p>-la condition tenant à l'urgence n'est pas satisfaite dès lors que les objectifs assignés à la société requérante tenant à la couverture en 3G et à la couverture de 75 % de la population pour les fréquences autorisées sont d'ores et déjà atteints, de même que celui relatif à la couverture de population par les réseaux 4G et 5G ;</p>
+<p>-le projet en litige ne participe pas des obligations de déploiement mises à sa charge par les autorisations dont la société requérante est bénéficiaire mais répond vraisemblablement à un objectif purement commercial ;</p>
+<p>-il apparaît, au vu des cartes de couverture issues du site internet de l'opérateur, que son territoire est entièrement couvert en 3G et qu'alors que seule une partie minime de son territoire n'est pas couverte en 4G et 5G, l'antenne-relais projetée ne permettra pas de la couvrir ;</p>
+<p>-la société Free mobile ne justifie pas qu'elle l'a effectivement informée de son projet et elle n'a ainsi pas été mise à même de l'examiner avant le dépôt de la déclaration préalable et notamment de s'assurer que les valeurs maximales d'exposition aux ondes électromagnétiques ne seront pas dépassées ;</p>
+<p>-elle compte déjà sur son territoire 4 antennes-relais dont une appartenant à la société requérante ainsi qu'un mat appartenant à la SNCF, et alors que 2 autres antennes au moins sont situées à proximité et sont susceptibles de couvrir la zone concernée par le projet litigieux, celle-ci ne justifie pas que le partage de ces installations s'avérerait techniquement impossible ;</p>
+<p>-si l'article A2 du règlement du plan local d'urbanisme autorise " les ouvrages techniques à condition qu'ils soient nécessaires au fonctionnement des services publics ", cette exception au principe selon lequel les zones agricoles doivent, en vertu des dispositions de l'article R. 151-22 du code de l'urbanisme, être protégées et ne peuvent donc recevoir aucune construction, cette indication avait pour seul objet de permettre l'installation d'ouvrages nécessaires à ses propres services publics ;</p>
+<p>-alors que l'article A7 du règlement énonce que les constructions et installations nécessaires aux services publics ou d'intérêt collectif peuvent être implantées sur les limites séparatives ou à une distance au moins égale à la moitié de sa hauteur, sans toutefois être inférieure à 3 mètres et que l'article A8 édicte pour sa part que les constructions et installations situées sur une même propriété doivent être implantées à 5 mètres minimum les unes des autres, le projet prévoit que le pylône sera situé à 4 mètres de distance de la parcelle 1353 alors qu'il doit se situer à au moins 15 mètres, et la dalle technique et le pylône ne sont pas distants de 5 mètres ;</p>
+<p>-l'antenne-relais projetée, par son aspect massif, sera particulièrement visible.</p>
+<p>Vu :</p>
+<p>-les autres pièces du dossier ;</p>
+<p>-la requête n° 2307822 enregistrée le 27 décembre 2024 tendant à l'annulation de la décision contestée.</p>
+<p>Vu :</p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de justice administrative.</p>
+<p>La présidente du tribunal a désigné M. A pour statuer sur les demandes de référé.</p>
+<p>Les parties ont été régulièrement averties du jour de l'audience. </p>
+<p>Ont été entendus au cours de l'audience publique du 21 février 2024, en présence de Mme Guérin, greffière d'audience :</p>
+<p>-le rapport de M. A,</p>
+<p>-et les observations de Me Candelier, représentant la société Free mobile, qui a repris ses écritures et a précisé, s'agissant de l'urgence, que seule la bande de fréquences 3,5 Ghz est à prendre en compte.</p>
+<p>La clôture de l'instruction a été prononcée à l'issue de l'audience.</p>
+<p>Considérant ce qui suit :</p>
+<p>1. Par la présente requête, la société Free mobile demande au juge des référés, sur le fondement de l'article L. 521-1 du code de justice administrative, de suspendre l'exécution de la décision du 27 octobre 2023 du maire de la commune de Rouffiac-Tolosan portant opposition à la déclaration préalable n° DP 31462 23 B0068 pour l'implantation d'une station relais de téléphonie mobile sur un terrain sis lieudit " Coral Bas ".</p>
+<p>Sur les conclusions présentées sur le fondement de l'article L. 521-1 du code de justice administrative :</p>
+<p>2. Aux termes de l'article L. 521-1 du code de justice administrative : " Quand une décision administrative, même de rejet, fait l'objet d'une requête en annulation ou en réformation, le juge des référés, saisi d'une demande en ce sens, peut ordonner la suspension de l'exécution de cette décision, ou de certains de ses effets, lorsque l'urgence le justifie et qu'il est fait état d'un moyen propre à créer, en l'état de l'instruction, un doute sérieux quant à la légalité de la décision. ".</p>
+<p>En ce qui concerne la condition tenant à l'urgence :</p>
+<p>3. L'urgence justifie que soit prononcée la suspension d'un acte administratif lorsque l'exécution de celui-ci porte atteinte, de manière suffisamment grave et immédiate, à un intérêt public, à la situation du requérant ou aux intérêts qu'il entend défendre. Il appartient au juge des référés d'apprécier concrètement, compte tenu des justifications fournies par le requérant, si les effets de l'acte litigieux sont de nature à caractériser une urgence justifiant que, sans attendre le jugement de la requête au fond, l'exécution de la décision soit suspendue. L'urgence doit être appréciée objectivement et compte tenu de l'ensemble des circonstances de l'affaire, à la date à laquelle le juge des référés se prononce.</p>
+<p>4. En l'espèce, alors que les obligations en matière de couverture de population par les réseaux de téléphonie mobile s'expriment désormais, outre en termes quantitatifs, en termes de qualité et de débit, la société Free mobile établit, par la production de plusieurs cartes simulant la couverture du réseau aux alentours du site d'implantation du pylône litigieux et sans être sérieusement contredite par la commune de Rouffiac-Tolosan, que le projet viendra couvrir un territoire et une population à ce jour non couverts par ses réseaux 5G. La société requérante peut ainsi se prévaloir de l'intérêt public s'attachant à la couverture du territoire national par le réseau de téléphonie mobile mais également des obligations imposées aux opérateurs par l'ARCEP. Dans ces conditions, la condition d'urgence exigée par les dispositions de l'article L. 521-1 du code de justice administrative doit être regardée comme remplie.</p>
+<p>En ce qui concerne la condition tenant à l'existence d'un doute sérieux quant à la légalité de la décision contestée :</p>
+<p>5. En l'état de l'instruction, le moyen tiré de ce qu'en prenant la décision litigieuse, qui est fondée sur le motif tiré de la méconnaissance par le projet en litige des dispositions de l'article A2 du règlement du plan local d'urbanisme, le maire de Rouffiac-Tolosan a commis une erreur de droit, ainsi que les moyens tirés de l'illégalité des motifs que la commune entend substituer tenant à la méconnaissance par ledit projet des dispositions de l'article D. 98-6-1 du code des postes et communications électroniques, à la méconnaissance des dispositions de l'article A7 et de l'article A8 du règlement du plan local d'urbanisme, ainsi qu'à l'atteinte à la sauvegarde des espaces naturels et des paysages paraissent de nature à créer un doute sérieux quant à la légalité de la décision dont la suspension est demandée.</p>
+<p>6. Pour l'application de l'article L. 600-4-1 du code de l'urbanisme, aucun des autres moyens de la requête n'est susceptible d'entraîner la suspension de la décision contestée.</p>
+<p>7. Les deux conditions auxquelles l'article L. 521-1 du code de justice administrative subordonne la suspension de l'exécution d'une décision administrative étant réunies, il y a lieu, sans qu'il soit besoin d'examiner les autres moyens de la requête, d'ordonner la suspension de l'exécution de la décision du 27 octobre 2023 du maire de Rouffiac-Tolosan.</p>
+<p>Sur les conclusions aux fins d'injonction : </p>
+<p>8. Il résulte de ce qui précède qu'il y a lieu d'enjoindre au maire de Rouffiac-Tolosan de délivrer à titre provisoire à la société Free mobile une décision de non-opposition dans un délai d'un mois à compter de la notification de la présente ordonnance. Dans les circonstances de l'espèce, il n'y a pas lieu d'assortir cette injonction d'une astreinte.</p>
+<p>Sur les frais liés au litige :</p>
+<p>9. Aux termes de l'article L. 761-1 du code de justice administrative : " Dans toutes les instances, le juge condamne la partie tenue aux dépens ou, à défaut, la partie perdante, à payer à l'autre partie la somme qu'il détermine, au titre des frais exposés et non compris dans les dépens. Le juge tient compte de l'équité ou de la situation économique de la partie condamnée. Il peut, même d'office, pour des raisons tirées des mêmes considérations, dire qu'il n'y a pas lieu à cette condamnation. ".</p>
+<p>10. Il y a lieu, dans les circonstances de l'espèce, de mettre à la charge de la commune de Rouffiac-Tolosan une somme de 1 000 euros au titre des frais exposés par la société Free mobile et non compris dans les dépens.</p>
+<p>O R D O N N E :</p>
+<p>Article 1er : L'exécution de la décision du 27 octobre 2023 du maire de la commune de Rouffiac-Tolosan portant opposition à la déclaration préalable n° DP 31462 23 B0068 pour l'implantation d'une station relais de téléphonie mobile sur un terrain sis lieudit " Coral Bas " est suspendue, au plus tard jusqu'à ce qu'il soit statué au fond sur sa légalité.</p>
+<p>Article 2 : Il est enjoint au maire de Rouffiac-Tolosan de délivrer à titre provisoire à la société Free mobile une décision de non-opposition dans un délai d'un mois à compter de la notification de la présente ordonnance.</p>
+<p>Article 3 : la commune de Rouffiac-Tolosan versera à la société Free mobile une somme de 1 000 euros au titre des dispositions de l'article L. 761-1 du code de justice administrative.</p>
+<p>Article 4 : Le surplus des conclusions de la requête de la société Free mobile est rejeté.</p>
+<p>Article 5 : La présente ordonnance sera notifiée à la société Free mobile et à la commune de Rouffiac-Tolosan.</p>
+<p>Fait à Toulouse, le 23 février 2024.</p>
+<p>Le juge des référés,</p>
+<p>B. A</p>
+<p>La greffière,</p>
+<p>S. GUERIN       </p>
+<p>La République mande et ordonne au préfet de la Haute-Garonne en ce qui le concerne ou à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun contre les parties privées, de pourvoir à l'exécution de la présente ordonnance.</p>
+<p>Pour expédition conforme,</p>
+<p>la greffière en chef,</p>
+<p>ou par délégation, la greffière,</p>
+</Texte_Integral>
+</Decision>
+</Document>

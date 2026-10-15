@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2202361_20221020.xml</Identification>
+<Date_Mise_Jour>2025-03-21</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA06</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Nice</Nom_Juridiction>
+<Numero_Dossier>2202361</Numero_Dossier>
+<Date_Lecture>2022-10-20</Date_Lecture>
+<Avocat_Requerant>EARTH AVOCATS</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>C</Code_Publication>
+<Solution>Rejet</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2022-09-29</Date_Audience>
+<Numero_Role>51737</Numero_Role>
+<Formation_Jugement>2ème Chambre</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête enregistrée les 13 mai 2022 sous le numéro 2202361, la commune de Nice, prise en la personne de son maire en exercice, demande au tribunal d'annuler l'arrêté en date du 16 mars 2022 par laquelle le préfet des Alpes-Maritimes ne s'est pas opposé à la déclaration préalable de travaux déposée par la Sas Cellnex France en vue de " l'installation d'infrastructures et d'équipements de radiotéléphonie mobile " sur la parcelle cadastrée Section AT 235, sise 30 Chemin Collet des Fourniers à Nice. </p>
+<p>La commune soutient que :</p>
+<p>- sa requête n'est pas tadive ; </p>
+<p>- elle a un intérêt à agir ; </p>
+<p>- la décision litigieuse de non-opposition à déclaration préalable est entachée d'une erreur manifeste d'appréciation, dès lors que le projet objet de la déclaration préalable de travaux : </p>
+<p>* était entachée d'une irrégularité procédurale, sur le fondement des dispositions des articles R. 431-36 et R. 431-10 du code de l'urbanisme ; </p>
+<p>* méconnait les dispositions des articles AC 1.2.4 et AC 2.2 du plan local d'urbanisme métropolitain de Nice (PLUM) dès lors qu'il porte atteinte à la sauvegarde des paysages et ne respecte pas la topographie (implantation de l'antenne-relais au sommet d'une colline) ; </p>
+<p>* et méconnait les dispositions des articles L. 151-19 et R. 111-27 du code de l'urbanisme. </p>
+<p>Par un mémoire en défense, enregistré le 23 septembre 2022, la Sas Cellnex France, prise en la personne de son représentant légal en exercice, représentée par Me Hamri, conclut au rejet de la requête et à ce qu'une somme de 5 000 euros soit mise à la charge de la commune de Nice en application de l'article L. 761-1 du code de justice administrative. </p>
+<p>La société soutient qu'aucun des moyens soulevés à l'appui de la requête n'est fondé. </p>
+<p>Par un mémoire en intervention volontaire, enregistré le 23 septembre 2022, la Sa Bouygues Telecom, prise en la personne de son représentant légal en exercice, représentée par Me Hamri, entend intervenir au soutien des conclusions en défense de la Sas Cellnex France et conclut à cette fin au rejet de la requête. </p>
+<p>La société soutient les mêmes moyens que ceux soutenus par la Sas Cellnex France. </p>
+<p>Par un mémoire en défense, enregistré le 27 septembre 2022, le préfet des Alpes-Maritimes conclut au rejet de la requête et soutient qu'aucun des moyens soulevés à l'appui de cette dernière n'est fondé.  </p>
+<p>Vu les autres pièces du dossier.</p>
+<p>Vu : </p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de justice administrative.</p>
+<p>Les parties ont été régulièrement averties du jour de l'audience.</p>
+<p>Ont été entendus au cours de l'audience publique du 29 septembre 2022 : </p>
+<p>- le rapport de M. Silvestre-Toussaint-Fortesa, président ;</p>
+<p>- les conclusions de Mme Sorin, rapporteure publique ; </p>
+<p>- et les observations de Mme A représentant la commune de Nice. </p>
+<p>Considérant ce qui suit :</p>
+<p>1. La Sas Cellnex France a déposé le 21 septembre 2021, pour le compte de la SA Bouygues Télécom, une déclaration préalable de travaux en vue de " l'installation d'infrastructures et d'équipements de radiotéléphonie mobile ". Par un arrêté en date du 16 mars 2022, le préfet des Alpes-Maritimes ne s'est pas opposé à cette déclaration préalable n°DP 006 088 21 S1212. La commune de Nice demande l'annulation de cette décision. </p>
+<p>Sur l'intervention de la société Bouygues Télécom :</p>
+<p>2. La Sa Bouygues Télécom, qui a reçu mandat de la Sas Cellnex France dans le cadre d'un contrat de déploiement la chargeant notamment, en cas de recours contre les autorisations qui lui sont délivrées, de se constituer et de prendre part à l'instance initiée à l'encontre de ces autorisations devant le juge compétent, a un intérêt à la réalisation de l'opération litigieuse dans l'instance susmentionnée. Son intervention en défense doit dès lors être admise.</p>
+<p>Sur les conclusions aux fins d'annulation : </p>
+<p>3. En premier lieu, la commune de Nice invoque une incomplétude du dossier de déclaration préalable. Aux termes de l'article R. 431-36 du code de l'urbanisme, dans sa version applicable au litige : " Le dossier joint à la déclaration comprend : a) Un plan permettant de connaître la situation du terrain à l'intérieur de la commune ; b) Un plan de masse coté dans les trois dimensions lorsque le projet a pour effet de créer une construction ou de modifier le volume d'une construction existante ; c) Une représentation de l'aspect extérieur de la construction faisant apparaître les modifications projetées et si le projet a pour effet de modifier celui-ci ; d) Le justificatif de dépôt de la demande d'autorisation prévue à l'article R. 244-1 du code de l'aviation civile lorsque le projet porte sur une construction susceptible, en raison de son emplacement et de sa hauteur, de constituer un obstacle à la navigation aérienne. Il est complété, s'il y a lieu, par les documents mentionnés aux a et b de l'article R. 431-10, à l'article R. 431-14, aux b et g de l'article R. 431-16 et aux articles R. 431-18, R. 431-18-1, R. 431-21, R. 431-23-2, R. 431-25, R. 431-31 à R. 431-33 et R. 431-34-1. Ces pièces sont fournies sous l'entière responsabilité des demandeurs. Lorsque la déclaration porte sur un projet de création ou de modification d'une construction et que ce projet est visible depuis l'espace public ou que ce projet est situé dans le périmètre d'un site patrimonial remarquable ou dans les abords des monuments historiques, le dossier comprend également les documents mentionnés aux c et d de l'article R. 431-10. Aucune autre information ou pièce ne peut être exigée par l'autorité compétente ". Aux termes de l'article R. 431-10 dudit code : " Le projet architectural comprend également : a) Le plan des façades et des toitures ; lorsque le projet a pour effet de modifier les façades ou les toitures d'un bâtiment existant, ce plan fait apparaître l'état initial et l'état futur ; b) Un plan en coupe précisant l'implantation de la construction par rapport au profil du terrain ; lorsque les travaux ont pour effet de modifier le profil du terrain, ce plan fait apparaître l'état initial et l'état futur ; c) Un document graphique permettant d'apprécier l'insertion du projet de construction par rapport aux constructions avoisinantes et aux paysages, son impact visuel ainsi que le traitement des accès et du terrain ; d) Deux documents photographiques permettant de situer le terrain respectivement dans l'environnement proche et, sauf si le demandeur justifie qu'aucune photographie de loin n'est possible, dans le paysage lointain. Les points et les angles des prises de vue sont reportés sur le plan de situation et le plan de masse ". </p>
+<p>4. La circonstance que le dossier de demande d'autorisation d'urbanisme ne comporterait pas l'ensemble des documents exigés par les dispositions du code de l'urbanisme, ou que les documents produits seraient insuffisants, imprécis ou comporteraient des inexactitudes, n'est susceptible d'entacher d'illégalité la décision d'autorisation d'urbanisme que dans le cas où les omissions, inexactitudes ou insuffisances entachant le dossier ont été de nature à fausser l'appréciation portée par l'autorité administrative sur la conformité du projet à la réglementation applicable. En l'espèce, et d'une part, il ne ressort pas des pièces du dossier que le dossier de déclaration préalable de travaux ne serait pas conforme aux dispositions des c) et d) de l'article R. 431-10 du code de l'urbanisme précitées, dès lors qu'il comprend notamment plusieurs photomontages avec des vues différentes. D'autre part, il n'est en tout état de cause pas démontré qu'une insuffisance du dossier de déclaration préalable de travaux aurait été de nature à fausser l'appréciation portée par l'autorité administrative sur la conformité du projet à la réglementation applicable. Dans ces conditions, le moyen susmentionné doit être écarté. </p>
+<p>5. En deuxième lieu, l'article L. 151-19 du code de l'urbanisme, aux termes duquel " Le règlement (du plan local d'urbanisme) peut identifier et localiser les éléments de paysage et identifier, localiser et délimiter les quartiers, îlots, immeubles bâtis ou non bâtis, espaces publics, monuments, sites et secteurs à protéger, à conserver, à mettre en valeur ou à requalifier pour des motifs d'ordre culturel, historique ou architectural et définir, le cas échéant, les prescriptions de nature à assurer leur préservation leur conservation ou leur restauration. ()", permet au règlement d'un plan local d'urbanisme d'édicter des dispositions visant à protéger, mettre en valeur ou requalifier un élément du paysage dont l'intérêt le justifie et n'est pas directement invocable à l'encontre d'une autorisation d'urbanisme. Par suite, le moyen soulevé et tiré de la méconnaissance de ces dispositions doit être écarté comme inopérant. </p>
+<p>6. En troisième lieu, aux termes de l'article R. 111-27 du code de l'urbanisme : " Le projet peut être refusé ou n'être accepté que sous réserve de l'observation de prescriptions spéciales si les constructions, par leur situation, leur architecture, leurs dimensions ou l'aspect extérieur des bâtiments ou ouvrages à édifier ou à modifier, sont de nature à porter atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages naturels ou urbains ainsi qu'à la conservation des perspectives monumentales. ". Le moyen soulevé et tiré de la méconnaissance de ces dispositions est inopérant dès lors que le règlement du plan local d'urbanisme métropolitain de Nice (ci-après, " PLUM ") comporte des dispositions équivalentes, relatives à l'insertion dans le site, dont les garanties ne sont pas moindres. Par suite, le moyen soulevé et tiré de la méconnaissance de ces dispositions doit également être écarté comme inopérant. </p>
+<p>7. Enfin, en quatrième lieu, la commune de Nice soutient que le projet objet de la déclaration préalable litigieuse méconnait les dispositions des articles AC 1.2.4 et AC 2.2 du PLUM dès lors qu'il porte atteinte à la sauvegarde des paysages et ne respecte pas la topographie. Aux termes de l'article AC 1.2.4 du PLUM, concernant les activités, destinations et sous destinations soumises à conditions particulières : " Dans toute la zone : () - les équipements d'intérêt collectif et de services publics à condition de s'inscrire dans la sous-destination locaux techniques et industriels des administrations publiques et à condition : () / qu'ils ne portent pas atteinte à la sauvegarde des espaces naturels et des paysages (). ". Et aux termes de l'article 2.2.1 du PLUM : " Les constructions doivent présenter un aspect compatible avec le caractère de l'environnement bâti, s'inscrire harmonieusement dans le paysage et respecter la topographie () ". Il ressort des pièces du dossier que le projet objet de la déclaration préalable litigieuse consiste en l'installation, en zone A du PLUM, zone agricole, d'un pylône d'une hauteur de 18 mètres, avec une zone technique intégrée par une clôture grillagée d'une hauteur de 2 mètres, sur un terrain entouré de vignobles et de quelques constructions à usage d'habitation. Il s'agit donc d'un site largement naturel et peu construit. Toutefois, il ressort des pièces du dossier que le projet d'antenne en cause, implantée en partie sommitale d'une colline, comprend un habillage en faux arbre qui permet une bonne insertion dans le site. Ainsi, la commune n'est pas fondée à soutenir que les dispositions des articles 1.2.4 et 2.2 de la sous-zone AC du PLUM ont été méconnues. </p>
+<p>8. Il résulte de tout ce qui précède que les conclusions susmentionnées aux fins d'annulation doivent être rejetées.  </p>
+<p>Sur les frais liés au litige : </p>
+<p>9. Dans les circonstances de l'espèce, il y a lieu de rejeter les conclusions de la Sas Cellnex France au titre de l'article L. 761-1 du code de justice administrative.</p>
+<p>DECIDE :</p>
+<p>Article 1er : La requête de la commune de Nice est rejetée.</p>
+<p>Article 2 : Les conclusions de la Sas Cellnex France présentées au titre de l'article L. 761-1 du code de justice administrative sont rejetées.</p>
+<p>Article 3 : Le présent jugement sera notifié à la commune de Nice, au préfet des Alpes-Maritimes, à la Sas Cellnex France et à la Sa Bouygues Télécom.</p>
+<p>Délibéré après l'audience du 29 septembre 2022, à laquelle siégeaient :</p>
+<p>M. Silvestre-Toussaint-Fortesa, président,</p>
+<p>Mme Le Guennec, conseillère,</p>
+<p>M. Combot, conseiller,</p>
+<p>Rendu public par mise à disposition au greffe, le 20 octobre 2022.</p>
+<p>Le président-rapporteur,</p>
+<p>signé</p>
+<p>F. Silvestre-Toussaint-Fortesa</p>
+<p>L'assesseur le plus ancien,</p>
+<p>signé</p>
+<p>B. Le Guennec </p>
+<p>La greffière,</p>
+<p>signé</p>
+<p>C. Albu</p>
+<p>La République mande et ordonne au préfet des Alpes-Maritimes, en ce qui le concerne ou à tous huissiers de justice à ce requis en ce qui concerne les voies de droit commun contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+<p>Pour expédition conforme,</p>
+<p>le greffier en chef, par délégation,</p>
+<p>la greffière,</p>
+<p>C. Albu </p>
+<p>N°2202361</p>
+</Texte_Integral>
+</Decision>
+</Document>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DCE_462914_20221027.xml</Identification>
+<Date_Mise_Jour>2023-03-16</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>CE</Code_Juridiction>
+<Nom_Juridiction>Section du Contentieux </Nom_Juridiction>
+<Numero_Dossier>462914</Numero_Dossier>
+<Date_Lecture>2022-10-27</Date_Lecture>
+<Numero_ECLI>ECLI:FR:CECHS:2022:462914.20221027</Numero_ECLI>
+<Avocat_Requerant>SCP SPINOSI</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>D</Code_Publication>
+<Solution>Rejet PAPC</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2022-10-06</Date_Audience>
+<Numero_Role>22544</Numero_Role>
+<Formation_Jugement> 2ème chambre jugeant seule</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>La société Free Mobile a demandé au tribunal administratif de Melun d'annuler pour excès de pouvoir les décisions des 4 juin et 4 décembre 2018 par lesquelles le maire d'Arcueil s'est opposé aux déclarations de travaux qu'elle avait déposées en vue de l'installation de trois antennes de téléphonie mobile sur la toiture d'un immeuble.</p>
+<p>Par un jugement nos 1805876, 1900472 du 4 mars 2020, le tribunal administratif de Melun a rejeté ses demandes.</p>
+<p>Par un arrêt n° 20PA01258 du 3 février 2022, la cour administrative d'appel de Paris a rejeté l'appel formé par la société Free Mobile contre ce jugement.</p>
+<p>Par un pourvoi sommaire et un mémoire complémentaire, enregistrés les 4 avril et 4 juillet 2022 au secrétariat du contentieux du Conseil d'Etat, la société Free Mobile demande au Conseil d'Etat : </p>
+<p>1°) d'annuler cet arrêt ;</p>
+<p>2°) réglant l'affaire au fond, de faire droit à ses conclusions d'appel ;</p>
+<p>3°) de mettre à la charge de la commune d'Arcueil la somme de 4 000 euros au titre de l'article L. 761-1 du code de justice administrative.</p>
+<p>Vu les autres pièces du dossier ;</p>
+<p>Vu :</p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de justice administrative ;</p>
+<p>Après avoir entendu en séance publique :</p>
+<p>- le rapport de M. Sébastien Gauthier, maître des requêtes en service extraordinaire,</p>
+<p>- les conclusions de M. Clément Malverti, rapporteur public,</p>
+<p>La parole ayant été donnée, après les conclusions, à la SCP Spinosi, avocat de la société Free mobile ; </p>
+<p>Considérant ce qui suit :</p>
+<p>1. Aux termes de l'article L. 822-1 du code de justice administrative : " Le pourvoi en cassation devant le Conseil d'Etat fait l'objet d'une procédure préalable d'admission. L'admission est refusée par décision juridictionnelle si le pourvoi est irrecevable ou n'est fondé sur aucun moyen sérieux ".</p>
+<p>2. Pour demander l'annulation de l'arrêt qu'elle attaque, la société Free Mobile soutient que la cour administrative d'appel de Paris a :</p>
+<p>- commis une erreur de droit en retenant qu'il résultait des dispositions du paragraphe 1 du chapitre 2 du règlement du plan local d'urbanisme applicable en zone UDb, lues à la lumière de son lexique, que les stations relais de téléphonie mobile sont soumises à la règle de hauteur maximale de construction de 12 mètres, à la seule exception de celles constituant des ouvrages techniques nécessaires au fonctionnement d'un immeuble ;</p>
+<p>- commis une erreur de droit et dénaturé les pièces du dossier en estimant que la construction projetée des trois antennes relais n'avait pas pour but de rendre l'immeuble plus conforme aux dispositions règlementaires applicables, mais allait au contraire aggraver la méconnaissance de celles-ci et en se bornant à relever que le constat d'huissier produit, pourtant purement confirmatif des informations contenues dans le dossier de déclaration, ne revêtait pas un caractère probant.</p>
+<p>3. Aucun de ces moyens n'est de nature à permettre l'admission du pourvoi.</p>
+<p>D E C I D E :</p>
+<p>--------------</p>
+<p>Article 1er : Le pourvoi de la société Free Mobile n'est pas admis.</p>
+<p>Article 2 : La présente décision sera notifiée à la société Free Mobile. Copie en sera adressée à la commune d'Arcueil.</p></Texte_Integral>
+</Decision>
+</Document>

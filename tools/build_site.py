@@ -56,10 +56,21 @@ def is_ours(uri):
     return s.startswith((DOS, SKT, SRC))
 
 
+CORPUS_TTL = "antenne-decisions.ttl"   # 3 000+ décisions : graphe à part (vue « Corpus »), jamais dans les fiches ni la chronologie
+
+
 def load_graph():
     g = rdflib.Graph()
     for f in sorted(ROOT.glob("*.ttl")):
-        g.parse(f)
+        if f.name != CORPUS_TTL:
+            g.parse(f)
+    return g
+
+
+def load_corpus_graph():
+    g = rdflib.Graph()
+    if (ROOT / CORPUS_TTL).exists():
+        g.parse(ROOT / CORPUS_TTL)
     return g
 
 
@@ -320,6 +331,85 @@ class Site:
         rows.sort(key=lambda r: r["date"] or "0000", reverse=True)
         return rows
 
+    # ── corpus : décisions classées par la taxonomie du contentieux ──
+    FACET = {"moyenEvoque": "ev", "moyenRetenu": "re", "moyenEcarte": "ec", "moyenEcarteDeduit": "ed"}
+
+    def corpus(self, repo_url):
+        gc = load_corpus_graph()
+        if not len(gc):
+            return {"schemes": [], "concepts": [], "decisions": [], "names": {}}
+        g = self.g
+
+        def lab(x):
+            for pred in (RDFS.label, SKOS.prefLabel):
+                for o in gc.objects(x, pred):
+                    return str(o)
+            for pred in (RDFS.label, SKOS.prefLabel):
+                for o in g.objects(x, pred):
+                    return str(o)
+            return short(x).split(":")[-1]
+
+        used = set()
+        decisions = []
+        for d in gc.subjects(RDF.type, A("Jurisprudence")):
+            row = {"id": short(d), "label": lab(d), "ref": str(self.val_in(gc, d, A("reference"), "")),
+                   "date": str(self.val_in(gc, d, A("dateDecision"), "")),
+                   "score": int(self.val_in(gc, d, A("scoreProximite"), 0)),
+                   "why": str(self.val_in(gc, d, A("detailScore"), "")),
+                   "court": "", "c": [], "ev": [], "re": [], "ec": [], "ed": [], "as": [], "ar": [], "aa": [], "am": ""}
+            for p, o in gc.predicate_objects(d):
+                name = str(p).replace(ANT, "")
+                if name == "rendueParJuridiction":
+                    row["court"] = lab(o)
+                elif name in self.FACET and isinstance(o, URIRef):
+                    row[self.FACET[name]].append(short(o)); used.add(short(o))
+                elif isinstance(o, URIRef) and str(o).startswith(SKT):
+                    row["c"].append(short(o)); used.add(short(o))
+                elif name == "requerantNomme":
+                    row["as"].append({"id": short(o), "label": lab(o)})
+                elif name == "avocatRequerant":
+                    row["ar"].append({"id": short(o), "label": lab(o)})
+                elif name == "avocatAdverse":
+                    row["aa"].append({"id": short(o), "label": lab(o)})
+                elif name == "avocatOpenData":
+                    row["am"] = str(o)
+                elif p == URIRef(PROV + "wasDerivedFrom"):
+                    for q in (A("cheminLocal"), A("empreinteSha256"), A("archiveOrigine")):
+                        v = self.val_in(gc, o, q)
+                        row[{"cheminLocal": "path", "empreinteSha256": "sha", "archiveOrigine": "zip"}[str(q).replace(ANT, "")]] = str(v) if v else ""
+            if row.get("path"):
+                row["url"] = f"{repo_url}/blob/master/{row['path']}"
+            for k in ("ev", "re", "ec", "ed", "c"):
+                row[k].sort()
+            decisions.append(row)
+        # concepts des schémas utilisés par les décisions
+        schemes = {}
+        for c in g.subjects(RDF.type, SKOS.Concept):
+            for sc in g.objects(c, SKOS.inScheme):
+                schemes.setdefault(short(sc), []).append(c)
+        out_schemes, concepts = [], {}
+        for sid, cs in schemes.items():
+            if not any(short(c) in used for c in cs):
+                continue
+            n = self.val_in(g, URIRef(SKT + sid.split(":")[1]), SKOS.notation, "")
+            out_schemes.append({"id": sid, "label": self.label(URIRef(SKT + sid.split(":")[1])), "notation": str(n),
+                                "definition": str(self.val_in(g, URIRef(SKT + sid.split(":")[1]), SKOS.definition, ""))})
+            for c in cs:
+                b = self.val_in(g, c, SKOS.broader)
+                concepts[short(c)] = {"id": short(c), "label": self.label(c), "scheme": sid,
+                                      "broader": short(b) if b else "", "notation": str(self.val_in(g, c, SKOS.notation, "")),
+                                      "definition": str(self.val_in(g, c, SKOS.definition, ""))}
+        out_schemes.sort(key=lambda x: x["notation"])
+        decisions.sort(key=lambda r: (-r["score"], r["date"]))
+        return {"schemes": out_schemes, "concepts": sorted(concepts.values(), key=lambda c: c["notation"].replace(".", "~")),
+                "decisions": decisions}
+
+    @staticmethod
+    def val_in(graph, s, pred, default=None):
+        for o in graph.objects(s, pred):
+            return o
+        return default
+
     # ── dossier : moyens, actions, délais ────────────────────────
     def dossier(self, ents):
         g = self.g2
@@ -452,6 +542,7 @@ def build():
     dos = site.dossier(ents)
     res = site.reseau(ents)
     src = site.sources()
+    corpus = site.corpus(cfg["site"]["repo_url"])
 
     key = os.environ.get(cfg["maps"].get("env_key", "GOOGLE_MAPS_API_KEY"), "")
     meta = {
@@ -463,7 +554,7 @@ def build():
             "supports": sum(1 for f in map_data["features"] if f["kind"] in ("support", "phoenix", "projet")),
             "phoenix_supports": sum(1 for f in map_data["features"] if f["kind"] == "phoenix"),
             "entities": len(ents), "triples": len(site.g2),
-            "decisions": len(jur), "sources": len(src["sources"]), "moyens": len(dos["moyens"]),
+            "decisions": len(jur), "corpus": len(corpus["decisions"]), "sources": len(src["sources"]), "moyens": len(dos["moyens"]),
         },
         "published_files": [Path(f).name for f in cfg["files"]["publish"] if (ROOT / f).exists()],
     }
@@ -476,6 +567,9 @@ def build():
     write_json(OUT / "data" / "dossier.json", dos)
     write_json(OUT / "data" / "reseau.json", res)
     write_json(OUT / "data" / "sources.json", src)
+    write_json(OUT / "data" / "corpus.json", corpus)
+    if (ROOT / CORPUS_TTL).exists():
+        shutil.copy2(ROOT / CORPUS_TTL, OUT / "data" / "corpus.ttl")
 
     # graphe public filtré (sans les entités masquées)
     site.g2.serialize(OUT / "data" / "graphe-public.ttl", format="turtle")

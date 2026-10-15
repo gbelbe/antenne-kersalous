@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>ORTA_2403988_20240702.xml</Identification>
+<Date_Mise_Jour>2024-07-19</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA33</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Bordeaux</Nom_Juridiction>
+<Numero_Dossier>2403988</Numero_Dossier>
+<Date_Lecture>2024-07-02</Date_Lecture>
+<Type_Decision>Ordonnance</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>D</Code_Publication>
+<Solution>Rejet incompétence (Art R.222-1 al.2)</Solution>
+</Dossier>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante : </p>
+<p> </p>
+<p>Par une requête enregistrée le 25 juin 2024, M. A B demande au tribunal de condamner la société TDF à lui verser la somme de 4950 euros en réparation du préjudice qu'il subirait en cas d'implantation d'une antenne relais à moins de soixante mètres de son logement. </p>
+<p>Vu les autres pièces du dossier. </p>
+<p>Vu le code de justice administrative.</p>
+<p>Considérant ce qui suit :</p>
+<p>1. Aux termes de l'article R. 222-1 du code de justice administrative : " Les présidents de tribunal administratif () peuvent, par ordonnance : () 2° Rejeter les requêtes ne relevant manifestement pas de la compétence de la juridiction administrative () ".</p>
+<p>2. M. A B demande au tribunal de condamner la société TDF à lui verser la somme de 4950 euros en réparation du préjudice qu'il subirait en cas d'implantation d'une antenne relais à moins de soixante mètres de son logement, le maire de Bordeaux ne s'étant pas opposé à la déclaration préalable de travaux de la société TDF. Cependant, ce litige, qui oppose une personne privée à une entreprise privée, ne ressort manifestement pas de la compétence du juge administratif mais de celle du juge judiciaire qu'il appartient au requérant de saisir. Par suite, la requête de M. B doit être rejetée comme portée devant un ordre de juridiction incompétent pour en connaître.</p>
+<p>ORDONNE :</p>
+<p>Article 1er : La requête de M. B est rejetée comme portée devant un ordre de juridiction incompétent pour en connaître.</p>
+<p>Article 2 : La présente ordonnance sera notifiée à M. A B.</p>
+<p>Fait à Bordeaux, le 2 juillet 2024.</p>
+<p>Le président du tribunal,</p>
+<p>G. CORNEVAUX</p>
+<p>La République mande et ordonne à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+<p>Pour expédition conforme,</p>
+<p>Le greffier en chef,</p>
+</Texte_Integral>
+</Decision>
+</Document>

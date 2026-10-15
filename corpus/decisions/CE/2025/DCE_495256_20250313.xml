@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DCE_495256_20250313.xml</Identification>
+<Date_Mise_Jour>2025-03-15</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>CE</Code_Juridiction>
+<Nom_Juridiction>Section du Contentieux </Nom_Juridiction>
+<Numero_Dossier>495256</Numero_Dossier>
+<Date_Lecture>2025-03-13</Date_Lecture>
+<Numero_ECLI>ECLI:FR:CECHS:2025:495256.20250313</Numero_ECLI>
+<Avocat_Requerant>SARL GURY &#38; MAITRE</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>D</Code_Publication>
+<Solution>Rejet PAPC</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2025-02-20</Date_Audience>
+<Numero_Role>25100</Numero_Role>
+<Formation_Jugement> 2ème chambre jugeant seule</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>La société Totem France et la société Orange ont demandé au juge des référés du tribunal administratif de Toulouse, sur le fondement de l'article L. 521-1 du code de justice administrative, de suspendre l'exécution de la décision du maire de Fréjairolles (Tarn) du 2 février 2024 mettant en demeure la société Totem France de suspendre tous travaux concernant le projet de construction d'une antenne relais de téléphonie mobile.</p>
+<p>Par une ordonnance n° 2402826 du 30 mai 2024, le juge des référés du tribunal administratif de Toulouse a fait droit à leur demande. </p>
+<p>Par un pourvoi sommaire et un mémoire complémentaire enregistrés les 18 juin et 3 juillet 2024 au secrétariat du contentieux du Conseil d'Etat, la commune de Fréjairolles demande au Conseil d'Etat : </p>
+<p>1°) d'annuler cette ordonnance ;</p>
+<p>2°) statuant en référé, de rejeter la demande des sociétés Totem France et Orange ;</p>
+<p>3°) de mettre à la charge de la société Totem France et de la société Orange la somme de 4 000 euros à verser à son avocat, la SCP Gury et Maître, au titre de l'article L. 761-1 du code de justice administrative.</p>
+<p>Vu les autres pièces du dossier ;</p>
+<p>Vu :</p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de la voie routière ;</p>
+<p>- le code de justice administrative ;</p>
+<p>Après avoir entendu en séance publique :</p>
+<p>- le rapport de M. Christophe Pourreau, conseiller d'Etat,</p>
+<p>- les conclusions de Mme Dorothée Pradines, rapporteure publique,</p>
+<p>La parole ayant été donnée, après les conclusions, à la SARL Gury et Maitre, avocat de la commune de Fréjairolles ;</p>
+<p>Considérant ce qui suit :</p>
+<p>1. Aux termes de l'article L. 822-1 du code de justice administrative : " Le pourvoi en cassation devant le Conseil d'Etat fait l'objet d'une procédure préalable d'admission. L'admission est refusée par décision juridictionnelle si le pourvoi est irrecevable ou n'est fondé sur aucun moyen sérieux ".</p>
+<p>2. Pour demander l'annulation de l'ordonnance qu'elle attaque, la commune de Fréjairolles soutient que le juge des référés du tribunal administratif de Toulouse a :</p>
+<p>- commis une erreur de droit en ne recherchant pas, dans le cadre de l'appréciation portée sur l'urgence, si le réseau de l'opérateur en cause, en l'occurrence Orange, couvrait le territoire de la commune sur laquelle le pylône serait implanté ;</p>
+<p>-  commis une erreur de droit en retenant que le moyen tiré de ce que l'article 2 de son arrêté de non-opposition à déclaration préalable, subordonnant la non-opposition à l'obtention préalable d'une autorisation de voirie, méconnait le principe d'indépendance des législations était de nature à créer un doute sérieux quant à la légalité de la décision attaquée, alors que tel n'est pas le cas, et ce quand bien même les autorisations de voirie sont prises sur le fondement du code de la voirie routière, dès lors qu'une telle prescription spéciale se rattache aux dispositions de l'article R. 111-2 du code de l'urbanisme.</p>
+<p>3. Aucun de ces moyens n'est de nature à permettre l'admission du pourvoi.</p>
+<p>D E C I D E :</p>
+<p>--------------</p>
+<p>Article 1er : Le pourvoi de la commune de Fréjairolles n'est pas admis. </p>
+<p>Article 2 : La présente décision sera notifiée à la commune de Fréjairolles. </p>
+<p>Copie en sera adressée à la société Totem France et à la société Orange.</p>
+<p>Délibéré à l'issue de la séance du 20 février 2025 où siégeaient : M. Nicolas Boulouis, président de chambre, présidant ; M. Jean-Yves Ollier, conseiller d'Etat et M. Christophe Pourreau, conseiller d'Etat-rapporteur. </p>
+<p>Rendu le 13 mars 2025.</p>
+<p>Le président : </p>
+<p>Signé : M. Nicolas Boulouis</p>
+<p>Le rapporteur :</p>
+<p>Signé : M. Christophe Pourreau</p>
+<p>Le secrétaire :</p>
+<p>Signé : M. Guillaume Augé</p></Texte_Integral>
+</Decision>
+</Document>

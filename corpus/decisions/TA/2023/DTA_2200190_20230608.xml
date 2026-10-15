@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2200190_20230608.xml</Identification>
+<Date_Mise_Jour>2023-08-22</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA102</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de la Martinique</Nom_Juridiction>
+<Numero_Dossier>2200190</Numero_Dossier>
+<Date_Lecture>2023-06-08</Date_Lecture>
+<Avocat_Requerant>FELDMAN</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication></Code_Publication>
+<Solution>Rejet</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2023-05-25</Date_Audience>
+<Numero_Role>7999</Numero_Role>
+<Formation_Jugement>1ère Chambre</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête, enregistrée le 25 mars 2022, et un mémoire complémentaire, enregistré le 1er septembre 2022, M. C B et Mme A B, représentés par Me Lebon, demandent au tribunal :</p>
+<p>1°) de surseoir à statuer et de transmettre avant dire droit au Conseil d'Etat, en application de l'article L. 113-1 du code de justice administrative, la question de droit nouvelle suivante : " la constructibilité d'une antenne relais 4G/5G est-elle compatible avec une servitude d'utilité publique ' " ; </p>
+<p>2°) d'annuler la décision du maire de la commune du Lamentin du 18 août 2021 portant non-opposition tacite au projet d'implantation d'un pylône de téléphonie mobile sur une parcelle située zone de Gros la Jambette au Lamentin ; </p>
+<p>3°) de mettre à la charge de la commune de la commune du Lamentin une somme de 4 000 euros en application de l'article L. 761-1 du code de justice administrative.</p>
+<p>Ils soutiennent que :</p>
+<p>- la question de savoir si la construction d'une antenne relais 4G/5G est compatible avec une servitude d'utilité publique constitue une question nouvelle justifiant sa transmission pour avis au Conseil d'Etat, en application de l'article L. 113-1 du code de justice administrative ;</p>
+<p>- la décision attaquée méconnait le principe de précaution, prévu à l'article 5 de la Charte de l'environnement, puisque le projet de pylône doit être implanté dans un espace fortement urbanisé et qu'il exposera la population du quartier aux champs électromagnétiques générés par les antennes de téléphonie mobile ;</p>
+<p>- le maire ne pouvait refuser de faire usage de ses pouvoirs de police générale pour s'opposer au projet sans méconnaître l'article 5 de la Charte de l'environnement ;</p>
+<p>- la décision méconnait le plan de prévention des risques technologiques approuvé le 18 novembre 2013 puisqu'elle emporte une extension de l'urbanisation dans une zone soumise à deux servitudes, l'une d'interdiction des constructions, et l'autre de restriction de l'urbanisation.</p>
+<p>Par un mémoire en défense, enregistré le 29 juillet 2022, la commune du Lamentin, représentée par le cabinet Bardon et de Faÿ, conclut au rejet de la requête de M. et Mme B. </p>
+<p>Elle soutient que :</p>
+<p>- les conclusions des requérants tendant à la saisine pour avis du Conseil d'Etat sont irrecevables puisque la question soulevée ne remplit aucune des conditions fixées par l'article L. 113-1 du code de justice administrative ;</p>
+<p>- les moyens soulevés par M. et Mme B ne sont pas fondés.</p>
+<p>La procédure a été régulièrement communiquée à la SAS Outremer Télécom, qui n'a produit aucune observation.</p>
+<p>Les parties ont été informées, en application des dispositions de l'article R. 611-7 du code de justice administrative, de ce que le jugement était susceptible d'être fondé sur un moyen relevé d'office, tiré de l'irrecevabilité des conclusions de la requête présentées au titre de l'article L. 113-1 du code de justice administrative, de telles conclusions, qui tendent au prononcé d'une mesure d'administration de la justice, ne se rapportant pas à un litige sur lequel il appartient au juge de statuer.</p>
+<p>M. et Mme B ont présenté des observations sur ce moyen d'ordre public par un mémoire, qui a été enregistré le 9 mai 2023. </p>
+<p>La SAS Outremer Télécom, représentée par Me Feldman, a présenté des observations sur ce moyen d'ordre public par un mémoire, qui a été enregistré le 9 mai 2023.</p>
+<p>En application des dispositions de l'article R. 222-17 du code de justice administrative, la présidente du tribunal a désigné M. de Palmaert, premier conseiller, pour présider temporairement la formation de jugement.</p>
+<p>Vu : </p>
+<p>- la Constitution et notamment son préambule ;</p>
+<p>- le code de l'urbanisme</p>
+<p>- le code général des collectivités territoriales ;</p>
+<p>- le code des postes et des télécommunications électroniques ; </p>
+<p>- le décret n° 2002-775 du 3 mai 2002 ;</p>
+<p>- le code de justice administrative.</p>
+<p>Les parties ont été régulièrement averties du jour de l'audience.</p>
+<p>Ont été entendus au cours de l'audience publique :</p>
+<p>- le rapport de M. Phulpin,</p>
+<p>- et les conclusions de M. Lancelot, rapporteur public.</p>
+<p>Considérant ce qui suit :</p>
+<p>1. Le 18 juin 2021, la SAS Outremer Télécom a déposé auprès des services de la mairie du Lamentin une déclaration préalable de travaux en vue de l'implantation d'un pylône de téléphonie mobile sur une parcelle située zone de Gros la Jambette au Lamentin. Le maire de la commune du Lamentin a délivré à la société, sur sa demande, le certificat prévu à l'article R. 424-13 du code de l'urbanisme attestant de l'existence d'une décision, née le 18 août 2021, de non-opposition tacite à cette déclaration préalable de travaux. Par un courrier daté du 29 novembre 2021, M. et Mme B ont formé à l'encontre de cette décision un recours gracieux, qui a été rejeté par décision du 27 janvier 2022. Dans la présente instance, ils demandent au tribunal administratif de transmettre une demande d'avis au Conseil d'Etat, en application de l'article L. 113-1 du code de justice administrative, et d'annuler la décision tacite du maire portant non-opposition à la déclaration préalable de travaux de la SAS Outremer Télécom.</p>
+<p>Sur la légalité de la décision attaquée :</p>
+<p>2. En premier lieu, l'article 5 de la Charte de l'environnement dispose : " Lorsque la réalisation d'un dommage, bien qu'incertaine en l'état des connaissances scientifiques, pourrait affecter de manière grave et irréversible l'environnement, les autorités publiques veillent, par application du principe de précaution et dans leurs domaines d'attributions, à la mise en œuvre de procédures d'évaluation des risques et à l'adoption de mesures provisoires et proportionnées afin de parer à la réalisation du dommage. "</p>
+<p>3. D'une part, s'il appartient à l'autorité administrative compétente de prendre en compte le principe de précaution lorsqu'elle se prononce sur l'octroi d'une autorisation délivrée en application de la législation sur l'urbanisme, les dispositions de l'article 5 de la Charte de l'environnement ne permettent pas, indépendamment des procédures d'évaluation des risques et des mesures provisoires et proportionnées susceptibles, le cas échéant, d'être mises en œuvre par les autres autorités publiques dans leur domaine de compétence, de refuser légalement la délivrance d'une autorisation d'urbanisme en l'absence d'éléments circonstanciés sur l'existence, en l'état des connaissances scientifiques, de risques, même incertains, de nature à justifier un tel refus d'autorisation. </p>
+<p>4. D'autre part, il résulte des dispositions des articles L. 32-1, L. 34-9-1, L. 34-9-2, L. 42-1 et L. 43 du code des postes et des communications électroniques, complétées par celles du décret du 3 mai 2002 relatif aux valeurs limites d'exposition du public aux champs électromagnétiques émis par les équipements utilisés dans les réseaux de télécommunication ou par les installations radioélectriques, que le législateur a organisé de manière complète une police spéciale des communications électroniques confiée à l'Etat. Les pouvoirs de police spéciale ainsi attribués au ministre chargé des communications électroniques, à l'Autorité de régulation des communications électroniques et des postes et à l'Agence nationale des fréquences, qui reposent sur un niveau d'expertise et peuvent être assortis de garanties indisponibles au plan local, sont conférés à chacune de ces autorités, notamment pour veiller, dans le cadre de leurs compétences respectives, à la limitation de l'exposition du public aux champs électromagnétiques et à la protection de la santé publique. Si le législateur a par ailleurs prévu que le maire serait informé, à sa demande, de l'état des installations radioélectriques exploitées sur le territoire de la commune, et si les articles L. 2212-1 et L. 2212-2 du code général des collectivités territoriales habilitent le maire à prendre les mesures de police générale nécessaires au bon ordre, à la sûreté, à la sécurité et à la salubrité publiques, celui-ci ne saurait, sans porter atteinte aux pouvoirs de police spéciale conférés aux autorités de l'Etat, prendre sur le territoire de la commune une décision relative à l'implantation d'une antenne relais de téléphonie mobile ou au niveau d'émission des champs d'électromagnétiques de cette antenne et destinée à protéger le public contre les effets des ondes émises par cette antenne. Par ailleurs, il résulte des dispositions de l'article 5 de la Charte de l'environnement que le principe de précaution, s'il est applicable à toute autorité publique dans ses domaines d'attributions, ne saurait avoir ni pour objet ni pour effet de permettre à une autorité publique d'excéder son champ de compétence et d'intervenir en dehors de ses domaines d'attribution. </p>
+<p>5.  En l'espèce, il ne ressort des pièces versées au dossier aucun élément circonstancié de nature à établir l'existence, en l'état des connaissances scientifiques, d'un risque pouvant résulter, pour le public, de son exposition aux champs électromagnétiques émis par les antennes relais de téléphonie mobile et justifiant que, indépendamment des procédures d'évaluation des risques et des mesures provisoires et proportionnées susceptibles, le cas échéant, d'être mises en œuvre par les autorités compétentes, le maire de la commune du Lamentin s'oppose à la déclaration préalable faite par la SAS Outremer Télécom, en application de la législation de l'urbanisme, en vue de l'installation du pylône de téléphonie mobile litigieux, ou mette en œuvre ses pouvoirs de police généraux pour s'opposer au projet d'installation dudit pylône. Les moyens tirés de la méconnaissance de l'article 5 de la Charte de l'environnement ne sont dès lors pas fondés. Ils doivent, par suite, être écartés. </p>
+<p>6. En second lieu, l'article b.5.1, intitulé " définition et vocation des zones ", du règlement du plan de prévention des risques technologiques approuvé par arrêté préfectoral du 18 novembre 2013 dispose : " () Les zones b correspondent à des aléas faibles de surpression, thermiques et toxiques d'origines différentes () / En dehors des cas visés à l'article b.5.2.1 ci-après, dans ces zones, le principe d'autorisation tenant compte des recommandations du présent règlement prévaut () ".  L'article b.5.2.1, intitulé " Interdictions ", du règlement du même plan de prévention des risques technologiques dispose : " Sont interdits : / - Toute construction conduisant à caractériser l'ouvrage édifié comme un établissement recevant du public (tel que définis à l'article R. 123-2 et suivants du code de la construction et de l'habitation) réputé " difficilement évacuable " (au sens de la circulaire de novembre 2011) ou comme immeuble de grande hauteur (tels que définis à l'article R. 122-2 et suivants du code de la construction et de l'habitation) (voir annexe 6 du présent PPRT) ; / - La construction de bâtiments publics destinés à la gestion d'une crise et notamment ceux utiles à la sécurité civile et au maintien de l'ordre ; / - Les aménagements d'espaces publics de proximité avec des équipements de nature à attirer une population extérieure à la zone (notamment chemin de randonnées, parcours sportifs, aire de jeux, parkings publics, spectacles). "</p>
+<p>7. Il ressort des pièces du dossier, en particulier du plan de zonage du secteur 1 du plan de prévention des risques technologiques approuvé par arrêté préfectoral du 18 novembre 2013, que la parcelle d'assise du projet de la SAS Outremer Télécom est située en zone b (bleue claire) d'aléas faibles de surpression, thermiques et toxiques d'origines différentes, et non en zone d'interdiction R (rouge) ou r (orange) comme le soutiennent à tort les requérants. Le projet en litige, qui consiste en l'installation d'un pylône de téléphonie mobile, ne fait pas partie des constructions listées à l'article b.5.2.1 cité au point précédent dont l'édification est interdite. Le moyen tiré de la méconnaissance des dispositions du règlement du plan de prévention des risques technologiques approuvé par arrêté préfectoral du 18 novembre 2013 n'est dès lors pas fondé. Il doit, par suite, être écarté.</p>
+<p>8. Il résulte de l'ensemble de ce qui précède que M. et Mme B ne sont pas fondés à contester la légalité de la décision attaquée du maire de la commune du Lamentin du 18 août 2021. Les conclusions principales de leur requête tendant à son annulation doivent, par suite, être rejetées, sans qu'il soit besoin de se prononcer sur la fin de non-recevoir opposée en défense par la commune.</p>
+<p>Sur les conclusions présentées au titre de l'article L. 113-1 du code de justice administrative :</p>
+<p>9. L'article L. 113-1 du code de justice administrative dispose : " Avant de statuer sur une requête soulevant une question de droit nouvelle, présentant une difficulté sérieuse et se posant dans de nombreux litiges, le tribunal administratif ou la cour administrative d'appel peut, par une décision qui n'est susceptible d'aucun recours, transmettre le dossier de l'affaire au Conseil d'Etat, qui examine dans un délai de trois mois la question soulevée. Il est sursis à toute décision au fond jusqu'à un avis du Conseil d'Etat ou, à défaut, jusqu'à l'expiration de ce délai. "</p>
+<p>10. M. et Mme B demandent au tribunal administratif de faire application de l'article L. 113-1 cité au point précédent du code de justice administrative et de transmettre le dossier au Conseil d'Etat afin de lui soumettre une question de droit pour avis. Toutefois, de telles conclusions ne se rapportent pas à un litige sur lequel il appartient au juge de statuer, mais tendent au contraire au prononcé d'une mesure d'administration de la justice. De telles conclusions sont dès lors irrecevables. Elles doivent, par suite, être rejetées à ce titre. Au surplus, eu égard à ce qui a été dit précédemment s'agissant de la légalité de la décision attaquée, la demande d'avis soulevée par M. et Mme B ne soulève aucune question de droit nouvelle ni de difficulté sérieuse au sens des dispositions L. 113-1 du code de justice administrative citées au point précédent.</p>
+<p>Sur les frais liés au litige :</p>
+<p>11. Les dispositions de l'article L. 761-1 du code de justice administrative font obstacle à ce que soit mise à la charge de la commune du Lamentin, qui n'est pas dans la présente instance la partie perdante, la somme demandée par les M. et Mme B au titre des frais exposés par eux et non compris dans les dépens. </p>
+<p>D E C I D E :</p>
+<p>Article 1er : La requête en annulation de M. et Mme B est rejetée.</p>
+<p>Article 2 : Le présent jugement sera notifié à  M. C B, premier dénommé pour l'ensemble des requérant, à la SAS Outremer Télécom et à la commune du Lamentin.</p>
+<p>Délibéré après l'audience du 25 mai 2023, à laquelle siégeaient :</p>
+<p>M. de Palmaert, premier conseiller faisant fonction de président, </p>
+<p>M. Phulpin, conseiller,</p>
+<p>Mme Monnier-Besombes, conseillère. </p>
+<p>Rendu public par mise à disposition au greffe le 8 juin 2023.</p>
+<p>Le rapporteur,</p>
+<p>V. Phulpin</p>
+<p>Le premier conseiller faisant fonction de président,</p>
+<p>S. de PalmaertLa greffière,</p>
+<p> J. Lemaître</p>
+<p>La République mande et ordonne au préfet de la Martinique, en ce qui le concerne ou à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun, contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+</Texte_Integral>
+</Decision>
+</Document>

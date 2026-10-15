@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2102500_20230713.xml</Identification>
+<Date_Mise_Jour>2023-08-04</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA30</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Nîmes</Nom_Juridiction>
+<Numero_Dossier>2102500</Numero_Dossier>
+<Date_Lecture>2023-07-13</Date_Lecture>
+<Avocat_Requerant>CABINET PAMLAW</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>D</Code_Publication>
+<Solution>Satisfaction totale</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2023-06-13</Date_Audience>
+<Numero_Role>122673</Numero_Role>
+<Formation_Jugement>1ère Chambre</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête et un mémoire enregistrés le 27 juillet 2021 et le 3 février 2022, la société Free Mobile, représentée par Me Martin, demande au tribunal : </p>
+<p>1°) d'annuler la décision du 26 mai 2021 par laquelle le maire de la commune de Rousson s'est opposé aux travaux qu'elle a déclarés en vue de l'édification d'une station relais de téléphonie mobile sur un terrain sis Lieudit " les Trailletes " route des Aubessas ;</p>
+<p>2°) d'enjoindre au maire de cette commune de lui délivrer une décision de non-opposition à déclaration préalable dans un délai d'un mois à compter de la notification du jugement à intervenir, sous astreinte de 500 euros par jour de retard ;</p>
+<p>3°) de mettre à la charge de la commune de Rousson une somme de 5 000 euros au titre de l'article L.761-1 du code de justice administrative.</p>
+<p>La société Free Mobile soutient que :</p>
+<p>- la décision attaquée est entachée d'incompétence ;</p>
+<p>- le maire de Rousson a fait une inexacte application de l'article R. 111-27 du code de l'urbanisme dès lors qu'il ne s'est livré à aucune analyse des caractéristiques et de l'intérêt des lieux avoisinants et qu'il a considéré à tort que le projet en litige portait atteinte à ces mêmes lieux ;</p>
+<p>- ce maire a également fait une inexacte application des dispositions de l'article A1 du règlement du plan local d'urbanisme (PLU) de la commune dans la mesure où :</p>
+<p>. ce sont les conditions de fonctionnement de la station relais qui l'ont conduite à choisir l'emplacement en litige ;</p>
+<p>. la décision attaquée indique à tort qu'il existe une obligation pour les opérateurs de mutualiser leurs installations, et, en tout état de cause, il n'appartient pas à l'autorité en charge de la délivrance des autorisations d'urbanisme de veiller au respect de la règlementation des postes et communications électroniques ;</p>
+<p>- le maire de Rousson ne pouvait valablement s'opposer aux travaux qu'elle avait déclarés sur le fondement des dispositions de l'article L. 34-9-1 du code des postes et communications électroniques ;</p>
+<p>- ce maire a fait une inexacte application des dispositions de l'article A10 du règlement du PLU dès lors que des contraintes techniques et fonctionnelles conduisaient à édifier le pylône en litige à une hauteur supérieure à 14 mètres ;</p>
+<p>- il ne lui appartenait pas d'expliciter la nature de ces contraintes dans le dossier de déclaration préalable. </p>
+<p>Par des mémoires en défense enregistrés le 5 octobre 2021 et le 11 mars 2022, la commune de Rousson, représentée par Me Cagnon, conclut au rejet de la requête et à ce qu'une somme de 5 000 euros soit mise à la charge de la société requérante sur le fondement de l'article L. 761-1 du code de justice administrative.</p>
+<p>La commune soutient que les moyens de la requête ne sont pas fondés.</p>
+<p>Vu :</p>
+<p>- l'ordonnance n° 2103013 du 15 octobre 2021, par laquelle le juge des référés a suspendu l'exécution de l'arrêté du 26 mai 2021 ;</p>
+<p>- les autres pièces du dossier.</p>
+<p>Vu :</p>
+<p>- le code des postes et des communications électroniques ;</p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de justice administrative.</p>
+<p>Les parties ont été régulièrement averties du jour de l'audience.</p>
+<p>Ont été entendus au cours de l'audience publique :</p>
+<p>- le rapport de M. Lagarde,</p>
+<p>- les conclusions de Mme Bourjade, rapporteure publique,</p>
+<p>- et les observations de Me Cagnon, représentant la commune de Rousson.</p>
+<p>Considérant ce qui suit :</p>
+<p>1. Le 30 avril 2021, la société Free Mobile a déposé auprès des services de la commune de Rousson un dossier de déclaration préalable en vue de l'édification d'une station relais de téléphonie mobile sur un terrain sis Lieudit " les Trailletes " route des Aubessas. Par une décision du 26 mai 2021 dont la société Free Mobile demande l'annulation, le maire de Rousson s'est opposé à cette déclaration préalable.</p>
+<p>Sur les conclusions à fins d'annulation : </p>
+<p>2. Aux termes de l'article R. 111-27 du code de l'urbanisme : " Le projet peut être refusé ou n'être accepté que sous réserve de l'observation de prescriptions spéciales si les constructions, par leur situation, leur architecture, leurs dimensions ou l'aspect extérieur des bâtiments ou ouvrages à édifier ou à modifier, sont de nature à porter atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages naturels ou urbains ainsi qu'à la conservation des perspectives monumentales ". Aux termes de l'article A11 du règlement du PLU de la commune de Rousson : " Le permis de construire peut être refusé ou n'être accordé que sous réserve de l'observation de prescriptions spéciales si les constructions, par leur situation, leur architecture, leurs dimensions ou l'aspect extérieur des bâtiments ou ouvrages à édifier ou à modifier, sont de nature à porter atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages naturels ou urbains ainsi qu'à la conservation des perspectives monumentales. ".</p>
+<p>3. L'article A11 du plan local d'urbanisme de la commune de Rousson prévoit des dispositions sur l'aspect extérieur des constructions. Ces dernières dispositions ont le même objet que celles de l'article R. 111-27 du code de l'urbanisme et posent des exigences qui ne sont pas moindres. Dès lors, c'est par rapport aux dispositions du règlement du plan local d'urbanisme que doit être appréciée la légalité de la décision attaquée.</p>
+<p>4. Pour apprécier si un projet de construction porte atteinte, en méconnaissance des dispositions de l'article R. 111-27 du code de l'urbanisme ou de celles du règlement d'un plan local d'urbanisme ayant le même objet et dont les exigences ne sont pas moindres, au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages naturels ou urbains ainsi qu'à la conservation des perspectives monumentales, il appartient à l'autorité administrative d'apprécier, dans un premier temps, la qualité du site sur lequel la construction est projetée et d'évaluer, dans un second temps, l'impact que cette construction, compte tenu de sa nature et de ses effets, pourrait avoir sur le site.</p>
+<p>5. D'une part, il ressort des pièces du dossier que le maire de Rousson n'a pas procédé à l'analyse de la qualité du site sur lequel la construction est projetée. D'autre part, si le terrain d'assiette du projet est situé à quelques dizaines de mètres de plusieurs habitations, il ne fait pas partie d'un secteur faisant l'objet d'une protection particulière ou présentant un quelconque intérêt paysager ou architectural. Le projet en litige prévoit notamment l'édification d'un pylône d'une hauteur de trente mètres, d'un modèle de type treillis métallique dont les caractéristiques permettent de limiter, dans une certaine mesure, l'impact visuel. Par suite, le moyen tiré de ce que le maire de Rousson a fait une inexacte application des dispositions de l'article A11 du règlement du PLU de la commune doit être accueilli en ses deux branches.</p>
+<p>6. Aux termes de l'article A1 du règlement du PLU de la commune de Rousson : " Sont interdites toutes constructions, activités ou travaux n'étant pas directement nécessaires au fonctionnement des activités agricoles et des services publics ". Aux termes de l'article A2 de ce même règlement : " () / Dans le secteur A1, sont autorisées sous conditions : () / Les constructions nécessaires au fonctionnement des services publics ou d'intérêt collectif dont la localisation géographique est imposée par leur fonctionnement ; () ".</p>
+<p>7. La déclaration préalable en litige porte sur une station-relais de téléphonie mobile, composée d'une antenne, d'un pylône et d'une zone technique. Un tel projet constitue une construction nécessaire au fonctionnement des services publics, au sens des dispositions précitées de l'article A1 du règlement du PLU de la commune de Rousson. La société requérante établit, par la production de cartes de couvertures réseau, que le territoire voisin du projet n'est pas couvert par son propre réseau de téléphonie. La commune ne produit aucun élément qui lui permettrait de contredire cette analyse, la circonstance que plusieurs pylônes du même opérateur sont situés dans un rayon de trois kilomètres autour du terrain d'assiette du projet est sans incidence sur la couverture du secteur concerné qui nécessite un maillage par plusieurs antennes. Ainsi que le fait valoir la requérante, il ne résulte d'aucune disposition législative ou règlementaire que les opérateurs de téléphonie mobile seraient tenus de privilégier des solutions de partage des sites ou des pylônes avec leurs concurrents. Par suite, la société Free Mobile, qui justifie, par les pièces qu'elle produit, que la localisation du projet en litige est imposée par son fonctionnement, est fondée à soutenir que le maire de Rousson a fait une inexacte application des dispositions précitées de l'article A1 du règlement du PLU.</p>
+<p>8. Aux termes de l'article L. 34-9-1 du code des postes et des communications électroniques, dans sa rédaction applicable au litige : " () / II. - B. - Toute personne souhaitant exploiter, sur le territoire d'une commune, une ou plusieurs installations radioélectriques soumises à accord ou à avis de l'Agence nationale des fréquences en informe par écrit le maire ou le président de l'intercommunalité dès la phase de recherche et lui transmet un dossier d'information un mois avant le dépôt de la demande d'autorisation d'urbanisme ou de la déclaration préalable. / () / Le contenu et les modalités de ces transmissions sont définis par arrêté conjoint des ministres chargés des communications électroniques et de l'environnement. / C. - Le dossier d'information mentionné au premier alinéa du B du présent II comprend, à la demande du maire, une simulation de l'exposition aux champs électromagnétiques générée par l'installation. / D. - Le maire ou le président de l'établissement public de coopération intercommunale mettent à disposition des habitants les informations prévues aux B et C du présent II par tout moyen qu'ils jugent approprié et peuvent leur donner la possibilité de formuler des observations, dans les conditions définies par décret en Conseil d'Etat./ () "</p>
+<p>9. Il résulte des dispositions des articles R. 425-16 à R. 425-22-1 du code de l'urbanisme qu'un permis ou une décision prise sur une déclaration préalable ne sont pas subordonnés au dépôt du dossier d'information prévu par l'article L. 34-9-1 du code des postes et des communications électroniques cité au point précédent, ni, à supposer que le maire en ait fait la demande dans le cadre de l'information préalable prévue par ce texte, de la simulation de l'exposition aux champs électromagnétiques générée par l'installation. Il n'appartient donc pas à l'autorité en charge de la délivrance des autorisations d'urbanisme de veiller au respect de la réglementation des postes et communications électroniques, qui est sans application dans le cadre de l'instruction des déclarations ou demandes d'autorisation d'urbanisme. </p>
+<p>10. Dans ces conditions, la société Free Mobile est fondée à soutenir que le motif de la décision attaquée, tiré de ce que la déclaration préalable de travaux a été déposée moins d'un mois avant le dépôt dossier d'information prévu au B de l'article L. 34-9-1 du code des postes et communications électroniques, est entaché d'une erreur de droit. </p>
+<p>11. Aux termes de l'article A10 du règlement du plan local d'urbanisme de la commune de Rousson : " La hauteur maximale des constructions ne peut excéder : Pour l'habitat : 6 m pour la hauteur en façade des constructions et 9 m pour la hauteur totale ; / . Pour les autres constructions : 14 m de hauteur totale. / Toutefois : () / Des hauteurs différentes peuvent être acceptées pour les constructions nécessaires au fonctionnement des services publics ou d'intérêt collectif en cas de contraintes techniques ou fonctionnelles. ".</p>
+<p>12. Au regard de la nature du projet et des éléments figurant dans le dossier de déclaration préalable qui mentionnent les contraintes techniques et fonctionnelles inhérentes au projet, la société requérante est fondée à soutenir qu'en refusant de lui appliquer les dispositions dérogatoires particulières pour les ouvrages techniques qui supposent des hauteurs plus importantes que celles fixées par les dispositions communes, le maire de Rousson a commis une erreur d'appréciation au regard des dispositions précitées de l'article A10 du règlement du PLU.</p>
+<p>13. Aux termes de l'article L. 600-4-1 du code de l'urbanisme : " Lorsqu'elle annule pour excès de pouvoir un acte intervenu en matière d'urbanisme ou en ordonne la suspension, la juridiction administrative se prononce sur l'ensemble des moyens de la requête qu'elle estime susceptibles de fonder l'annulation ou la suspension, en l'état du dossier ". </p>
+<p>14. Pour l'application de ces dispositions, le moyen, soulevé par la société requérante, tiré de l'incompétence de l'auteur de l'acte, n'est pas de nature à justifier l'annulation de la décision attaquée. </p>
+<p>Sur les conclusions aux fins d'injonction et d'astreinte :</p>
+<p>15. Lorsque le juge annule un refus d'autorisation ou une opposition à une déclaration après avoir censuré l'ensemble des motifs que l'autorité compétente a énoncés dans sa décision conformément aux prescriptions de l'article L. 424-3 du code de l'urbanisme ainsi que, le cas échéant, les motifs qu'elle a pu invoquer en cours d'instance, il doit, s'il est saisi de conclusions à fin d'injonction, ordonner à l'autorité compétente de délivrer l'autorisation ou de prendre une décision de non-opposition. Il n'en va autrement que s'il résulte de l'instruction soit que les dispositions en vigueur à la date de la décision annulée, qui, eu égard aux dispositions de l'article L. 600-2 demeurent applicables à la demande, interdisent de l'accueillir pour un motif que l'administration n'a pas relevé, ou que, par suite d'un changement de circonstances, la situation de fait existant à la date du jugement y fait obstacle.</p>
+<p>16. Dans les circonstances de l'espèce, l'annulation prononcée par la présente décision implique que le maire de Rousson délivre à la société Free mobile une décision de non-opposition à la déclaration préalable. Il y a lieu d'enjoindre au maire de la commune de procéder à cette délivrance dans un délai d'un mois à compter de la notification de la présente décision. Dans les circonstances de l'espèce, il n'y a pas lieu d'assortir cette injonction d'une astreinte.</p>
+<p>Sur les frais liés au litige :</p>
+<p>17. Les dispositions de l'article L. 761-1 du code de justice administrative font obstacle à ce que soit mise à la charge de la société requérante la somme demandée par la commune de Rousson au titre des frais exposés par elle et non compris dans les dépens. Il y a lieu en revanche de faire application de ces dispositions et de mettre à la charge de la commune de Rousson une somme de 1 200 euros à verser à la société requérante.</p>
+<p>D E C I D E :</p>
+<p>Article 1err : La décision du 10 décembre 2020 par laquelle le maire de la commune de Rousson s'est opposé à la déclaration préalable déposée par la société Free Mobile est annulée.</p>
+<p>Article 2 : Il est enjoint à la commune de Rousson de délivrer à la Société Free Mobile une décision de non opposition à déclaration préalable dans un délai d'un mois à compter de la notification du présent jugement.</p>
+<p>Article 3 : La commune de Rousson versera une somme de 1 200 euros à la Société Free Mobile sur le fondement de l'article L. 761-1 du code de justice administrative.</p>
+<p>Article 4 : Le surplus des conclusions de la requête est rejeté.</p>
+<p>Article 5 : Les conclusions présentées par la commune de Rousson au titre de l'article L. 761-1 du code de justice administrative sont rejetées.</p>
+<p>Article 6 : Le présent jugement sera notifié à la société Free Mobile et à la commune de Rousson. </p>
+<p>Délibéré après l'audience du 13 juin 2023, à laquelle siégeaient :</p>
+<p>M. Antolini, président,</p>
+<p>M. Lagarde, premier conseiller,</p>
+<p>Mme Lahmar, conseillère.</p>
+<p>Rendu public par mise à disposition au greffe le 13 juillet 2023.</p>
+<p>Le rapporteur,</p>
+<p>F. LAGARDE       Le président,</p>
+<p>J. ANTOLINI</p>
+<p>La greffière,</p>
+<p> A. OLSZEWSKI</p>
+<p>La République mande et ordonne à la préfète du Gard en ce qui la concerne ou à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun, contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+</Texte_Integral>
+</Decision>
+</Document>

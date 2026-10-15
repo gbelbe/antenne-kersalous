@@ -54,3 +54,10 @@ dl.props{display:grid;grid-template-columns:minmax(140px,230px) 1fr;gap:6px 16px
 .crumb{font-size:.88rem;color:var(--muted);margin-bottom:4px}
 .foot{padding-bottom:40px}
 details summary{cursor:pointer}
+
+.corpus{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:18px;align-items:start}
+.facets{position:sticky;top:70px;max-height:calc(100vh - 90px);overflow:auto;border:1px solid var(--line);border-radius:12px;padding:8px 12px;background:var(--card)}
+.facets summary{cursor:pointer;padding:4px 0}
+.fct{display:block;font-size:.88rem;padding:2px 0;cursor:pointer}
+select,#cq{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+@media (max-width:800px){.corpus{grid-template-columns:1fr}.facets{position:static;max-height:none}}

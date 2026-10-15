@@ -30,7 +30,7 @@ vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(site, "app.js"), "utf8"), ctx);
 (async () => {
   const ents = JSON.parse(fs.readFileSync(path.join(site, "data/entities.json"), "utf8"));
-  const routes = ["", "carte", "chronologie", "dossier", "jurisprudence", "reseau", "sources", "explorer",
+  const routes = ["", "carte", "chronologie", "dossier", "jurisprudence", "corpus", "corpus/skt:m-abords-mh-pc", "reseau", "sources", "explorer",
     "e/dos:projet-pylone", "e/dos:moyen-seuil-pc", "e/src:dim-bouygues", "e/dos:phoenix-france", "e/inexistant", "recherche/phoenix"];
   let bad = 0;
   for (const r of routes) {

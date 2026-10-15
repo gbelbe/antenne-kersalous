@@ -6,3 +6,4 @@ html/
 
 # site généré (déployé par GitHub Actions, jamais commité)
 _site/
+__pycache__/

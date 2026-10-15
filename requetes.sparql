@@ -135,3 +135,21 @@ SELECT ?decision ?issue WHERE {
   ?i skos:prefLabel ?issue .
   <https://kersalous.bzh/taxonomie/IssueFavorableRiverains> skos:member ?i .
 }
+
+# ── Corpus (antenne-decisions.ttl + antenne-contentieux.ttl) : décisions proches de Kersalous qui ont bloqué le projet ──
+SELECT ?decision ?score ?association ?avocat WHERE {
+  ?d a ant:Jurisprudence ; rdfs:label ?decision ; ant:scoreProximite ?score ;
+     ant:effetProjet <https://kersalous.bzh/taxonomie/e-bloque> ;
+     ant:typeRequerant ?t .
+  ?t skos:broader* <https://kersalous.bzh/taxonomie/q-association> .
+  OPTIONAL { ?d ant:requerantNomme/rdfs:label ?association }
+  OPTIONAL { ?d ant:avocatRequerant/rdfs:label ?avocat }
+  FILTER(?score >= 50)
+} ORDER BY DESC(?score)
+
+# ── Corpus : retrouver les décisions par un concept quelconque (n'importe quel axe), sous-concepts compris ──
+SELECT ?decision ?role WHERE {
+  ?d a ant:Jurisprudence ; rdfs:label ?decision ; ?role ?c .
+  ?role rdfs:subPropertyOf ant:aPourConcept .
+  ?c skos:broader* <https://kersalous.bzh/taxonomie/m-littoral> .
+}

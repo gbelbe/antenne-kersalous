@@ -1,0 +1,1348 @@
+@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
+@prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+
+# ═══════════════════════════════════════════════════════════════
+#  TAXONOMIE DU CONTENTIEUX DES ANTENNES-RELAIS
+#  Fichier GÉNÉRÉ par tools/corpus/taxonomie.py à partir de tools/corpus/taxo_spec.py : ne pas modifier à la main.
+#  Onze schémas SKOS à facettes ; une décision (ant:Jurisprudence) est reliée à un ou plusieurs concepts de chacun.
+#  Les références d'articles sont de mémoire de l'auteur et à vérifier à la source avant toute citation.
+# ═══════════════════════════════════════════════════════════════
+
+skt:Moyens a skos:ConceptScheme ;
+    rdfs:label "Moyens juridiques invoqués dans le contentieux des antennes"@fr ;
+    skos:prefLabel "Moyens juridiques invoqués dans le contentieux des antennes"@fr ;
+    skos:definition "Ce que les requérants (ou l'opérateur, ou la commune) invoquent devant le juge. Une décision est reliée à un moyen par trois relations distinctes : évoqué, retenu, écarté."@fr ;
+    skos:notation "M" ;
+    skos:hasTopConcept skt:m-qualification, skt:m-reglement, skt:m-insertion, skt:m-milieux, skt:m-dossier, skt:m-instruction, skt:m-securite, skt:m-connexes, skt:m-recevabilite .
+
+skt:m-qualification a skos:Concept ;
+    rdfs:label "Nature de l'autorisation exigée (déclaration préalable ou permis)"@fr ;
+    skos:prefLabel "Nature de l'autorisation exigée (déclaration préalable ou permis)"@fr ;
+    skos:definition "Le projet relevait-il d'un permis de construire plutôt que d'une déclaration préalable ? Seuils du code de l'urbanisme (R.421-1, R.421-2, R.421-9, R.421-11)."@fr ;
+    skos:notation "M1" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-emprise-locaux, skt:m-abords-mh-pc, skt:m-hauteur-12m .
+
+skt:m-emprise-locaux a skos:Concept ;
+    rdfs:label "Emprise des locaux techniques (seuil de 20 m²)"@fr ;
+    skos:prefLabel "Emprise des locaux techniques (seuil de 20 m²)"@fr ;
+    skos:definition "Au-delà de 20 m² d'emprise au sol ou de surface de plancher, un permis est exigé. Selon l'avis du Conseil d'État du 21 mars 2024 (n° 490536, à relire), seule compte l'emprise des locaux et installations techniques, pas celle du pylône."@fr ;
+    skos:notation "M1.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-qualification .
+
+skt:m-abords-mh-pc a skos:Concept ;
+    rdfs:label "Abords d'un monument historique : permis exigé (covisibilité)"@fr ;
+    skos:prefLabel "Abords d'un monument historique : permis exigé (covisibilité)"@fr ;
+    skos:definition "Dans les abords d'un monument historique, une construction de plus de 12 m de haut qui est en covisibilité avec lui exige un permis (R.421-11). Annulation non régularisable dans les deux jugements lus (Le Vigan, Mont-Saint-Jean)."@fr ;
+    skos:notation "M1.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-qualification .
+
+skt:m-hauteur-12m a skos:Concept ;
+    rdfs:label "Hauteur de plus de 12 m"@fr ;
+    skos:prefLabel "Hauteur de plus de 12 m"@fr ;
+    skos:definition "Seuil de hauteur qui fait basculer certaines constructions vers le permis de construire."@fr ;
+    skos:notation "M1.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-qualification .
+
+skt:m-reglement a skos:Concept ;
+    rdfs:label "Règles d'urbanisme applicables au terrain"@fr ;
+    skos:prefLabel "Règles d'urbanisme applicables au terrain"@fr ;
+    skos:definition "Conformité du projet au plan local d'urbanisme, au règlement national d'urbanisme et aux lois d'aménagement spécial."@fr ;
+    skos:notation "M2" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-zone-agri-naturelle, skt:m-zone-urbaine, skt:m-regle-plu, skt:m-littoral, skt:m-montagne, skt:m-desserte, skt:m-emplacement-reserve, skt:m-rnu .
+
+skt:m-zone-agri-naturelle a skos:Concept ;
+    rdfs:label "Zone agricole ou naturelle (équipement d'intérêt collectif)"@fr ;
+    skos:prefLabel "Zone agricole ou naturelle (équipement d'intérêt collectif)"@fr ;
+    skos:definition "Le pylône est-il admis en zone A ou N comme équipement d'intérêt collectif ou service public ? La plupart des tribunaux répondent oui."@fr ;
+    skos:notation "M2.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-zone-urbaine a skos:Concept ;
+    rdfs:label "Zone urbaine ou à urbaniser"@fr ;
+    skos:prefLabel "Zone urbaine ou à urbaniser"@fr ;
+    skos:definition "Compatibilité du pylône avec le règlement d'une zone U ou AU."@fr ;
+    skos:notation "M2.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-regle-plu a skos:Concept ;
+    rdfs:label "Règle précise du règlement du PLU"@fr ;
+    skos:prefLabel "Règle précise du règlement du PLU"@fr ;
+    skos:definition "Violation d'un article particulier du règlement. Souvent régularisable (3 à 4 mois, L.600-5)."@fr ;
+    skos:notation "M2.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement ;
+    skos:narrower skt:m-regle-hauteur, skt:m-regle-cloture, skt:m-regle-plantations, skt:m-regle-implantation, skt:m-regle-aspect .
+
+skt:m-regle-hauteur a skos:Concept ;
+    rdfs:label "Hauteur maximale"@fr ;
+    skos:prefLabel "Hauteur maximale"@fr ;
+    skos:definition "Dépassement de la hauteur permise par le règlement de la zone."@fr ;
+    skos:notation "M2.3.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-regle-plu .
+
+skt:m-regle-cloture a skos:Concept ;
+    rdfs:label "Clôture"@fr ;
+    skos:prefLabel "Clôture"@fr ;
+    skos:definition "Hauteur ou nature de la clôture du poste technique."@fr ;
+    skos:notation "M2.3.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-regle-plu .
+
+skt:m-regle-plantations a skos:Concept ;
+    rdfs:label "Plantations et espaces verts"@fr ;
+    skos:prefLabel "Plantations et espaces verts"@fr ;
+    skos:definition "Obligation de plantations, de haies ou d'espaces verts."@fr ;
+    skos:notation "M2.3.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-regle-plu .
+
+skt:m-regle-implantation a skos:Concept ;
+    rdfs:label "Recul et implantation"@fr ;
+    skos:prefLabel "Recul et implantation"@fr ;
+    skos:definition "Marge de recul par rapport aux voies et aux limites séparatives."@fr ;
+    skos:notation "M2.3.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-regle-plu .
+
+skt:m-regle-aspect a skos:Concept ;
+    rdfs:label "Aspect extérieur et architecture"@fr ;
+    skos:prefLabel "Aspect extérieur et architecture"@fr ;
+    skos:definition "Règle d'aspect extérieur des constructions."@fr ;
+    skos:notation "M2.3.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-regle-plu .
+
+skt:m-littoral a skos:Concept ;
+    rdfs:label "Loi Littoral"@fr ;
+    skos:prefLabel "Loi Littoral"@fr ;
+    skos:definition "Dispositions des articles L.121-1 et suivants du code de l'urbanisme. Motif le plus gagnant dans l'Ouest, mais Plonéour-Lanvern n'est pas concernée."@fr ;
+    skos:notation "M2.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement ;
+    skos:narrower skt:m-littoral-urbanisation, skt:m-littoral-espaces .
+
+skt:m-littoral-urbanisation a skos:Concept ;
+    rdfs:label "Extension de l'urbanisation hors village ou agglomération (L.121-8)"@fr ;
+    skos:prefLabel "Extension de l'urbanisation hors village ou agglomération (L.121-8)"@fr ;
+    skos:definition "Construction nouvelle en discontinuité avec les agglomérations et villages existants."@fr ;
+    skos:notation "M2.4.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-littoral .
+
+skt:m-littoral-espaces a skos:Concept ;
+    rdfs:label "Espaces proches du rivage, espaces remarquables, coupures d'urbanisation"@fr ;
+    skos:prefLabel "Espaces proches du rivage, espaces remarquables, coupures d'urbanisation"@fr ;
+    skos:definition "Extension limitée en espaces proches du rivage (L.121-13), protection des espaces remarquables (L.121-23)."@fr ;
+    skos:notation "M2.4.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-littoral .
+
+skt:m-montagne a skos:Concept ;
+    rdfs:label "Loi Montagne"@fr ;
+    skos:prefLabel "Loi Montagne"@fr ;
+    skos:definition "Dispositions des articles L.122-1 et suivants (urbanisation en continuité)."@fr ;
+    skos:notation "M2.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-desserte a skos:Concept ;
+    rdfs:label "Desserte par les réseaux publics (électricité, eau) (L.111-11)"@fr ;
+    skos:prefLabel "Desserte par les réseaux publics (électricité, eau) (L.111-11)"@fr ;
+    skos:definition "Si des travaux sur les réseaux publics sont nécessaires, la déclaration doit être refusée quand l'autorité ne peut dire quand et par qui ils seront faits. TA Rennes, 19 mars 2026, n° 2401193 (La Gouesnière) : annulation, extension électrique de 408 m sans diligences du maire auprès du syndicat d'énergie ; suspension préalable le 30 octobre 2025."@fr ;
+    skos:notation "M2.6" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-emplacement-reserve a skos:Concept ;
+    rdfs:label "Emplacement réservé ou projet public d'infrastructure"@fr ;
+    skos:prefLabel "Emplacement réservé ou projet public d'infrastructure"@fr ;
+    skos:definition "Projet implanté dans un emplacement réservé ou une zone prévue pour un équipement public. TA Montpellier, 13 février 2026, n° 2600444 (Saint-Just, Phoenix France Infrastructure 3) : suspension ; la commune ne peut corriger l'implantation par une prescription."@fr ;
+    skos:notation "M2.7" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-rnu a skos:Concept ;
+    rdfs:label "Constructibilité limitée (RNU, hors parties urbanisées)"@fr ;
+    skos:prefLabel "Constructibilité limitée (RNU, hors parties urbanisées)"@fr ;
+    skos:definition "Règle de constructibilité limitée des communes sans document d'urbanisme (L.111-3)."@fr ;
+    skos:notation "M2.8" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement .
+
+skt:m-insertion a skos:Concept ;
+    rdfs:label "Insertion dans le site et patrimoine (R.111-27)"@fr ;
+    skos:prefLabel "Insertion dans le site et patrimoine (R.111-27)"@fr ;
+    skos:definition "Atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages naturels ou urbains, aux perspectives monumentales."@fr ;
+    skos:notation "M3" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-paysage, skt:m-covisibilite, skt:m-patrimoine .
+
+skt:m-paysage a skos:Concept ;
+    rdfs:label "Atteinte au paysage (R.111-27)"@fr ;
+    skos:prefLabel "Atteinte au paysage (R.111-27)"@fr ;
+    skos:definition "Erreur manifeste d'appréciation de l'atteinte au paysage. Rarement retenue pour un pylône treillis entouré de végétation."@fr ;
+    skos:notation "M3.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-insertion .
+
+skt:m-covisibilite a skos:Concept ;
+    rdfs:label "Covisibilité avec un monument ou un bâti remarquable"@fr ;
+    skos:prefLabel "Covisibilité avec un monument ou un bâti remarquable"@fr ;
+    skos:definition "Le pylône est visible en même temps qu'un monument ou depuis lui."@fr ;
+    skos:notation "M3.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-insertion .
+
+skt:m-patrimoine a skos:Concept ;
+    rdfs:label "Site protégé ou patrimonial"@fr ;
+    skos:prefLabel "Site protégé ou patrimonial"@fr ;
+    skos:definition "Site classé ou inscrit, site patrimonial remarquable, AVAP, périmètre délimité des abords."@fr ;
+    skos:notation "M3.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-insertion .
+
+skt:m-milieux a skos:Concept ;
+    rdfs:label "Milieux naturels et environnement"@fr ;
+    skos:prefLabel "Milieux naturels et environnement"@fr ;
+    skos:definition "Atteinte à une zone humide, à un boisement, à des espèces ou à un espace naturel protégé."@fr ;
+    skos:notation "M4" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-zone-humide, skt:m-ebc, skt:m-natura .
+
+skt:m-zone-humide a skos:Concept ;
+    rdfs:label "Zone humide et eau"@fr ;
+    skos:prefLabel "Zone humide et eau"@fr ;
+    skos:definition "Zone humide, cours d'eau, loi sur l'eau (L.211-1, L.214-1)."@fr ;
+    skos:notation "M4.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-milieux .
+
+skt:m-ebc a skos:Concept ;
+    rdfs:label "Espace boisé classé et boisement"@fr ;
+    skos:prefLabel "Espace boisé classé et boisement"@fr ;
+    skos:definition "Espace boisé classé (L.113-1, L.113-2) ou boisement protégé."@fr ;
+    skos:notation "M4.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-milieux .
+
+skt:m-natura a skos:Concept ;
+    rdfs:label "Natura 2000, ZNIEFF, espèces protégées"@fr ;
+    skos:prefLabel "Natura 2000, ZNIEFF, espèces protégées"@fr ;
+    skos:definition "Zonages d'inventaire ou de protection de la biodiversité."@fr ;
+    skos:notation "M4.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-milieux .
+
+skt:m-dossier a skos:Concept ;
+    rdfs:label "Exactitude et complétude du dossier de la demande"@fr ;
+    skos:prefLabel "Exactitude et complétude du dossier de la demande"@fr ;
+    skos:definition "Le dossier permettait-il à l'administration d'apprécier le projet ? Une décision fondée sur des faits inexacts est illégale."@fr ;
+    skos:notation "M5" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-pieces-contradictoires, skt:m-dossier-incomplet, skt:m-fraude .
+
+skt:m-pieces-contradictoires a skos:Concept ;
+    rdfs:label "Pièces contradictoires ou faits inexacts"@fr ;
+    skos:prefLabel "Pièces contradictoires ou faits inexacts"@fr ;
+    skos:definition "Les pièces du dossier se contredisent (hauteur, emprise, position). TA Nîmes, 11 septembre 2026, n° 2604044 : suspension d'une DP de Phoenix France Infrastructure."@fr ;
+    skos:notation "M5.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-dossier .
+
+skt:m-dossier-incomplet a skos:Concept ;
+    rdfs:label "Dossier de déclaration incomplet"@fr ;
+    skos:prefLabel "Dossier de déclaration incomplet"@fr ;
+    skos:definition "Pièce manquante ou insuffisante (R.431-36 et suivants)."@fr ;
+    skos:notation "M5.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-dossier .
+
+skt:m-fraude a skos:Concept ;
+    rdfs:label "Fraude"@fr ;
+    skos:prefLabel "Fraude"@fr ;
+    skos:definition "Manœuvre destinée à tromper l'administration sur le projet."@fr ;
+    skos:notation "M5.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-dossier .
+
+skt:m-instruction a skos:Concept ;
+    rdfs:label "Régularité de l'instruction et de la décision"@fr ;
+    skos:prefLabel "Régularité de l'instruction et de la décision"@fr ;
+    skos:definition "Compétence, avis obligatoires, délais, motivation, retrait de la décision."@fr ;
+    skos:notation "M6" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-abf, skt:m-retrait, skt:m-competence, skt:m-motivation, skt:m-delai-instruction .
+
+skt:m-abf a skos:Concept ;
+    rdfs:label "Avis de l'architecte des Bâtiments de France"@fr ;
+    skos:prefLabel "Avis de l'architecte des Bâtiments de France"@fr ;
+    skos:definition "Avis non recueilli alors que le projet est dans un périmètre protégé."@fr ;
+    skos:notation "M6.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-instruction .
+
+skt:m-retrait a skos:Concept ;
+    rdfs:label "Retrait d'une non-opposition par le maire"@fr ;
+    skos:prefLabel "Retrait d'une non-opposition par le maire"@fr ;
+    skos:definition "Le maire retire sa décision tacite ou expresse (L.424-5, art. 222 de la loi ELAN). Souvent annulé à la demande de l'opérateur."@fr ;
+    skos:notation "M6.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-instruction .
+
+skt:m-competence a skos:Concept ;
+    rdfs:label "Compétence du signataire"@fr ;
+    skos:prefLabel "Compétence du signataire"@fr ;
+    skos:definition "Incompétence ou défaut de délégation."@fr ;
+    skos:notation "M6.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-instruction .
+
+skt:m-motivation a skos:Concept ;
+    rdfs:label "Motivation et procédure contradictoire"@fr ;
+    skos:prefLabel "Motivation et procédure contradictoire"@fr ;
+    skos:definition "Insuffisance de motivation ou atteinte aux droits de la défense."@fr ;
+    skos:notation "M6.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-instruction .
+
+skt:m-delai-instruction a skos:Concept ;
+    rdfs:label "Délai d'instruction"@fr ;
+    skos:prefLabel "Délai d'instruction"@fr ;
+    skos:definition "Décision tacite, majoration du délai, date de naissance de la non-opposition."@fr ;
+    skos:notation "M6.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-instruction .
+
+skt:m-securite a skos:Concept ;
+    rdfs:label "Sécurité et santé publiques"@fr ;
+    skos:prefLabel "Sécurité et santé publiques"@fr ;
+    skos:definition "Risques invoqués contre le projet."@fr ;
+    skos:notation "M7" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-r111-2, skt:m-vent-chute, skt:m-ondes, skt:m-risques-naturels, skt:m-bruit, skt:m-aerodrome, skt:m-police-maire .
+
+skt:m-r111-2 a skos:Concept ;
+    rdfs:label "Sécurité et salubrité publiques (R.111-2)"@fr ;
+    skos:prefLabel "Sécurité et salubrité publiques (R.111-2)"@fr ;
+    skos:definition "Risque pour la sécurité ou la salubrité publique."@fr ;
+    skos:notation "M7.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-vent-chute a skos:Concept ;
+    rdfs:label "Vent, chute, incendie, foudre"@fr ;
+    skos:prefLabel "Vent, chute, incendie, foudre"@fr ;
+    skos:definition "Risque d'effondrement, de chute de glace, d'incendie."@fr ;
+    skos:notation "M7.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-ondes a skos:Concept ;
+    rdfs:label "Ondes, santé et principe de précaution"@fr ;
+    skos:prefLabel "Ondes, santé et principe de précaution"@fr ;
+    skos:definition "Effets des champs électromagnétiques et principe de précaution (Charte de l'environnement, art. 5). Écarté dans toutes les décisions lues : la police des ondes appartient à l'État."@fr ;
+    skos:notation "M7.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-risques-naturels a skos:Concept ;
+    rdfs:label "Risques naturels (inondation, crue, argile)"@fr ;
+    skos:prefLabel "Risques naturels (inondation, crue, argile)"@fr ;
+    skos:definition "Plan de prévention des risques, cote de référence, retrait-gonflement des argiles."@fr ;
+    skos:notation "M7.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-bruit a skos:Concept ;
+    rdfs:label "Bruit et nuisances"@fr ;
+    skos:prefLabel "Bruit et nuisances"@fr ;
+    skos:definition "Nuisances sonores ou vibrations des équipements."@fr ;
+    skos:notation "M7.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-aerodrome a skos:Concept ;
+    rdfs:label "Servitudes aéronautiques et balisage"@fr ;
+    skos:prefLabel "Servitudes aéronautiques et balisage"@fr ;
+    skos:definition "Servitudes de dégagement, balisage lumineux."@fr ;
+    skos:notation "M7.6" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-police-maire a skos:Concept ;
+    rdfs:label "Pouvoirs de police du maire"@fr ;
+    skos:prefLabel "Pouvoirs de police du maire"@fr ;
+    skos:definition "Le maire peut-il réglementer l'implantation des antennes ? Non pour motifs sanitaires (CE, 26 octobre 2011, nos 326492 et 329904)."@fr ;
+    skos:notation "M7.7" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite .
+
+skt:m-connexes a skos:Concept ;
+    rdfs:label "Législations connexes (le plus souvent inopérantes)"@fr ;
+    skos:prefLabel "Législations connexes (le plus souvent inopérantes)"@fr ;
+    skos:definition "Moyens tirés d'autres législations que l'urbanisme. Le juge de l'urbanisme applique l'indépendance des législations. Écartés comme inopérants dans 48 des 73 décisions lues ou repérées."@fr ;
+    skos:notation "M8" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-dim, skt:m-decret-2002, skt:m-utilite, skt:m-mutualisation, skt:m-droits-tiers .
+
+skt:m-dim a skos:Concept ;
+    rdfs:label "Dossier d'information du maire (L.34-9-1 CPCE, D.98-6-1)"@fr ;
+    skos:prefLabel "Dossier d'information du maire (L.34-9-1 CPCE, D.98-6-1)"@fr ;
+    skos:definition "Absence, retard ou insuffisance du dossier d'information transmis au maire. Jamais retenu pour annuler une DP dans le corpus. Peut servir la pression politique."@fr ;
+    skos:notation "M8.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-connexes .
+
+skt:m-decret-2002 a skos:Concept ;
+    rdfs:label "Décret du 3 mai 2002 : valeurs limites d'exposition"@fr ;
+    skos:prefLabel "Décret du 3 mai 2002 : valeurs limites d'exposition"@fr ;
+    skos:definition "Respect des valeurs limites d'exposition du public ; contrôle par l'ANFR."@fr ;
+    skos:notation "M8.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-connexes .
+
+skt:m-utilite a skos:Concept ;
+    rdfs:label "Utilité du projet et besoin de couverture"@fr ;
+    skos:prefLabel "Utilité du projet et besoin de couverture"@fr ;
+    skos:definition "Zone blanche, New Deal Mobile, qualité de service : inopérants contre une DP."@fr ;
+    skos:notation "M8.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-connexes .
+
+skt:m-mutualisation a skos:Concept ;
+    rdfs:label "Mutualisation et choix d'un autre site"@fr ;
+    skos:prefLabel "Mutualisation et choix d'un autre site"@fr ;
+    skos:definition "Aucune obligation légale de partage de site ni de rechercher une autre implantation."@fr ;
+    skos:notation "M8.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-connexes .
+
+skt:m-droits-tiers a skos:Concept ;
+    rdfs:label "Droit de propriété et droits des tiers"@fr ;
+    skos:prefLabel "Droit de propriété et droits des tiers"@fr ;
+    skos:definition "Titre du pétitionnaire, servitudes privées : l'autorisation est délivrée sous réserve du droit des tiers."@fr ;
+    skos:notation "M8.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-connexes .
+
+skt:m-recevabilite a skos:Concept ;
+    rdfs:label "Recevabilité du recours"@fr ;
+    skos:prefLabel "Recevabilité du recours"@fr ;
+    skos:definition "Conditions pour que le juge examine la requête."@fr ;
+    skos:notation "M9" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:narrower skt:m-interet-agir, skt:m-qualite-association, skt:m-notification, skt:m-delai-recours, skt:m-affichage .
+
+skt:m-interet-agir a skos:Concept ;
+    rdfs:label "Intérêt à agir du requérant (L.600-1-2)"@fr ;
+    skos:prefLabel "Intérêt à agir du requérant (L.600-1-2)"@fr ;
+    skos:definition "Distance, vue directe, nature de la gêne. 60 à 200 m ont été admis avec vue directe."@fr ;
+    skos:notation "M9.1" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-recevabilite .
+
+skt:m-qualite-association a skos:Concept ;
+    rdfs:label "Qualité d'une association pour agir (L.600-1-1)"@fr ;
+    skos:prefLabel "Qualité d'une association pour agir (L.600-1-1)"@fr ;
+    skos:definition "Objet statutaire, antériorité des statuts par rapport à l'affichage en mairie."@fr ;
+    skos:notation "M9.2" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-recevabilite .
+
+skt:m-notification a skos:Concept ;
+    rdfs:label "Notification du recours (R.600-1)"@fr ;
+    skos:prefLabel "Notification du recours (R.600-1)"@fr ;
+    skos:definition "Le requérant doit notifier son recours à l'auteur de la décision et au bénéficiaire dans les quinze jours."@fr ;
+    skos:notation "M9.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-recevabilite .
+
+skt:m-delai-recours a skos:Concept ;
+    rdfs:label "Délai de recours et forclusion (R.600-2)"@fr ;
+    skos:prefLabel "Délai de recours et forclusion (R.600-2)"@fr ;
+    skos:definition "Deux mois à compter de l'affichage sur le terrain. Tardiveté, forclusion."@fr ;
+    skos:notation "M9.4" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-recevabilite .
+
+skt:m-affichage a skos:Concept ;
+    rdfs:label "Affichage de l'autorisation sur le terrain"@fr ;
+    skos:prefLabel "Affichage de l'autorisation sur le terrain"@fr ;
+    skos:definition "Un affichage irrégulier empêche le délai de courir (R.424-15, A.424-15 et suivants)."@fr ;
+    skos:notation "M9.5" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-recevabilite .
+
+skt:Resultat a skos:ConceptScheme ;
+    rdfs:label "Résultat de la décision"@fr ;
+    skos:prefLabel "Résultat de la décision"@fr ;
+    skos:definition "Le dispositif de la décision, tel que le juge l'a rendu."@fr ;
+    skos:notation "R" ;
+    skos:hasTopConcept skt:r-rejet, skt:r-irrecevable, skt:r-sans-jugement, skt:r-annulation, skt:r-appel-confirme, skt:r-appel-infirme .
+
+skt:r-rejet a skos:Concept ;
+    rdfs:label "Requête rejetée"@fr ;
+    skos:prefLabel "Requête rejetée"@fr ;
+    skos:definition "Le juge refuse de faire droit à la demande."@fr ;
+    skos:notation "R1" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat ;
+    skos:narrower skt:r-rejet-fond, skt:r-rejet-doute, skt:r-rejet-manifeste .
+
+skt:r-rejet-fond a skos:Concept ;
+    rdfs:label "Rejet au fond"@fr ;
+    skos:prefLabel "Rejet au fond"@fr ;
+    skos:definition "Moyens examinés et écartés."@fr ;
+    skos:notation "R1.1" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-rejet .
+
+skt:r-rejet-doute a skos:Concept ;
+    rdfs:label "Rejet en référé : pas de doute sérieux"@fr ;
+    skos:prefLabel "Rejet en référé : pas de doute sérieux"@fr ;
+    skos:definition "Référé-suspension rejeté faute de moyen propre à créer un doute sérieux."@fr ;
+    skos:notation "R1.2" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-rejet .
+
+skt:r-rejet-manifeste a skos:Concept ;
+    rdfs:label "Rejet par ordonnance (irrecevabilité ou infondé manifeste)"@fr ;
+    skos:prefLabel "Rejet par ordonnance (irrecevabilité ou infondé manifeste)"@fr ;
+    skos:definition "Ordonnance rendue sans audience (R.222-1)."@fr ;
+    skos:notation "R1.3" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-rejet .
+
+skt:r-irrecevable a skos:Concept ;
+    rdfs:label "Requête irrecevable"@fr ;
+    skos:prefLabel "Requête irrecevable"@fr ;
+    skos:definition "Défaut d'intérêt, de qualité, de notification, tardiveté."@fr ;
+    skos:notation "R2" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat .
+
+skt:r-sans-jugement a skos:Concept ;
+    rdfs:label "Pas de jugement au fond"@fr ;
+    skos:prefLabel "Pas de jugement au fond"@fr ;
+    skos:definition "L'instance se termine sans trancher le litige."@fr ;
+    skos:notation "R3" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat ;
+    skos:narrower skt:r-desistement, skt:r-non-lieu, skt:r-sursis .
+
+skt:r-desistement a skos:Concept ;
+    rdfs:label "Désistement"@fr ;
+    skos:prefLabel "Désistement"@fr ;
+    skos:definition "Le requérant retire sa requête. Le motif n'est presque jamais indiqué."@fr ;
+    skos:notation "R3.1" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-sans-jugement .
+
+skt:r-non-lieu a skos:Concept ;
+    rdfs:label "Non-lieu à statuer"@fr ;
+    skos:prefLabel "Non-lieu à statuer"@fr ;
+    skos:definition "L'acte est retiré ou abrogé, ou le projet abandonné, en cours d'instance."@fr ;
+    skos:notation "R3.2" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-sans-jugement .
+
+skt:r-sursis a skos:Concept ;
+    rdfs:label "Sursis à statuer ou mesure d'instruction"@fr ;
+    skos:prefLabel "Sursis à statuer ou mesure d'instruction"@fr ;
+    skos:definition "Le juge attend une régularisation ou un complément."@fr ;
+    skos:notation "R3.3" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-sans-jugement .
+
+skt:r-annulation a skos:Concept ;
+    rdfs:label "Annulation ou suspension"@fr ;
+    skos:prefLabel "Annulation ou suspension"@fr ;
+    skos:definition "Le juge fait droit en tout ou partie à la demande."@fr ;
+    skos:notation "R4" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat ;
+    skos:narrower skt:r-annulation-totale, skt:r-annulation-partielle, skt:r-suspension .
+
+skt:r-annulation-totale a skos:Concept ;
+    rdfs:label "Annulation totale"@fr ;
+    skos:prefLabel "Annulation totale"@fr ;
+    skos:definition "L'acte attaqué est annulé."@fr ;
+    skos:notation "R4.1" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-annulation .
+
+skt:r-annulation-partielle a skos:Concept ;
+    rdfs:label "Annulation partielle ou assortie d'une régularisation"@fr ;
+    skos:prefLabel "Annulation partielle ou assortie d'une régularisation"@fr ;
+    skos:definition "Annulation limitée à un point (clôture, plantations) ou jugement avant dire droit laissant le temps de régulariser (L.600-5, L.600-5-1)."@fr ;
+    skos:notation "R4.2" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-annulation .
+
+skt:r-suspension a skos:Concept ;
+    rdfs:label "Suspension en référé"@fr ;
+    skos:prefLabel "Suspension en référé"@fr ;
+    skos:definition "Exécution de l'acte suspendue (L.521-1 CJA, L.600-3)."@fr ;
+    skos:notation "R4.3" ;
+    skos:inScheme skt:Resultat ;
+    skos:broader skt:r-annulation .
+
+skt:r-appel-confirme a skos:Concept ;
+    rdfs:label "Appel : jugement confirmé"@fr ;
+    skos:prefLabel "Appel : jugement confirmé"@fr ;
+    skos:definition "La cour confirme le jugement de première instance."@fr ;
+    skos:notation "R5" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat .
+
+skt:r-appel-infirme a skos:Concept ;
+    rdfs:label "Appel : jugement infirmé"@fr ;
+    skos:prefLabel "Appel : jugement infirmé"@fr ;
+    skos:definition "La cour annule ou réforme le jugement."@fr ;
+    skos:notation "R6" ;
+    skos:inScheme skt:Resultat ;
+    skos:topConceptOf skt:Resultat .
+
+skt:EffetProjet a skos:ConceptScheme ;
+    rdfs:label "Effet sur le projet d'antenne"@fr ;
+    skos:prefLabel "Effet sur le projet d'antenne"@fr ;
+    skos:definition "Ce que la décision change pour le projet, quel que soit le requérant."@fr ;
+    skos:notation "E" ;
+    skos:hasTopConcept skt:e-maintenu, skt:e-bloque, skt:e-debloque, skt:e-retarde, skt:e-indetermine .
+
+skt:e-maintenu a skos:Concept ;
+    rdfs:label "Projet maintenu"@fr ;
+    skos:prefLabel "Projet maintenu"@fr ;
+    skos:definition "L'autorisation du projet subsiste (recours rejeté, irrecevable ou retiré)."@fr ;
+    skos:notation "E1" ;
+    skos:inScheme skt:EffetProjet ;
+    skos:topConceptOf skt:EffetProjet .
+
+skt:e-bloque a skos:Concept ;
+    rdfs:label "Projet bloqué"@fr ;
+    skos:prefLabel "Projet bloqué"@fr ;
+    skos:definition "Autorisation annulée ou suspendue, ou refus de l'administration confirmé."@fr ;
+    skos:notation "E2" ;
+    skos:inScheme skt:EffetProjet ;
+    skos:topConceptOf skt:EffetProjet .
+
+skt:e-debloque a skos:Concept ;
+    rdfs:label "Projet débloqué"@fr ;
+    skos:prefLabel "Projet débloqué"@fr ;
+    skos:definition "Le refus ou le retrait de l'administration est annulé : l'opérateur peut poser le pylône."@fr ;
+    skos:notation "E3" ;
+    skos:inScheme skt:EffetProjet ;
+    skos:topConceptOf skt:EffetProjet .
+
+skt:e-retarde a skos:Concept ;
+    rdfs:label "Projet retardé ou à régulariser"@fr ;
+    skos:prefLabel "Projet retardé ou à régulariser"@fr ;
+    skos:definition "Annulation partielle, régularisation ou sursis à statuer."@fr ;
+    skos:notation "E4" ;
+    skos:inScheme skt:EffetProjet ;
+    skos:topConceptOf skt:EffetProjet .
+
+skt:e-indetermine a skos:Concept ;
+    rdfs:label "Effet indéterminé"@fr ;
+    skos:prefLabel "Effet indéterminé"@fr ;
+    skos:definition "Décision dont l'effet n'a pas pu être classé automatiquement."@fr ;
+    skos:notation "E5" ;
+    skos:inScheme skt:EffetProjet ;
+    skos:topConceptOf skt:EffetProjet .
+
+skt:ActeAttaque a skos:ConceptScheme ;
+    rdfs:label "Acte attaqué ou en cause"@fr ;
+    skos:prefLabel "Acte attaqué ou en cause"@fr ;
+    skos:definition "La décision administrative dont la légalité est discutée."@fr ;
+    skos:notation "A" ;
+    skos:hasTopConcept skt:a-non-opposition, skt:a-opposition, skt:a-retrait, skt:a-pc, skt:a-certificat, skt:a-autre, skt:a-indetermine .
+
+skt:a-non-opposition a skos:Concept ;
+    rdfs:label "Non-opposition à déclaration préalable"@fr ;
+    skos:prefLabel "Non-opposition à déclaration préalable"@fr ;
+    skos:definition "Décision expresse ou tacite du maire de ne pas s'opposer aux travaux (L.424-1, R.424-1)."@fr ;
+    skos:notation "A1" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-opposition a skos:Concept ;
+    rdfs:label "Opposition à déclaration préalable"@fr ;
+    skos:prefLabel "Opposition à déclaration préalable"@fr ;
+    skos:definition "Arrêté du maire s'opposant aux travaux. L'opérateur le conteste le plus souvent."@fr ;
+    skos:notation "A2" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-retrait a skos:Concept ;
+    rdfs:label "Retrait d'une non-opposition"@fr ;
+    skos:prefLabel "Retrait d'une non-opposition"@fr ;
+    skos:definition "Retrait par le maire d'une décision favorable (L.424-5)."@fr ;
+    skos:notation "A3" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-pc a skos:Concept ;
+    rdfs:label "Permis de construire"@fr ;
+    skos:prefLabel "Permis de construire"@fr ;
+    skos:definition "Permis accordé, refusé ou tacite."@fr ;
+    skos:notation "A4" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-certificat a skos:Concept ;
+    rdfs:label "Certificat de non-opposition"@fr ;
+    skos:prefLabel "Certificat de non-opposition"@fr ;
+    skos:definition "Certificat délivré ou refusé après décision tacite."@fr ;
+    skos:notation "A5" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-autre a skos:Concept ;
+    rdfs:label "Autre acte"@fr ;
+    skos:prefLabel "Autre acte"@fr ;
+    skos:definition "Raccordement, arrêté de police, autre."@fr ;
+    skos:notation "A6" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:a-indetermine a skos:Concept ;
+    rdfs:label "Acte non déterminé"@fr ;
+    skos:prefLabel "Acte non déterminé"@fr ;
+    skos:definition "L'acte attaqué n'a pas pu être classé automatiquement."@fr ;
+    skos:notation "A7" ;
+    skos:inScheme skt:ActeAttaque ;
+    skos:topConceptOf skt:ActeAttaque .
+
+skt:Procedure a skos:ConceptScheme ;
+    rdfs:label "Procédure et mécanismes procéduraux"@fr ;
+    skos:prefLabel "Procédure et mécanismes procéduraux"@fr ;
+    skos:definition "Voie de droit utilisée et outils que le code de l'urbanisme ou de justice administrative met à disposition du juge."@fr ;
+    skos:notation "P" ;
+    skos:hasTopConcept skt:p-voie, skt:p-mecanisme .
+
+skt:p-voie a skos:Concept ;
+    rdfs:label "Voie de droit"@fr ;
+    skos:prefLabel "Voie de droit"@fr ;
+    skos:definition "Nature du recours devant le juge."@fr ;
+    skos:notation "P1" ;
+    skos:inScheme skt:Procedure ;
+    skos:topConceptOf skt:Procedure ;
+    skos:narrower skt:p-fond, skt:p-refere, skt:p-appel, skt:p-cassation, skt:p-avis .
+
+skt:p-fond a skos:Concept ;
+    rdfs:label "Recours au fond (excès de pouvoir)"@fr ;
+    skos:prefLabel "Recours au fond (excès de pouvoir)"@fr ;
+    skos:definition "Demande d'annulation de l'acte."@fr ;
+    skos:notation "P1.1" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
+skt:p-refere a skos:Concept ;
+    rdfs:label "Référé-suspension"@fr ;
+    skos:prefLabel "Référé-suspension"@fr ;
+    skos:definition "Suspension d'urgence (L.521-1 CJA)."@fr ;
+    skos:notation "P1.2" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
+skt:p-appel a skos:Concept ;
+    rdfs:label "Appel"@fr ;
+    skos:prefLabel "Appel"@fr ;
+    skos:definition "Recours devant une cour administrative d'appel."@fr ;
+    skos:notation "P1.3" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
+skt:p-cassation a skos:Concept ;
+    rdfs:label "Cassation"@fr ;
+    skos:prefLabel "Cassation"@fr ;
+    skos:definition "Recours devant le Conseil d'État."@fr ;
+    skos:notation "P1.4" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
+skt:p-avis a skos:Concept ;
+    rdfs:label "Avis contentieux"@fr ;
+    skos:prefLabel "Avis contentieux"@fr ;
+    skos:definition "Avis du Conseil d'État sur une question de droit nouvelle (L.113-1 CJA)."@fr ;
+    skos:notation "P1.5" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
+skt:p-mecanisme a skos:Concept ;
+    rdfs:label "Mécanismes procéduraux"@fr ;
+    skos:prefLabel "Mécanismes procéduraux"@fr ;
+    skos:definition "Outils que le juge peut utiliser sur l'acte attaqué."@fr ;
+    skos:notation "P2" ;
+    skos:inScheme skt:Procedure ;
+    skos:topConceptOf skt:Procedure ;
+    skos:narrower skt:p-regularisation, skt:p-urgence-presumee, skt:p-recours-abusif, skt:p-frais, skt:p-cristallisation .
+
+skt:p-regularisation a skos:Concept ;
+    rdfs:label "Régularisation en cours d'instance"@fr ;
+    skos:prefLabel "Régularisation en cours d'instance"@fr ;
+    skos:definition "L.600-5 (annulation partielle) et L.600-5-1 (sursis à statuer pour régulariser)."@fr ;
+    skos:notation "P2.1" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
+skt:p-urgence-presumee a skos:Concept ;
+    rdfs:label "Urgence présumée contre un permis (L.600-3)"@fr ;
+    skos:prefLabel "Urgence présumée contre un permis (L.600-3)"@fr ;
+    skos:definition "Le référé-suspension contre une autorisation d'urbanisme bénéficie d'une urgence présumée si le requérant l'introduit dans le délai prévu."@fr ;
+    skos:notation "P2.2" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
+skt:p-recours-abusif a skos:Concept ;
+    rdfs:label "Recours abusif et dommages-intérêts (L.600-7)"@fr ;
+    skos:prefLabel "Recours abusif et dommages-intérêts (L.600-7)"@fr ;
+    skos:definition "Le bénéficiaire peut demander des dommages-intérêts si le recours est abusif."@fr ;
+    skos:notation "P2.3" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
+skt:p-frais a skos:Concept ;
+    rdfs:label "Frais irrépétibles (L.761-1 CJA)"@fr ;
+    skos:prefLabel "Frais irrépétibles (L.761-1 CJA)"@fr ;
+    skos:definition "Somme mise à la charge de la partie perdante pour les frais d'avocat."@fr ;
+    skos:notation "P2.4" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
+skt:p-cristallisation a skos:Concept ;
+    rdfs:label "Cristallisation des moyens (R.600-5)"@fr ;
+    skos:prefLabel "Cristallisation des moyens (R.600-5)"@fr ;
+    skos:definition "Après un délai, plus de moyen nouveau en première instance."@fr ;
+    skos:notation "P2.5" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
+skt:Requerant a skos:ConceptScheme ;
+    rdfs:label "Qui saisit le juge"@fr ;
+    skos:prefLabel "Qui saisit le juge"@fr ;
+    skos:definition "Nature du demandeur."@fr ;
+    skos:notation "Q" ;
+    skos:hasTopConcept skt:q-riverains, skt:q-association, skt:q-commune, skt:q-operateur, skt:q-indetermine .
+
+skt:q-riverains a skos:Concept ;
+    rdfs:label "Particuliers riverains"@fr ;
+    skos:prefLabel "Particuliers riverains"@fr ;
+    skos:definition "Habitants ou propriétaires voisins, dont les noms sont pseudonymisés."@fr ;
+    skos:notation "Q1" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:q-association a skos:Concept ;
+    rdfs:label "Association ou collectif"@fr ;
+    skos:prefLabel "Association ou collectif"@fr ;
+    skos:definition "Personne morale. Le nom est publié dans la décision."@fr ;
+    skos:notation "Q2" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant ;
+    skos:narrower skt:q-asso-environnement, skt:q-asso-patrimoine, skt:q-collectif .
+
+skt:q-asso-environnement a skos:Concept ;
+    rdfs:label "Association d'environnement ou de cadre de vie"@fr ;
+    skos:prefLabel "Association d'environnement ou de cadre de vie"@fr ;
+    skos:definition "Défense de la nature, du cadre de vie, de la santé."@fr ;
+    skos:notation "Q2.1" ;
+    skos:inScheme skt:Requerant ;
+    skos:broader skt:q-association .
+
+skt:q-asso-patrimoine a skos:Concept ;
+    rdfs:label "Association de patrimoine"@fr ;
+    skos:prefLabel "Association de patrimoine"@fr ;
+    skos:definition "Défense des sites et monuments."@fr ;
+    skos:notation "Q2.2" ;
+    skos:inScheme skt:Requerant ;
+    skos:broader skt:q-association .
+
+skt:q-collectif a skos:Concept ;
+    rdfs:label "Collectif ou association de riverains"@fr ;
+    skos:prefLabel "Collectif ou association de riverains"@fr ;
+    skos:definition "Groupement créé pour le projet."@fr ;
+    skos:notation "Q2.3" ;
+    skos:inScheme skt:Requerant ;
+    skos:broader skt:q-association .
+
+skt:q-commune a skos:Concept ;
+    rdfs:label "Commune ou collectivité"@fr ;
+    skos:prefLabel "Commune ou collectivité"@fr ;
+    skos:definition "Maire, commune, établissement public."@fr ;
+    skos:notation "Q3" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:q-operateur a skos:Concept ;
+    rdfs:label "Opérateur ou société de pylônes"@fr ;
+    skos:prefLabel "Opérateur ou société de pylônes"@fr ;
+    skos:definition "Bénéficiaire du projet, qui conteste l'opposition ou le retrait."@fr ;
+    skos:notation "Q4" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:q-indetermine a skos:Concept ;
+    rdfs:label "Requérant non déterminé"@fr ;
+    skos:prefLabel "Requérant non déterminé"@fr ;
+    skos:definition "Non classé automatiquement."@fr ;
+    skos:notation "Q5" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:ContexteSite a skos:ConceptScheme ;
+    rdfs:label "Contexte du site et de l'ouvrage"@fr ;
+    skos:prefLabel "Contexte du site et de l'ouvrage"@fr ;
+    skos:definition "Où est le projet et de quoi s'agit-il. Sert à retrouver les cas qui ressemblent à Kersalous."@fr ;
+    skos:notation "C" ;
+    skos:hasTopConcept skt:c-territoire, skt:c-ouvrage, skt:c-habitations .
+
+skt:c-territoire a skos:Concept ;
+    rdfs:label "Territoire"@fr ;
+    skos:prefLabel "Territoire"@fr ;
+    skos:definition "Nature du territoire d'implantation."@fr ;
+    skos:notation "C1" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:topConceptOf skt:ContexteSite ;
+    skos:narrower skt:c-littoral, skt:c-montagne, skt:c-rural, skt:c-urbain, skt:c-abords-mh, skt:c-site-protege .
+
+skt:c-littoral a skos:Concept ;
+    rdfs:label "Commune soumise à la loi Littoral"@fr ;
+    skos:prefLabel "Commune soumise à la loi Littoral"@fr ;
+    skos:definition "Détectée par mention de la loi Littoral dans la décision."@fr ;
+    skos:notation "C1.1" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-montagne a skos:Concept ;
+    rdfs:label "Zone de montagne"@fr ;
+    skos:prefLabel "Zone de montagne"@fr ;
+    skos:definition "Loi Montagne."@fr ;
+    skos:notation "C1.2" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-rural a skos:Concept ;
+    rdfs:label "Zone agricole ou naturelle"@fr ;
+    skos:prefLabel "Zone agricole ou naturelle"@fr ;
+    skos:definition "Terrain classé en zone A ou N."@fr ;
+    skos:notation "C1.3" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-urbain a skos:Concept ;
+    rdfs:label "Zone urbaine"@fr ;
+    skos:prefLabel "Zone urbaine"@fr ;
+    skos:definition "Terrain en zone U."@fr ;
+    skos:notation "C1.4" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-abords-mh a skos:Concept ;
+    rdfs:label "Abords d'un monument historique"@fr ;
+    skos:prefLabel "Abords d'un monument historique"@fr ;
+    skos:definition "Dans les abords d'un monument."@fr ;
+    skos:notation "C1.5" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-site-protege a skos:Concept ;
+    rdfs:label "Site classé, inscrit ou patrimonial"@fr ;
+    skos:prefLabel "Site classé, inscrit ou patrimonial"@fr ;
+    skos:definition "Site protégé."@fr ;
+    skos:notation "C1.6" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-territoire .
+
+skt:c-ouvrage a skos:Concept ;
+    rdfs:label "Type d'ouvrage"@fr ;
+    skos:prefLabel "Type d'ouvrage"@fr ;
+    skos:definition "Nature et taille du support."@fr ;
+    skos:notation "C2" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:topConceptOf skt:ContexteSite ;
+    skos:narrower skt:c-pylone, skt:c-rehausse, skt:c-toiture, skt:c-camoufle .
+
+skt:c-pylone a skos:Concept ;
+    rdfs:label "Pylône hors toiture"@fr ;
+    skos:prefLabel "Pylône hors toiture"@fr ;
+    skos:definition "Support au sol : treillis, mât tubulaire, poteau."@fr ;
+    skos:notation "C2.1" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-ouvrage ;
+    skos:narrower skt:c-pylone-treillis .
+
+skt:c-pylone-treillis a skos:Concept ;
+    rdfs:label "Pylône treillis"@fr ;
+    skos:prefLabel "Pylône treillis"@fr ;
+    skos:definition "Structure en treillis (cas de Kersalous)."@fr ;
+    skos:notation "C2.1.1" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-pylone .
+
+skt:c-rehausse a skos:Concept ;
+    rdfs:label "Rehausse d'un pylône existant"@fr ;
+    skos:prefLabel "Rehausse d'un pylône existant"@fr ;
+    skos:definition "Augmentation de la hauteur d'un support déjà installé."@fr ;
+    skos:notation "C2.2" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-ouvrage .
+
+skt:c-toiture a skos:Concept ;
+    rdfs:label "Antenne sur toiture d'immeuble"@fr ;
+    skos:prefLabel "Antenne sur toiture d'immeuble"@fr ;
+    skos:definition "Faux positif fréquent du filtre pour notre cas."@fr ;
+    skos:notation "C2.3" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-ouvrage .
+
+skt:c-camoufle a skos:Concept ;
+    rdfs:label "Support camouflé"@fr ;
+    skos:prefLabel "Support camouflé"@fr ;
+    skos:definition "Faux arbre, cheminée, château d'eau."@fr ;
+    skos:notation "C2.4" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-ouvrage .
+
+skt:c-habitations a skos:Concept ;
+    rdfs:label "Distance aux habitations"@fr ;
+    skos:prefLabel "Distance aux habitations"@fr ;
+    skos:definition "Distance entre le support et la maison la plus proche, repérée dans le texte quand elle y figure."@fr ;
+    skos:notation "C3" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:topConceptOf skt:ContexteSite ;
+    skos:narrower skt:c-hab-50, skt:c-hab-100, skt:c-hab-300, skt:c-hab-loin .
+
+skt:c-hab-50 a skos:Concept ;
+    rdfs:label "Moins de 50 m"@fr ;
+    skos:prefLabel "Moins de 50 m"@fr ;
+    skos:definition "Habitation à moins de 50 m (Kersalous : 23 m)."@fr ;
+    skos:notation "C3.1" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-habitations .
+
+skt:c-hab-100 a skos:Concept ;
+    rdfs:label "De 50 à 100 m"@fr ;
+    skos:prefLabel "De 50 à 100 m"@fr ;
+    skos:definition "Habitation entre 50 et 100 m."@fr ;
+    skos:notation "C3.2" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-habitations .
+
+skt:c-hab-300 a skos:Concept ;
+    rdfs:label "De 100 à 300 m"@fr ;
+    skos:prefLabel "De 100 à 300 m"@fr ;
+    skos:definition "Habitation entre 100 et 300 m."@fr ;
+    skos:notation "C3.3" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-habitations .
+
+skt:c-hab-loin a skos:Concept ;
+    rdfs:label "Plus de 300 m"@fr ;
+    skos:prefLabel "Plus de 300 m"@fr ;
+    skos:definition "Habitation au-delà de 300 m."@fr ;
+    skos:notation "C3.4" ;
+    skos:inScheme skt:ContexteSite ;
+    skos:broader skt:c-habitations .
+
+skt:Niveau a skos:ConceptScheme ;
+    rdfs:label "Niveau de juridiction"@fr ;
+    skos:prefLabel "Niveau de juridiction"@fr ;
+    skos:definition "Premier ressort, appel, cassation."@fr ;
+    skos:notation "J" ;
+    skos:hasTopConcept skt:j-premier, skt:j-appel, skt:j-cassation .
+
+skt:j-premier a skos:Concept ;
+    rdfs:label "Premier ressort (tribunal administratif)"@fr ;
+    skos:prefLabel "Premier ressort (tribunal administratif)"@fr ;
+    skos:definition "Jugements et ordonnances des TA."@fr ;
+    skos:notation "J1" ;
+    skos:inScheme skt:Niveau ;
+    skos:topConceptOf skt:Niveau .
+
+skt:j-appel a skos:Concept ;
+    rdfs:label "Appel (cour administrative d'appel)"@fr ;
+    skos:prefLabel "Appel (cour administrative d'appel)"@fr ;
+    skos:definition "Arrêts des cinq cours (Nantes, Douai, Bordeaux, Lyon, Marseille, Paris, Toulouse, Versailles, Nancy)."@fr ;
+    skos:notation "J2" ;
+    skos:inScheme skt:Niveau ;
+    skos:topConceptOf skt:Niveau .
+
+skt:j-cassation a skos:Concept ;
+    rdfs:label "Conseil d'État"@fr ;
+    skos:prefLabel "Conseil d'État"@fr ;
+    skos:definition "Cassation, avis et décisions en premier et dernier ressort."@fr ;
+    skos:notation "J3" ;
+    skos:inScheme skt:Niveau ;
+    skos:topConceptOf skt:Niveau .
+
+skt:Proximite a skos:ConceptScheme ;
+    rdfs:label "Proximité avec le cas de Kersalous"@fr ;
+    skos:prefLabel "Proximité avec le cas de Kersalous"@fr ;
+    skos:definition "Ressemblance de la décision avec le dossier. Calculée par score (voir proximite.py) ; discutable décision par décision."@fr ;
+    skos:notation "X" ;
+    skos:hasTopConcept skt:x-tres-proche, skt:x-proche, skt:x-eloigne, skt:x-non-pertinente .
+
+skt:x-tres-proche a skos:Concept ;
+    rdfs:label "Très proche de Kersalous"@fr ;
+    skos:prefLabel "Très proche de Kersalous"@fr ;
+    skos:definition "Score de 75 ou plus."@fr ;
+    skos:notation "X1" ;
+    skos:inScheme skt:Proximite ;
+    skos:topConceptOf skt:Proximite .
+
+skt:x-proche a skos:Concept ;
+    rdfs:label "Proche"@fr ;
+    skos:prefLabel "Proche"@fr ;
+    skos:definition "Score de 50 à 74."@fr ;
+    skos:notation "X2" ;
+    skos:inScheme skt:Proximite ;
+    skos:topConceptOf skt:Proximite .
+
+skt:x-eloigne a skos:Concept ;
+    rdfs:label "Éloignée"@fr ;
+    skos:prefLabel "Éloignée"@fr ;
+    skos:definition "Score de 25 à 49."@fr ;
+    skos:notation "X3" ;
+    skos:inScheme skt:Proximite ;
+    skos:topConceptOf skt:Proximite .
+
+skt:x-non-pertinente a skos:Concept ;
+    rdfs:label "Non pertinente"@fr ;
+    skos:prefLabel "Non pertinente"@fr ;
+    skos:definition "Score inférieur à 25 : toiture, faux positif, décision sans lien avec un pylône rural."@fr ;
+    skos:notation "X4" ;
+    skos:inScheme skt:Proximite ;
+    skos:topConceptOf skt:Proximite .
+
+skt:Transferabilite a skos:ConceptScheme ;
+    rdfs:label "Transférabilité du motif décisif à Kersalous"@fr ;
+    skos:prefLabel "Transférabilité du motif décisif à Kersalous"@fr ;
+    skos:definition "Le motif qui a fait gagner ou perdre s'applique-t-il à notre cas ?"@fr ;
+    skos:notation "T" ;
+    skos:hasTopConcept skt:t-transferable, skt:t-verifier, skt:t-non-transferable .
+
+skt:t-transferable a skos:Concept ;
+    rdfs:label "Transférable à Kersalous"@fr ;
+    skos:prefLabel "Transférable à Kersalous"@fr ;
+    skos:definition "Le motif décisif s'applique à la parcelle YX 26."@fr ;
+    skos:notation "T1" ;
+    skos:inScheme skt:Transferabilite ;
+    skos:topConceptOf skt:Transferabilite .
+
+skt:t-verifier a skos:Concept ;
+    rdfs:label "À vérifier pour Kersalous"@fr ;
+    skos:prefLabel "À vérifier pour Kersalous"@fr ;
+    skos:definition "Dépend d'un fait à établir sur le terrain ou dans le dossier."@fr ;
+    skos:notation "T2" ;
+    skos:inScheme skt:Transferabilite ;
+    skos:topConceptOf skt:Transferabilite .
+
+skt:t-non-transferable a skos:Concept ;
+    rdfs:label "Non transférable"@fr ;
+    skos:prefLabel "Non transférable"@fr ;
+    skos:definition "Motif propre à un contexte absent ici (loi Littoral, cyclones…)."@fr ;
+    skos:notation "T3" ;
+    skos:inScheme skt:Transferabilite ;
+    skos:topConceptOf skt:Transferabilite .
+
+skt:NiveauLecture a skos:ConceptScheme ;
+    rdfs:label "Niveau de lecture de la décision"@fr ;
+    skos:prefLabel "Niveau de lecture de la décision"@fr ;
+    skos:definition "Ce qu'on peut affirmer d'une décision : repérage automatique, lecture humaine, vérification à la source."@fr ;
+    skos:notation "L" ;
+    skos:hasTopConcept skt:l-auto, skt:l-lu, skt:l-partiel, skt:l-verifie .
+
+skt:l-auto a skos:Concept ;
+    rdfs:label "Repérage automatique"@fr ;
+    skos:prefLabel "Repérage automatique"@fr ;
+    skos:definition "Classée par filtre et expressions régulières. Fiabilité limitée."@fr ;
+    skos:notation "L1" ;
+    skos:inScheme skt:NiveauLecture ;
+    skos:topConceptOf skt:NiveauLecture .
+
+skt:l-lu a skos:Concept ;
+    rdfs:label "Lue par un humain ou un assistant"@fr ;
+    skos:prefLabel "Lue par un humain ou un assistant"@fr ;
+    skos:definition "Motifs et dispositif lus ; moyens retenus et écartés renseignés."@fr ;
+    skos:notation "L2" ;
+    skos:inScheme skt:NiveauLecture ;
+    skos:topConceptOf skt:NiveauLecture .
+
+skt:l-partiel a skos:Concept ;
+    rdfs:label "Lue en partie (intertitres, motifs, dispositif)"@fr ;
+    skos:prefLabel "Lue en partie (intertitres, motifs, dispositif)"@fr ;
+    skos:definition "Intertitres des motifs, passages décisifs et dispositif lus ; le détail de chaque moyen n'a pas été relu."@fr ;
+    skos:notation "L3" ;
+    skos:inScheme skt:NiveauLecture ;
+    skos:topConceptOf skt:NiveauLecture .
+
+skt:l-verifie a skos:Concept ;
+    rdfs:label "Vérifiée à la source officielle"@fr ;
+    skos:prefLabel "Vérifiée à la source officielle"@fr ;
+    skos:definition "Texte comparé à Légifrance, ArianeWeb ou à la juridiction."@fr ;
+    skos:notation "L4" ;
+    skos:inScheme skt:NiveauLecture ;
+    skos:topConceptOf skt:NiveauLecture .
+
+# ═══════════════════════════════════════════════════════════════
+#  TERMES D'ONTOLOGIE POUR LES DÉCISIONS
+# ═══════════════════════════════════════════════════════════════
+ant:aPourConcept a owl:ObjectProperty ;
+    rdfs:label "est classée sous le concept"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range skos:Concept ;
+    note:note "Propriété mère de toutes les facettes : interroger celle-ci retrouve une décision par n'importe quel axe." .
+
+ant:moyenEvoque a owl:ObjectProperty ;
+    rdfs:label "moyen évoqué"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Moyen cité ou discuté dans la décision, repéré par expression régulière. Ne dit rien du sort du moyen. Concepts du schéma skt:Moyens."@fr .
+
+ant:moyenRetenu a owl:ObjectProperty ;
+    rdfs:label "moyen retenu"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Moyen que le juge a accueilli. Renseigné seulement pour les décisions lues. Concepts du schéma skt:Moyens."@fr .
+
+ant:moyenEcarte a owl:ObjectProperty ;
+    rdfs:label "moyen écarté"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Moyen que le juge a écarté (rejeté ou inopérant). Renseigné seulement pour les décisions lues. Concepts du schéma skt:Moyens."@fr .
+
+ant:resultat a owl:ObjectProperty ;
+    rdfs:label "résultat"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Dispositif de la décision. Concepts du schéma skt:Resultat."@fr .
+
+ant:effetProjet a owl:ObjectProperty ;
+    rdfs:label "effet sur le projet"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Conséquence pour le projet d'antenne. Concepts du schéma skt:EffetProjet."@fr .
+
+ant:acteAttaque a owl:ObjectProperty ;
+    rdfs:label "acte attaqué"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Décision administrative en cause. Concepts du schéma skt:ActeAttaque."@fr .
+
+ant:voieDeDroit a owl:ObjectProperty ;
+    rdfs:label "voie de droit"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Recours au fond, référé, appel, cassation, avis. Concepts du schéma skt:Procedure."@fr .
+
+ant:mecanismeProcedural a owl:ObjectProperty ;
+    rdfs:label "mécanisme procédural"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Outil procédural évoqué : régularisation, urgence présumée, frais, recours abusif. Concepts du schéma skt:Procedure."@fr .
+
+ant:typeRequerant a owl:ObjectProperty ;
+    rdfs:label "type de requérant"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Nature du demandeur. Concepts du schéma skt:Requerant."@fr .
+
+ant:contexteSite a owl:ObjectProperty ;
+    rdfs:label "contexte du site"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Territoire, ouvrage, distance aux habitations. Concepts du schéma skt:ContexteSite."@fr .
+
+ant:niveauJuridiction a owl:ObjectProperty ;
+    rdfs:label "niveau de juridiction"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Premier ressort, appel, cassation. Concepts du schéma skt:Niveau."@fr .
+
+ant:proximiteKersalous a owl:ObjectProperty ;
+    rdfs:label "proximité avec Kersalous"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Ressemblance calculée avec le dossier. Concepts du schéma skt:Proximite."@fr .
+
+ant:transferabilite a owl:ObjectProperty ;
+    rdfs:label "transférabilité à Kersalous"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Le motif décisif s'applique-t-il ici ? Renseigné pour les décisions lues. Concepts du schéma skt:Transferabilite."@fr .
+
+ant:niveauLecture a owl:ObjectProperty ;
+    rdfs:label "niveau de lecture"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Ce qui a été fait sur cette décision. Concepts du schéma skt:NiveauLecture."@fr .
+
+ant:moyenEcarteDeduit a owl:ObjectProperty ;
+    rdfs:label "moyen écarté (déduit du rejet)"@fr ;
+    rdfs:subPropertyOf ant:moyenEcarte ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Déduit automatiquement : la décision rejette entièrement la requête et ce moyen est discuté dans les motifs, donc écarté. Aucune lecture humaine ; les moyens évoqués dans les visas seulement ne sont pas inclus." .
+
+ant:scoreProximite a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "score de proximité avec Kersalous (0 à 100)"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range xsd:integer .
+
+ant:detailScore a owl:DatatypeProperty ;
+    rdfs:label "détail du calcul du score"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range xsd:string ;
+    note:note "Liste des critères qui ont fait monter ou baisser le score, pour pouvoir le contester." .
+
+ant:requerantNomme a owl:ObjectProperty ;
+    rdfs:label "association ou collectif requérant"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range ant:Association ;
+    note:note "Association ou collectif nommé dans le texte de la décision. Les particuliers sont pseudonymisés par la juridiction : ils ne figurent jamais ici." .
+
+ant:Avocat a owl:Class ;
+    rdfs:label "Avocat ou cabinet"@fr ;
+    rdfs:subClassOf ant:Organisation ;
+    note:note "Nom tel qu'il apparaît dans la décision. Ne dit rien de la compétence. Un nom de famille seul peut recouvrir plusieurs avocats homonymes." .
+
+ant:avocatRequerant a owl:ObjectProperty ;
+    rdfs:label "avocat du requérant"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range ant:Avocat .
+
+ant:avocatAdverse a owl:ObjectProperty ;
+    rdfs:label "avocat de la partie adverse"@fr ;
+    rdfs:domain ant:Jurisprudence ; rdfs:range ant:Avocat .
+
+ant:cheminLocal a owl:DatatypeProperty ;
+    rdfs:label "chemin du fichier dans le dépôt"@fr ; rdfs:range xsd:string .
+
+ant:empreinteSha256 a owl:DatatypeProperty ;
+    rdfs:label "empreinte SHA-256 du fichier"@fr ; rdfs:range xsd:string .
+
+ant:archiveOrigine a owl:DatatypeProperty ;
+    rdfs:label "archive mensuelle d'origine"@fr ; rdfs:range xsd:anyURI .
+
+ant:avocatOpenData a owl:DatatypeProperty ;
+    rdfs:label "avocat selon la métadonnée de l'open data"@fr ; rdfs:range xsd:string ;
+    note:note "Champ Avocat_Requerant de la juridiction, recopié tel quel. Souvent l'avocat de l'opérateur, pas celui des riverains : le côté n'est pas garanti." .

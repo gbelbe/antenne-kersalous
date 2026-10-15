@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="validation-document.xsd">
+<Donnees_Techniques>
+<Identification>DTA_2000677_20220929.xml</Identification>
+<Date_Mise_Jour>2025-03-20</Date_Mise_Jour>
+</Donnees_Techniques>
+<Dossier>
+<Code_Juridiction>TA06</Code_Juridiction>
+<Nom_Juridiction>Tribunal Administratif de Nice</Nom_Juridiction>
+<Numero_Dossier>2000677</Numero_Dossier>
+<Date_Lecture>2022-09-29</Date_Lecture>
+<Avocat_Requerant>EARTH AVOCATS</Avocat_Requerant>
+<Type_Decision>Décision</Type_Decision>
+<Type_Recours>Excès de pouvoir</Type_Recours>
+<Code_Publication>C</Code_Publication>
+<Solution>Rejet</Solution>
+</Dossier>
+<Audience>
+<Date_Audience>2022-09-08</Date_Audience>
+<Numero_Role>51297</Numero_Role>
+<Formation_Jugement>2ème Chambre</Formation_Jugement>
+</Audience>
+<Decision>
+<Texte_Integral><p>Vu la procédure suivante :</p>
+<p>Par une requête, enregistrée le 10 février 2020, la société anonyme (SA) Bouygues Telecom et la société par actions simplifiée (SAS) Cellnex France, représentées par Me Hamri du cabinet Earth Avocats, demandent au tribunal :</p>
+<p>1°) d'annuler l'arrêté du 13 août 2019 par lequel le maire de la commune de Nice s'est opposé à la réalisation des travaux objets de la déclaration n° DP 06088 19 S0780 déposée le 3 juillet 2019, ensemble la décision implicite de rejet de leur recours gracieux formé le 10 octobre 2019 ; </p>
+<p>2°) d'enjoindre au maire de la commune de Nice de procéder au réexamen de ladite déclaration préalable de travaux, dans un délai d'un mois à compter de la notification du jugement à intervenir ;</p>
+<p>3°) de mettre à la charge de la commune de Nice une somme de 5 000 euros au titre des dispositions de l'article L. 761-1 du code de justice administrative.</p>
+<p>Les sociétés soutiennent que :</p>
+<p>- la décision attaquée a été prise par une autorité incompétente ;</p>
+<p>- l'installation en cause ne méconnaît pas les dispositions de l'article UA 10 du règlement du plan local d'urbanisme (PLU) de la commune de Nice dès lors que les antennes de téléphonie mobile sont exclues du calcul de la règle de hauteur, que les armoires techniques sont autorisées en superstructure technique dans la limite de 3,50 mètres, hauteur respectée par le projet litigieux qui prévoit que les armoires techniques seront situées à seulement 2 mètres au-dessus de l'égout du toit, et que l'installation du garde-corps doit être regardée comme exclue de la règle de hauteur.</p>
+<p>Par un mémoire en défense, enregistré le 14 avril 2022, la commune de Nice conclut au rejet de la requête.</p>
+<p>Elle fait valoir que les moyens ne sont pas fondés.</p>
+<p>Vu les autres pièces du dossier. </p>
+<p>Vu :</p>
+<p>- le code de l'urbanisme ;</p>
+<p>- le code de justice administrative.</p>
+<p>Les parties ont été régulièrement averties du jour de l'audience.</p>
+<p>Ont été entendus au cours de l'audience publique du 8 septembre 2022 :</p>
+<p>- le rapport de Mme Le Guennec, rapporteure,</p>
+<p>- les conclusions de Mme Sorin, rapporteure publique ;</p>
+<p>- les observations de Me Cochet, substituant Me Hamri, représentant les sociétés requérantes ;</p>
+<p>- et les observations de Mme B, représentant la commune de Nice.</p>
+<p>Considérant ce qui suit : </p>
+<p>1. La société Cellnex France a déposé le 3 juillet 2019 une déclaration préalable n° DP 06088 19 S0780 en vue de l'installation d'une station relais de téléphonie mobile sur le toit d'un immeuble situé 10 rue Berlioz à Nice. Par un arrêté du 13 août 2019, le maire de la commune de Nice s'est opposé à cette déclaration préalable. Par un courrier reçu le 11 octobre 2019 par la commune de Nice, les sociétés Bouygues Telecom et Cellnex France ont formé un recours gracieux à l'encontre de cette décision, lequel a été implicitement rejeté. Par la présente requête, les sociétés Bouygues Telecom et Cellnex France demandent l'annulation de l'arrêté du 13 août 2019, ensemble la décision implicite rejetant leur recours gracieux.</p>
+<p>Sur les conclusions à fin d'annulation :</p>
+<p>2. En premier lieu, les sociétés requérantes soutiennent que la décision attaquée a été signée par une autorité incompétente. Toutefois, le signataire de la décision contestée,              M. C A, adjoint au maire, était titulaire, à la date de la décision en litige, d'une délégation de fonctions et de signature du maire de Nice, prise par l'arrêté municipal CAB n° 13 du 13 août 2018 régulièrement publié au recueil des actes administratifs de la commune de Nice du 8 octobre 2018 et transmis le 14 août 2018 à la préfecture des Alpes-Maritimes, à l'effet de signer notamment les actes relatifs aux autorisations d'urbanisme. Par suite, le moyen tiré de l'incompétence du signataire de l'acte attaqué manque en fait et doit être écarté.</p>
+<p>3. En second lieu, pour s'opposer à la déclaration préalable de travaux déposée par la société Cellnex, le maire de la commune de Nice a estimé le projet ne respectait pas les règles de hauteur fixées par les dispositions de l'article UA 10 du règlement du plan local d'urbanisme (ci-après, " PLU ") de la commune de Nice aux motifs que, d'une part, le projet prévoit " la création de plusieurs coffrets (pour le relais de téléphonie projeté) d'une hauteur de 4,10 mètres au-dessus de l'égout du toit au lieu de 3,50 mètres maximum autorisée en dépassement de hauteur au-dessus de l'égout du toit " et, d'autre part, que le projet prévoit " la création d'un garde-corps plein en fibre formant un pare-vue d'une hauteur de 1,30 mètres au-dessus de l'égout du toit du bâtiment alors que ces éléments de construction ne font pas partie des aménagements autorisés en dépassement de hauteur au-dessus de l'égout du toit ". </p>
+<p>4. Aux termes de l'article UA 10 du règlement du PLU de la commune de Nice, en vigueur à la date de la décision attaquée : " Hauteur maximale des constructions () / A : Dans les secteurs UAa () / 10.1 : Dans la " bande continue " : () / La hauteur relative des bâtiments et des constructions est limitée à 1,6 fois la largeur actuelle ou future de la voie () et à 21,50 m à l'égout du toit, 7 niveaux soit R+6 et 25 m au faîtage.  Le faîtage de la toiture ne devra pas dépasser une hauteur de 3,5 mètres mesurée à partir de l'égout principal du toit " et : " C : Dépassements de hauteur dans toute la zone : () / Les œuvres architecturales telles que monuments, clochers, non habitables ne sont pas soumises aux règles de hauteurs. Il en est de même pour : (.), - lorsqu'elles sont installées en toiture, les antennes ou coupoles émettrices/réceptrices, les antennes de téléphonie mobile, - les ouvrages techniques nécessaires au fonctionnement des services publics ou d'intérêt collectif, () -les armoires techniques des antennes de téléphonie mobile sont autorisées en superstructure technique au-dessus de l'égout du toit, dans la limite de 3,50 m et dans les conditions fixées en article 11, - Des travaux conservatoires ou d'équipements techniques de sécurité, y compris l'installation des ascenseurs ainsi que des travaux relatifs à la protection et à la mise en valeur, peuvent être autorisés sur la partie du bâtiment qui dépasse la hauteur admise ".</p>
+<p>5. Il résulte de ces dispositions que si les antennes-relais sont effectivement étrangères aux dispositions régissant la hauteur des constructions, les armoires techniques nécessaires à l'implantation d'un tel projet ne le sont en revanche pas et ne peuvent dès lors être installées en superstructure technique au-dessus de l'égout du toit que si leur hauteur ne dépasse pas 3,50 mètres au-dessus de l'égout du toit. </p>
+<p>6. En l'espèce, il ressort des pièces du dossier, et en particulier de la pièce intitulée " Déclaration préalable - Vue en élévation A - état projeté ", que les coffrets techniques des antennes de téléphonie mobile projetés sur la toiture terrasse de l'immeuble assiette du projet, qui doivent être assimilés aux armoires techniques eu égard aux similitudes existantes entre ces deux types d'installations et en l'absence d'élément de nature à établir qu'ils seraient distincts des dites armoires, s'élèvent à une hauteur de 4,10 mètres au-dessus de l'égout du toit. Dans ces conditions, le maire de la commune de Nice pouvait, sans commettre d'erreur de droit, s'opposer à la déclaration préalable de travaux en litige au motif du dépassement par les coffrets techniques de la hauteur maximale autorisée par les dispositions de l'article UA 10 du règlement du PLU de la commune de Nice.</p>
+<p>7. Par ailleurs, il résulte de l'instruction que le maire de Nice aurait pris la même décision s'il s'était uniquement fondé sur ce motif. Par suite, à supposer même que l'autre motif retenu dans l'arrêté attaqué, tiré de la méconnaissance des dispositions de l'article UA 10 du règlement du PLU en raison de la création d'un garde-corps plein en fibre formant un pare-vue d'une hauteur de 1,30 mètres au-dessus de l'égout de toit du bâtiment, soit entaché d'illégalité, cette circonstance est sans incidence sur la légalité de la décision attaquée.</p>
+<p>8. Il résulte de tout ce qui précède que les sociétés Bouygues Telecom et Cellnex France ne sont pas fondées à demander l'annulation de la décision litigieuse, ensemble la décision implicite de rejet de leur recours gracieux formé reçu le 11 octobre 2019.</p>
+<p>Sur les conclusions à fin d'injonction :</p>
+<p>9. La présente décision, qui rejette les conclusions aux fins d'annulation, n'implique aucune mesure d'exécution. Par suite, les conclusions aux fins d'injonction présentées par les sociétés requérantes ne peuvent qu'être rejetées. </p>
+<p>Sur les frais liés au litige :</p>
+<p>10. Aux termes de l'article L. 761-1 du code de justice administrative : " Dans toutes les instances, le juge condamne la partie tenue aux dépens ou, à défaut, la partie perdante, à payer à l'autre partie la somme qu'il détermine, au titre des frais exposés et non compris dans les dépens. Les parties peuvent produire les justificatifs des sommes qu'elles demandent et le juge tient compte de l'équité ou de la situation économique de la partie condamnée. Il peut, même d'office, pour des raisons tirées des mêmes considérations, dire qu'il n'y a pas lieu à cette condamnation ".</p>
+<p>11. Les dispositions de l'article L. 761-1 du code de justice administrative font obstacle à ce que soit mise à la charge de la commune de Nice, qui n'est pas la partie perdante dans la présente instance, la somme demandée par les sociétés requérantes sur le fondement de ces dispositions.</p>
+<p>D E C I D E :</p>
+<p>Article 1er : La requête des sociétés Bouygues Telecom et Cellnex France est rejetée.</p>
+<p>Article 2 : La présente décision sera notifiée aux sociétés Bouygues Telecom et Cellnex France et à la commune de Nice.</p>
+<p>Délibéré après l'audience du 8 septembre 2022, à laquelle siégeaient :</p>
+<p>M. Silvestre-Toussaint-Fortesa, président, </p>
+<p>Mme Chevalier, conseillère,</p>
+<p>Mme Le Guennec, conseillère, </p>
+<p>Assistés de Mme Martin, greffière.</p>
+<p>Décision rendue publique par mise à disposition au greffe, le 29 septembre 2022.</p>
+<p>La rapporteure,</p>
+<p>signé</p>
+<p>B. Le Guennec</p>
+<p>Le président, </p>
+<p>signé</p>
+<p>F. Silvestre-Toussaint-Fortesa       </p>
+<p>La greffière,</p>
+<p>signé</p>
+<p>C. Martin</p>
+<p>La République mande et ordonne au préfet des Alpes-Maritimes en ce qui le concerne</p>
+<p>ou à tous commissaires de justice à ce requis en ce qui concerne les voies de droit commun,</p>
+<p>contre les parties privées, de pourvoir à l'exécution de la présente décision.</p>
+<p>Pour expédition conforme,</p>
+<p>Le greffier en chef,</p>
+<p>Ou par délégation, le greffier,</p>
+</Texte_Integral>
+</Decision>
+</Document>
