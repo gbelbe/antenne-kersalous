@@ -48,8 +48,9 @@ jobs:
 
       - uses: astral-sh/setup-uv@v5
 
-      - name: Install ster (includes semanticlint)
-        run: uv tool install ster
+      # Le paquet « ster » publié sur PyPI n'installe plus semanticlint : on l'installe directement.
+      - name: Install semanticlint
+        run: uv tool install semanticlint==0.6.0
 
       - name: Run semanticlint
         run: semanticlint check . --fail-on error

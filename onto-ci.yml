@@ -28,3 +28,8 @@
 #   min_property_label_coverage: 1.0 # QUA005 — fraction of OWL properties with rdfs:label
 #   languages:                       # QUA003 — required language tags on prefLabels
 #     - en
+
+# RDF007 : les opérateurs mobiles (dos:operateur-*, dos:bouygues-telecom) sont volontairement à la fois
+# des individus (ant:OperateurMobile) et des concepts SKOS (schéma skt:Reseau), pour que la carte filtre dessus.
+ignore:
+  - RDF007
