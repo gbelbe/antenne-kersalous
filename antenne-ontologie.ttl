@@ -857,3 +857,9 @@ ant:nombreSupportsTotal a owl:DatatypeProperty ;
     rdfs:label "nombre de supports (dénominateur)"@fr ;
     rdfs:domain ant:Mesure ;
     rdfs:range xsd:integer .
+
+ant:identifiantSiteOperateur a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "identifiant de site chez l'opérateur"@fr ;
+    rdfs:domain ant:ProjetAntenne, ant:SupportAntenne ;
+    rdfs:range xsd:string ;
+    note:note "Code interne de l'opérateur (ex. T18D84 pour Bouygues Telecom). Distinct du numéro de dossier d'urbanisme et de l'identifiant ANFR, qui n'existe qu'après déclaration du support." .

@@ -101,6 +101,33 @@ dos:maison-3 a owl:NamedIndividual, ant:Batiment ;
     geo:asWKT "POINT(-4.27605 47.87432)"^^geo:wktLiteral .
 # ── Mesures ────────────────────────────────────────────────────
 
+dos:m-hauteur-sommitale a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Hauteur sommitale du pylône : 32,65 m (30 m annoncés)"@fr ;
+    ant:valeur 32.65 ; ant:unite "m" ; ant:methode "Lecture de la cote « Ht sommitale » sur l'élévation, p. 13 du dossier d'information de l'opérateur. Altitude 58,25 m NGF pour un terrain à 26 m." ;
+    ant:porteSurObjet dos:projet-pylone ; prov:wasDerivedFrom src:dim-bouygues ; prov:wasGeneratedBy src:act-lecture-pdf ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
+    note:note "Chiffre de l'opérateur. L'avis de dépôt et le panneau disent 30 m." .
+
+dos:m-massif-beton a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Massif béton du pylône : 29,16 m²"@fr ;
+    ant:valeur 29.16 ; ant:unite "m²" ; ant:methode "5,40 m × 5,40 m, cotes de l'élévation et du plan, p. 12-13 du dossier d'information." ;
+    ant:porteSurObjet dos:projet-pylone ; prov:wasDerivedFrom src:dim-bouygues ; prov:wasGeneratedBy src:act-lecture-pdf ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
+    note:note "À rapprocher du seuil de 20 m² (R. 421-9) ; la prise en compte d'une fondation est à vérifier." .
+
+dos:m-dalle-technique a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Dalle des équipements techniques au sol : 2 m²"@fr ;
+    ant:valeur 2 ; ant:unite "m²" ; ant:methode "2,00 m × 1,00 m, cotes du plan et de l'élévation, p. 12-13 du dossier d'information." ;
+    ant:porteSurObjet dos:projet-pylone ; prov:wasDerivedFrom src:dim-bouygues ; prov:wasGeneratedBy src:act-lecture-pdf ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-15T00:00:00"^^xsd:dateTime .
+
+dos:m-position-operateur a owl:NamedIndividual, ant:Mesure ;
+    rdfs:label "Position donnée par l'opérateur : dans la parcelle YX 26, à 4 m du bord"@fr ;
+    ant:valeur 4.4 ; ant:unite "m" ; ant:methode "Coordonnées Lambert II étendu du dossier d'information (X 106 077, Y 2 340 312, Z 26 m NGF) converties en WGS84 par un calcul maison (formules IGN, translation NTF-WGS84 approchée, quelques mètres d'incertitude), puis distance au bord du polygone de la parcelle YX 26. Point à 64 m du centre de la parcelle utilisé pour la carte, à l'angle côté route." ;
+    ant:porteSurObjet dos:parcelle-yx26 ; prov:wasDerivedFrom src:dim-bouygues, src:apicarto-cadastre ; prov:wasGeneratedBy src:act-lecture-pdf ;
+    prov:wasAttributedTo src:claude ; prov:generatedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
+    note:note "Le plan cadastral du dossier (p. 9) place aussi le pylône à l'angle de la parcelle 26, au bord du chemin. La carte conserve le centre de la parcelle ; un pylône à 4 m du bord rapproche son pied des habitations voisines par rapport aux distances mesurées depuis le bord de parcelle (23 m pour la première maison)." .
+
 dos:m-dist-maison1 a owl:NamedIndividual, ant:Mesure ;
     rdfs:label "Distance parcelle → habitation 1 : 23 m"@fr ;
     ant:valeur 23 ; ant:unite "m" ; ant:methode "IGN BD TOPO, distance au bord de parcelle" ;
@@ -146,14 +173,20 @@ dos:projet-pylone a owl:NamedIndividual, ant:ProjetAntenne ;
     rdfs:label "Relais radioélectrique de Kersalous"@fr ;
     ant:implanteSur dos:parcelle-yx26 ;
     geo:asWKT "POINT(-4.274491 47.874985)"^^geo:wktLiteral ;
-    ant:comprendOuvrage dos:ouvrage-pylone, dos:ouvrage-zone-technique, dos:ouvrage-cloture .
+    ant:comprendOuvrage dos:ouvrage-pylone, dos:ouvrage-zone-technique, dos:ouvrage-cloture, dos:ouvrage-massif-beton .
 
 dos:ouvrage-pylone a owl:NamedIndividual, ant:Ouvrage ;
-    rdfs:label "Pylône treillis 30 m"@fr ; ant:hauteur 30 .
+    rdfs:label "Pylône treillis 30 m"@fr ; ant:hauteur 30 ;
+    note:note "Hauteurs lues sur l'élévation du dossier d'information (p. 13) : pylône 30,25 m ; hauteur sommitale **32,65 m** ; antennes 4G/5G à 28,60 m ; faisceau hertzien à 30,50 m. L'avis de dépôt et le panneau annoncent 30 m : l'écart de 2,65 m tient aux équipements en tête. Altitude du terrain : 26 m NGF." .
 
 dos:ouvrage-zone-technique a owl:NamedIndividual, ant:Ouvrage ;
-    rdfs:label "Zone technique sur dalle béton"@fr ;
-    note:note "**Emprise au sol inconnue** — case laissée vide sur l'avis de dépôt. C'est la donnée la plus importante du dossier : au-delà de 20 m², un permis de construire est obligatoire et la DP est illégale." .
+    rdfs:label "Zone technique sur dalle béton"@fr ; ant:empriseAuSol 2 ;
+    note:note "Emprise laissée vide sur l'avis de dépôt. **Le dossier d'information de l'opérateur (p. 12-13) donne une dalle de 2,00 m × 1,00 m, soit 2 m²** pour les équipements au sol (« 15 équipements techniques » repérés en tête de pylône). Chiffre de l'opérateur, non confirmé par le plan de masse de la DP : le dossier de la DP (DP1 à DP8) reste la pièce à obtenir. La clôture n'est pas citée dans le dossier d'information." .
+
+dos:ouvrage-massif-beton a owl:NamedIndividual, ant:Ouvrage ;
+    rdfs:label "Massif béton du pylône 5,40 m × 5,40 m"@fr ; ant:empriseAuSol 29.16 ;
+    prov:wasDerivedFrom src:dim-bouygues ;
+    note:note "Fondation du pylône : 5,40 × 5,40 = **29,16 m²**, soit plus que le seuil de 20 m². Qu'elle compte ou non comme emprise au sol dépend de la lecture du seuil (fondation enterrée ou non, avis du Conseil d'État du 21 mars 2024 à lire : dos:act-lire-avis-ce-2024). Non repris dans la liste des ouvrages de la DP : à vérifier sur le plan de masse." .
 
 dos:ouvrage-cloture a owl:NamedIndividual, ant:Ouvrage ;
     rdfs:label "Clôture grillagée RAL 6005, 2 m"@fr ; ant:hauteur 2 .
@@ -184,6 +217,18 @@ dos:phoenix-tower-international a owl:NamedIndividual, ant:Entreprise ;
 dos:bouygues-telecom a owl:NamedIndividual, ant:Entreprise ;
     rdfs:label "Bouygues Telecom"@fr ; ant:siren "397480930" ;
     note:note "Coactionnaire. L'adresse du demandeur sur l'avis de dépôt (76 rue des Français Libres à Nantes) est en réalité son agence Ouest." .
+
+dos:personne-huet a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Jean-Baptiste Huet"@fr ; ant:aRole dos:role-autorite ;
+    note:note "Maire de Plonéour-Lanvern (signataire du courrier du 9 septembre 2026). Un maire qui a lui-même demandé une concertation et une réunion publique est un interlocuteur, pas un adversaire : à ménager (le maire ne peut de toute façon pas refuser pour motif sanitaire, CE 2011)." .
+
+dos:personne-bouillaud a owl:NamedIndividual, ant:Personne ;
+    rdfs:label "Jérôme Bouillaud"@fr ;
+    note:note "Contact figurant sur le dossier d'information : responsable des Relations territoriales, Service Relations Régionales et Patrimoine, Bouygues Telecom (p. 19). Rôle professionnel public ; ne pas le solliciter sans décision préalable sur la stratégie." .
+
+dos:commune-saint-jean-trolimon a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Saint-Jean-Trolimon"@fr ;
+    note:note "Des élus de cette commune se disent, d'après le maire, « étonnés de ne pas avoir été informés du projet », compte tenu de la proximité de l'antenne avec leur bourg. Allié potentiel, et argument sur l'information des communes voisines." .
 
 dos:personne-culver a owl:NamedIndividual, ant:Personne ;
     rdfs:label "Timothy Culver"@fr ;
@@ -311,6 +356,24 @@ dos:doc-constat-huissier a owl:NamedIndividual, ant:Document ;
     rdfs:label "Constat de commissaire de justice sur l'affichage (ABC Huissiers)"@fr ; ant:natureDocument skt:doc-constat ;
     note:note "**Non obtenu.** Mentionné par l'autocollant du panneau. Date et objet inconnus : probablement la date de pose officielle choisie par l'opérateur." .
 
+dos:doc-dim a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Dossier d'information Mairie — site T18D84 (Bouygues Telecom, 2 juillet 2026)"@fr ; ant:natureDocument skt:doc-plan ;
+    ant:datePublication "2026-07-02"^^xsd:date ; ant:urlSource "sources/pdf/Projet antenne .pdf"^^xsd:anyURI ;
+    prov:wasDerivedFrom src:dim-bouygues ; prov:wasGeneratedBy src:act-lecture-pdf ; prov:wasAttributedTo src:bouygues-telecom-source ;
+    note:note "20 pages. **Confirme l'opérateur** (Bouygues Telecom) et son identifiant de site (T18D84), le lieu-dit **Kerfilin** (et non Kersalous, comme sur l'avis de dépôt) et la coordonnée dans la parcelle YX 26. Contient : fiche d'identité (déclaration préalable, altitude 26 m NGF), photomontage, **calendrier : début des travaux T2 2027, mise en service T3 2027**, plans et photos, ingénierie (3 antennes, HMA 28,60 m, azimuts 110°/200°/290°), élévation (32,65 m au sommet), tableaux d'estimation du champ **vides**, mention « périmètre de sécurité non accessible au public » et aucun établissement sensible à moins de 100 m. Mentionne un accord de mutualisation Bouygues Telecom / SFR et un contact (Relations territoriales, Service Relations Régionales et Patrimoine). Intitulé « Futur site Bytel » sur le photomontage." .
+
+dos:doc-courrier-maire a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Courrier du maire à Phoenix France Infrastructures (9 septembre 2026)"@fr ; ant:natureDocument skt:doc-correspondance ;
+    ant:datePublication "2026-09-09"^^xsd:date ; ant:urlSource "sources/pdf/Antenne Kerfilin - C20260909.pdf"^^xsd:anyURI ;
+    prov:wasDerivedFrom src:courrier-maire-2026-09-09 ; prov:wasGeneratedBy src:act-lecture-pdf ; prov:wasAttributedTo src:commune-ploneour ;
+    note:note "2 pages. Adressé au président de Phoenix France Infrastructures à son adresse nantaise. Le maire y distingue trois points : renouveler la DP après la consultation, compléter le dossier d'information, et ouvrir une réunion publique. **Pièce favorable : l'autorité qui instruit exprime elle-même des réserves de forme.** À rapprocher de la décision datée du 29 septembre." .
+
+dos:doc-guide-elus a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Annexe : guide gouvernemental à destination des élus sur la 5G (27 pages)"@fr ; ant:natureDocument skt:doc-courriel ;
+    ant:urlSource "sources/pdf/projet antenne annexe .pdf"^^xsd:anyURI ;
+    prov:wasDerivedFrom src:guide-elus-5g ; prov:wasGeneratedBy src:act-lecture-pdf ;
+    note:note "Brochure nationale jointe au dossier d'information : peu de valeur pour le contentieux, mais p. 17 le parcours du dossier d'information (un mois avant la DP, huit jours au maire pour demander une simulation) et p. 19 le rappel de CE, Ass., 26 octobre 2011 (ondes)." .
+
 dos:doc-panneau a owl:NamedIndividual, ant:Document ;
     rdfs:label "Panneau d'affichage sur le terrain"@fr ; ant:natureDocument skt:doc-panneau ;
     note:note "À photographier daté, chaque semaine, dès son apparition. Un panneau absent ou incomplet ne déclenche pas le délai de recours." .
@@ -343,7 +406,28 @@ dos:dp-29174-26-00139 a owl:NamedIndividual, ant:Procedure ;
     rdfs:label "DP 29174 26 000139 (numéro lu sur le panneau)"@fr ; ant:numeroDossier "DP29174 26 000139" ;
     ant:demandeur dos:phoenix-france ; ant:instruitePar dos:mairie-ploneour ;
     ant:porteSurProjet dos:projet-pylone ; ant:pieceDuDossier dos:doc-photo-panneau ;
-    note:note "**Hypothèse à vérifier, pas un fait.** Numéro manuscrit sur le panneau, différent de DP 029 174 26 00122. Peut être une erreur de recopie (même dossier) ou un second dossier. Si c'est le même dossier, supprimer cette entité et noter l'erreur d'affichage sur dos:moyen-numero-panneau." .
+    note:note "**Hypothèse à vérifier, pas un fait.** Le courrier du maire du 9 septembre invite l'opérateur à renouveler sa DP déposée le 18 août : ce dossier pourrait en être la suite. Numéro manuscrit sur le panneau, différent de DP 029 174 26 00122. Peut être une erreur de recopie (même dossier) ou un second dossier. Si c'est le même dossier, supprimer cette entité et noter l'erreur d'affichage sur dos:moyen-numero-panneau." .
+
+dos:dp-29174-26-00122 ant:pieceDuDossier dos:doc-dim, dos:doc-courrier-maire .
+
+dos:ev-dim-edite a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Dossier d'information de Bouygues Telecom daté du 2 juillet 2026"@fr ; ant:dateEvenement "2026-07-02"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-dim .
+
+dos:ev-dim-recu a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Dossier d'information reçu en mairie"@fr ; ant:dateEvenement "2026-07-08"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-courrier-maire ;
+    note:note "Date donnée par le maire dans son courrier du 9 septembre." .
+
+dos:ev-dim-en-ligne a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Dossier d'information mis en ligne sur le site de la commune"@fr ; ant:dateEvenement "2026-07-11"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-courrier-maire ;
+    note:note "Point de départ de la consultation de deux mois, selon le maire. Contredit la note ancienne du graphe sur le site de la commune (dos:moyen-dim)." .
+
+dos:ev-courrier-maire a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Courrier du maire à Phoenix France Infrastructures"@fr ; ant:dateEvenement "2026-09-09"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-courrier-maire ;
+    note:note "Demande de renouveler la DP après la période d'information, de compléter le dossier (simulation d'exposition, justification de non-partage), annonce d'une réunion d'information publique, signale l'interpellation d'élus de Saint-Jean-Trolimon et souhaite une stratégie de déploiement coordonnée entre opérateurs. **Réponse de Phoenix inconnue.**" .
 
 dos:ev-depot a owl:NamedIndividual, ant:Evenement ;
     rdfs:label "Dépôt de la déclaration préalable"@fr ; ant:dateEvenement "2026-08-18"^^xsd:date ;
@@ -369,6 +453,12 @@ dos:ev-constat-huissier a owl:NamedIndividual, ant:Evenement ;
     rdfs:label "Constat d'affichage par commissaire de justice — date inconnue"@fr ;
     ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-constat-huissier ;
     note:note "Peut précéder la pose observée le 14 octobre. Si c'est le cas, c'est de cette date que court le délai de recours." .
+
+dos:delai-consultation-dim a owl:NamedIndividual, ant:Delai ;
+    rdfs:label "Consultation du public sur le dossier d'information (2 mois, selon la mairie)"@fr ; ant:duree "2 mois" ;
+    ant:debuteLe "2026-07-11"^^xsd:date ; ant:expireLe "2026-09-11"^^xsd:date ;
+    ant:declenchePar dos:ev-dim-en-ligne ; ant:fondementDuDelai dos:art-l34-9-1-cpce ;
+    note:note "Durée et dates fixées par la mairie dans son courrier. La DP du 18 août est intervenue pendant cette période (dos:moyen-delai-dim)." .
 
 dos:delai-instruction a owl:NamedIndividual, ant:Delai ;
     rdfs:label "Délai d'instruction (1 mois)"@fr ; ant:duree "1 mois" ;
@@ -398,7 +488,7 @@ dos:moyen-seuil-pc a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Emprise > 20 m² : un permis de construire était requis"@fr ;
     ant:fondementJuridique dos:art-r421-9 ; ant:etayePar dos:doc-dossier-dp ;
     ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-forte ;
-    note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée. **Point d'attention (2026-10-15)** : l'avis du Conseil d'État du 21 mars 2024 (n° 490536), tel que rapporté par un tiers et non lu, exclurait du calcul l'emprise du pylône lui-même ; seuls les locaux techniques compteraient. À lire avant de chiffrer (voir dos:act-lire-avis-ce-2024)." .
+    note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée. **Point d'attention (2026-10-15)** : l'avis du Conseil d'État du 21 mars 2024 (n° 490536), tel que rapporté par un tiers et non lu, exclurait du calcul l'emprise du pylône lui-même ; seuls les locaux techniques compteraient. À lire avant de chiffrer (voir dos:act-lire-avis-ce-2024). **Chiffres de l'opérateur (dossier d'information, 2026-10-15)** : dalle technique 2 m² (dos:m-dalle-technique) mais massif béton du pylône 29,16 m² (dos:m-massif-beton) : le moyen ne tient que si la fondation compte comme emprise au sol ; sinon la dalle de 2 m² reste sous le seuil de 20 m², et c'est un seuil de 5 m² qui sépare alors la déclaration préalable de l'absence de formalité (non vérifié). Le moyen est donc **plus fragile qu'estimé** tant que l'avis du Conseil d'État n'est pas lu." .
 
 dos:moyen-talus a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Destruction de haies/talus protégés non déclarée"@fr ;
@@ -438,7 +528,7 @@ dos:moyen-numero-panneau a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Numéro de dossier du panneau différent de celui de l'avis de dépôt"@fr ;
     ant:fondementJuridique dos:art-r600-2, dos:art-a424-16 ; ant:etayePar dos:doc-photo-panneau, dos:doc-avis-depot ;
     ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
-    note:note "Le panneau indique « DP 29 174 26 000139 » ; l'avis de dépôt affiché en mairie indique DP 029 174 26 00122. Trois lectures : erreur de recopie de l'opérateur, second dossier distinct, ou lecture erronée d'une écriture manuscrite. **À trancher en mairie avant tout usage.** Si l'affichage est irrégulier, le délai de recours peut ne pas courir ; la sévérité du juge sur ce type d'erreur n'est pas établie ici." .
+    note:note "Le panneau indique « DP 29 174 26 000139 » ; l'avis de dépôt affiché en mairie indique DP 029 174 26 00122. Trois lectures : erreur de recopie de l'opérateur, second dossier distinct, ou lecture erronée d'une écriture manuscrite. **Hypothèse renforcée par le courrier du maire du 9 septembre** (il demande à l'opérateur de renouveler sa demande après la période d'information) : le dossier 000139 pourrait être cette DP renouvelée, décidée le 29 septembre ; dans ce cas la DP du 18 août (00122) aurait été remplacée et la décision attaquable serait celle du 29 septembre. **À trancher en mairie avant tout usage.** Si l'affichage est irrégulier, le délai de recours peut ne pas courir ; la sévérité du juge sur ce type d'erreur n'est pas établie ici." .
 
 dos:art-a424-16 a owl:NamedIndividual, ant:ArticleDeCode ;
     rdfs:label "C. urb. art. A. 424-16 et suivants (contenu du panneau)"@fr ; ant:reference "A. 424-16" ;
@@ -446,10 +536,23 @@ dos:art-a424-16 a owl:NamedIndividual, ant:ArticleDeCode ;
     prov:wasDerivedFrom src:connaissance-modele .
 
 dos:moyen-dim a owl:NamedIndividual, ant:MoyenJuridique ;
-    rdfs:label "Absence de dossier d'information mairie"@fr ;
+    rdfs:label "Absence de dossier d'information mairie (abandonné : le dossier existe)"@fr ;
     ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
-    ant:force skt:force-a-verifier ;
-    note:note "La page « dossiers d'information » de la commune ne mentionne que deux dossiers de 2024. À vérifier auprès du service urbanisme." .
+    ant:etayePar dos:doc-dim, dos:doc-courrier-maire ;
+    ant:force skt:force-faible ;
+    note:note "**Moyen contredit par deux pièces (2026-10-15).** Le dossier d'information de Bouygues Telecom existe (daté du 2 juillet 2026) et le maire écrit l'avoir reçu le 8 juillet et mis en ligne le 11 juillet. La note précédente (la page de la commune ne montrait que deux dossiers de 2024) se fondait sur une consultation du site dont la date n'est pas connue : soit antérieure au 11 juillet, soit la page n'était pas à jour. Ne pas invoquer l'absence de dossier. Voir plutôt dos:moyen-dim-incomplet et dos:moyen-delai-dim." .
+
+dos:moyen-dim-incomplet a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Dossier d'information incomplet : pas de simulation d'exposition ni de justification de non-partage"@fr ;
+    ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
+    ant:etayePar dos:doc-dim, dos:doc-courrier-maire ; ant:force skt:force-a-verifier ;
+    note:note "Constats : les tableaux d'estimation du champ reçu (p. 18 du dossier) sont vides sur la copie lue ; le maire demande le 9 septembre la simulation d'exposition et la justification du choix de ne pas partager un site ou un pylône existant (II-D de l'article L. 34-9-1 CPCE). **Limites** : (1) selon le schéma du dossier lui-même (version de gabarit V1121), le maire dispose de **huit jours** à compter de la réception pour demander la simulation, et sa demande date de deux mois après ; (2) l'effet d'un dossier d'information incomplet sur la légalité de l'autorisation d'urbanisme n'est pas établi ici. La justification de non-partage est un sujet distinct, rapproché de l'analyse de redondance de couverture. L'article cité par le maire n'a pas été lu sur Légifrance." .
+
+dos:moyen-delai-dim a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Déclaration préalable déposée avant la fin de la période de consultation du dossier d'information"@fr ;
+    ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
+    ant:etayePar dos:doc-courrier-maire, dos:doc-dim ; ant:force skt:force-a-verifier ;
+    note:note "Faits : dossier d'information reçu le 8 juillet 2026, en ligne le 11 juillet avec une consultation de deux mois jusqu'au 11 septembre ; DP déposée le 18 août, soit 41 jours après la réception. Le maire demande à l'opérateur de **renouveler** sa demande après la période d'information (courrier du 9 septembre). **Deux lectures de la règle** : le schéma du dossier d'information de l'opérateur (V1121) parle d'un mois avant le dépôt de la DP, ce qui serait respecté (41 jours) ; le maire retient deux mois de consultation. Laquelle s'applique dépend du texte en vigueur de l'article L. 34-9-1, **non lu**. Si le délai de deux mois s'impose, la DP du 18 août est prématurée, et la DP au numéro 000139 vue sur le panneau pourrait être la demande renouvelée (hypothèse, voir dos:dp-29174-26-00139)." .
 
 dos:moyen-ondes a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Exposition aux ondes / santé publique"@fr ;
@@ -546,3 +649,19 @@ dos:act-constat-huissier a owl:NamedIndividual, ant:Action ;
     ant:menePar dos:vous ; ant:produit dos:doc-constat-huissier ; ant:soutient dos:moyen-affichage ;
     ant:sousEcheanceDe dos:delai-recours ; ant:statut skt:a-faire ; ant:echeance "2026-10-19"^^xsd:date ;
     note:note "Échéance recommandée. Le constat de l'opérateur donne la date que l'opérateur invoquera ; un constat de votre côté, daté et photographique, prouve l'état réel de l'affichage (visibilité, lisibilité, continuité)." .
+
+dos:act-reponse-phoenix a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Demander à la mairie la réponse de Phoenix au courrier du 9 septembre, la DP renouvelée éventuelle et le dossier d'information en ligne"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:soutient dos:moyen-delai-dim, dos:moyen-dim-incomplet, dos:moyen-numero-panneau ;
+    ant:sousEcheanceDe dos:delai-recours ; ant:statut skt:a-faire ; ant:echeance "2026-10-19"^^xsd:date ;
+    note:note "À grouper avec dos:act-numero-mairie dans un seul courriel. Échéance recommandée. Demander aussi la liste des dossiers d'information déposés pour Plonéour-Lanvern en 2026." .
+
+dos:act-saint-jean-trolimon a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Prendre contact avec les élus de Saint-Jean-Trolimon"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:commune-saint-jean-trolimon ; ant:statut skt:a-faire ;
+    note:note "Le maire de Plonéour-Lanvern indique qu'ils l'ont interpellé sur le projet. Ils pourraient s'associer à une démarche collective ou à une réunion publique." .
+
+dos:act-reunion-publique a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Suivre la réunion d'information publique annoncée par le maire"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:statut skt:a-faire ;
+    note:note "Date inconnue. Y poser les questions du dossier : simulation d'exposition, justification de non-partage, emprise exacte, hauteur de 32,65 m, calendrier T2/T3 2027." .

@@ -300,7 +300,7 @@ src:mairie-antennes a owl:NamedIndividual, src:DocumentSource ;
     dcat:accessURL "https://ploneour-lanvern.bzh/4985-2/"^^xsd:anyURI ;
     dcterms:publisher src:commune-ploneour ;
     src:niveauDePreuve src:primaire ;
-    note:note "Ne mentionne que deux dossiers de 2024 (Bouygues à la ZA de Kerganet, Free Mobile à Keryan). Rien sur le projet de Kersalous — c'est ce silence qui fonde le moyen tiré de l'absence de dossier d'information." .
+    note:note "Ne mentionne que deux dossiers de 2024 (Bouygues à la ZA de Kerganet, Free Mobile à Keryan). Rien sur le projet de Kersalous au moment de la consultation de la page (date inconnue). **Contredit le 2026-10-15** : le maire écrit avoir reçu le dossier d'information le 8 juillet et l'avoir mis en ligne le 11 juillet 2026 (src:courrier-maire-2026-09-09) ; la page consultée était antérieure ou incomplète. Ce silence ne fonde plus aucun moyen." .
 
 src:mairie-contact a owl:NamedIndividual, src:DocumentSource ;
     prov:generatedAtTime "2026-09-15"^^xsd:date ;
@@ -563,7 +563,7 @@ src:act-affirmation-operateur a owl:NamedIndividual, prov:Activity ;
     rdfs:label "Affirmation de l'opérateur du site projeté"@fr ;
     prov:wasAssociatedWith src:utilisateur ;
     prov:endedAtTime "2026-10-13T19:30:00"^^xsd:dateTime ;
-    note:note "Fait énoncé par l'utilisateur : l'antenne projetée à Kersalous est celle de Bouygues Telecom. Source déclarative, non étayée par une pièce du dossier (niveau « assertion »). À remplacer par un renvoi vers l'avis de dépôt, le CERFA ou le courrier de l'opérateur quand l'un d'eux le confirme." .
+    note:note "Fait énoncé par l'utilisateur : l'antenne projetée à Kersalous est celle de Bouygues Telecom. **Confirmé le 2026-10-15 par le dossier d'information de Bouygues Telecom (src:dim-bouygues) : « Ce site est exploité par Bouygues Télécom », site T18D84.** L'assertion n'est plus la seule source." .
 
 src:act-constat-panneau a owl:NamedIndividual, prov:Activity ;
     rdfs:label "Constat de la pose du panneau sur le terrain"@fr ;
@@ -825,3 +825,45 @@ src:act-lecture-panneau a owl:NamedIndividual, src:Interrogation ;
     prov:used src:photo-panneau ; prov:wasAssociatedWith src:claude, src:utilisateur ;
     prov:endedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
     note:note "Comparaison case par case avec l'avis de dépôt (src:avis-depot-photo) et la parcelle YX 26 (3 440 m², concordant)." .
+
+# ═══════════════════════════════════════════════════════════════
+#  PDF DU DOSSIER — lecture du 2026-10-15
+# ═══════════════════════════════════════════════════════════════
+
+src:act-lecture-pdf a owl:NamedIndividual, src:Interrogation ;
+    rdfs:label "Lecture des trois PDF scannés du dossier (49 pages)"@fr ;
+    prov:wasAssociatedWith src:claude, src:utilisateur ;
+    prov:endedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
+    src:requete "Pages rendues en images puis lues visuellement par l'assistant ; reconnaissance de texte (Tesseract) en **anglais seulement**, la langue française n'étant pas installée, donc accents et mots coupés. Les chiffres cités ont été relus sur l'image." ;
+    note:note "Les PDF sont des photographies de pages papier (créateur « Photos »), sans couche de texte. Lecture fiable pour les tableaux et plans lus sur image ; moins fiable pour les petits caractères. Les pages 3 à 20 du dossier d'information ont été toutes parcourues, les tableaux d'estimation de champs (p. 18) sont vides sur le scan ; le tableau des antennes orientables 5G (p. 15) est partiellement illisible. L'annexe (27 pages) n'est pas une pièce du projet : brochure nationale sur la 5G." .
+
+src:courrier-maire-2026-09-09 a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-10-15"^^xsd:date ;
+    dcterms:date "2026-09-09"^^xsd:date ;
+    rdfs:label "Courrier du maire de Plonéour-Lanvern au président de Phoenix France Infrastructures (9 septembre 2026)"@fr ;
+    dcterms:identifier "Antenne Kerfilin - C20260909.pdf" ;
+    src:sauvegardeLocale "sources/pdf/Antenne Kerfilin - C20260909.pdf (2 pages, numérisé le 2026-09-09 16 h 49, SHA-256 00f1d1e6501a02d93680365eb05dd7c7c582470011fcf70f5652f7f2286ae0b9)" ;
+    dcterms:creator src:commune-ploneour ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Pièce de la commune, non signée sur la copie lue (signature manuscrite non visible). Elle émane de l'autorité qui instruit : sa lecture des faits (dates du dossier d'information, consultation de deux mois) est celle de la mairie." .
+
+src:dim-bouygues a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-10-15"^^xsd:date ;
+    dcterms:date "2026-07-02"^^xsd:date ;
+    rdfs:label "Dossier d'information Mairie — site T18D84 Plonéour-Lanvern (Bouygues Telecom, 2 juillet 2026)"@fr ;
+    dcterms:identifier "Projet antenne .pdf" ;
+    src:sauvegardeLocale "sources/pdf/Projet antenne .pdf (20 pages, photographié le 2026-09-03, SHA-256 3e2014b94859c200b7939a4c4c22ca16401bccff4363427d3577bdaff655ea32)" ;
+    dcterms:creator src:bouygues-telecom-source ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Pièce de l'opérateur : partie intéressée, donc crédible pour décrire son propre projet, jamais pour le justifier. Version de gabarit « V1121 ». Reçu en mairie le 8 juillet 2026 d'après le courrier du maire. Copie photographiée, qualité moyenne." .
+
+src:guide-elus-5g a owl:NamedIndividual, src:DocumentSource ;
+    prov:generatedAtTime "2026-10-15"^^xsd:date ;
+    rdfs:label "Annexe jointe au dossier d'information : guide gouvernemental à destination des élus sur la 5G, avec pages Bouygues Telecom (27 pages)"@fr ;
+    dcterms:identifier "projet antenne annexe .pdf" ;
+    src:sauvegardeLocale "sources/pdf/projet antenne annexe .pdf (27 pages, photographié le 2026-09-03, SHA-256 59bc10658a46580fc4b2690bc5602e1724630b477f40fee6d6ffbac0609daea7)" ;
+    src:niveauDePreuve src:primaire ;
+    note:note "Contenu général, sans lien direct avec Kersalous. À retenir : (1) le schéma « Parcours du DIM » (p. 17) donne le délai d'un mois avant dépôt de la déclaration préalable et huit jours au maire pour demander une simulation, version du texte d'époque (V1121) ; (2) le rappel que le maire ne peut s'opposer pour des motifs sanitaires (CE, Ass., 26 octobre 2011, n° 326492)." .
+
+src:bouygues-telecom-source a owl:NamedIndividual, prov:Organization ;
+    rdfs:label "Bouygues Telecom"@fr .

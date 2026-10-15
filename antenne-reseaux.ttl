@@ -1270,14 +1270,18 @@ dos:projet-pylone a ant:SupportAntenne ;
     ant:porteurDuSupport dos:phoenix-france ;
     ant:nombreOperateurs 1 ;
     ant:operateurPresent dos:bouygues-telecom ;
-    ant:generationPresente skt:gen-inconnue ;
+    ant:generationPresente skt:gen-4g, skt:gen-5g ;
+    ant:identifiantSiteOperateur "T18D84" ;
+    prov:wasDerivedFrom src:dim-bouygues ;
     prov:wasGeneratedBy src:act-affirmation-operateur ;
-    note:note """**Antenne potentielle, opérateur : Bouygues Telecom** — selon l'utilisateur (2026-10-13). L'avis de dépôt ne nomme aucun opérateur : seule la capacité d'accueil d'opérateurs supplémentaires y est annoncée, donc d'autres pourraient s'ajouter. Cohérent avec la coentreprise Phoenix France Infrastructures / Bouygues Telecom, mais non démontré par une pièce du dossier. Aucune station ANFR n'existe encore ; `generationPresente` vaut « Inconnue » (technologies non précisées) pour que le site reste visible quand on coche toutes les générations.""" .
+    note:note """**Opérateur : Bouygues Telecom**, confirmé par son dossier d'information du 2 juillet 2026 (site T18D84) ; annoncé d'abord par l'utilisateur (2026-10-13). L'avis de dépôt ne nomme aucun opérateur : seule la capacité d'accueil d'opérateurs supplémentaires y est annoncée, donc d'autres pourraient s'ajouter. Cohérent avec la coentreprise Phoenix France Infrastructures / Bouygues Telecom, mais non démontré par une pièce du dossier. Aucune station ANFR n'existe encore ; `generationPresente` vaut « Inconnue » (technologies non précisées) pour que le site reste visible quand on coche toutes les générations.""" .
 
 dos:station-projetee-kersalous a owl:NamedIndividual, ant:StationRadio ;
     rdfs:label "Bouygues Telecom — station projetée (Kersalous)"@fr ;
     ant:surSupport dos:projet-pylone ; ant:exploiteePar dos:bouygues-telecom ;
     ant:appartientAuReseau dos:reseau-bouygues-telecom ;
     ant:statutInstallation skt:statut-projete-dp ;
-    prov:wasGeneratedBy src:act-affirmation-operateur ;
-    note:note "Pas de numéro ANFR : la station n'est pas encore déclarée au registre." .
+    ant:systemeRadio skt:sys-lte-700, skt:sys-lte-800, skt:sys-lte-1800, skt:sys-lte-2100, skt:sys-lte-2600, skt:sys-5g-nr-2100 ;
+    ant:azimuts "110|200|290" ;
+    prov:wasDerivedFrom src:dim-bouygues ; prov:wasGeneratedBy src:act-affirmation-operateur ;
+    note:note "Pas de numéro ANFR : la station n'est pas encore déclarée au registre. Caractéristiques lues dans le dossier d'information (p. 15) : 3 antennes à faisceau fixe, HMA 28,60 m, inclinaison 0°, 4G LTE 700/800/1800/2600 et 4G/5G à 2 100 MHz ; PIRE de 31,62 à 38,09 dBW ; antennes 5G orientables (NR 3 500) : tableau quasi vide. Le dossier cite un accord de mutualisation Bouygues Telecom / SFR : le partage du site avec SFR n'est ni exclu ni établi." .
