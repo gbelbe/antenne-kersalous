@@ -130,3 +130,32 @@ PARTIEL.update({
  "2000132":(["m-foncier-communal"],["m-interet-agir"],"t-verifier"),
  "2000143":(["m-foncier-communal"],["m-interet-agir"],"t-verifier"),
 })
+
+# ── Arrêts de cour d'appel et décisions du Conseil d'État sur des antennes (lecture systématique du 2026-10-15) ──
+PARTIEL.update({
+ "24MA02988":(["m-risques-naturels"],[],"t-non-transferable"),
+ "23NC01598":(["m-montagne"],[],"t-non-transferable"),
+ "24NT02240":(["m-risques-naturels"],[],"t-verifier"),
+ "23NT03540":(["m-patrimoine"],[],"t-verifier"),
+ "22NT00057":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "23NT01511":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "23MA00387":(["m-littoral-urbanisation","m-littoral-espaces"],[],"t-non-transferable"),
+ "21NT03551":(["m-zone-urbaine"],[],"t-verifier"),
+ "22NT01953":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "21LY02214":(["m-regle-implantation"],[],"t-verifier"),
+ "20TL04598":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "25NT01450":([],["m-interet-agir"],None),
+ "23NT00710":([],["m-affichage","m-dim"],None),
+ "22NT03354":([],["m-ondes","m-regle-plantations"],None),
+ "23MA01148":([],["m-interet-agir"],None),
+ "23PA02598":(["m-dossier-incomplet"],["m-dim"],"t-verifier"),
+ "23MA02178":([],["m-natura"],None),
+ "22PA01266":([],["m-abf","m-dim"],None),
+ "22PA01438":(["m-interet-agir"],[],None),
+ "20VE02470":([],["m-covisibilite","m-abf"],None),
+ "23BX00844":([],["m-regle-implantation","m-ondes"],None),
+ "21BX02829":(["m-regle-implantation"],[],"t-verifier"),
+ "21BX01519":(["m-risques-naturels"],[],"t-non-transferable"),
+ "24LY01298":(["m-regle-cloture"],["m-r111-2"],"t-verifier"),
+ "490536":([],["m-emprise-locaux"],None),
+})
