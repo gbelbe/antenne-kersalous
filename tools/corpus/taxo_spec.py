@@ -32,6 +32,8 @@ MOYENS = [
  ("m-abords-mh-pc", "m-qualification", "Abords d'un monument historique : permis exigé (covisibilité)",
   "Dans les abords d'un monument historique, une construction de plus de 12 m de haut qui est en covisibilité avec lui exige un permis (R.421-11). Annulation non régularisable dans les deux jugements lus (Le Vigan, Mont-Saint-Jean).",
   r"R\.? ?421-11|abords? d'un monument|abords? des? monuments?|périmètre.{0,40}monument|L\.? ?621-3[02]"),
+ ("m-permis-precaire", "m-qualification", "Permis de construire à titre précaire (L.433-1)", "Autorisation exceptionnelle d'une construction temporaire qui déroge aux règles, réservée aux nécessités caractérisées. TA Caen, 18 mars 2025, n° 2301119 (Trouville-sur-Mer, Bouygues) : annulation d'un permis délivré à titre précaire pour une antenne, moyen relevé d'office ; suspension préalable le 24 mai 2023.",
+  r"L\.? ?433-1|à titre précaire"),
  ("m-hauteur-12m", "m-qualification", "Hauteur de plus de 12 m",
   "Seuil de hauteur qui fait basculer certaines constructions vers le permis de construire.",
   r"12 mètres|douze mètres|hauteur.{0,30}supérieure à 12"),
@@ -39,7 +41,7 @@ MOYENS = [
  ("m-reglement", None, "Règles d'urbanisme applicables au terrain",
   "Conformité du projet au plan local d'urbanisme, au règlement national d'urbanisme et aux lois d'aménagement spécial.", None),
  ("m-zone-agri-naturelle", "m-reglement", "Zone agricole ou naturelle (équipement d'intérêt collectif)",
-  "Le pylône est-il admis en zone A ou N comme équipement d'intérêt collectif ou service public ? La plupart des tribunaux répondent oui.",
+  "Le pylône est-il admis en zone A ou N comme équipement d'intérêt collectif ou service public ? La plupart des tribunaux répondent oui, mais l'admission peut dépendre du texte du PLU : TA Amiens, 11 juin 2025, n° 2200831 (Bruyères-et-Montbérault, Orange, zone N) annule parce qu'une antenne n'est pas un « équipement public » et n'est admise que si un impératif technique justifie sa localisation.",
   r"zone (?:A|N)\b|zone agricole|zone naturelle|équipements? (?:d'intérêt )?collectifs?|secteur (?:agricole|naturel)"),
  ("m-zone-urbaine", "m-reglement", "Zone urbaine ou à urbaniser", "Compatibilité du pylône avec le règlement d'une zone U ou AU.",
   r"zone (?:U[A-Za-z]*|AU[A-Za-z]*)\b|zone urbaine|à urbaniser"),
@@ -67,8 +69,11 @@ MOYENS = [
   "Si des travaux sur les réseaux publics sont nécessaires, la déclaration doit être refusée quand l'autorité ne peut dire quand et par qui ils seront faits. TA Rennes, 19 mars 2026, n° 2401193 (La Gouesnière) : annulation, extension électrique de 408 m sans diligences du maire auprès du syndicat d'énergie ; suspension préalable le 30 octobre 2025.",
   r"L\.? ?111-11|extension du réseau|réseau (?:public )?de distribution d.électricité|\bEnedis\b"),
  ("m-emplacement-reserve", "m-reglement", "Emplacement réservé ou projet public d'infrastructure",
-  "Projet implanté dans un emplacement réservé ou une zone prévue pour un équipement public. TA Montpellier, 13 février 2026, n° 2600444 (Saint-Just, Phoenix France Infrastructure 3) : suspension ; la commune ne peut corriger l'implantation par une prescription.",
+  "Projet implanté dans un emplacement réservé ou une zone prévue pour un équipement public. TA Nice, 11 juin 2025, n° 2205993 (Châteauneuf-Grasse, Free) : annulation, l'emplacement était réservé à un parking. TA Montpellier, 13 février 2026, n° 2600444 (Saint-Just, Phoenix France Infrastructure 3) : suspension ; la commune ne peut corriger l'implantation par une prescription.",
   r"emplacement réservé|emplacements réservés|L\.? ?151-41|zone réservée"),
+ ("m-acces", "m-reglement", "Accès, voirie et consultation du gestionnaire de voirie (R.423-53)",
+  "Création d'un accès sur une route départementale ou communale : le gestionnaire doit être consulté. TA Nantes, 30 septembre 2025, n° 2114721 (Saint-Cyr-en-Talmondais, Orange) : annulation partielle, 6 mois pour régulariser.",
+  r"R\.? ?423-53|nouvel accès|création d.un accès|gestionnaire de (?:la )?voirie"),
  ("m-rnu", "m-reglement", "Constructibilité limitée (RNU, hors parties urbanisées)",
   "Règle de constructibilité limitée des communes sans document d'urbanisme (L.111-3).",
   r"constructibilité limitée|L\.? ?111-3\b|règlement national d'urbanisme|parties? urbanisées?"),
@@ -87,6 +92,8 @@ MOYENS = [
   r"zone humide|L\.? ?211-1|loi sur l'eau|cours d'eau"),
  ("m-ebc", "m-milieux", "Espace boisé classé et boisement", "Espace boisé classé (L.113-1, L.113-2) ou boisement protégé.",
   r"espace boisé classé|\bEBC\b|L\.? ?113-[12]|espaces? boisés?"),
+ ("m-captage", "m-milieux", "Périmètre de protection d'un captage d'eau potable", "Arrêté préfectoral de protection d'un captage qui interdit ou limite les constructions. TA Amiens, 8 novembre 2022, n° 2100398 (Rethondes, association Les Galiciens) : annulation non régularisable.",
+  r"captage|périmètre de protection (?:immédiate|rapprochée|éloignée)|alimentation en eau potable"),
  ("m-natura", "m-milieux", "Natura 2000, ZNIEFF, espèces protégées", "Zonages d'inventaire ou de protection de la biodiversité.",
   r"Natura 2000|ZNIEFF|espèces? protégées?|biodiversité|trame verte|corridor écologique"),
 
@@ -97,12 +104,14 @@ MOYENS = [
   r"inexact|incohéren|discordan|erreur matérielle|faits matériellement|pièces?.{0,40}contradictoires"),
  ("m-dossier-incomplet", "m-dossier", "Dossier de déclaration incomplet", "Pièce manquante ou insuffisante (R.431-36 et suivants).",
   r"incomplet|R\.? ?431-36|R\.? ?431-|pièce.{0,30}manquant|notice (?:descriptive|insuffisante)"),
+ ("m-qualite-petitionnaire", "m-dossier", "Qualité du pétitionnaire pour déposer la demande (R.423-1)", "Le demandeur doit attester avoir qualité pour déposer. Retenu en référé quand une erreur sur la propriété est reconnue par la commune (TA Lille, 29 avril 2026, n° 2604207, Beuvry) ou quand les droits sur les espaces communs d'un lotissement sont douteux (TA Nantes, 17 avril 2024, n° 2404854).",
+  r"qualité pour (?:déposer|présenter)|R\.? ?423-1\b|L\.? ?442-9"),
  ("m-fraude", "m-dossier", "Fraude", "Manœuvre destinée à tromper l'administration sur le projet.", r"fraude|manœuvre frauduleuse"),
 
  ("m-instruction", None, "Régularité de l'instruction et de la décision", "Compétence, avis obligatoires, délais, motivation, retrait de la décision.", None),
  ("m-abf", "m-instruction", "Avis de l'architecte des Bâtiments de France", "Avis non recueilli alors que le projet est dans un périmètre protégé.",
   r"architecte des bâtiments de France|\bABF\b|avis conforme"),
- ("m-retrait", "m-instruction", "Retrait d'une non-opposition par le maire", "Le maire retire sa décision tacite ou expresse (L.424-5, art. 222 de la loi ELAN). Souvent annulé à la demande de l'opérateur.",
+ ("m-retrait", "m-instruction", "Retrait d'une non-opposition par le maire", "Le maire retire sa décision tacite ou expresse (L.424-5). L'article 222 de la loi ELAN interdit de retirer une décision qui autorise une antenne ou ne s'y oppose pas : le retrait est le plus souvent annulé à la demande de l'opérateur (ex. TA Marseille, 20 juin 2023, n° 2007088).",
   r"retrait.{0,80}(?:non-opposition|décision tacite|décision implicite)|L\.? ?424-5|article 222|loi ELAN|loi du 23 novembre 2018"),
  ("m-competence", "m-instruction", "Compétence du signataire", "Incompétence ou défaut de délégation.", r"incompétence|délégation de signature"),
  ("m-motivation", "m-instruction", "Motivation et procédure contradictoire", "Insuffisance de motivation ou atteinte aux droits de la défense.",
@@ -113,11 +122,13 @@ MOYENS = [
  ("m-securite", None, "Sécurité et santé publiques", "Risques invoqués contre le projet.", None),
  ("m-r111-2", "m-securite", "Sécurité et salubrité publiques (R.111-2)", "Risque pour la sécurité ou la salubrité publique.",
   r"R\.? ?111-2\b|sécurité publique|salubrité"),
- ("m-vent-chute", "m-securite", "Vent, chute, incendie, foudre", "Risque d'effondrement, de chute de glace, d'incendie.",
-  r"effondrement|chute|tempête|cyclone|incendie|foudre"),
+ ("m-vent-chute", "m-securite", "Vent, chute, foudre", "Risque d'effondrement, de chute de glace ou de matériel en cas de vent ou de cyclone. TA Guadeloupe et CAA Bordeaux (2 octobre 2025, n° 23BX01363) : annulation du permis tacite (cyclones).",
+  r"effondrement|chute|tempête|cyclone|foudre"),
+ ("m-incendie", "m-securite", "Risque d'incendie (R.111-2, SDIS)", "Projet au contact d'un massif boisé sans moyens de défense contre l'incendie. TA Toulon, 24 février 2025, n° 2203480 (Cuers, Free) : sursis à statuer de 4 mois pour régulariser (point d'eau incendie validé par le SDIS) ; même vice relevé à Le Beausset (TA Toulon, 6 janvier 2025, n° 2202464).",
+  r"risque d.incendie|défense (?:extérieure )?contre l.incendie|point d.eau incendie|\bSDIS\b|feux de forêt"),
  ("m-ondes", "m-securite", "Ondes, santé et principe de précaution", "Effets des champs électromagnétiques et principe de précaution (Charte de l'environnement, art. 5). Écarté dans toutes les décisions lues : la police des ondes appartient à l'État.",
   r"\bondes\b|champs? électromagnétiques?|principe de précaution|charte de l'environnement|rayonnement"),
- ("m-risques-naturels", "m-securite", "Risques naturels (inondation, crue, argile)", "Plan de prévention des risques, cote de référence, retrait-gonflement des argiles.",
+ ("m-risques-naturels", "m-securite", "Risques naturels (inondation, crue, argile)", "Plan de prévention des risques, cote de référence, retrait-gonflement des argiles. TA Lyon, 30 mars 2023, n° 2101323 : sursis à statuer, dalle sous la cote de référence en zone bleue du PPRI.",
   r"\bPPR[IN]?\b|plan de prévention des risques|\bcrues?\b|inondation|retrait-gonflement"),
  ("m-bruit", "m-securite", "Bruit et nuisances", "Nuisances sonores ou vibrations des équipements.", r"\bbruit|nuisances? sonores?|vibrations?"),
  ("m-aerodrome", "m-securite", "Servitudes aéronautiques et balisage", "Servitudes de dégagement, balisage lumineux.", r"servitudes? aéronautiques?|aérodrome|balisage"),
@@ -137,6 +148,7 @@ MOYENS = [
  ("m-droits-tiers", "m-connexes", "Droit de propriété et droits des tiers", "Titre du pétitionnaire, servitudes privées : l'autorisation est délivrée sous réserve du droit des tiers.",
   r"droit des tiers|autorisation du propriétaire|servitude de droit privé|droit de propriété"),
 
+ ("m-foncier-communal", None, "Acte de la commune propriétaire du terrain (vente, bail)", "Quand le terrain appartient à la commune, la délibération du conseil municipal qui le vend ou le loue à l'opérateur peut être attaquée comme toute décision. Le juge contrôle l'intérêt général de l'opération.", r"domaine privé|cession d.une partie de la parcelle|délibération du conseil municipal[^.]{0,120}(?:vente|cession|bail)"),
  ("m-recevabilite", None, "Recevabilité du recours", "Conditions pour que le juge examine la requête.", None),
  ("m-interet-agir", "m-recevabilite", "Intérêt à agir du requérant (L.600-1-2)", "Distance, vue directe, nature de la gêne. 60 à 200 m ont été admis avec vue directe.",
   r"intérêt (?:pour )?agir|L\.? ?600-1-2|qualité pour agir"),
@@ -191,6 +203,8 @@ PROCEDURE = [
  ("p-voie", None, "Voie de droit", "Nature du recours devant le juge.", None),
  ("p-fond", "p-voie", "Recours au fond (excès de pouvoir)", "Demande d'annulation de l'acte.", None),
  ("p-refere", "p-voie", "Référé-suspension", "Suspension d'urgence (L.521-1 CJA).", None),
+ ("p-defere", "p-voie", "Déféré du préfet (contrôle de légalité)", "Le préfet attaque lui-même l'autorisation devant le tribunal et peut en demander la suspension. TA Nantes, 20 octobre 2022, n° 2212834 (Guérande, Free) : permis suspendu à la demande du préfet de Loire-Atlantique (loi Littoral).",
+  r"déféré|le préfet de[^.]{0,60}demande"),
  ("p-appel", "p-voie", "Appel", "Recours devant une cour administrative d'appel.", None),
  ("p-cassation", "p-voie", "Cassation", "Recours devant le Conseil d'État.", None),
  ("p-avis", "p-voie", "Avis contentieux", "Avis du Conseil d'État sur une question de droit nouvelle (L.113-1 CJA).", None),
@@ -201,6 +215,8 @@ PROCEDURE = [
   r"L\.? ?600-3"),
  ("p-recours-abusif", "p-mecanisme", "Recours abusif et dommages-intérêts (L.600-7)", "Le bénéficiaire peut demander des dommages-intérêts si le recours est abusif.",
   r"L\.? ?600-7|recours abusif|dommages et intérêts|dommages-intérêts"),
+ ("p-demolition", "p-mecanisme", "Démolition ou mise en conformité (L.480-13, L.480-14)", "Après l'annulation définitive d'une autorisation, le tiers peut demander à la commune de saisir le tribunal judiciaire en vue de la démolition. TA Rennes, 4 avril 2025, n° 2203183 (Plomeur, Free) : le refus de la commune est annulé et le juge lui enjoint d'agir.",
+  r"L\.? ?480-1[34]"),
  ("p-frais", "p-mecanisme", "Frais irrépétibles (L.761-1 CJA)", "Somme mise à la charge de la partie perdante pour les frais d'avocat.",
   r"L\.? ?761-1|frais (?:exposés|irrépétibles)"),
  ("p-cristallisation", "p-mecanisme", "Cristallisation des moyens (R.600-5)", "Après un délai, plus de moyen nouveau en première instance.", r"R\.? ?600-5\b"),
@@ -212,7 +228,9 @@ REQUERANT = [
  ("q-asso-environnement", "q-association", "Association d'environnement ou de cadre de vie", "Défense de la nature, du cadre de vie, de la santé.", None),
  ("q-asso-patrimoine", "q-association", "Association de patrimoine", "Défense des sites et monuments.", None),
  ("q-collectif", "q-association", "Collectif ou association de riverains", "Groupement créé pour le projet.", None),
- ("q-commune", None, "Commune ou collectivité", "Maire, commune, établissement public.", None),
+ ("q-commune", None, "Commune ou collectivité", "Maire, commune, établissement public. Dans les décisions favorables à un tiers, c'est souvent la commune de Nice contre une décision du préfet, ou une commune voisine.", None),
+ ("q-prefet", None, "Préfet (déféré du contrôle de légalité)", "Le préfet attaque lui-même l'autorisation délivrée par un maire (déféré), avec ou sans demande de suspension. Motif le plus fréquent : loi Littoral (Locmaria-Plouzané dans le Finistère, Guérande, Marseillan, Marseille).", None),
+ ("q-syndicat", None, "Syndicat de copropriétaires ou société civile", "Copropriété ou société civile immobilière voisine du projet.", None),
  ("q-operateur", None, "Opérateur ou société de pylônes", "Bénéficiaire du projet, qui conteste l'opposition ou le retrait.", None),
  ("q-indetermine", None, "Requérant non déterminé", "Non classé automatiquement.", None),
 ]
@@ -267,3 +285,45 @@ LECTURE = [
 ALL = {"Moyens": MOYENS, "Resultat": RESULTAT, "EffetProjet": EFFET, "ActeAttaque": ACTE, "Procedure": PROCEDURE,
        "Requerant": REQUERANT, "ContexteSite": CONTEXTE, "Niveau": NIVEAU, "Proximite": PROXIMITE,
        "Transferabilite": TRANSFERABILITE, "NiveauLecture": LECTURE}
+
+# Moyens du dossier (dos:moyen-*) -> concepts de la taxonomie du corpus : la vue « Moyens & actions » en tire
+# le nombre de décisions qui évoquent, retiennent ou écartent le moyen.
+MOYEN_DOSSIER = {
+ "dos:moyen-seuil-pc": ["m-emprise-locaux"],
+ "dos:moyen-talus": ["m-regle-plantations"],
+ "dos:moyen-zone-humide": ["m-zone-humide"],
+ "dos:moyen-zone-a": ["m-zone-agri-naturelle"],
+ "dos:moyen-covisibilite": ["m-covisibilite", "m-abords-mh-pc"],
+ "dos:moyen-affichage": ["m-affichage"],
+ "dos:moyen-numero-panneau": ["m-affichage"],
+ "dos:moyen-dim": ["m-dim"],
+ "dos:moyen-dim-incomplet": ["m-dim"],
+ "dos:moyen-delai-dim": ["m-dim"],
+ "dos:moyen-ondes": ["m-ondes"],
+}
+
+
+# Explications « en pratique » (skos:scopeNote) : ce que le moyen veut dire et comment les décisions lues l'ont traité.
+EXPLICATIONS = {
+ "m-qualite-petitionnaire": "Le demandeur d'une déclaration préalable ou d'un permis doit être propriétaire du terrain, son mandataire, ou attester sur l'honneur y être autorisé par lui (R.423-1 a, R.431-35). Le maire ne vérifie pas les titres : il ne refuse que si la fraude est établie ou s'il apparaît, sans contestation sérieuse, que le demandeur n'a aucun droit de déposer (jurisprudence rappelée par le TA de Nantes, 17 avril 2024, n° 2404854). Le moyen n'a été retenu qu'en référé et dans deux situations : la commune reconnaît s'être trompée sur sa qualité de propriétaire (TA de Lille, 29 avril 2026, Beuvry) ; les droits du demandeur sur la parcelle sont douteux, ici les espaces communs d'un lotissement (Talmont-Saint-Hilaire). Hors fraude ou erreur reconnue, le droit de propriété et les servitudes privées sont écartés : l'autorisation est délivrée sous réserve du droit des tiers. Pour Kersalous : savoir qui est propriétaire de la parcelle YX 26, quel contrat le lie à Phoenix, et ce que dit l'attestation de la déclaration.",
+ "m-zone-agri-naturelle": "Dans une zone agricole (A) ou naturelle (N) d'un PLU, on ne construit en principe que pour l'agriculture ou la forêt, avec des exceptions dont celle des équipements d'intérêt collectif ou services publics, souvent sous conditions. La plupart des tribunaux (Pluguffan, Guiclan, La Gouesnière, Rousson en appel) admettent l'antenne comme équipement d'intérêt collectif et regardent si ses conditions sont remplies : non-incompatibilité avec l'activité agricole de l'unité foncière, absence d'atteinte aux espaces naturels et aux paysages (c'est la double condition de la zone A de Plonéour-Lanvern). Les annulations viennent du texte précis du PLU : à Amiens (2025), l'antenne n'est pas un « équipement public » et n'est admise que si un impératif technique justifie sa localisation ; à Bordeaux (2025), une modification du PLU avait supprimé les exceptions et la zone N interdisait toute construction (régularisable) ; à Neuville-sur-Oise (2026), la zone était dévolue aux sports et loisirs. À vérifier pour Kersalous : le texte exact de l'article A et l'usage agricole réel de la parcelle.",
+ "m-desserte": "Si le projet exige des travaux sur les réseaux publics (électricité, eau), la déclaration préalable doit être refusée quand l'autorité ne peut pas dire dans quel délai et par quelle collectivité ou quel concessionnaire ils seront faits (L.111-11). À La Gouesnière (TA de Rennes, 2026), l'extension électrique de 408 m n'avait donné lieu à aucune démarche du maire auprès du syndicat d'énergie : suspension puis annulation. À Bouc-Bel-Air (TA de Marseille, 2023), le dossier ne précisait pas le raccordement, le poste haute tension étant à une centaine de mètres : sursis pour régulariser. Le moyen échoue quand l'arrêté met le coût du raccordement à la charge du pétitionnaire (Toutainville) ou quand le gestionnaire (Enedis) a été consulté (Le Beausset, régularisé). À vérifier pour Kersalous : distance au réseau, extension nécessaire, avis du gestionnaire dans le dossier.",
+ "m-emprise-locaux": "Une déclaration préalable suffit tant que l'emprise au sol ou la surface de plancher créée reste sous 20 m² ; au-delà, il faut un permis. Les décisions lues ne comptent que les locaux et installations techniques, pas le pylône : à Nantes (2026), un massif béton de 31 m² avec une dalle affleurante de 6 m² reste en déclaration ; à Biot, une dalle enterrée de 25 m² ne compte pas ; à Pluguffan, 10,4 m² de surface de plancher. Écarté dans toutes les lectures. La fondation de Kersalous (29,16 m², dalle de 2 m²) tombe très probablement dans ce cas.",
+ "m-abords-mh-pc": "Dans les abords d'un monument historique, une construction en covisibilité avec lui n'échappe au permis de construire que sous certaines conditions : au-delà de 12 m de haut, il faut un permis et la déclaration préalable est illégale. Trois tribunaux l'ont retenu (Le Vigan en 2023, Mont-Saint-Jean en 2023, Fourques en 2024) ; à Dijon, le juge a refusé de laisser régulariser. C'est le moyen non régularisable le plus sérieux hors littoral. À vérifier pour Kersalous : la parcelle YX 26 est-elle dans un périmètre délimité des abords du manoir, ou à moins de 500 m et visible en même temps ?",
+ "m-regle-cloture": "Le PLU fixe souvent la hauteur et la nature des clôtures (par exemple 1,50 m ou 1,80 m maximum, mailles ou aspérités pour laisser passer la petite faune). Le poste technique d'une antenne est clôturé à 2 m : retenu 9 fois (Verrens-Arvey, La Baume-Cornillane, Toutainville, Fégréac, Rethondes…). Le vice ne porte que sur la clôture : annulation partielle puis régularisation en 3 à 6 mois. Il retarde, il ne tue pas le projet. À vérifier : le règlement de la zone A de Plonéour-Lanvern et la clôture prévue.",
+ "m-incendie": "Le projet est au contact d'un massif boisé sans défense contre l'incendie (point d'eau, accès des secours). Retenu dans le Var (Cuers, Le Beausset) : sursis de 4 mois pour créer un point d'eau validé par le SDIS. Peu transférable en Finistère ; à contrôler si un boisement jouxte la parcelle (un espace boisé classé est à 34 m).",
+ "m-acces": "Un nouvel accès sur une route départementale ou communale exige l'accord ou la consultation du gestionnaire de la voirie (R.423-53), et les règles du PLU sur la largeur et la desserte s'appliquent. Retenu à Saint-Cyr-en-Talmondais (Orange : nouvel accès sur la RD 45 sans consultation du gestionnaire ; annulation partielle, 6 mois pour régulariser) et à Sainte-Rose (Guadeloupe : un terrain sans accès à une voie publique est inconstructible ; sursis pour régulariser). Écarté quand l'accès existe déjà (Pluguffan).",
+ "m-retrait": "Un maire ne peut pas retirer sa non-opposition à une antenne : l'article 222 de la loi ELAN l'interdit. Les retraits sont donc annulés à la demande de l'opérateur (ex. TA de Marseille, 20 juin 2023). Si la mairie de Plonéour-Lanvern retirait la décision ou la faisait renouveler, ce moyen jouerait contre elle ; hors ce cas, il n'avantage pas les riverains.",
+ "m-interet-agir": "Pour attaquer une autorisation, il faut justifier d'un intérêt : être voisin dont les conditions d'occupation, d'utilisation ou de jouissance sont directement affectées (L.600-1-2). Le requérant doit préciser l'atteinte. Des distances de 60 à 200 m ont suffi avec vue directe (Plobannalec-Lesconil, Le Vigan, Fégréac) ; la cour administrative d'appel de Toulouse (2023) a jugé sans intérêt des riverains dont le bien n'était pas directement affecté. Environ 15 % des recours sont irrecevables.",
+ "m-dim": "Le dossier d'information du maire (L.34-9-1 du code des postes, D.98-6-1) relève du droit des communications électroniques, pas de celui de l'urbanisme : le juge applique l'indépendance des législations et écarte le moyen comme inopérant. Jamais retenu dans le corpus pour annuler une déclaration préalable.",
+ "m-competence": "Le signataire de l'arrêté doit avoir reçu une délégation de fonctions et de signature suffisamment précise. Retenu à Vallons-de-l'Erdre et à Achy : sursis à statuer, la commune régularise en quelques mois. Facile à vérifier, rarement décisif.",
+ "m-rnu": "Hors parties urbanisées d'une commune sans PLU (règlement national d'urbanisme, carte communale), les constructions sont interdites sauf exceptions dont les équipements collectifs, à condition que le projet ne compromette pas l'activité agricole ou la qualité des paysages. Retenu à Montagnac-Montpezat (TA de Marseille, 2022, sursis) et à Beyrie-sur-Joyeuse (TA de Pau, 2023). Sans objet à Plonéour-Lanvern, qui a un PLU.",
+ "m-pieces-contradictoires": "Si les pièces du dossier se contredisent sur un fait décisif (hauteur, emprise, position), la décision repose sur des faits inexacts. TA de Nîmes (11 septembre 2026, n° 2604044) : suspension d'une déclaration de Phoenix France Infrastructure. À vérifier pour Kersalous : 30 m sur le panneau, 32,65 m dans le dossier d'information ; seul compte ce que disent les pièces de la déclaration elle-même.",
+ "m-paysage": "L'article R.111-27 permet de refuser ou d'encadrer un projet qui porte atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages. Le juge ne retient que l'erreur manifeste, rarement pour un pylône treillis entouré de végétation. Retenu en référé à Biot (environnement exceptionnel de golf et d'espaces naturels, aucun aménagement discret), puis non retenu au fond ; retenu à Roscoff avec covisibilité et à Beyrie-sur-Joyeuse.",
+}
+
+EXPLICATIONS["m-littoral"] = "La loi Littoral (L.121-1 et suivants) ne s'applique qu'aux communes littorales (article L.321-2 du code de l'environnement). Plonéour-Lanvern (INSEE 29174) n'est pas dans la liste officielle des 121 communes littorales et estuariennes du Finistère (DDTM 29, mise à jour du 19 juin 2019) : vérifié le 15 octobre 2026. Ses voisines Plomeur, Saint-Jean-Trolimon, Plovan, Pouldreuzic, Pont-l'Abbé, Combrit, Loctudy et Penmarc'h y sont, d'où les annulations de Plomeur et de Plobannalec-Lesconil. C'est le motif le plus gagnant de l'Ouest (10 décisions lues : Locmaria-Plouzané, Fouesnant, Roscoff, Carnac…) mais il ne joue pas à Kersalous."
+
+EXPLICATIONS["m-foncier-communal"] = "TA de Limoges, 24 novembre 2022 (Saint-Jouvent, TDF) : la délibération par laquelle le conseil municipal vendait 147 m² de son domaine privé à l'opérateur est annulée, car le pylône était à 48 m d'une habitation, avec un fort impact visuel, et aucune recherche d'autre site n'avait été faite : le juge y voit une erreur manifeste d'appréciation de l'intérêt général. À vérifier pour Kersalous : à qui appartient la parcelle YX 26 ? Si c'est un particulier, ce moyen ne joue pas."
+EXPLICATIONS["m-littoral"] = EXPLICATIONS["m-littoral"] + " Le TA de Rennes avait rejeté le recours à Cléden-Cap-Sizun ; la cour administrative d'appel de Nantes l'a accueilli le 13 octobre 2026 (n° 24NT03613), en jugeant le pylône isolé de toute construction et le vice non régularisable. La loi s'applique aussi aux rives des grands plans d'eau (Bas-Chablais, lac Léman)."
+EXPLICATIONS["m-interet-agir"] = EXPLICATIONS["m-interet-agir"] + " Autres cas admis : 410 m avec vue directe sur un pylône de 30 m en terrain agricole peu boisé (CAA de Nantes, Cléden-Cap-Sizun, 2026) ; 13 m en ville (TA de Melun, Alfortville) ; 48 m (TA de Limoges)."

@@ -1,0 +1,1028 @@
+@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
+@prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix src:  <https://kersalous.bzh/provenance/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
+
+# ═══════════════════════════════════════════════════════════════
+#  COMMUNES DU FINISTÈRE ET LOI LITTORAL
+#  Fichier GÉNÉRÉ par tools/corpus/littoral.py depuis corpus/communes_littorales_29.csv : ne pas modifier à la main.
+#  La loi Littoral (L.121-1 et suivants du code de l'urbanisme) ne s'applique qu'aux communes littorales ou estuariennes
+#  au sens de l'article L.321-2 du code de l'environnement. Liste DDTM 29 du 19 juin 2019, téléchargée le 2026-10-15.
+# ═══════════════════════════════════════════════════════════════
+skt:LoiLittoral a skos:ConceptScheme ;
+    rdfs:label "Communes du Finistère et loi Littoral"@fr ;
+    skos:prefLabel "Communes du Finistère et loi Littoral"@fr ;
+    skos:definition "Statut de chaque commune du Finistère au regard de la loi Littoral, d'après la liste officielle des communes littorales et estuariennes (article R.321-1 du code de l'environnement)."@fr ;
+    skos:notation "K" ;
+    skos:hasTopConcept skt:ll-littorale, skt:ll-estuarienne, skt:ll-non-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-littorale a skos:Concept ;
+    rdfs:label "Commune littorale (soumise à la loi Littoral)"@fr ;
+    skos:prefLabel "Commune littorale (soumise à la loi Littoral)"@fr ;
+    skos:definition "Commune riveraine de la mer ou de l'océan : la loi Littoral s'applique en entier (continuité de l'urbanisation, espaces proches du rivage, coupures d'urbanisation)."@fr ;
+    skos:notation "K1" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:topConceptOf skt:LoiLittoral ;
+    skos:narrower skt:ll-29001, skt:ll-29003, skt:ll-29006, skt:ll-29008, skt:ll-29017, skt:ll-29019, skt:ll-29021, skt:ll-29022, skt:ll-29023, skt:ll-29028, skt:ll-29030, skt:ll-29031, skt:ll-29032, skt:ll-29037, skt:ll-29039, skt:ll-29040, skt:ll-29042, skt:ll-29043, skt:ll-29044, skt:ll-29045, skt:ll-29046, skt:ll-29053, skt:ll-29056, skt:ll-29057, skt:ll-29058, skt:ll-29063, skt:ll-29064, skt:ll-29072, skt:ll-29073, skt:ll-29075, skt:ll-29077, skt:ll-29078, skt:ll-29079, skt:ll-29080, skt:ll-29082, skt:ll-29083, skt:ll-29084, skt:ll-29085, skt:ll-29090, skt:ll-29091, skt:ll-29098, skt:ll-29099, skt:ll-29101, skt:ll-29103, skt:ll-29104, skt:ll-29109, skt:ll-29112, skt:ll-29117, skt:ll-29120, skt:ll-29130, skt:ll-29132, skt:ll-29133, skt:ll-29135, skt:ll-29137, skt:ll-29140, skt:ll-29150, skt:ll-29151, skt:ll-29153, skt:ll-29155, skt:ll-29158, skt:ll-29165, skt:ll-29166, skt:ll-29168, skt:ll-29171, skt:ll-29172, skt:ll-29176, skt:ll-29177, skt:ll-29178, skt:ll-29184, skt:ll-29185, skt:ll-29186, skt:ll-29188, skt:ll-29189, skt:ll-29190, skt:ll-29192, skt:ll-29195, skt:ll-29196, skt:ll-29197, skt:ll-29198, skt:ll-29201, skt:ll-29206, skt:ll-29212, skt:ll-29214, skt:ll-29215, skt:ll-29217, skt:ll-29218, skt:ll-29220, skt:ll-29221, skt:ll-29225, skt:ll-29226, skt:ll-29228, skt:ll-29235, skt:ll-29236, skt:ll-29238, skt:ll-29239, skt:ll-29240, skt:ll-29251, skt:ll-29252, skt:ll-29254, skt:ll-29256, skt:ll-29257, skt:ll-29259, skt:ll-29273, skt:ll-29276, skt:ll-29279, skt:ll-29280, skt:ll-29282, skt:ll-29284, skt:ll-29287, skt:ll-29289, skt:ll-29290, skt:ll-29292, skt:ll-29293, skt:ll-29298, skt:ll-29302 .
+
+skt:ll-estuarienne a skos:Concept ;
+    rdfs:label "Commune estuarienne (soumise à la loi Littoral)"@fr ;
+    skos:prefLabel "Commune estuarienne (soumise à la loi Littoral)"@fr ;
+    skos:definition "Commune riveraine d'un estuaire en aval de la limite de salure des eaux, classée par décret (2004-311) : la loi Littoral s'applique."@fr ;
+    skos:notation "K2" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:topConceptOf skt:LoiLittoral ;
+    skos:narrower skt:ll-29060, skt:ll-29161, skt:ll-29170, skt:ll-29232, skt:ll-29233, skt:ll-29263 .
+
+skt:ll-non-littorale a skos:Concept ;
+    rdfs:label "Commune non soumise à la loi Littoral"@fr ;
+    skos:prefLabel "Commune non soumise à la loi Littoral"@fr ;
+    skos:definition "Commune absente de la liste officielle, même proche de la côte. Seules les communes du Finistère de la liste sont décrites ici ; aucune autre commune n'est listée sauf Plonéour-Lanvern, commune du dossier."@fr ;
+    skos:notation "K3" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:topConceptOf skt:LoiLittoral ;
+    skos:narrower skt:ll-29174 .
+
+skt:ll-29001 a skos:Concept ;
+    rdfs:label "Argol"@fr ;
+    skos:prefLabel "Argol"@fr ;
+    skos:notation "29001" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29003 a skos:Concept ;
+    rdfs:label "Audierne"@fr ;
+    skos:prefLabel "Audierne"@fr ;
+    skos:notation "29003" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29006 a skos:Concept ;
+    rdfs:label "Bénodet"@fr ;
+    skos:prefLabel "Bénodet"@fr ;
+    skos:notation "29006" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29008 a skos:Concept ;
+    rdfs:label "Beuzec-Cap-Sizun"@fr ;
+    skos:prefLabel "Beuzec-Cap-Sizun"@fr ;
+    skos:notation "29008" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29017 a skos:Concept ;
+    rdfs:label "Brélès"@fr ;
+    skos:prefLabel "Brélès"@fr ;
+    skos:notation "29017" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29019 a skos:Concept ;
+    rdfs:label "Brest"@fr ;
+    skos:prefLabel "Brest"@fr ;
+    skos:notation "29019" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29021 a skos:Concept ;
+    rdfs:label "Plounéour-Brignogan-plages"@fr ;
+    skos:prefLabel "Plounéour-Brignogan-plages"@fr ;
+    skos:notation "29021" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29022 a skos:Concept ;
+    rdfs:label "Camaret-sur-Mer"@fr ;
+    skos:prefLabel "Camaret-sur-Mer"@fr ;
+    skos:notation "29022" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29023 a skos:Concept ;
+    rdfs:label "Carantec"@fr ;
+    skos:prefLabel "Carantec"@fr ;
+    skos:notation "29023" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29028 a skos:Concept ;
+    rdfs:label "Cléden-Cap-Sizun"@fr ;
+    skos:prefLabel "Cléden-Cap-Sizun"@fr ;
+    skos:notation "29028" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29030 a skos:Concept ;
+    rdfs:label "Cléder"@fr ;
+    skos:prefLabel "Cléder"@fr ;
+    skos:notation "29030" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29031 a skos:Concept ;
+    rdfs:label "Clohars-Carnoët"@fr ;
+    skos:prefLabel "Clohars-Carnoët"@fr ;
+    skos:notation "29031" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29032 a skos:Concept ;
+    rdfs:label "Clohars-Fouesnant"@fr ;
+    skos:prefLabel "Clohars-Fouesnant"@fr ;
+    skos:notation "29032" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29037 a skos:Concept ;
+    rdfs:label "Combrit"@fr ;
+    skos:prefLabel "Combrit"@fr ;
+    skos:notation "29037" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29039 a skos:Concept ;
+    rdfs:label "Concarneau"@fr ;
+    skos:prefLabel "Concarneau"@fr ;
+    skos:notation "29039" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29040 a skos:Concept ;
+    rdfs:label "Le Conquet"@fr ;
+    skos:prefLabel "Le Conquet"@fr ;
+    skos:notation "29040" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29042 a skos:Concept ;
+    rdfs:label "Crozon"@fr ;
+    skos:prefLabel "Crozon"@fr ;
+    skos:notation "29042" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29043 a skos:Concept ;
+    rdfs:label "Daoulas"@fr ;
+    skos:prefLabel "Daoulas"@fr ;
+    skos:notation "29043" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29044 a skos:Concept ;
+    rdfs:label "Dinéault"@fr ;
+    skos:prefLabel "Dinéault"@fr ;
+    skos:notation "29044" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29045 a skos:Concept ;
+    rdfs:label "Dirinon"@fr ;
+    skos:prefLabel "Dirinon"@fr ;
+    skos:notation "29045" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29046 a skos:Concept ;
+    rdfs:label "Douarnenez"@fr ;
+    skos:prefLabel "Douarnenez"@fr ;
+    skos:notation "29046" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29053 a skos:Concept ;
+    rdfs:label "Le Faou"@fr ;
+    skos:prefLabel "Le Faou"@fr ;
+    skos:notation "29053" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29056 a skos:Concept ;
+    rdfs:label "La Forest-Landerneau"@fr ;
+    skos:prefLabel "La Forest-Landerneau"@fr ;
+    skos:notation "29056" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29057 a skos:Concept ;
+    rdfs:label "La Forêt-Fouesnant"@fr ;
+    skos:prefLabel "La Forêt-Fouesnant"@fr ;
+    skos:notation "29057" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29058 a skos:Concept ;
+    rdfs:label "Fouesnant"@fr ;
+    skos:prefLabel "Fouesnant"@fr ;
+    skos:notation "29058" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29060 a skos:Concept ;
+    rdfs:label "Gouesnach"@fr ;
+    skos:prefLabel "Gouesnach"@fr ;
+    skos:notation "29060" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29063 a skos:Concept ;
+    rdfs:label "Goulien"@fr ;
+    skos:prefLabel "Goulien"@fr ;
+    skos:notation "29063" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29064 a skos:Concept ;
+    rdfs:label "Goulven"@fr ;
+    skos:prefLabel "Goulven"@fr ;
+    skos:notation "29064" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29072 a skos:Concept ;
+    rdfs:label "Guilvinec"@fr ;
+    skos:prefLabel "Guilvinec"@fr ;
+    skos:notation "29072" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29073 a skos:Concept ;
+    rdfs:label "Guimaëc"@fr ;
+    skos:prefLabel "Guimaëc"@fr ;
+    skos:notation "29073" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29075 a skos:Concept ;
+    rdfs:label "Guipavas"@fr ;
+    skos:prefLabel "Guipavas"@fr ;
+    skos:notation "29075" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29077 a skos:Concept ;
+    rdfs:label "Guissény"@fr ;
+    skos:prefLabel "Guissény"@fr ;
+    skos:notation "29077" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29078 a skos:Concept ;
+    rdfs:label "Hanvec"@fr ;
+    skos:prefLabel "Hanvec"@fr ;
+    skos:notation "29078" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29079 a skos:Concept ;
+    rdfs:label "Henvic"@fr ;
+    skos:prefLabel "Henvic"@fr ;
+    skos:notation "29079" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29080 a skos:Concept ;
+    rdfs:label "Hôpital-Camfrout"@fr ;
+    skos:prefLabel "Hôpital-Camfrout"@fr ;
+    skos:notation "29080" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29082 a skos:Concept ;
+    rdfs:label "Île-de-Batz"@fr ;
+    skos:prefLabel "Île-de-Batz"@fr ;
+    skos:notation "29082" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29083 a skos:Concept ;
+    rdfs:label "Île-de-Sein"@fr ;
+    skos:prefLabel "Île-de-Sein"@fr ;
+    skos:notation "29083" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29084 a skos:Concept ;
+    rdfs:label "Île-Molène"@fr ;
+    skos:prefLabel "Île-Molène"@fr ;
+    skos:notation "29084" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29085 a skos:Concept ;
+    rdfs:label "Île-Tudy"@fr ;
+    skos:prefLabel "Île-Tudy"@fr ;
+    skos:notation "29085" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29090 a skos:Concept ;
+    rdfs:label "Kerlaz"@fr ;
+    skos:prefLabel "Kerlaz"@fr ;
+    skos:notation "29090" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29091 a skos:Concept ;
+    rdfs:label "Kerlouan"@fr ;
+    skos:prefLabel "Kerlouan"@fr ;
+    skos:notation "29091" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29098 a skos:Concept ;
+    rdfs:label "Lampaul-Plouarzel"@fr ;
+    skos:prefLabel "Lampaul-Plouarzel"@fr ;
+    skos:notation "29098" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29099 a skos:Concept ;
+    rdfs:label "Lampaul-Ploudalmézeau"@fr ;
+    skos:prefLabel "Lampaul-Ploudalmézeau"@fr ;
+    skos:notation "29099" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29101 a skos:Concept ;
+    rdfs:label "Landéda"@fr ;
+    skos:prefLabel "Landéda"@fr ;
+    skos:notation "29101" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29103 a skos:Concept ;
+    rdfs:label "Landerneau"@fr ;
+    skos:prefLabel "Landerneau"@fr ;
+    skos:notation "29103" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29104 a skos:Concept ;
+    rdfs:label "Landévennec"@fr ;
+    skos:prefLabel "Landévennec"@fr ;
+    skos:notation "29104" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29109 a skos:Concept ;
+    rdfs:label "Landunvez"@fr ;
+    skos:prefLabel "Landunvez"@fr ;
+    skos:notation "29109" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29112 a skos:Concept ;
+    rdfs:label "Lanildut"@fr ;
+    skos:prefLabel "Lanildut"@fr ;
+    skos:notation "29112" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29117 a skos:Concept ;
+    rdfs:label "Lannilis"@fr ;
+    skos:prefLabel "Lannilis"@fr ;
+    skos:notation "29117" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29120 a skos:Concept ;
+    rdfs:label "Lanvéoc"@fr ;
+    skos:prefLabel "Lanvéoc"@fr ;
+    skos:notation "29120" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29130 a skos:Concept ;
+    rdfs:label "Locmaria-Plouzané"@fr ;
+    skos:prefLabel "Locmaria-Plouzané"@fr ;
+    skos:notation "29130" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29132 a skos:Concept ;
+    rdfs:label "Locquénolé"@fr ;
+    skos:prefLabel "Locquénolé"@fr ;
+    skos:notation "29132" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29133 a skos:Concept ;
+    rdfs:label "Locquirec"@fr ;
+    skos:prefLabel "Locquirec"@fr ;
+    skos:notation "29133" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29135 a skos:Concept ;
+    rdfs:label "Loctudy"@fr ;
+    skos:prefLabel "Loctudy"@fr ;
+    skos:notation "29135" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29137 a skos:Concept ;
+    rdfs:label "Logonna-Daoulas"@fr ;
+    skos:prefLabel "Logonna-Daoulas"@fr ;
+    skos:notation "29137" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29140 a skos:Concept ;
+    rdfs:label "Loperhet"@fr ;
+    skos:prefLabel "Loperhet"@fr ;
+    skos:notation "29140" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29150 a skos:Concept ;
+    rdfs:label "Moëlan-sur-Mer"@fr ;
+    skos:prefLabel "Moëlan-sur-Mer"@fr ;
+    skos:notation "29150" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29151 a skos:Concept ;
+    rdfs:label "Morlaix"@fr ;
+    skos:prefLabel "Morlaix"@fr ;
+    skos:notation "29151" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29153 a skos:Concept ;
+    rdfs:label "Névez"@fr ;
+    skos:prefLabel "Névez"@fr ;
+    skos:notation "29153" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29155 a skos:Concept ;
+    rdfs:label "Ouessant"@fr ;
+    skos:prefLabel "Ouessant"@fr ;
+    skos:notation "29155" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29158 a skos:Concept ;
+    rdfs:label "Penmarch"@fr ;
+    skos:prefLabel "Penmarch"@fr ;
+    skos:notation "29158" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29161 a skos:Concept ;
+    rdfs:label "Pleuven"@fr ;
+    skos:prefLabel "Pleuven"@fr ;
+    skos:notation "29161" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29165 a skos:Concept ;
+    rdfs:label "Plobannalec-Lesconil"@fr ;
+    skos:prefLabel "Plobannalec-Lesconil"@fr ;
+    skos:notation "29165" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29166 a skos:Concept ;
+    rdfs:label "Ploéven"@fr ;
+    skos:prefLabel "Ploéven"@fr ;
+    skos:notation "29166" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29168 a skos:Concept ;
+    rdfs:label "Plogoff"@fr ;
+    skos:prefLabel "Plogoff"@fr ;
+    skos:notation "29168" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29170 a skos:Concept ;
+    rdfs:label "Plomelin"@fr ;
+    skos:prefLabel "Plomelin"@fr ;
+    skos:notation "29170" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29171 a skos:Concept ;
+    rdfs:label "Plomeur"@fr ;
+    skos:prefLabel "Plomeur"@fr ;
+    skos:notation "29171" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29172 a skos:Concept ;
+    rdfs:label "Plomodiern"@fr ;
+    skos:prefLabel "Plomodiern"@fr ;
+    skos:notation "29172" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29176 a skos:Concept ;
+    rdfs:label "Plonévez-Porzay"@fr ;
+    skos:prefLabel "Plonévez-Porzay"@fr ;
+    skos:notation "29176" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29177 a skos:Concept ;
+    rdfs:label "Plouarzel"@fr ;
+    skos:prefLabel "Plouarzel"@fr ;
+    skos:notation "29177" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29178 a skos:Concept ;
+    rdfs:label "Ploudalmézeau"@fr ;
+    skos:prefLabel "Ploudalmézeau"@fr ;
+    skos:notation "29178" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29184 a skos:Concept ;
+    rdfs:label "Plouénan"@fr ;
+    skos:prefLabel "Plouénan"@fr ;
+    skos:notation "29184" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29185 a skos:Concept ;
+    rdfs:label "Plouescat"@fr ;
+    skos:prefLabel "Plouescat"@fr ;
+    skos:notation "29185" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29186 a skos:Concept ;
+    rdfs:label "Plouezoc'h"@fr ;
+    skos:prefLabel "Plouezoc'h"@fr ;
+    skos:notation "29186" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29188 a skos:Concept ;
+    rdfs:label "Plougasnou"@fr ;
+    skos:prefLabel "Plougasnou"@fr ;
+    skos:notation "29188" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29189 a skos:Concept ;
+    rdfs:label "Plougastel-Daoulas"@fr ;
+    skos:prefLabel "Plougastel-Daoulas"@fr ;
+    skos:notation "29189" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29190 a skos:Concept ;
+    rdfs:label "Plougonvelin"@fr ;
+    skos:prefLabel "Plougonvelin"@fr ;
+    skos:notation "29190" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29192 a skos:Concept ;
+    rdfs:label "Plougoulm"@fr ;
+    skos:prefLabel "Plougoulm"@fr ;
+    skos:notation "29192" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29195 a skos:Concept ;
+    rdfs:label "Plouguerneau"@fr ;
+    skos:prefLabel "Plouguerneau"@fr ;
+    skos:notation "29195" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29196 a skos:Concept ;
+    rdfs:label "Plouguin"@fr ;
+    skos:prefLabel "Plouguin"@fr ;
+    skos:notation "29196" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29197 a skos:Concept ;
+    rdfs:label "Plouhinec"@fr ;
+    skos:prefLabel "Plouhinec"@fr ;
+    skos:notation "29197" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29198 a skos:Concept ;
+    rdfs:label "Plouider"@fr ;
+    skos:prefLabel "Plouider"@fr ;
+    skos:notation "29198" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29201 a skos:Concept ;
+    rdfs:label "Ploumoguer"@fr ;
+    skos:prefLabel "Ploumoguer"@fr ;
+    skos:notation "29201" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29206 a skos:Concept ;
+    rdfs:label "Plounévez-Lochrist"@fr ;
+    skos:prefLabel "Plounévez-Lochrist"@fr ;
+    skos:notation "29206" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29212 a skos:Concept ;
+    rdfs:label "Plouzané"@fr ;
+    skos:prefLabel "Plouzané"@fr ;
+    skos:notation "29212" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29214 a skos:Concept ;
+    rdfs:label "Plovan"@fr ;
+    skos:prefLabel "Plovan"@fr ;
+    skos:notation "29214" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29215 a skos:Concept ;
+    rdfs:label "Plozévet"@fr ;
+    skos:prefLabel "Plozévet"@fr ;
+    skos:notation "29215" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29217 a skos:Concept ;
+    rdfs:label "Pont-Aven"@fr ;
+    skos:prefLabel "Pont-Aven"@fr ;
+    skos:notation "29217" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29218 a skos:Concept ;
+    rdfs:label "Pont-Croix"@fr ;
+    skos:prefLabel "Pont-Croix"@fr ;
+    skos:notation "29218" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29220 a skos:Concept ;
+    rdfs:label "Pont-l'Abbé"@fr ;
+    skos:prefLabel "Pont-l'Abbé"@fr ;
+    skos:notation "29220" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29221 a skos:Concept ;
+    rdfs:label "Porspoder"@fr ;
+    skos:prefLabel "Porspoder"@fr ;
+    skos:notation "29221" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29225 a skos:Concept ;
+    rdfs:label "Pouldreuzic"@fr ;
+    skos:prefLabel "Pouldreuzic"@fr ;
+    skos:notation "29225" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29226 a skos:Concept ;
+    rdfs:label "Poullan-sur-Mer"@fr ;
+    skos:prefLabel "Poullan-sur-Mer"@fr ;
+    skos:notation "29226" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29228 a skos:Concept ;
+    rdfs:label "Primelin"@fr ;
+    skos:prefLabel "Primelin"@fr ;
+    skos:notation "29228" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29232 a skos:Concept ;
+    rdfs:label "Quimper"@fr ;
+    skos:prefLabel "Quimper"@fr ;
+    skos:notation "29232" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29233 a skos:Concept ;
+    rdfs:label "Quimperlé"@fr ;
+    skos:prefLabel "Quimperlé"@fr ;
+    skos:notation "29233" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29235 a skos:Concept ;
+    rdfs:label "Le Relecq-Kerhuon"@fr ;
+    skos:prefLabel "Le Relecq-Kerhuon"@fr ;
+    skos:notation "29235" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29236 a skos:Concept ;
+    rdfs:label "Riec-sur-Bélon"@fr ;
+    skos:prefLabel "Riec-sur-Bélon"@fr ;
+    skos:notation "29236" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29238 a skos:Concept ;
+    rdfs:label "Roscanvel"@fr ;
+    skos:prefLabel "Roscanvel"@fr ;
+    skos:notation "29238" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29239 a skos:Concept ;
+    rdfs:label "Roscoff"@fr ;
+    skos:prefLabel "Roscoff"@fr ;
+    skos:notation "29239" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29240 a skos:Concept ;
+    rdfs:label "Rosnoën"@fr ;
+    skos:prefLabel "Rosnoën"@fr ;
+    skos:notation "29240" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29251 a skos:Concept ;
+    rdfs:label "Saint-Jean-du-Doigt"@fr ;
+    skos:prefLabel "Saint-Jean-du-Doigt"@fr ;
+    skos:notation "29251" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29252 a skos:Concept ;
+    rdfs:label "Saint-Jean-Trolimon"@fr ;
+    skos:prefLabel "Saint-Jean-Trolimon"@fr ;
+    skos:notation "29252" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29254 a skos:Concept ;
+    rdfs:label "Saint-Martin-des-Champs"@fr ;
+    skos:prefLabel "Saint-Martin-des-Champs"@fr ;
+    skos:notation "29254" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29256 a skos:Concept ;
+    rdfs:label "Saint-Nic"@fr ;
+    skos:prefLabel "Saint-Nic"@fr ;
+    skos:notation "29256" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29257 a skos:Concept ;
+    rdfs:label "Saint-Pabu"@fr ;
+    skos:prefLabel "Saint-Pabu"@fr ;
+    skos:notation "29257" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29259 a skos:Concept ;
+    rdfs:label "Saint-Pol-de-Léon"@fr ;
+    skos:prefLabel "Saint-Pol-de-Léon"@fr ;
+    skos:notation "29259" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29263 a skos:Concept ;
+    rdfs:label "Saint-Ségal"@fr ;
+    skos:prefLabel "Saint-Ségal"@fr ;
+    skos:notation "29263" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-estuarienne ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29273 a skos:Concept ;
+    rdfs:label "Santec"@fr ;
+    skos:prefLabel "Santec"@fr ;
+    skos:notation "29273" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29276 a skos:Concept ;
+    rdfs:label "Sibiril"@fr ;
+    skos:prefLabel "Sibiril"@fr ;
+    skos:notation "29276" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29279 a skos:Concept ;
+    rdfs:label "Taulé"@fr ;
+    skos:prefLabel "Taulé"@fr ;
+    skos:notation "29279" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29280 a skos:Concept ;
+    rdfs:label "Telgruc-sur-Mer"@fr ;
+    skos:prefLabel "Telgruc-sur-Mer"@fr ;
+    skos:notation "29280" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29282 a skos:Concept ;
+    rdfs:label "Trébabu"@fr ;
+    skos:prefLabel "Trébabu"@fr ;
+    skos:notation "29282" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29284 a skos:Concept ;
+    rdfs:label "Treffiagat"@fr ;
+    skos:prefLabel "Treffiagat"@fr ;
+    skos:notation "29284" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29287 a skos:Concept ;
+    rdfs:label "Tréflez"@fr ;
+    skos:prefLabel "Tréflez"@fr ;
+    skos:notation "29287" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29289 a skos:Concept ;
+    rdfs:label "Trégarvan"@fr ;
+    skos:prefLabel "Trégarvan"@fr ;
+    skos:notation "29289" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29290 a skos:Concept ;
+    rdfs:label "Tréglonou"@fr ;
+    skos:prefLabel "Tréglonou"@fr ;
+    skos:notation "29290" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29292 a skos:Concept ;
+    rdfs:label "Tréguennec"@fr ;
+    skos:prefLabel "Tréguennec"@fr ;
+    skos:notation "29292" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29293 a skos:Concept ;
+    rdfs:label "Trégunc"@fr ;
+    skos:prefLabel "Trégunc"@fr ;
+    skos:notation "29293" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29298 a skos:Concept ;
+    rdfs:label "Tréogat"@fr ;
+    skos:prefLabel "Tréogat"@fr ;
+    skos:notation "29298" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29302 a skos:Concept ;
+    rdfs:label "Pont-de-Buis-lès-Quimerch"@fr ;
+    skos:prefLabel "Pont-de-Buis-lès-Quimerch"@fr ;
+    skos:notation "29302" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales .
+
+skt:ll-29174 a skos:Concept ;
+    rdfs:label "Plonéour-Lanvern"@fr ;
+    skos:prefLabel "Plonéour-Lanvern"@fr ;
+    skos:notation "29174" ;
+    skos:inScheme skt:LoiLittoral ;
+    skos:broader skt:ll-non-littorale ;
+    prov:wasDerivedFrom src:ddtm29-communes-littorales ;
+    note:note "Commune du projet. Absente de la liste officielle (vérifié le 2026-10-15) : la loi Littoral ne s'applique pas à Kersalous, malgré la proximité de la côte. Ne pas confondre avec Plounéour-Brignogan-plages (29021), commune littorale du nord du Finistère." .
+
+dos:commune-ploneour ant:statutLoiLittoral skt:ll-non-littorale ; ant:communeLittorale skt:ll-29174 .

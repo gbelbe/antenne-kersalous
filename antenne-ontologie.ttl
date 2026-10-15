@@ -27,7 +27,7 @@ il est alors dessiné une seconde fois, en doublon, sans parent dans la hiérarc
     owl:versionInfo "0.5.0" ;
     note:note """# Comment utiliser ce graphe
 
-Cinq modules : **Territoire**, **Acteurs**, **Corpus**, **Procédure & Action**, **Réseaux** (supports et stations d'antennes existants ou projetés, zones de couverture simulées), **Jurisprudence comparée** (décisions rendues sur d'autres antennes : ce qui a annulé, suspendu, retardé ou échoué).
+Cinq modules : **Territoire**, **Acteurs**, **Corpus**, **Procédure & Action**, **Réseaux** (supports et stations d'antennes existants ou projetés, zones de couverture simulées), **Jurisprudence** (décisions de la justice administrative sur d'autres antennes, classées par la taxonomie du contentieux : moyens, résultats, contexte).
 La classe pivot est `ant:MoyenJuridique` : elle relie un fondement de droit, des preuves
 et les actions à mener. Commencez toujours par elle quand vous vous demandez quoi faire.
 
@@ -211,11 +211,6 @@ ant:fondementJuridique a owl:ObjectProperty ;
     rdfs:domain ant:MoyenJuridique ;
     rdfs:range ant:TexteJuridique .
 
-ant:force a owl:ObjectProperty ;
-    rdfs:label "force estimée"@fr ;
-    rdfs:domain ant:MoyenJuridique ;
-    rdfs:range ant:Force .
-
 ant:habite a owl:ObjectProperty ;
     rdfs:label "habite"@fr ;
     rdfs:domain ant:Personne ;
@@ -382,10 +377,6 @@ ant:Commune a owl:Class ;
     rdfs:comment "Collectivité et son territoire. Attention : l'autorité qui décide et les riverains impactés peuvent relever de deux communes différentes."@fr ;
     rdfs:subClassOf ant:ObjetGeographique .
 
-ant:Force a owl:Class ;
-    rdfs:label "Force d'un moyen"@fr ;
-    rdfs:subClassOf skos:Concept .
-
 ant:NatureDocument a owl:Class ;
     rdfs:label "Nature de document"@fr ;
     rdfs:subClassOf skos:Concept .
@@ -476,10 +467,10 @@ C'est ce qui la rend opposable — et contestable.""" .
 
 ant:MoyenJuridique a owl:Class ;
     rdfs:label "Moyen juridique"@fr ;
-    rdfs:comment "Argument mobilisable contre le projet, avec son fondement, ses preuves et sa force estimée."@fr ;
+    rdfs:comment "Argument mobilisable contre le projet, avec son fondement et ses preuves. Sa fréquence et son sort dans la jurisprudence se lisent dans le corpus de décisions (`ant:concordeAvecConcept`)."@fr ;
     note:note """**Classe pivot du graphe.**
 Un moyen relie : un fondement (`ant:fondementJuridique`), des preuves (`ant:etayePar`,
-`ant:etayeParMesure`), une force (`ant:force`) et un statut de vérification.
+`ant:etayeParMesure`), et un statut de vérification.
 Modélisez aussi les moyens **écartés** : cela évite de les re-plaider indéfiniment.""" .
 
 ant:Parcelle a owl:Class ;
@@ -520,8 +511,6 @@ ant:ObjetGeographique a owl:Class ;
     rdfs:comment "Toute entité localisée du dossier. Classe chapeau : ne pas instancier directement."@fr ;
     rdfs:subClassOf geo:Feature ;
     note:note "Porte la géométrie et les relations topologiques. Les sous-classes se distinguent par ce qu'on en fait, pas par leur forme." .
-
-
 
 # ═══════════════════════════════════════════════════════════════
 #  MODULE RÉSEAUX — antennes existantes et projetées (v0.2.0)
@@ -652,7 +641,6 @@ ant:nombreOperateurs a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:range xsd:integer ;
     note:note "Mesure de mutualisation. Pour un support projeté, 0 signifie « inconnu à ce jour »." .
 
-
 # ═══════════════════════════════════════════════════════════════
 #  MODULE RÉSEAUX — couverture théorique ARCEP (v0.3.0)
 # ═══════════════════════════════════════════════════════════════
@@ -716,19 +704,12 @@ ant:rang a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:range xsd:integer ;
     note:note "Ordre des niveaux (3 très bonne, 2 bonne, 1 limitée, 0 aucune) : permet de comparer les valeurs de `Mesure` de niveau." .
 
-
 # ═══════════════════════════════════════════════════════════════
 #  MODULE JURISPRUDENCE COMPARÉE (v0.5.0)
 #  Décisions de justice rendues sur d'autres antennes-relais, rattachées aux
 #  moyens du dossier qu'elles éclairent. Une décision n'est ni une pièce de la
 #  procédure ni un texte : c'est un précédent, avec une issue et un degré de vérification.
 # ═══════════════════════════════════════════════════════════════
-
-ant:IssueDecision a owl:Class ;
-    rdfs:label "Issue d'une décision"@fr ;
-    rdfs:comment "Ce que la décision a produit sur le projet d'antenne : annulation, démontage, suspension, rejet, injonction."@fr ;
-    rdfs:subClassOf skos:Concept ;
-    note:note "Concept SKOS et non propriété booléenne : on filtre par issue (« qu'est-ce qui a fait annuler ? ») et par regroupement (collections favorable / défavorable aux riverains) sans rien déduire d'un `skos:broader`." .
 
 ant:dateDecision a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:label "date de la décision"@fr ;
@@ -740,35 +721,11 @@ ant:rendueParJuridiction a owl:ObjectProperty ;
     rdfs:domain ant:Jurisprudence ;
     rdfs:range ant:Juridiction .
 
-ant:issueDecision a owl:ObjectProperty ;
-    rdfs:label "issue de la décision"@fr ;
-    rdfs:domain ant:Jurisprudence ;
-    rdfs:range ant:IssueDecision .
-
-ant:operateurVise a owl:ObjectProperty ;
-    rdfs:label "opérateur visé"@fr ;
-    rdfs:domain ant:Jurisprudence ;
-    rdfs:range ant:Entreprise ;
-    note:note "Opérateur pour lequel l'antenne était installée ou demandée. Absent quand la source ne le nomme pas : ne pas le deviner." .
-
-ant:communeConcernee a owl:ObjectProperty ;
-    rdfs:label "commune concernée"@fr ;
-    rdfs:domain ant:Jurisprudence ;
-    rdfs:range ant:Commune .
-
-ant:illustreMoyen a owl:ObjectProperty ;
-    rdfs:label "illustre le moyen"@fr ;
-    rdfs:domain ant:Jurisprudence ;
-    rdfs:range ant:MoyenJuridique ;
-    note:note "Un précédent qui a tenu ou échoué sur un moyen comparable à celui du dossier. N'en fait pas une preuve : la ressemblance est à démontrer au cas par cas." .
-
 ant:verifieSurSource a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:label "vérifiée sur le texte de la décision"@fr ;
     rdfs:domain ant:Jurisprudence ;
     rdfs:range xsd:boolean ;
     note:note "`false` tant que la décision n'a pas été lue sur Légifrance, Judilibre ou ArianeWeb. Toutes les décisions de ce module sont connues par des billets d'avocats ou de presse : aucune ne doit être citée dans un mémoire sans cette vérification." .
-
-
 
 # ═══════════════════════════════════════════════════════════════
 #  MODULE PROPRIÉTÉ DES SUPPORTS (v0.5.0)

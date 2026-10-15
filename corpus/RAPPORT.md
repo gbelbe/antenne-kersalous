@@ -13,6 +13,9 @@ Analyse du 2026-10-15. Source : [opendata.justice-administrative.fr](https://ope
 
 ## Taux de réussite (tribunaux administratifs, riverains ou associations contre une non-opposition à DP ou un permis)
 
+> **Chiffres corrigés le 2026-10-15** : le repérage du requérant de ce tableau était imparfait. Le taux vérifié (deux signaux croisés, audit, requérant lu dans le texte) est dans `VERIFICATION.md` et `taux.json` : 51 décisions gagnées, en partie ou avec sursis sur 332, soit 15 % (12 % en comptant les désistements), 14 % pour les riverains seuls.
+
+
 | Population | n | Rejeté au fond | Gagné (total) | Gagné (partiel) | Irrecevable | Désistement |
 |---|---|---|---|---|---|---|
 | Pylônes hors toiture, jugement au fond | 249 | 160 (64 %) | 14 (6 %) | 13 (5 %) | 20 (8 %) | 27 (11 %) |

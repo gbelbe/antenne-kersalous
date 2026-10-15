@@ -14,23 +14,23 @@ const rel = (n) => (n === 0 ? "aujourd'hui" : n > 0 ? `dans ${n} jour${n > 1 ? "
 const link = (r) => `<a href="#/e/${encodeURIComponent(r.id)}">${esc(r.label)}</a>`;
 const links = (a) => (a && a.length ? a.map(link).join(", ") : "");
 const chip = (t, k = "") => `<span class="chip ${k}">${esc(t)}</span>`;
-const forceChip = (m) => chip(m.force || "—", { "skt:force-forte": "ok", "skt:force-moyenne": "info", "skt:force-a-verifier": "warn", "skt:force-faible": "bad", "skt:force-ecarte": "bad" }[m.force_id] || "");
 const gm = (ll) => `https://www.google.com/maps/search/?api=1&query=${ll[0]},${ll[1]}`;
 const gsv = (ll) => `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${ll[0]},${ll[1]}`;
 
 const ROUTES = {
-  "": home, carte, chronologie, dossier, jurisprudence, corpus, reseau, sources, explorer,
+  "": home, couverture, chronologie, dossier, jurisprudence, sources, explorer, carte: couverture, reseau: couverture, corpus: jurisprudence,
 };
 
 async function router() {
   const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
   const [name, ...rest] = h.split("/");
-  document.querySelectorAll("nav a").forEach((a) => a.classList.toggle("on", a.dataset.r === name));
+  const navName = { carte: "couverture", reseau: "couverture", corpus: "jurisprudence" }[name] || name;
+  document.querySelectorAll("nav a").forEach((a) => a.classList.toggle("on", a.dataset.r === navName));
   $("#nav").classList.remove("open");
   const app = $("#app");
   try {
     if (name === "e") await entity(rest.join("/"));
-    else if (name === "corpus") await corpus(rest.join("/"));
+    else if (name === "jurisprudence" || name === "corpus") await jurisprudence(rest.join("/"));
     else if (name === "recherche") await recherche(rest.join("/"));
     else await (ROUTES[name] || home)();
   } catch (e) {
@@ -51,21 +51,13 @@ async function home() {
   $("#app").innerHTML = `
     <h1>${esc(meta.title)}</h1>
     <p class="lead">${esc(meta.subtitle)}. Une antenne-relais de 30 m (32,65 m avec ses équipements) est projetée sur la parcelle YX 26, à proximité d'habitations.
-      Ce site rassemble les faits, les délais, les précédents de justice et ce que l'on sait de Phoenix et de Bouygues dans le Finistère, avec les sources.</p>
+      Ce site rassemble les faits, les délais, ce que montrent les décisions de justice sur les antennes-relais et ce que l'on sait de la couverture et des antennes du pays bigouden, avec les sources.</p>
     <div class="banner">${esc(meta.disclaimer)}</div>
     <div class="grid">
-      <div class="card"><div class="stat">${s.supports}<small>supports d'antennes cartographiés</small></div></div>
-      <div class="card"><div class="stat">${s.phoenix_supports}<small>supports de Phoenix dans le Finistère</small></div></div>
-      <div class="card"><div class="stat">${s.decisions}<small>décisions de justice comparées</small></div></div>
-      <div class="card"><div class="stat">${s.sources}<small>sources documentées</small></div></div>
-    </div>
-    <h2>Par où commencer</h2>
-    <div class="grid">
-      <a class="card" href="#/carte"><h3>🗺️ Carte</h3><p class="muted">Le site projeté, les antennes existantes, les pylônes de Phoenix, la couverture 4G. Vues OpenStreetMap, orthophoto IGN et Google Maps.</p></a>
+      <a class="card" href="#/couverture"><h3>📡 Couverture &amp; antennes</h3><p class="muted">Le pays bigouden : la carte, les ${s.supports} supports cartographiés, la couverture 4G du site et sa comparaison avec les autres communes, Phoenix et Bouygues dans le Finistère.</p></a>
+      <a class="card" href="#/jurisprudence"><h3>📚 Jurisprudence</h3><p class="muted">${s.decisions.toLocaleString("fr-FR")} décisions de la justice administrative sur des antennes-relais, classées par moyen, résultat, contexte et proximité avec Kersalous. Filtrables, avec le texte d'origine.</p></a>
+      <a class="card" href="#/dossier"><h3>⚖️ Moyens &amp; actions</h3><p class="muted">Les arguments du dossier, rapprochés de ce que la jurisprudence en a fait, les délais et les actions à mener.</p></a>
       <a class="card" href="#/chronologie"><h3>🕒 Chronologie</h3><p class="muted">Dépôt, décision, panneau, délais de recours, travaux prévus : ce qui est passé et ce qui arrive.</p></a>
-      <a class="card" href="#/dossier"><h3>⚖️ Moyens &amp; actions</h3><p class="muted">Les arguments juridiques, leur force estimée, leurs preuves et ce qu'il reste à faire.</p></a>
-      <a class="card" href="#/jurisprudence"><h3>📚 Jurisprudence</h3><p class="muted">Ce qui a fonctionné, retardé ou échoué dans d'autres affaires d'antennes-relais.</p></a>
-      <a class="card" href="#/reseau"><h3>🏗️ Pylônes &amp; propriétaires</h3><p class="muted">Phoenix, Bouygues et leurs pylônes dans le Finistère ; les opérations de Phoenix.</p></a>
       <a class="card" href="#/sources"><h3>🔎 Sources</h3><p class="muted">D'où vient chaque information et à quel point s'y fier. Téléchargements.</p></a>
     </div>
     ${up.length ? `<h2>À venir</h2><div class="tl">${up.map((i) => tlItem(i)).join("")}</div><p><a href="#/chronologie">Toute la chronologie →</a></p>` : ""}
@@ -73,13 +65,50 @@ async function home() {
     ${p ? `<h2>Résumé</h2><div class="card md">${md(p.note || "")}</div>` : ""}`;
 }
 
+/* ───────────────────────── Couverture & antennes (pays bigouden) ───────────────────────── */
+const km = (a, b) => {
+  const R = 6371, r = (x) => (x * Math.PI) / 180;
+  const dLat = r(b[0] - a[0]), dLon = r(b[1] - a[1]);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(r(a[0])) * Math.cos(r(b[0])) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+};
+async function couverture() {
+  const [data, cov] = await Promise.all([load("map"), load("couverture")]);
+  const c = data.center;
+  const near = data.features.filter((f) => ["support", "phoenix", "projet"].includes(f.kind) && f.geom?.ll)
+    .map((f) => ({ ...f, d: km(c, f.geom.ll) })).filter((f) => f.d <= 15).sort((a, b) => a.d - b.d);
+  const site = (id) => cov.site.find((x) => x.label.startsWith(id));
+  const niveau = cov.site.find((x) => x.label.startsWith("Niveau de couverture"));
+  const NIV = ["aucune", "limitée", "bonne", "très bonne"];
+  const pct = (x) => (x == null ? "—" : x.toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " %");
+  $("#app").innerHTML = `<h1>Couverture &amp; antennes — pays bigouden</h1>
+    <p class="lead">Ce que l'on sait de la couverture mobile et des supports d'antennes autour de Plonéour-Lanvern : la carte, la liste des supports à moins de 15 km, la couverture 4G de Bouygues Telecom au site et sa comparaison avec les autres communes, puis la place de Phoenix et de Bouygues dans le Finistère.</p>
+    ${niveau ? `<div class="grid">
+      <div class="card"><div class="stat">${NIV[niveau.value] || niveau.value}<small>couverture 4G Bouygues Telecom au site projeté (ARCEP, 30 juin 2026)</small></div></div>
+      <div class="card"><div class="stat">${pct(site("Part des terres à moins de 500 m")?.value)}<small>des terres à moins de 500 m couvertes au moins « bonne »</small></div></div>
+      <div class="card"><div class="stat">${pct(site("Part des terres à moins de 10 km")?.value)}<small>des terres à moins de 10 km couvertes au moins « bonne »</small></div></div>
+      <div class="card"><div class="stat">${site("Distance du site")?.value ? (site("Distance du site").value / 1000).toLocaleString("fr-FR", { maximumFractionDigits: 1 }) + " km" : "—"}<small>du site à la terre la moins bien couverte (sous « bonne »)</small></div></div></div>` : ""}
+    <div id="sec-map"></div>
+    <h2>Supports à moins de 15 km du site (${near.length})</h2>
+    <div class="scroll"><table><tr><th>Support</th><th>Distance</th><th>Propriétaire</th><th>Opérateurs</th><th>Hauteur</th><th>Statut</th></tr>
+      ${near.map((f) => `<tr><td><a href="#/e/${encodeURIComponent(f.id)}">${esc(f.label.replace(/^Support ANFR \d+ — /, ""))}</a></td><td>${f.d.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} km</td><td>${esc(f.owner || "—")}</td><td>${esc((f.operators || []).join(", "))}</td><td>${f.height ? esc(f.height) + " m" : "—"}</td><td>${esc(f.status || "")}</td></tr>`).join("")}</table></div>
+    <p class="muted small">Positions arrondies par l'ANFR (≈ 30 m). La liste porte sur les supports que le graphe connaît : ceux de Phoenix dans le Finistère et les supports existants à moins de 10 km du site ; le propriétaire n'est renseigné que pour Phoenix et Bouygues.</p>
+    <h2>La couverture du site comparée aux autres communes</h2>
+    <p class="muted">Part des communes dont la couverture 4G de Bouygues Telecom est au moins « bonne » ou « très bonne » (ARCEP, 30 juin 2026). Les seuils « rural » (moins de 40 hab./km² et moins de 2 500 habitants) sont ceux de l'auteur.</p>
+    <div class="scroll"><table><tr><th>Ensemble de communes</th><th>Au moins « bonne »</th><th>« Très bonne »</th></tr>
+      ${cov.comparaison.filter((x) => x.id !== "rang").map((x) => `<tr><td>${esc(x.label)}</td><td>${pct(x.bonne)}</td><td>${pct(x["tres-bonne"])}</td></tr>`).join("")}</table></div>
+    ${cov.comparaison.find((x) => x.id === "rang") ? `<p class="small muted">${esc(cov.comparaison.find((x) => x.id === "rang").label)} : <b>${cov.comparaison.find((x) => x.id === "rang").bonne}ᵉ</b> pour « au moins bonne », <b>${cov.comparaison.find((x) => x.id === "rang")["tres-bonne"]}ᵉ</b> pour « très bonne ».</p>` : ""}
+    <div id="sec-res"></div>`;
+  await Promise.all([carte($("#sec-map")), reseau($("#sec-res"))]);
+}
+
 /* ───────────────────────── Carte ───────────────────────── */
 let LMAP = null;
-async function carte() {
+async function carte(host = $("#app")) {
   const [meta, data, cover] = await Promise.all([load("meta"), load("map"), load("coverage")]);
   const c = data.center;
-  $("#app").innerHTML = `
-    <h1>Carte</h1>
+  host.innerHTML = `
+    <h2>Carte</h2>
     <div class="toolbar">
       <button class="chip sel" data-eng="leaflet">Carte interactive</button>
       <button class="chip" data-eng="google">Google Maps (satellite)</button>
@@ -180,53 +209,33 @@ async function chronologie() {
 /* ───────────────────────── Moyens & actions ───────────────────────── */
 async function dossier() {
   const d = await load("dossier");
-  $("#app").innerHTML = `<h1>Moyens juridiques &amp; actions</h1>
-    <p class="lead">Les arguments identifiés contre le projet, classés par force estimée, avec leurs preuves, les précédents qui les éclairent et les actions à mener. Une force « à vérifier » n'est pas une faiblesse : c'est qu'une pièce manque.</p>
-    <h2>Moyens juridiques</h2>
-    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">${d.moyens.map((m) => `<div class="card">
-      <div>${forceChip(m)}</div><h3><a href="#/e/${encodeURIComponent(m.id)}">${esc(m.label)}</a></h3>
+  const A = d.arbre, mById = Object.fromEntries(d.moyens.map((m) => [m.id, m]));
+  const stat = (x) => `Évoqué dans <b>${x.evoque}</b> décisions (${x.proches} proches de Kersalous) · retenu dans <b>${x.retenu}</b> des ${A.lues} décisions lues · écarté dans <b>${x.ecarte_lu}</b> décisions lues et <b>${x.ecarte_deduit}</b> rejets complets (déduit)`;
+  const mCard = (m) => `<div class="dos"><div class="small muted">Dans le dossier de Kersalous</div><h4 style="margin:2px 0"><a href="#/e/${encodeURIComponent(m.id)}">${esc(m.label)}</a></h4>
       <div class="md small">${md((m.note || "").slice(0, 420) + ((m.note || "").length > 420 ? "…" : ""))}</div>
-      ${m.fondements.length ? `<p class="small"><b>Fondement :</b> ${links(m.fondements)}</p>` : ""}
-      ${m.preuves.length ? `<p class="small"><b>Preuves :</b> ${links(m.preuves)}</p>` : ""}
-      ${m.jurisprudence.length ? `<p class="small"><b>Précédents :</b> ${links(m.jurisprudence)}</p>` : ""}
-      ${m.actions.length ? `<p class="small"><b>Actions :</b> ${links(m.actions)}</p>` : ""}</div>`).join("")}</div>
+      ${m.fondements.length ? `<p class="small"><b>Fondement :</b> ${links(m.fondements)}</p>` : ""}${m.preuves.length ? `<p class="small"><b>Preuves :</b> ${links(m.preuves)}</p>` : ""}${m.actions.length ? `<p class="small"><b>Actions :</b> ${links(m.actions)}</p>` : ""}</div>`;
+  const node = (n, depth) => `<div class="card moyen" style="margin:0 0 10px ${depth * 18}px">
+      <h3 style="margin:0 0 4px"><a href="#/jurisprudence/${encodeURIComponent(n.id)}" title="Voir les décisions">${esc(n.label)}</a></h3>
+      <p class="small muted" style="margin:0 0 4px">${esc(n.definition)}</p><p class="small" style="margin:0">${stat(n.stats)}</p>
+      ${n.explication ? `<details class="small"><summary>En pratique</summary><p style="margin:4px 0">${esc(n.explication)}</p></details>` : ""}
+      ${n.moyens.length ? n.moyens.map((id) => mCard(mById[id])).join("") : `<p class="small muted" style="margin:6px 0 0">Aucun fait ni pièce du dossier de Kersalous sur ce point à ce jour.</p>`}</div>${n.children.map((c) => node(c, depth + 1)).join("")}`;
+  $("#app").innerHTML = `<h1>Moyens juridiques &amp; actions</h1>
+    <p class="lead">Les arguments possibles contre un projet d'antenne-relais, rangés par thème selon la taxonomie du contentieux. Pour chacun : ce que disent les ${A.total.toLocaleString("fr-FR")} décisions du corpus (combien l'évoquent, l'ont retenu ou écarté) et, quand il y en a, ce que le dossier de Kersalous contient (faits, preuves, actions).</p>
+    <div class="banner small">Ces chiffres sont un repère statistique, pas une prédiction. « Retenu » ne se lit que sur les ${A.lues} décisions lues, parmi lesquelles la plupart de celles où des riverains ou une association ont obtenu annulation, suspension ou sursis devant un tribunal administratif (repérées automatiquement : quelques-unes ont pu échapper au repérage) ; sur les autres décisions, un moyen « écarté » est déduit du rejet complet de la requête. Un moyen jamais retenu dans le corpus n'est pas pour autant perdu d'avance dans un cas particulier, mais il l'a presque toujours été.</div>
+    <div class="toolbar">${A.groupes.map((g) => `<a class="chip info" href="#" data-g="${esc(g.id)}">${esc(g.label.replace(/ \(.*$/, ""))}</a>`).join("")}</div>
+    ${A.groupes.map((g) => `<h2 id="g-${esc(g.id)}">${esc(g.notation)} · ${esc(g.label)}</h2><p class="small muted">${esc(g.definition)}</p><p class="small">${stat(g.stats)}</p>${g.children.map((c) => node(c, 0)).join("")}`).join("")}
+    ${A.orphelins.length ? `<h2>Autres moyens du dossier</h2>${A.orphelins.map((id) => mCard(mById[id])).join("")}` : ""}
     <h2>Délais</h2><div class="scroll"><table><tr><th>Délai</th><th>Début</th><th>Échéance</th></tr>
       ${d.delais.map((x) => `<tr><td><a href="#/e/${encodeURIComponent(x.id)}">${esc(x.label)}</a></td><td>${fmtDate(x.start) || "—"}</td><td>${fmtDate(x.end) || "—"} ${x.end ? `<span class="muted small">${rel(daysTo(x.end))}</span>` : ""}</td></tr>`).join("")}</table></div>
     <h2>Actions</h2><div class="scroll"><table><tr><th>Échéance</th><th>Action</th><th>Statut</th></tr>
       ${d.actions.map((a) => `<tr><td>${a.date ? fmtDate(a.date) : "—"}</td><td><a href="#/e/${encodeURIComponent(a.id)}">${esc(a.label)}</a></td><td>${chip(a.status || "—", a.status === "À faire" ? "warn" : "")}</td></tr>`).join("")}</table></div>`;
+  document.querySelectorAll("[data-g]").forEach((a) => (a.onclick = (e) => { e.preventDefault(); document.getElementById("g-" + a.dataset.g)?.scrollIntoView({ behavior: "smooth" }); }));
 }
 
 /* ───────────────────────── Jurisprudence ───────────────────────── */
-async function jurisprudence() {
-  const rows = await load("jurisprudence");
-  let f = "all", q = "";
-  const draw = () => {
-    const list = rows.filter((r) => (f === "all" || (f === "fav" && r.favorable === true) || (f === "def" && r.favorable === false) || (f === "regle" && r.favorable === null)) &&
-      (!q || (r.label + r.court + r.commune + r.operator + r.note).toLowerCase().includes(q)));
-    $("#jl").innerHTML = list.map((r) => `<div class="card" style="margin:0 0 12px">
-      <div>${r.favorable === true ? chip("A fonctionné pour les riverains", "ok") : r.favorable === false ? chip("A échoué pour les riverains", "bad") : chip("Précision de règle", "info")}
-        ${chip(r.issue)} ${r.verified ? chip("vérifié sur le texte", "ok") : chip("non vérifié sur le texte", "warn")}</div>
-      <h3 style="margin-top:6px"><a href="#/e/${encodeURIComponent(r.id)}">${esc(r.label)}</a></h3>
-      <p class="small muted">${esc(r.court)}${r.date ? " · " + fmtDate(r.date) : ""}${r.ref ? " · " + esc(r.ref) : ""}${r.commune ? " · " + esc(r.commune) : ""}${r.operator ? " · " + esc(r.operator) : ""}</p>
-      <details><summary>Détails</summary><div class="md small">${md(r.note)}</div>
-      ${r.moyens.length ? `<p class="small"><b>Éclaire :</b> ${links(r.moyens)}</p>` : ""}${r.sources.length ? `<p class="small"><b>Sources :</b> ${links(r.sources)}</p>` : ""}</details></div>`).join("") || '<p class="muted">Aucune décision.</p>';
-    document.querySelectorAll("[data-f]").forEach((b) => b.classList.toggle("sel", b.dataset.f === f));
-  };
-  const n = (x) => rows.filter(x).length;
-  $("#app").innerHTML = `<h1>Jurisprudence comparée</h1>
-    <p class="lead">Décisions rendues sur d'autres antennes-relais en France : ce qui a fait annuler, suspendre ou démonter, et ce qui a échoué. Aucune n'a été lue sur le texte original : ce sont des lectures de billets d'avocats ou de presse. <b>À vérifier avant toute citation.</b></p>
-    <div class="toolbar"><button class="chip" data-f="all">Toutes (${rows.length})</button><button class="chip" data-f="fav">Ont fonctionné (${n((r) => r.favorable === true)})</button>
-      <button class="chip" data-f="def">Ont échoué (${n((r) => r.favorable === false)})</button><button class="chip" data-f="regle">Règles (${n((r) => r.favorable === null)})</button>
-      <input type="search" id="jq" placeholder="Filtrer…"></div><div id="jl"></div>`;
-  document.querySelectorAll("[data-f]").forEach((b) => (b.onclick = () => { f = b.dataset.f; draw(); }));
-  $("#jq").oninput = (e) => { q = e.target.value.toLowerCase(); draw(); };
-  draw();
-}
-
-/* ───────────────────────── Pylônes & propriétaires ───────────────────────── */
-/* ───────────────────────── Corpus : décisions classées par la taxonomie ───────────────────────── */
-async function corpus(preset) {
-  const [meta, data] = await Promise.all([load("meta"), load("corpus")]);
+/* ───────────────────────── Jurisprudence : corpus de décisions classé par la taxonomie ───────────────────────── */
+async function jurisprudence(preset) {
+  const [meta, data, taux] = await Promise.all([load("meta"), load("corpus"), load("taux")]);
   const byId = Object.fromEntries(data.concepts.map((c) => [c.id, c]));
   const kids = {};
   data.concepts.forEach((c) => (kids[c.broader || c.scheme] ||= []).push(c.id));
@@ -283,9 +292,13 @@ async function corpus(preset) {
     document.querySelectorAll("[data-p]").forEach((b) => (b.onclick = () => { st.page += Number(b.dataset.p); draw(); window.scrollTo(0, 0); }));
     document.querySelectorAll("[data-q]").forEach((a) => (a.onclick = (e) => { e.preventDefault(); st.q = a.dataset.q.toLowerCase(); $("#cq").value = a.dataset.q; st.page = 0; draw(); }));
   };
-  $("#app").innerHTML = `<h1>Corpus de décisions</h1>
-    <p class="lead">${data.decisions.length} décisions de la justice administrative sur les antennes-relais (open data, Licence Ouverte 2.0), classées par la taxonomie du contentieux. Les moyens « évoqués », le type de requérant, le résultat et la proximité avec Kersalous sont <b>repérés automatiquement</b> et approximatifs ; seules les décisions marquées « lue » ont été lues. Les particuliers sont pseudonymisés par les juridictions. <b>Rien ici n'est un avis juridique.</b></p>
+  $("#app").innerHTML = `<h1>Jurisprudence</h1>
+    <p class="lead">${data.decisions.length} décisions de la justice administrative sur les antennes-relais (open data, Licence Ouverte 2.0), classées par la taxonomie du contentieux. Les moyens « évoqués », le type de requérant, le résultat et la proximité avec Kersalous sont <b>repérés automatiquement</b> et approximatifs ; seules les décisions marquées « lue » ou « lue en partie » ont été lues (99 sur 3 324). Les particuliers sont pseudonymisés par les juridictions. <b>Rien ici n'est un avis juridique.</b></p>
     <p class="small muted">Source des décisions : <a href="https://opendata.justice-administrative.fr" target="_blank" rel="noopener">open data de la justice administrative</a> (Conseil d'État, cours administratives d'appel, tribunaux administratifs), réutilisé sous <a href="https://www.etalab.gouv.fr/licence-ouverte-open-licence/" target="_blank" rel="noopener">Licence Ouverte 2.0</a>, données collectées le 15 octobre 2026. Chaque fiche renvoie à l'archive officielle d'origine ; le classement (taxonomie, moyens, score) est un travail de ce dossier, non de la justice administrative.</p>
+    ${taux.lignes.length ? (() => { taux.cols = taux.colonnes.filter((c) => taux.lignes.some((l) => l[c] > 0)); return ""; })() + `<details class="small"><summary><b>Taux de réussite des tiers devant les tribunaux administratifs</b> (riverains, associations, syndicats, préfet, communes contre une autorisation d'antenne)</summary>
+      <div class="scroll"><table><tr><th>Requérant</th><th>Décisions</th>${taux.cols.map((c) => `<th>${esc(c)}</th>`).join("")}<th>Obtient une annulation, une suspension ou un sursis</th></tr>
+      ${taux.lignes.map((l) => `<tr><td>${esc(l.requerant)}</td><td>${l.n}</td>${taux.cols.map((c) => `<td>${l[c]}</td>`).join("")}<td><b>${l.gagne}</b> (${Math.round((100 * l.gagne) / l.n)} %)</td></tr>`).join("")}</table></div>
+      <p class="muted">Décisions où l'acte attaqué est une autorisation (non-opposition ou permis) et où l'antenne est le sujet. Les désistements et non-lieux, dont l'acte n'est pas toujours identifiable, sont sous-comptés : en les ajoutant, le taux global tombe vers 12 %. Méthode et audit : corpus/VERIFICATION.md.</p></details>` : ""}
     <div class="toolbar"><button class="chip" id="cn">Cas proches de Kersalous (score ≥ 50)</button>
       <select id="cm" aria-label="Rôle du moyen"><option value="any">Moyen : tout rôle</option><option value="ev">Moyen évoqué</option><option value="re">Moyen retenu</option><option value="ec">Moyen écarté</option></select>
       <select id="cs" aria-label="Tri"><option value="score">Tri : proximité</option><option value="date">Tri : date</option></select>
@@ -299,7 +312,7 @@ async function corpus(preset) {
   draw();
 }
 
-async function reseau() {
+async function reseau(host = $("#app")) {
   const [r, ents] = await Promise.all([load("reseau"), load("entities")]);
   let ensId = "dos:ens-finistere", mode = "all";
   const bars = (rows) => rows.map((o) => `<div class="row ${o.owner_id === "skt:prop-73" ? "ph" : ""}"><div>${link({ id: o.owner_id, label: o.owner })}</div><div class="bar"><i style="width:${Math.min(100, o.pct * 2.2)}%"></i></div><div>${o.pct.toFixed(1)} % <span class="muted small">(${o.n})</span></div></div>`).join("");
@@ -311,8 +324,8 @@ async function reseau() {
       <div class="bars">${bars(rows) || '<p class="muted">Pas de mesure pour ce territoire.</p>'}</div>`;
   };
   const lim = ents["src:act-proprietaires-anfr"]?.note || "";
-  $("#app").innerHTML = `<h1>Phoenix &amp; Bouygues dans le Finistère</h1>
-    <p class="lead">Phoenix France Infrastructures, demandeur de la déclaration préalable, est une société de pylônes liée à Bouygues Telecom. Part de leurs supports parmi ceux du Finistère, d'après le registre de l'ANFR (fichier du 8 octobre 2026) ; la part de Phoenix est un <b>plancher</b>. Pas de comparaison avec d'autres propriétaires ni d'autres territoires.</p>
+  host.innerHTML = `<h2>Phoenix &amp; Bouygues dans le Finistère</h2>
+    <p class="lead">Phoenix France Infrastructures, demandeur de la déclaration préalable, est une société de pylônes liée à Bouygues Telecom. Part de leurs supports parmi ceux du Finistère, d'après le registre de l'ANFR (fichier du 8 octobre 2026) ; la part de Phoenix est un <b>plancher</b>. Seules les parts de Phoenix et de Bouygues sont mesurées.</p>
     <div class="banner md">${md(lim)}</div>
     <div class="toolbar">${r.ensembles.length > 1 ? `<label>Territoire <select id="ens">${r.ensembles.map((e) => `<option value="${esc(e.id)}"${e.id === ensId ? " selected" : ""}>${esc(e.label)}</option>`).join("")}</select></label>` : ""}
       <button class="chip sel" data-m="all">Tous les supports</button><button class="chip" data-m="bouygues">Seulement ceux qui hébergent Bouygues Telecom</button></div>

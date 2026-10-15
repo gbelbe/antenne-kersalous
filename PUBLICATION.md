@@ -1,6 +1,6 @@
 # Publier le site
 
-Le dépôt génère un site statique (carte, chronologie, jurisprudence, propriétaires de pylônes, sources, explorateur) à partir des fichiers `*.ttl`. GitHub Actions le reconstruit et le publie sur GitHub Pages **à chaque push** qui touche le graphe.
+Le dépôt génère un site statique (couverture et antennes du pays bigouden, jurisprudence, moyens et actions, chronologie, sources, explorateur) à partir des fichiers `*.ttl`. GitHub Actions le reconstruit et le publie sur GitHub Pages **à chaque push** qui touche le graphe.
 
 ## Mise en route (une fois)
 
@@ -57,9 +57,9 @@ Les masquages s'appliquent aux données **et** aux relations : une entité masqu
 | Changer l'apparence ou une vue | `site-src/` (`app.js`, `style.css`, `index.html`) |
 | Changer ce qui est extrait du graphe | `tools/build_site.py` |
 | Ajouter un évènement à la chronologie | le graphe : `ant:Evenement` avec `ant:dateEvenement` |
-| Ajouter une décision de justice | le graphe : `ant:Jurisprudence` (voir `antenne-jurisprudence.ttl`) |
+| Ajouter ou reclasser des décisions de justice | `corpus/README.md` (décisions et taxonomie générées depuis `tools/corpus/`) |
 
-La chronologie, la jurisprudence, les moyens, les propriétaires et les sources sont **lus dans le graphe** : aucune de ces pages n'est écrite à la main.
+La chronologie, la jurisprudence (3 324 décisions du corpus), les moyens, la couverture, les propriétaires et les sources sont **lus dans le graphe** : aucune de ces pages n'est écrite à la main.
 
 ## Identité des commits
 

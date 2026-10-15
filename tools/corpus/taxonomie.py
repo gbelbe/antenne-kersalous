@@ -7,6 +7,7 @@ repo=sys.argv[1]
 def q(s): return '"'+s.replace("\\","\\\\").replace('"','\\"')+'"@fr'
 out=["""@prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
 @prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -38,10 +39,16 @@ for name,(label,code,desc) in T.SCHEMES.items():
         s=f"skt:{cid} a skos:Concept ;\n    rdfs:label {q(lab)} ;\n    skos:prefLabel {q(lab)} ;\n    skos:definition {q(defi)} ;\n    skos:notation \"{num[cid]}\" ;\n    skos:inScheme skt:{name}"
         s+=(" ;\n    skos:broader skt:"+par) if par else (" ;\n    skos:topConceptOf skt:"+name)
         if cid in kids: s+=" ;\n    skos:narrower "+", ".join("skt:"+k for k in kids[cid])
+        if cid in T.EXPLICATIONS: s+=" ;\n    skos:scopeNote "+q(T.EXPLICATIONS[cid])
         out.append(s+" .\n"); n+=1
 out.append("""# ═══════════════════════════════════════════════════════════════
 #  TERMES D'ONTOLOGIE POUR LES DÉCISIONS
 # ═══════════════════════════════════════════════════════════════
+ant:concordeAvecConcept a owl:ObjectProperty ;
+    rdfs:label "correspond au concept du corpus"@fr ;
+    rdfs:domain ant:MoyenJuridique ; rdfs:range skos:Concept ;
+    note:note "Relie un moyen du dossier aux concepts de la taxonomie du contentieux, pour retrouver les décisions qui évoquent, retiennent ou écartent un moyen comparable." .
+
 ant:aPourConcept a owl:ObjectProperty ;
     rdfs:label "est classée sous le concept"@fr ;
     rdfs:domain ant:Jurisprudence ; rdfs:range skos:Concept ;
@@ -60,9 +67,10 @@ props=[("moyenEvoque","moyen évoqué","Moyens","Moyen cité ou discuté dans la
  ("niveauJuridiction","niveau de juridiction","Niveau","Premier ressort, appel, cassation."),
  ("proximiteKersalous","proximité avec Kersalous","Proximite","Ressemblance calculée avec le dossier."),
  ("transferabilite","transférabilité à Kersalous","Transferabilite","Le motif décisif s'applique-t-il ici ? Renseigné pour les décisions lues."),
- ("niveauLecture","niveau de lecture","NiveauLecture","Ce qui a été fait sur cette décision.")]
+ ("niveauLecture","niveau de lecture","NiveauLecture","Ce qui a été fait sur cette décision."),
+ ("statutLoiLittoral","statut de la commune au regard de la loi Littoral","LoiLittoral","Commune littorale, estuarienne ou non littorale. Renseigné pour les décisions des tribunaux de Rennes et Nantes dont la commune est dans le Finistère."),
+ ("communeLittorale","commune du Finistère concernée","LoiLittoral","Commune du Finistère citée comme lieu du projet (liste officielle des communes littorales).")]
 for p,lab,sch,desc in props:
-    sub="ant:moyenEvoque" in p
     out.append(f"ant:{p} a owl:ObjectProperty ;\n    rdfs:label {q(lab)} ;\n    rdfs:subPropertyOf ant:aPourConcept ;\n    rdfs:domain ant:Jurisprudence ;\n    note:note {q(desc+' Concepts du schéma skt:'+sch+'.')} .\n")
 out.append("""ant:moyenEcarteDeduit a owl:ObjectProperty ;
     rdfs:label "moyen écarté (déduit du rejet)"@fr ;
@@ -110,5 +118,7 @@ ant:avocatOpenData a owl:DatatypeProperty ;
     rdfs:label "avocat selon la métadonnée de l'open data"@fr ; rdfs:range xsd:string ;
     note:note "Champ Avocat_Requerant de la juridiction, recopié tel quel. Souvent l'avocat de l'opérateur, pas celui des riverains : le côté n'est pas garanti." .
 """)
+out.append("# ── Moyens du dossier reliés à la taxonomie ──")
+for m,cs in T.MOYEN_DOSSIER.items(): out.append(f"{m} ant:concordeAvecConcept "+", ".join("skt:"+c for c in cs)+" .")
 open(f"{repo}/antenne-contentieux.ttl","w",encoding="utf-8").write("\n".join(out))
 print(n,"concepts")

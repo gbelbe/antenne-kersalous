@@ -120,45 +120,6 @@ skt:envoye a skos:Concept,
     skos:topConceptOf skt:Dossier ;
     ant:axe skt:en-cours .
 
-skt:force-a-verifier a skos:Concept,
-        ant:Force ;
-    rdfs:label "À vérifier"@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "À vérifier"@fr ;
-    skos:scopeNote "Force inconnue tant qu'une pièce manque. Génère une action prioritaire."@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:force-ecarte a skos:Concept,
-        ant:Force ;
-    rdfs:label "Écarté"@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Écarté"@fr ;
-    skos:scopeNote "Moyen juridiquement condamné. À documenter pour ne pas le re-plaider."@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:force-faible a skos:Concept,
-        ant:Force ;
-    rdfs:label "Faible"@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Faible"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:force-forte a skos:Concept,
-        ant:Force ;
-    rdfs:label "Forte"@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Forte"@fr ;
-    skos:scopeNote "Violation objective et vérifiable sur pièces ; annulation probable si établie."@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:force-moyenne a skos:Concept,
-        ant:Force ;
-    rdfs:label "Moyenne"@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Moyenne"@fr ;
-    skos:scopeNote "Appréciation de fait laissée au juge ; utile en soutien d'un moyen fort."@fr ;
-    skos:topConceptOf skt:Dossier .
-
 skt:haie-talus a skos:Concept,
         ant:TypeDeZone ;
     rdfs:label "Haie ou talus à préserver"@fr ;
@@ -385,16 +346,6 @@ skt:protection-env a skos:Concept,
     skos:prefLabel "Protection environnementale"@fr ;
     skos:topConceptOf skt:Dossier .
 
-skt:Force a skos:Collection ;
-    rdfs:label "Force d'un moyen juridique"@fr ;
-    skos:member skt:force-a-verifier,
-        skt:force-ecarte,
-        skt:force-faible,
-        skt:force-forte,
-        skt:force-moyenne ;
-    skos:prefLabel "Force d'un moyen juridique"@fr ;
-    note:note "Évaluation honnête, à réviser après lecture du dossier. Un moyen faible surévalué coûte plus cher qu'un moyen faible assumé." .
-
 skt:Statut a skos:Collection ;
     rdfs:label "Statuts d'avancement"@fr ;
     skos:member skt:a-faire,
@@ -444,7 +395,6 @@ skt:TypeDeZone a skos:Collection ;
     note:note """Vocabulaire des contraintes qui pèsent sur une parcelle.
 Chaque concept répond à une question opérationnelle : *qu'est-ce que cela interdit,
 et qui doit être consulté ?* Mettez la réponse dans `skos:scopeNote`.""" .
-
 
 # ═══════════════════════════════════════════════════════════════
 #  RÉSEAUX MOBILES — générations, systèmes radio, statuts d'installation
@@ -527,14 +477,6 @@ Elles forment un vocabulaire à part : une valeur (« Avis de dépôt ») et sa 
 skt:Dossier a skos:ConceptScheme ;
     rdfs:label "Vocabulaire du dossier (juridique et procédure)"@fr ;
     skos:hasTopConcept skt:a-faire,
-        skt:issue-annulation,
-        skt:issue-demontage,
-        skt:issue-suspension,
-        skt:issue-opposition-confirmee,
-        skt:issue-recevabilite,
-        skt:issue-rejet-riverains,
-        skt:issue-injonction,
-        skt:issue-regle,
         skt:doc-avis-depot,
         skt:doc-constat,
         skt:doc-correspondance,
@@ -553,11 +495,6 @@ skt:Dossier a skos:ConceptScheme ;
         skt:ebc,
         skt:en-cours,
         skt:envoye,
-        skt:force-a-verifier,
-        skt:force-ecarte,
-        skt:force-faible,
-        skt:force-forte,
-        skt:force-moyenne,
         skt:haie-talus,
         skt:mh-classe,
         skt:mh-inscrit,
@@ -583,8 +520,8 @@ skt:Dossier a skos:ConceptScheme ;
         skt:zone-U,
         skt:zone-humide ;
     skos:prefLabel "Vocabulaire du dossier (juridique et procédure)"@fr ;
-    skos:definition "Tout ce qui sert à instruire le dossier et à agir : force des moyens, statuts d'avancement, natures de document, types de zones réglementaires, et les axes qui regroupent leurs valeurs."@fr ;
-    note:note """Les anciens vocabulaires (Force, Statut, NatureDocument, TypeDeZone, Axe) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
+    skos:definition "Tout ce qui sert à instruire le dossier et à agir : statuts d'avancement, natures de document, types de zones réglementaires, et les axes qui regroupent leurs valeurs."@fr ;
+    note:note """Les anciens vocabulaires (Statut, NatureDocument, TypeDeZone, Axe) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
 Pas de `skos:broader` ici, exprès : ster le lit comme une contenance (comme « situé dans »), ce qui ferait des valeurs des « lieux » et les retirerait des filtres de la carte. Ce qui distingue encore une valeur d'une autre est sa classe (`ant:Statut`, `ant:TypeDeZone`...)."""@fr .
 
 skt:Reseau a skos:ConceptScheme ;
@@ -621,82 +558,6 @@ skt:Reseau a skos:ConceptScheme ;
     skos:definition "Tout ce qui décrit les antennes et les réseaux : générations, systèmes radio, statuts d'installation, opérateurs, niveaux de couverture ARCEP."@fr ;
     note:note """Les anciens vocabulaires (Generation, SystemeRadio, StatutInstallation, Operateur, NiveauDeCouverture) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
 Pas de `skos:broader` ici, exprès : ster le lit comme une contenance (comme « situé dans »), ce qui ferait des valeurs des « lieux » et les retirerait des filtres de la carte. Ce qui distingue encore une valeur d'une autre est sa classe (`ant:Statut`, `ant:TypeDeZone`...)."""@fr .
-
-skt:issue-annulation a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Autorisation annulée"@fr ;
-    skos:definition "Le juge a annulé l'autorisation d'urbanisme, y compris après tentative de régularisation."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Autorisation annulée"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-demontage a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Démontage ordonné"@fr ;
-    skos:definition "Le juge a ordonné l'enlèvement de l'antenne, le plus souvent sous astreinte."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Démontage ordonné"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-suspension a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Chantier suspendu (référé)"@fr ;
-    skos:definition "Le juge des référés a suspendu l'exécution de l'autorisation ou du chantier, en attendant le jugement au fond."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Chantier suspendu (référé)"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-opposition-confirmee a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Opposition de la commune maintenue"@fr ;
-    skos:definition "Le juge a refusé de suspendre ou d'annuler l'opposition à déclaration préalable : l'opérateur n'obtient pas son antenne à ce stade."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Opposition de la commune maintenue"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-recevabilite a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Recevabilité du riverain reconnue"@fr ;
-    skos:definition "Le juge a reconnu l'intérêt à agir du riverain et renvoyé l'affaire au fond."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Recevabilité du riverain reconnue"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-rejet-riverains a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Recours de riverains rejeté"@fr ;
-    skos:definition "Le recours contre l'autorisation a échoué : l'antenne peut être posée ou maintenue."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Recours de riverains rejeté"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-injonction a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Injonction de délivrer la non-opposition"@fr ;
-    skos:definition "Le juge a annulé l'opposition du maire et lui a enjoint de laisser faire l'opérateur."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Injonction de délivrer la non-opposition"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:issue-regle a skos:Concept,
-        ant:IssueDecision ;
-    rdfs:label "Précision de règle"@fr ;
-    skos:definition "Décision ou avis qui fixe une règle (seuil, compétence, motif admissible) sans trancher un projet précis."@fr ;
-    skos:inScheme skt:Dossier ;
-    skos:prefLabel "Précision de règle"@fr ;
-    skos:topConceptOf skt:Dossier .
-
-skt:IssueFavorableRiverains a skos:Collection ;
-    rdfs:label "Issues favorables aux riverains"@fr ;
-    skos:member skt:issue-annulation, skt:issue-demontage, skt:issue-suspension, skt:issue-opposition-confirmee, skt:issue-recevabilite ;
-    skos:prefLabel "Issues favorables aux riverains"@fr ;
-    note:note "Ce qui a **fonctionné** : annulation, démontage, suspension, opposition maintenue, recevabilité. Une suspension ou une recevabilité ne gagne pas le fond : c'est du temps ou une porte ouverte, pas une victoire." .
-
-skt:IssueDefavorableRiverains a skos:Collection ;
-    rdfs:label "Issues défavorables aux riverains"@fr ;
-    skos:member skt:issue-rejet-riverains, skt:issue-injonction ;
-    skos:prefLabel "Issues défavorables aux riverains"@fr ;
-    note:note "Ce qui a **échoué** : recours rejeté, ou injonction faite au maire de laisser l'opérateur installer." .
 
 # ── Propriétaires de supports (ANFR, TPO_ID) — Phoenix et Bouygues seulement ──
 

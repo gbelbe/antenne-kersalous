@@ -7,6 +7,7 @@
 | Index et lectures | `corpus/index_decisions.csv`, `corpus/lectures.csv`, `corpus/RAPPORT.md` | Classement initial, 31 décisions lues, synthèse. |
 | Classement | `corpus/classement.json` | Résultat intermédiaire du classement (score, résultat, effet, requérants). |
 | Taxonomie | `antenne-contentieux.ttl` | 11 schémas SKOS, 133 concepts, termes d'ontologie. **Généré** depuis `tools/corpus/taxo_spec.py`. |
+| Loi Littoral | `antenne-littoral.ttl` (généré par `tools/corpus/littoral.py` depuis `corpus/communes_littorales_29.csv`) | Taxonomie des 121 communes littorales et estuariennes du Finistère (liste DDTM 29 du 19 juin 2019), plus Plonéour-Lanvern comme commune non soumise. Les décisions des tribunaux de Rennes et de Nantes dont la commune est dans la liste y sont reliées. |
 | Décisions dans le graphe | `antenne-decisions.ttl` | Une fiche `ant:Jurisprudence` par décision, reliée aux concepts, avec un nœud `src:` de provenance (fichier local, empreinte, archive). **Généré**. |
 
 ## Régénérer
@@ -22,7 +23,7 @@ Ajouter un concept ou corriger une expression régulière : modifier `tools/corp
 ## Ce qui est automatique et ce qui ne l'est pas
 
 - **Moyens « évoqués »** : repérés par expression régulière dans tout le texte, visas compris. Un moyen évoqué n'est ni retenu ni même soulevé : il est cité.
-- **Moyens retenus / écartés** : seulement pour les décisions lues (`skt:l-lu`).
+- **Moyens retenus / écartés** : renseignés à la main pour les 93 décisions lues (`skt:l-lu`, 32) ou lues en partie (`skt:l-partiel`, 61 : intertitres, passages décisifs, dispositif). Pour 476 rejets complets, les moyens discutés dans les motifs sont déduits « écartés » (`ant:moyenEcarteDeduit`). Pour toutes les autres décisions, « retenu » est inconnu, pas nul.
 - **Requérant, acte, résultat** : issus du classement automatique de l'index, corrigés pour les associations (nom lu dans le texte).
 - **Avocats** : « représenté par Me X, demande » (requérant) ou « conclut » (partie adverse). Nom de famille seul, homonymes possibles.
 - **Score de proximité** : somme de critères visibles dans `ant:detailScore` ; discutable décision par décision.

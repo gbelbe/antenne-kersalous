@@ -350,7 +350,7 @@ src:recherche-littoral a owl:NamedIndividual, src:RechercheWeb ;
     prov:generatedAtTime "2026-09-15"^^xsd:date ;
     rdfs:label "Recherche web — loi Littoral et Plonéour-Lanvern"@fr ;
     src:niveauDePreuve src:resume-recherche ;
-    note:note "La commune, pourtant à moins d'un kilomètre de la côte, n'est pas soumise à la loi Littoral. Point défavorable au dossier — donc à vérifier d'autant plus sérieusement, sur la liste officielle des communes littorales." .
+    note:note "La commune, pourtant à moins d'un kilomètre de la côte, n'est pas soumise à la loi Littoral. Point défavorable au dossier — donc à vérifier d'autant plus sérieusement, sur la liste officielle des communes littorales. **Vérifié le 2026-10-15** sur la liste officielle : voir src:ddtm29-communes-littorales." .
 
 src:connaissance-modele a owl:NamedIndividual, src:Source ;
     prov:generatedAtTime "2026-09-15"^^xsd:date ;
@@ -514,7 +514,6 @@ dos:art-l311-9-crpa   prov:wasDerivedFrom src:connaissance-modele .
 dos:art-l621-30-patrimoine prov:wasDerivedFrom src:connaissance-modele .
 dos:art-l411-32-rural prov:wasDerivedFrom src:connaissance-modele .
 dos:art-l34-9-1-cpce  prov:wasDerivedFrom src:connaissance-modele .
-dos:ce-2011-ondes     prov:wasDerivedFrom src:connaissance-modele .
 
 dos:moyen-seuil-pc    prov:wasDerivedFrom src:recherche-seuil-pc, src:avis-depot-photo .
 dos:moyen-talus       prov:wasDerivedFrom src:apicarto-gpu, src:plu-reglement .
@@ -651,89 +650,6 @@ src:act-lecture-franceinfo a owl:NamedIndividual, src:Interrogation ;
     note:note "Lien fourni par l'utilisateur. La vidéo elle-même n'a pas été regardée ni transcrite." .
 
 # ═══════════════════════════════════════════════════════════════
-#  JURISPRUDENCE COMPARÉE — sources (recherche du 2026-10-15)
-# ═══════════════════════════════════════════════════════════════
-
-src:act-recherche-jurisprudence a owl:NamedIndividual, src:Interrogation ;
-    rdfs:label "Recherche de décisions de justice sur des antennes-relais en France"@fr ;
-    prov:wasAssociatedWith src:claude, src:utilisateur ;
-    prov:endedAtTime "2026-10-15T00:00:00"^^xsd:dateTime ;
-    src:requete "Huit recherches web (annulations de permis, trouble de voisinage, projets abandonnés, seuil de 20 m², CAA 2024-2026, abandons par collectifs) puis lecture par résumé automatique de trois pages (Green Law x2, ITespresso)." ;
-    note:note "**Aucune décision lue à la source.** Billets d'avocats et presse seulement. Aucun cas d'abandon définitif d'un projet par un opérateur après recours n'a été trouvé : ce silence est un résultat de la recherche, pas une preuve que ça n'existe pas." .
-
-src:green-law-vaucresson a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Green Law Avocat — « Antenne relai : régulariser n'est pas gagner »"@fr ;
-    dcat:accessURL "https://green-law-avocat.fr/antenne-relai-regulariser-nest-pas-gagner/"^^xsd:anyURI ;
-    src:niveauDePreuve src:page-resumee ;
-    src:dateDonnees "billet non daté par la page lue" ;
-    note:note "Billet d'un cabinet d'avocats, lu par résumé automatique. Source secondaire, partie intéressée (cabinet spécialisé)." .
-
-src:green-law-paysage a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Green Law Avocat — « Antenne relais : le paysage dernier rempart contre les ondes ? »"@fr ;
-    dcat:accessURL "https://www.green-law-avocat.fr/antenne-relais-le-paysage-dernier-rempart-contre-les-ondes/"^^xsd:anyURI ;
-    src:niveauDePreuve src:page-resumee ;
-    src:dateDonnees "billet non daté par la page lue" ;
-    note:note "Cite deux ordonnances de 2019 (Lille, Nantes) sans nommer les parties. Résumé automatique : les motivations ne sont pas détaillées." .
-
-src:itespresso-montesquieu a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "ITespresso — « Antenne-relais : SFR obligé de reculer » (21 septembre 2011)"@fr ;
-    dcat:accessURL "https://www.itespresso.fr/antenne-relais-sfr-oblige-de-reculer-dans-une-commune-des-pyrenees-orientales-46418.html"^^xsd:anyURI ;
-    src:niveauDePreuve src:page-resumee ;
-    src:dateDonnees "article du 2011-09-21" ;
-    note:note "Presse spécialisée, lue par résumé automatique. Ne dit pas si la décision a été contestée ensuite." .
-
-src:france3-plouezec a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "France 3 Bretagne — « Un projet d'antennes-relais validé par la justice malgré les critiques des riverains »"@fr ;
-    dcat:accessURL "https://france3-regions.franceinfo.fr/bretagne/cotes-d-armor/un-projet-d-antennes-relais-valide-par-la-justice-malgre-les-critiques-des-riverains-3340154.html"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "article d'avril 2026" ;
-    note:note "Presse régionale ; contenu connu par résumé de moteur de recherche." .
-
-src:kohen-recours-2026 a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Kohen Avocats — billets sur les antennes-relais et les recours (septembre-octobre 2026)"@fr ;
-    dcat:accessURL "https://kohenavocats.fr/2026/09/24/antenne-relais-pres-chez-vous-contester-declaration-recours-suspension-2026/"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "billets du 2026-09-24 et suivants" ;
-    note:note "Source de CAA Nantes 8 juin 2026, CE 18 décembre 2024, CAA Paris 2 avril 2025. Billet d'un cabinet parisien, connu par résumé de moteur de recherche ; l'arrêt du 5 février 2026 qu'il cite n'a pu être identifié." .
-
-src:novlaw-ce-2024 a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Novlaw — « Antennes-relais et déclaration préalable : ce que précise le Conseil d'État »"@fr ;
-    dcat:accessURL "https://novlaw.fr/ressource/dans-quels-cas-une-antenne-relais-doit-faire-lobjet-dune-declaration-prealable"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "avis du 2024-03-21" ;
-    note:note "Lecture d'un tiers de l'avis n° 490536, connue par résumé de moteur de recherche. L'avis n'a pas été consulté." .
-
-src:allez-versailles-2009 a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Allez & Associés — « C.A. Versailles 4 février 2009 »"@fr ;
-    dcat:accessURL "https://www.allezassocies.com/articles/c-a-versailles-4-fevrier-2009/"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "arrêt du 2009-02-04" ;
-    note:note "Commentaire d'un cabinet d'avocats." .
-
-src:lagbd-trouble-voisinage a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "La GBD — « Trouble anormal de voisinage et implantation des relais de téléphonie mobile »"@fr ;
-    dcat:accessURL "https://www.lagbd.org/Trouble_anormal_de_voisinage_et_l'implantation_des_relais_de_t%C3%A9l%C3%A9phonie_mobile_(fr)"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "non daté" ;
-    note:note "Synthèse de jurisprudence civile, 2004-2011." .
-
-src:gazette-palais-competence a owl:NamedIndividual, src:DocumentSource ;
-    prov:generatedAtTime "2026-10-15"^^xsd:date ;
-    rdfs:label "Gazette du Palais — « Enlèvement d'une antenne-relais : quel ordre juridictionnel ? »"@fr ;
-    dcat:accessURL "https://www.gazette-du-palais.fr/actualites-juridiques/8820/"^^xsd:anyURI ;
-    src:niveauDePreuve src:resume-recherche ;
-    src:dateDonnees "non daté" ;
-    note:note "Rapporte la cassation sur la compétence du juge judiciaire. Date et numéro de l'arrêt non relevés." .
-
-# ═══════════════════════════════════════════════════════════════
 #  PROPRIÉTÉ DES SUPPORTS — sources (2026-10-15)
 # ═══════════════════════════════════════════════════════════════
 
@@ -867,3 +783,11 @@ src:guide-elus-5g a owl:NamedIndividual, src:DocumentSource ;
 
 src:bouygues-telecom-source a owl:NamedIndividual, prov:Organization ;
     rdfs:label "Bouygues Telecom"@fr .
+
+src:ddtm29-communes-littorales a owl:NamedIndividual, src:JeuDeDonnees ;
+    prov:generatedAtTime "2026-10-15"^^xsd:date ;
+    rdfs:label "DDTM du Finistère — Communes littorales et estuariennes du Finistère (article R.321-1 du code de l'environnement)"@fr ;
+    dcat:accessURL "https://www.data.gouv.fr/datasets/communes-littorales-et-estuariennes-du-finistere"^^xsd:anyURI ;
+    src:niveauDePreuve src:primaire ;
+    src:dateDonnees "champ MAJ : 2019-06-19 ; jeu republié le 2024-11-04" ;
+    note:note "Fichier shapefile téléchargé le 2026-10-15 (SHA-256 de l'archive : 80858bffcac50d5af43702fc83d2c0b591f81ed2ffb7854b70da06117e293ce3). 121 communes. Plonéour-Lanvern (INSEE 29174) n'y figure pas ; Plomeur, Saint-Jean-Trolimon, Plovan, Pouldreuzic, Pont-l'Abbé, Combrit, Loctudy, Penmarc'h, Guilvinec, Treffiagat et Plobannalec-Lesconil y figurent. Réserve : la liste date de 2019 ; un changement de statut est improbable mais n'a pas été recherché dans le décret 2004-311 ni dans les arrêtés plus récents. La description du jeu dit que le décret 2004-311 a retiré trois communes (Pont-de-Buis-lès-Quimerch, Saint-Martin-des-Champs, Clohars-Fouesnant) alors que deux d'entre elles figurent dans le fichier : à vérifier si l'une de ces communes devient pertinente." .

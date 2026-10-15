@@ -74,6 +74,12 @@ def load_corpus_graph():
     return g
 
 
+def _flat(n):
+    yield n["id"]
+    for c in n["children"]:
+        yield from _flat(c)
+
+
 class Site:
     def __init__(self, cfg):
         self.cfg = cfg
@@ -303,34 +309,6 @@ class Site:
         items.sort(key=lambda x: x["date"])
         return items
 
-    # ── jurisprudence ────────────────────────────────────────────
-    def jurisprudence(self, ents):
-        g = self.g2
-        fav = {short(o) for o in g.objects(URIRef(SKT + "IssueFavorableRiverains"), SKOS.member)}
-        defav = {short(o) for o in g.objects(URIRef(SKT + "IssueDefavorableRiverains"), SKOS.member)}
-        rows = []
-        for s in g.subjects(RDF.type, A("Jurisprudence")):
-            issue = self.val(s, A("issueDecision"))
-            court = self.val(s, A("rendueParJuridiction"))
-            commune = self.val(s, A("communeConcernee"))
-            op = self.val(s, A("operateurVise"))
-            ver = self.val(s, A("verifieSurSource"))
-            rows.append({
-                "id": short(s), "label": self.label(s), "ref": str(self.val(s, A("reference"), "")),
-                "date": str(self.val(s, A("dateDecision"), "")),
-                "court": self.label(court) if court else "",
-                "issue": self.label(issue) if issue else "",
-                "issue_id": short(issue) if issue else "",
-                "favorable": True if (issue and short(issue) in fav) else (False if (issue and short(issue) in defav) else None),
-                "commune": self.label(commune) if commune else "",
-                "operator": self.label(op) if op else "",
-                "moyens": [self.ref(o) for o in g.objects(s, A("illustreMoyen")) if self.ref(o)],
-                "verified": bool(ver) and str(ver).lower() == "true",
-                "note": self.note(s), "sources": self.sources_of(s),
-            })
-        rows.sort(key=lambda r: r["date"] or "0000", reverse=True)
-        return rows
-
     # ── corpus : décisions classées par la taxonomie du contentieux ──
     FACET = {"moyenEvoque": "ev", "moyenRetenu": "re", "moyenEcarte": "ec", "moyenEcarteDeduit": "ed"}
 
@@ -398,11 +376,84 @@ class Site:
                 b = self.val_in(g, c, SKOS.broader)
                 concepts[short(c)] = {"id": short(c), "label": self.label(c), "scheme": sid,
                                       "broader": short(b) if b else "", "notation": str(self.val_in(g, c, SKOS.notation, "")),
-                                      "definition": str(self.val_in(g, c, SKOS.definition, ""))}
+                                      "definition": str(self.val_in(g, c, SKOS.definition, "")),
+                                      "explication": str(self.val_in(g, c, SKOS.scopeNote, ""))}
+        # schéma des communes : ne garder que les communes qui ont des décisions (et leurs statuts)
+        usedc = {i for i in used}
+        for cid in list(concepts):
+            c = concepts[cid]
+            if c["scheme"] == "skt:LoiLittoral" and c["broader"] and cid not in usedc:
+                del concepts[cid]
         out_schemes.sort(key=lambda x: x["notation"])
         decisions.sort(key=lambda r: (-r["score"], r["date"]))
         return {"schemes": out_schemes, "concepts": sorted(concepts.values(), key=lambda c: c["notation"].replace(".", "~")),
                 "decisions": decisions}
+
+    def moyens_vs_corpus(self, moyens, corpus):
+        """Moyens du dossier et taxonomie des moyens, chacun avec ce que dit le corpus de décisions.
+        Retourne l'arbre des moyens (groupes > concepts > moyens du dossier)."""
+        D = corpus["decisions"]
+        cs = {c["id"]: c for c in corpus["concepts"]}
+        kids = defaultdict(list)
+        for c in corpus["concepts"]:
+            if c["scheme"] == "skt:Moyens":
+                kids[c["broader"] or "root"].append(c["id"])
+
+        def below(i):
+            return [i] + [x for k in kids.get(i, []) for x in below(k)]
+        lues = {d["id"] for d in D if "skt:l-lu" in d["c"] or "skt:l-partiel" in d["c"]}
+
+        def stats(ids):
+            ids = set(ids)
+            ev = [d for d in D if ids & set(d["ev"])]
+            return {
+                "evoque": len(ev), "proches": sum(1 for d in ev if d["score"] >= 50),
+                "retenu": sum(1 for d in D if ids & set(d["re"])),
+                "ecarte_lu": sum(1 for d in D if ids & set(d["ec"])),
+                "ecarte_deduit": sum(1 for d in D if ids & set(d["ed"])),
+                "total": len(D), "lues": len(lues),
+            }
+        for m in moyens:
+            ids = {x for c in m["concepts"] for x in below(c)}
+            m["corpus"] = dict(stats(ids), concepts=[{"id": c, "label": cs[c]["label"] if c in cs else c} for c in m["concepts"]]) if ids else None
+        by_concept = defaultdict(list)
+        for m in moyens:
+            if m["concepts"]:
+                by_concept[m["concepts"][0]].append(m["id"])
+
+        def node(i):
+            c = cs[i]
+            return {"id": i, "label": c["label"], "definition": c["definition"], "explication": c.get("explication", ""), "notation": c["notation"],
+                    "stats": stats(below(i)), "moyens": by_concept.get(i, []), "children": [node(k) for k in kids.get(i, [])]}
+        arbre = [node(i) for i in kids.get("root", [])]
+        known = {x for g in arbre for x in _flat(g)}
+        orphans = [m["id"] for m in moyens if not m["concepts"] or m["concepts"][0] not in known]
+        return {"groupes": arbre, "orphelins": orphans, "total": len(D), "lues": len(lues)}
+
+    def couverture(self):
+        """Mesures de couverture au site et comparaison avec les autres communes, pour l'onglet Couverture."""
+        g = self.g2
+        site, cmp_ = [], {}
+        names = {"rural": "Communes rurales de France métropolitaine", "fin_rural": "Communes rurales du Finistère",
+                 "similar": "Communes de taille et de densité proches de Plonéour-Lanvern", "near10": "Communes dans les 10 km du site",
+                 "france": "Toutes les communes de France métropolitaine"}
+        for s in g.subjects(RDF.type, A("Mesure")):
+            sid = short(s)
+            val = self.val(s, A("valeur")); unit = self.val(s, A("unite"))
+            if val is None:
+                continue
+            row = {"id": sid, "label": self.label(s), "value": float(val), "unit": str(unit or "")}
+            m = re.match(r"dos:m-cmp-(.+?)-(tres-bonne|bonne)$", sid)
+            if m and m.group(1) in names:
+                cmp_.setdefault(m.group(1), {"id": m.group(1), "label": names[m.group(1)]})[m.group(2)] = row["value"]
+            elif m and m.group(1).startswith("rang-finistere"):
+                cmp_.setdefault("rang", {"id": "rang", "label": "Rang du Finistère parmi 90 départements (communes rurales, 1 = meilleur)"})[m.group(2)] = row["value"]
+            elif sid.startswith("dos:m-cmp"):
+                continue
+            elif "Bouygues Telecom 4G" in row["label"] or "couverture" in row["label"].lower():
+                site.append(row)
+        order = ["rural", "fin_rural", "similar", "near10", "france", "rang"]
+        return {"site": site, "comparaison": [cmp_[k] for k in order if k in cmp_]}
 
     @staticmethod
     def val_in(graph, s, pred, default=None):
@@ -415,17 +466,14 @@ class Site:
         g = self.g2
         moyens = []
         for s in g.subjects(RDF.type, A("MoyenJuridique")):
-            force = self.val(s, A("force"))
             moyens.append({
-                "id": short(s), "label": self.label(s), "force": self.label(force) if force else "",
-                "force_id": short(force) if force else "", "note": self.note(s),
+                "id": short(s), "label": self.label(s), "note": self.note(s),
+                "concepts": [short(o) for o in g.objects(s, A("concordeAvecConcept"))],
                 "fondements": [r for o in g.objects(s, A("fondementJuridique")) if (r := self.ref(o))],
                 "preuves": [r for o in list(g.objects(s, A("etayePar"))) + list(g.objects(s, A("etayeParMesure"))) if (r := self.ref(o))],
                 "actions": [r for a in g.subjects(A("soutient"), s) if (r := self.ref(a))],
-                "jurisprudence": [r for j in g.subjects(A("illustreMoyen"), s) if (r := self.ref(j))],
             })
-        order = {"skt:force-forte": 0, "skt:force-moyenne": 1, "skt:force-a-verifier": 2, "skt:force-faible": 3, "skt:force-ecarte": 4}
-        moyens.sort(key=lambda m: (order.get(m["force_id"], 9), m["label"]))
+        moyens.sort(key=lambda m: m["label"])
         actions = []
         for s in g.subjects(RDF.type, A("Action")):
             st = self.val(s, A("statut"))
@@ -538,11 +586,12 @@ def build():
     ents = site.entities()
     map_data, cover = site.map_data(ents)
     tl = site.timeline(ents)
-    jur = site.jurisprudence(ents)
     dos = site.dossier(ents)
     res = site.reseau(ents)
     src = site.sources()
     corpus = site.corpus(cfg["site"]["repo_url"])
+    dos["arbre"] = site.moyens_vs_corpus(dos["moyens"], corpus)
+    couv = site.couverture()
 
     key = os.environ.get(cfg["maps"].get("env_key", "GOOGLE_MAPS_API_KEY"), "")
     meta = {
@@ -554,7 +603,7 @@ def build():
             "supports": sum(1 for f in map_data["features"] if f["kind"] in ("support", "phoenix", "projet")),
             "phoenix_supports": sum(1 for f in map_data["features"] if f["kind"] == "phoenix"),
             "entities": len(ents), "triples": len(site.g2),
-            "decisions": len(jur), "corpus": len(corpus["decisions"]), "sources": len(src["sources"]), "moyens": len(dos["moyens"]),
+            "decisions": len(corpus["decisions"]), "sources": len(src["sources"]), "moyens": len(dos["moyens"]),
         },
         "published_files": [Path(f).name for f in cfg["files"]["publish"] if (ROOT / f).exists()],
     }
@@ -563,11 +612,13 @@ def build():
     write_json(OUT / "data" / "map.json", map_data)
     write_json(OUT / "data" / "coverage.json", cover)
     write_json(OUT / "data" / "timeline.json", tl)
-    write_json(OUT / "data" / "jurisprudence.json", jur)
     write_json(OUT / "data" / "dossier.json", dos)
     write_json(OUT / "data" / "reseau.json", res)
     write_json(OUT / "data" / "sources.json", src)
     write_json(OUT / "data" / "corpus.json", corpus)
+    write_json(OUT / "data" / "couverture.json", couv)
+    taux = ROOT / "corpus" / "taux.json"
+    write_json(OUT / "data" / "taux.json", json.loads(taux.read_text(encoding="utf-8")) if taux.exists() else {"colonnes": [], "lignes": []})
     if (ROOT / CORPUS_TTL).exists():
         shutil.copy2(ROOT / CORPUS_TTL, OUT / "data" / "corpus.ttl")
 
@@ -587,7 +638,7 @@ def build():
             shutil.copy2(f, OUT / f.name)
     (OUT / ".nojekyll").write_text("")
     print(f"site construit dans {OUT} : {len(ents)} entités, {len(site.g2)} triplets publics, "
-          f"{len(map_data['features'])} objets cartographiés, {len(tl)} évènements, {len(jur)} décisions")
+          f"{len(map_data['features'])} objets cartographiés, {len(tl)} évènements, {len(corpus['decisions'])} décisions")
     hidden = len(site.hidden)
     print(f"confidentialité : {hidden} entités masquées")
 

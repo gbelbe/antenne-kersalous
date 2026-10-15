@@ -23,6 +23,14 @@ MOY={c[0] for c in T.MOYENS}
 CTX={c[0] for c in T.CONTEXTE}
 MECA={"p-regularisation","p-urgence-presumee","p-recours-abusif","p-frais","p-cristallisation"}
 
+LIT={}
+for _r in csv.DictReader(open(f"{repo}/corpus/communes_littorales_29.csv",encoding="utf-8")):
+    LIT[strip(_r["nom"]).lower().replace("’","'")]=(_r["insee"],_r["statut"])
+LITRX=re.compile(r"(?:commune|maire|conseil municipal|ville)\s+(?:de la |de l'|de |d'|du |des )?("+"|".join(re.escape(k) for k in sorted(LIT,key=len,reverse=True))+r")(?![\w-])")
+def commune_finistere(txt):
+    m=LITRX.search(strip(txt[:6000]).lower().replace("’","'"))
+    return LIT[m.group(1)] if m else None
+
 def motifs(txt):
     L=txt.split("\n")
     k=next((n for n,l in enumerate(L) if re.match(r"(?:1\. |Sur les conclusions|Considérant|Sur (?:la|le|l[’']) |En premier lieu|En ce qui concerne)",l.strip())),None)
@@ -69,6 +77,22 @@ def resultat(sol,stade,issue,niveau,tail):
         if re.search(r"confirm|REJET",issue) and "infirm" not in issue: out.append("r-appel-confirme")
         if re.search(r"EN APPEL|infirmée|RÉTABLI|RÉTABLIE",issue): out.append("r-appel-infirme")
     return list(dict.fromkeys(out))
+
+OPREQ=re.compile(r"\b(?:Free|Orange|Bouygues|SFR|Cellnex|Hivory|ATC|Totem|TDF|Phoenix|Towercast|On Tower|Telco|Axians|Infracos|FPS|Altitude|Itas|Circet|Eiffage|Zayo|OTF)\b|Société [Ff]rançaise (?:du|de) [Rr]adiotéléphon|société[^,.]{0,40}(?:infrastructure|télécom|mobile|tower)",re.I)
+def requerant(txt,fallback):
+    """Qui saisit la juridiction : lu dans la phrase d'ouverture (« Par une requête…, X, représenté par Me Y, demande »)."""
+    m=re.search(r"(?:Par (?:une|deux|trois)?\s?(?:requêtes?|demandes?|ordonnances?|déférés?)|requête|déféré|appel)[^:]{0,80}?(?:enregistré|déposé)[^,]{0,140},?([^.]{0,320}?)\b(?:demand|conclu)",re.sub(r"\s+"," ",txt[:3500]))
+    r=m.group(1) if m else ""
+    if not r:
+        m2=re.search(r"([^.]{0,260}?)\b(?:a demandé|ont demandé|demande|demandent)\b",re.sub(r"\s+"," ",txt[:2500]))
+        r=m2.group(1) if m2 else ""
+    if re.search(r"préfet|préfète|déféré",r,re.I): return "q-prefet"
+    if re.search(r"\bla (?:commune|ville) d|\ble département|communauté (?:de communes|d.agglomération|urbaine)|métropole",r,re.I) and not OPREQ.search(r): return "q-commune"
+    if OPREQ.search(r): return "q-operateur"
+    if re.search(r"\bl.association\b|\bassociation\b|collectif",r,re.I): return "q-association"
+    if re.search(r"syndicat des copropriétaires|SCI\b|société civile",r,re.I): return "q-syndicat"
+    if re.search(r"\bM\. |\bMme |\bMM\. |consorts|épous|époux|\bMlle",r): return "q-riverains"
+    return fallback
 
 def asso_type(name):
     n=strip(name).lower()
@@ -194,10 +218,10 @@ for r in rows:
         mt=motifs(txt)
         if mt: ecd=sorted(c for c,rx in RX.items() if c in MOY and rx.search(mt))
     a=None; av={"requerant":[],"adverse":[]}
-    if req!="q-operateur" and req!="q-commune":
+    req=requerant(txt,req)
+    if req in ("q-riverains","q-indetermine","q-syndicat","q-association"):
         a=asso(txt)
         if a: req="q-association"
-        elif req=="q-association": req="q-indetermine"
     if req=="q-association" and a is None: req="q-indetermine"
     av=avocats(txt)
     if a: req2=asso_type(a[1])
@@ -216,6 +240,8 @@ for r in rows:
     add("voieDeDroit",[voie]); add("acteAttaque",[acte]); add("typeRequerant",reqs); add("resultat",res); add("effetProjet",[eff])
     add("moyenEvoque",sorted(ev)); add("moyenRetenu",ret); add("moyenEcarte",eca); add("moyenEcarteDeduit",ecd)
     add("contexteSite",ctx); add("mecanismeProcedural",mec)
+    cf=commune_finistere(txt) if jid in ("ta-rennes","caa-nantes") else None
+    if cf: L.append(f"    ant:communeLittorale skt:ll-{cf[0]} ; ant:statutLoiLittoral skt:ll-{cf[1]} ;"); stats["finistere"]+=1
     add("transferabilite",[tr] if tr else []); add("proximiteKersalous",[prox]); add("niveauLecture",["l-lu" if lu else "l-partiel" if partiel else "l-auto"])
     L.append(f"    ant:scoreProximite {sc} ; ant:detailScore {lit(why)} ;")
     if a:

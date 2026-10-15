@@ -1,5 +1,6 @@
 @prefix ant:  <https://kersalous.bzh/ontology/antenne#> .
 @prefix skt:  <https://kersalous.bzh/taxonomie/> .
+@prefix dos:  <https://kersalous.bzh/dossier/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,7 +21,7 @@ skt:Moyens a skos:ConceptScheme ;
     skos:prefLabel "Moyens juridiques invoqués dans le contentieux des antennes"@fr ;
     skos:definition "Ce que les requérants (ou l'opérateur, ou la commune) invoquent devant le juge. Une décision est reliée à un moyen par trois relations distinctes : évoqué, retenu, écarté."@fr ;
     skos:notation "M" ;
-    skos:hasTopConcept skt:m-qualification, skt:m-reglement, skt:m-insertion, skt:m-milieux, skt:m-dossier, skt:m-instruction, skt:m-securite, skt:m-connexes, skt:m-recevabilite .
+    skos:hasTopConcept skt:m-qualification, skt:m-reglement, skt:m-insertion, skt:m-milieux, skt:m-dossier, skt:m-instruction, skt:m-securite, skt:m-connexes, skt:m-foncier-communal, skt:m-recevabilite .
 
 skt:m-qualification a skos:Concept ;
     rdfs:label "Nature de l'autorisation exigée (déclaration préalable ou permis)"@fr ;
@@ -29,7 +30,7 @@ skt:m-qualification a skos:Concept ;
     skos:notation "M1" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
-    skos:narrower skt:m-emprise-locaux, skt:m-abords-mh-pc, skt:m-hauteur-12m .
+    skos:narrower skt:m-emprise-locaux, skt:m-abords-mh-pc, skt:m-permis-precaire, skt:m-hauteur-12m .
 
 skt:m-emprise-locaux a skos:Concept ;
     rdfs:label "Emprise des locaux techniques (seuil de 20 m²)"@fr ;
@@ -37,7 +38,8 @@ skt:m-emprise-locaux a skos:Concept ;
     skos:definition "Au-delà de 20 m² d'emprise au sol ou de surface de plancher, un permis est exigé. Selon l'avis du Conseil d'État du 21 mars 2024 (n° 490536, à relire), seule compte l'emprise des locaux et installations techniques, pas celle du pylône."@fr ;
     skos:notation "M1.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-qualification .
+    skos:broader skt:m-qualification ;
+    skos:scopeNote "Une déclaration préalable suffit tant que l'emprise au sol ou la surface de plancher créée reste sous 20 m² ; au-delà, il faut un permis. Les décisions lues ne comptent que les locaux et installations techniques, pas le pylône : à Nantes (2026), un massif béton de 31 m² avec une dalle affleurante de 6 m² reste en déclaration ; à Biot, une dalle enterrée de 25 m² ne compte pas ; à Pluguffan, 10,4 m² de surface de plancher. Écarté dans toutes les lectures. La fondation de Kersalous (29,16 m², dalle de 2 m²) tombe très probablement dans ce cas."@fr .
 
 skt:m-abords-mh-pc a skos:Concept ;
     rdfs:label "Abords d'un monument historique : permis exigé (covisibilité)"@fr ;
@@ -45,13 +47,22 @@ skt:m-abords-mh-pc a skos:Concept ;
     skos:definition "Dans les abords d'un monument historique, une construction de plus de 12 m de haut qui est en covisibilité avec lui exige un permis (R.421-11). Annulation non régularisable dans les deux jugements lus (Le Vigan, Mont-Saint-Jean)."@fr ;
     skos:notation "M1.2" ;
     skos:inScheme skt:Moyens ;
+    skos:broader skt:m-qualification ;
+    skos:scopeNote "Dans les abords d'un monument historique, une construction en covisibilité avec lui n'échappe au permis de construire que sous certaines conditions : au-delà de 12 m de haut, il faut un permis et la déclaration préalable est illégale. Trois tribunaux l'ont retenu (Le Vigan en 2023, Mont-Saint-Jean en 2023, Fourques en 2024) ; à Dijon, le juge a refusé de laisser régulariser. C'est le moyen non régularisable le plus sérieux hors littoral. À vérifier pour Kersalous : la parcelle YX 26 est-elle dans un périmètre délimité des abords du manoir, ou à moins de 500 m et visible en même temps ?"@fr .
+
+skt:m-permis-precaire a skos:Concept ;
+    rdfs:label "Permis de construire à titre précaire (L.433-1)"@fr ;
+    skos:prefLabel "Permis de construire à titre précaire (L.433-1)"@fr ;
+    skos:definition "Autorisation exceptionnelle d'une construction temporaire qui déroge aux règles, réservée aux nécessités caractérisées. TA Caen, 18 mars 2025, n° 2301119 (Trouville-sur-Mer, Bouygues) : annulation d'un permis délivré à titre précaire pour une antenne, moyen relevé d'office ; suspension préalable le 24 mai 2023."@fr ;
+    skos:notation "M1.3" ;
+    skos:inScheme skt:Moyens ;
     skos:broader skt:m-qualification .
 
 skt:m-hauteur-12m a skos:Concept ;
     rdfs:label "Hauteur de plus de 12 m"@fr ;
     skos:prefLabel "Hauteur de plus de 12 m"@fr ;
     skos:definition "Seuil de hauteur qui fait basculer certaines constructions vers le permis de construire."@fr ;
-    skos:notation "M1.3" ;
+    skos:notation "M1.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-qualification .
 
@@ -62,15 +73,16 @@ skt:m-reglement a skos:Concept ;
     skos:notation "M2" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
-    skos:narrower skt:m-zone-agri-naturelle, skt:m-zone-urbaine, skt:m-regle-plu, skt:m-littoral, skt:m-montagne, skt:m-desserte, skt:m-emplacement-reserve, skt:m-rnu .
+    skos:narrower skt:m-zone-agri-naturelle, skt:m-zone-urbaine, skt:m-regle-plu, skt:m-littoral, skt:m-montagne, skt:m-desserte, skt:m-emplacement-reserve, skt:m-acces, skt:m-rnu .
 
 skt:m-zone-agri-naturelle a skos:Concept ;
     rdfs:label "Zone agricole ou naturelle (équipement d'intérêt collectif)"@fr ;
     skos:prefLabel "Zone agricole ou naturelle (équipement d'intérêt collectif)"@fr ;
-    skos:definition "Le pylône est-il admis en zone A ou N comme équipement d'intérêt collectif ou service public ? La plupart des tribunaux répondent oui."@fr ;
+    skos:definition "Le pylône est-il admis en zone A ou N comme équipement d'intérêt collectif ou service public ? La plupart des tribunaux répondent oui, mais l'admission peut dépendre du texte du PLU : TA Amiens, 11 juin 2025, n° 2200831 (Bruyères-et-Montbérault, Orange, zone N) annule parce qu'une antenne n'est pas un « équipement public » et n'est admise que si un impératif technique justifie sa localisation."@fr ;
     skos:notation "M2.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-reglement .
+    skos:broader skt:m-reglement ;
+    skos:scopeNote "Dans une zone agricole (A) ou naturelle (N) d'un PLU, on ne construit en principe que pour l'agriculture ou la forêt, avec des exceptions dont celle des équipements d'intérêt collectif ou services publics, souvent sous conditions. La plupart des tribunaux (Pluguffan, Guiclan, La Gouesnière, Rousson en appel) admettent l'antenne comme équipement d'intérêt collectif et regardent si ses conditions sont remplies : non-incompatibilité avec l'activité agricole de l'unité foncière, absence d'atteinte aux espaces naturels et aux paysages (c'est la double condition de la zone A de Plonéour-Lanvern). Les annulations viennent du texte précis du PLU : à Amiens (2025), l'antenne n'est pas un « équipement public » et n'est admise que si un impératif technique justifie sa localisation ; à Bordeaux (2025), une modification du PLU avait supprimé les exceptions et la zone N interdisait toute construction (régularisable) ; à Neuville-sur-Oise (2026), la zone était dévolue aux sports et loisirs. À vérifier pour Kersalous : le texte exact de l'article A et l'usage agricole réel de la parcelle."@fr .
 
 skt:m-zone-urbaine a skos:Concept ;
     rdfs:label "Zone urbaine ou à urbaniser"@fr ;
@@ -103,7 +115,8 @@ skt:m-regle-cloture a skos:Concept ;
     skos:definition "Hauteur ou nature de la clôture du poste technique."@fr ;
     skos:notation "M2.3.2" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-regle-plu .
+    skos:broader skt:m-regle-plu ;
+    skos:scopeNote "Le PLU fixe souvent la hauteur et la nature des clôtures (par exemple 1,50 m ou 1,80 m maximum, mailles ou aspérités pour laisser passer la petite faune). Le poste technique d'une antenne est clôturé à 2 m : retenu 9 fois (Verrens-Arvey, La Baume-Cornillane, Toutainville, Fégréac, Rethondes…). Le vice ne porte que sur la clôture : annulation partielle puis régularisation en 3 à 6 mois. Il retarde, il ne tue pas le projet. À vérifier : le règlement de la zone A de Plonéour-Lanvern et la clôture prévue."@fr .
 
 skt:m-regle-plantations a skos:Concept ;
     rdfs:label "Plantations et espaces verts"@fr ;
@@ -136,7 +149,8 @@ skt:m-littoral a skos:Concept ;
     skos:notation "M2.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-reglement ;
-    skos:narrower skt:m-littoral-urbanisation, skt:m-littoral-espaces .
+    skos:narrower skt:m-littoral-urbanisation, skt:m-littoral-espaces ;
+    skos:scopeNote "La loi Littoral (L.121-1 et suivants) ne s'applique qu'aux communes littorales (article L.321-2 du code de l'environnement). Plonéour-Lanvern (INSEE 29174) n'est pas dans la liste officielle des 121 communes littorales et estuariennes du Finistère (DDTM 29, mise à jour du 19 juin 2019) : vérifié le 15 octobre 2026. Ses voisines Plomeur, Saint-Jean-Trolimon, Plovan, Pouldreuzic, Pont-l'Abbé, Combrit, Loctudy et Penmarc'h y sont, d'où les annulations de Plomeur et de Plobannalec-Lesconil. C'est le motif le plus gagnant de l'Ouest (10 décisions lues : Locmaria-Plouzané, Fouesnant, Roscoff, Carnac…) mais il ne joue pas à Kersalous. Le TA de Rennes avait rejeté le recours à Cléden-Cap-Sizun ; la cour administrative d'appel de Nantes l'a accueilli le 13 octobre 2026 (n° 24NT03613), en jugeant le pylône isolé de toute construction et le vice non régularisable. La loi s'applique aussi aux rives des grands plans d'eau (Bas-Chablais, lac Léman)."@fr .
 
 skt:m-littoral-urbanisation a skos:Concept ;
     rdfs:label "Extension de l'urbanisation hors village ou agglomération (L.121-8)"@fr ;
@@ -168,23 +182,34 @@ skt:m-desserte a skos:Concept ;
     skos:definition "Si des travaux sur les réseaux publics sont nécessaires, la déclaration doit être refusée quand l'autorité ne peut dire quand et par qui ils seront faits. TA Rennes, 19 mars 2026, n° 2401193 (La Gouesnière) : annulation, extension électrique de 408 m sans diligences du maire auprès du syndicat d'énergie ; suspension préalable le 30 octobre 2025."@fr ;
     skos:notation "M2.6" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-reglement .
+    skos:broader skt:m-reglement ;
+    skos:scopeNote "Si le projet exige des travaux sur les réseaux publics (électricité, eau), la déclaration préalable doit être refusée quand l'autorité ne peut pas dire dans quel délai et par quelle collectivité ou quel concessionnaire ils seront faits (L.111-11). À La Gouesnière (TA de Rennes, 2026), l'extension électrique de 408 m n'avait donné lieu à aucune démarche du maire auprès du syndicat d'énergie : suspension puis annulation. À Bouc-Bel-Air (TA de Marseille, 2023), le dossier ne précisait pas le raccordement, le poste haute tension étant à une centaine de mètres : sursis pour régulariser. Le moyen échoue quand l'arrêté met le coût du raccordement à la charge du pétitionnaire (Toutainville) ou quand le gestionnaire (Enedis) a été consulté (Le Beausset, régularisé). À vérifier pour Kersalous : distance au réseau, extension nécessaire, avis du gestionnaire dans le dossier."@fr .
 
 skt:m-emplacement-reserve a skos:Concept ;
     rdfs:label "Emplacement réservé ou projet public d'infrastructure"@fr ;
     skos:prefLabel "Emplacement réservé ou projet public d'infrastructure"@fr ;
-    skos:definition "Projet implanté dans un emplacement réservé ou une zone prévue pour un équipement public. TA Montpellier, 13 février 2026, n° 2600444 (Saint-Just, Phoenix France Infrastructure 3) : suspension ; la commune ne peut corriger l'implantation par une prescription."@fr ;
+    skos:definition "Projet implanté dans un emplacement réservé ou une zone prévue pour un équipement public. TA Nice, 11 juin 2025, n° 2205993 (Châteauneuf-Grasse, Free) : annulation, l'emplacement était réservé à un parking. TA Montpellier, 13 février 2026, n° 2600444 (Saint-Just, Phoenix France Infrastructure 3) : suspension ; la commune ne peut corriger l'implantation par une prescription."@fr ;
     skos:notation "M2.7" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-reglement .
+
+skt:m-acces a skos:Concept ;
+    rdfs:label "Accès, voirie et consultation du gestionnaire de voirie (R.423-53)"@fr ;
+    skos:prefLabel "Accès, voirie et consultation du gestionnaire de voirie (R.423-53)"@fr ;
+    skos:definition "Création d'un accès sur une route départementale ou communale : le gestionnaire doit être consulté. TA Nantes, 30 septembre 2025, n° 2114721 (Saint-Cyr-en-Talmondais, Orange) : annulation partielle, 6 mois pour régulariser."@fr ;
+    skos:notation "M2.8" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-reglement ;
+    skos:scopeNote "Un nouvel accès sur une route départementale ou communale exige l'accord ou la consultation du gestionnaire de la voirie (R.423-53), et les règles du PLU sur la largeur et la desserte s'appliquent. Retenu à Saint-Cyr-en-Talmondais (Orange : nouvel accès sur la RD 45 sans consultation du gestionnaire ; annulation partielle, 6 mois pour régulariser) et à Sainte-Rose (Guadeloupe : un terrain sans accès à une voie publique est inconstructible ; sursis pour régulariser). Écarté quand l'accès existe déjà (Pluguffan)."@fr .
 
 skt:m-rnu a skos:Concept ;
     rdfs:label "Constructibilité limitée (RNU, hors parties urbanisées)"@fr ;
     skos:prefLabel "Constructibilité limitée (RNU, hors parties urbanisées)"@fr ;
     skos:definition "Règle de constructibilité limitée des communes sans document d'urbanisme (L.111-3)."@fr ;
-    skos:notation "M2.8" ;
+    skos:notation "M2.9" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-reglement .
+    skos:broader skt:m-reglement ;
+    skos:scopeNote "Hors parties urbanisées d'une commune sans PLU (règlement national d'urbanisme, carte communale), les constructions sont interdites sauf exceptions dont les équipements collectifs, à condition que le projet ne compromette pas l'activité agricole ou la qualité des paysages. Retenu à Montagnac-Montpezat (TA de Marseille, 2022, sursis) et à Beyrie-sur-Joyeuse (TA de Pau, 2023). Sans objet à Plonéour-Lanvern, qui a un PLU."@fr .
 
 skt:m-insertion a skos:Concept ;
     rdfs:label "Insertion dans le site et patrimoine (R.111-27)"@fr ;
@@ -201,7 +226,8 @@ skt:m-paysage a skos:Concept ;
     skos:definition "Erreur manifeste d'appréciation de l'atteinte au paysage. Rarement retenue pour un pylône treillis entouré de végétation."@fr ;
     skos:notation "M3.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-insertion .
+    skos:broader skt:m-insertion ;
+    skos:scopeNote "L'article R.111-27 permet de refuser ou d'encadrer un projet qui porte atteinte au caractère ou à l'intérêt des lieux avoisinants, aux sites, aux paysages. Le juge ne retient que l'erreur manifeste, rarement pour un pylône treillis entouré de végétation. Retenu en référé à Biot (environnement exceptionnel de golf et d'espaces naturels, aucun aménagement discret), puis non retenu au fond ; retenu à Roscoff avec covisibilité et à Beyrie-sur-Joyeuse."@fr .
 
 skt:m-covisibilite a skos:Concept ;
     rdfs:label "Covisibilité avec un monument ou un bâti remarquable"@fr ;
@@ -226,7 +252,7 @@ skt:m-milieux a skos:Concept ;
     skos:notation "M4" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
-    skos:narrower skt:m-zone-humide, skt:m-ebc, skt:m-natura .
+    skos:narrower skt:m-zone-humide, skt:m-ebc, skt:m-captage, skt:m-natura .
 
 skt:m-zone-humide a skos:Concept ;
     rdfs:label "Zone humide et eau"@fr ;
@@ -244,11 +270,19 @@ skt:m-ebc a skos:Concept ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-milieux .
 
+skt:m-captage a skos:Concept ;
+    rdfs:label "Périmètre de protection d'un captage d'eau potable"@fr ;
+    skos:prefLabel "Périmètre de protection d'un captage d'eau potable"@fr ;
+    skos:definition "Arrêté préfectoral de protection d'un captage qui interdit ou limite les constructions. TA Amiens, 8 novembre 2022, n° 2100398 (Rethondes, association Les Galiciens) : annulation non régularisable."@fr ;
+    skos:notation "M4.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-milieux .
+
 skt:m-natura a skos:Concept ;
     rdfs:label "Natura 2000, ZNIEFF, espèces protégées"@fr ;
     skos:prefLabel "Natura 2000, ZNIEFF, espèces protégées"@fr ;
     skos:definition "Zonages d'inventaire ou de protection de la biodiversité."@fr ;
-    skos:notation "M4.3" ;
+    skos:notation "M4.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-milieux .
 
@@ -259,7 +293,7 @@ skt:m-dossier a skos:Concept ;
     skos:notation "M5" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
-    skos:narrower skt:m-pieces-contradictoires, skt:m-dossier-incomplet, skt:m-fraude .
+    skos:narrower skt:m-pieces-contradictoires, skt:m-dossier-incomplet, skt:m-qualite-petitionnaire, skt:m-fraude .
 
 skt:m-pieces-contradictoires a skos:Concept ;
     rdfs:label "Pièces contradictoires ou faits inexacts"@fr ;
@@ -267,7 +301,8 @@ skt:m-pieces-contradictoires a skos:Concept ;
     skos:definition "Les pièces du dossier se contredisent (hauteur, emprise, position). TA Nîmes, 11 septembre 2026, n° 2604044 : suspension d'une DP de Phoenix France Infrastructure."@fr ;
     skos:notation "M5.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-dossier .
+    skos:broader skt:m-dossier ;
+    skos:scopeNote "Si les pièces du dossier se contredisent sur un fait décisif (hauteur, emprise, position), la décision repose sur des faits inexacts. TA de Nîmes (11 septembre 2026, n° 2604044) : suspension d'une déclaration de Phoenix France Infrastructure. À vérifier pour Kersalous : 30 m sur le panneau, 32,65 m dans le dossier d'information ; seul compte ce que disent les pièces de la déclaration elle-même."@fr .
 
 skt:m-dossier-incomplet a skos:Concept ;
     rdfs:label "Dossier de déclaration incomplet"@fr ;
@@ -277,11 +312,20 @@ skt:m-dossier-incomplet a skos:Concept ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-dossier .
 
+skt:m-qualite-petitionnaire a skos:Concept ;
+    rdfs:label "Qualité du pétitionnaire pour déposer la demande (R.423-1)"@fr ;
+    skos:prefLabel "Qualité du pétitionnaire pour déposer la demande (R.423-1)"@fr ;
+    skos:definition "Le demandeur doit attester avoir qualité pour déposer. Retenu en référé quand une erreur sur la propriété est reconnue par la commune (TA Lille, 29 avril 2026, n° 2604207, Beuvry) ou quand les droits sur les espaces communs d'un lotissement sont douteux (TA Nantes, 17 avril 2024, n° 2404854)."@fr ;
+    skos:notation "M5.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-dossier ;
+    skos:scopeNote "Le demandeur d'une déclaration préalable ou d'un permis doit être propriétaire du terrain, son mandataire, ou attester sur l'honneur y être autorisé par lui (R.423-1 a, R.431-35). Le maire ne vérifie pas les titres : il ne refuse que si la fraude est établie ou s'il apparaît, sans contestation sérieuse, que le demandeur n'a aucun droit de déposer (jurisprudence rappelée par le TA de Nantes, 17 avril 2024, n° 2404854). Le moyen n'a été retenu qu'en référé et dans deux situations : la commune reconnaît s'être trompée sur sa qualité de propriétaire (TA de Lille, 29 avril 2026, Beuvry) ; les droits du demandeur sur la parcelle sont douteux, ici les espaces communs d'un lotissement (Talmont-Saint-Hilaire). Hors fraude ou erreur reconnue, le droit de propriété et les servitudes privées sont écartés : l'autorisation est délivrée sous réserve du droit des tiers. Pour Kersalous : savoir qui est propriétaire de la parcelle YX 26, quel contrat le lie à Phoenix, et ce que dit l'attestation de la déclaration."@fr .
+
 skt:m-fraude a skos:Concept ;
     rdfs:label "Fraude"@fr ;
     skos:prefLabel "Fraude"@fr ;
     skos:definition "Manœuvre destinée à tromper l'administration sur le projet."@fr ;
-    skos:notation "M5.3" ;
+    skos:notation "M5.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-dossier .
 
@@ -305,10 +349,11 @@ skt:m-abf a skos:Concept ;
 skt:m-retrait a skos:Concept ;
     rdfs:label "Retrait d'une non-opposition par le maire"@fr ;
     skos:prefLabel "Retrait d'une non-opposition par le maire"@fr ;
-    skos:definition "Le maire retire sa décision tacite ou expresse (L.424-5, art. 222 de la loi ELAN). Souvent annulé à la demande de l'opérateur."@fr ;
+    skos:definition "Le maire retire sa décision tacite ou expresse (L.424-5). L'article 222 de la loi ELAN interdit de retirer une décision qui autorise une antenne ou ne s'y oppose pas : le retrait est le plus souvent annulé à la demande de l'opérateur (ex. TA Marseille, 20 juin 2023, n° 2007088)."@fr ;
     skos:notation "M6.2" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-instruction .
+    skos:broader skt:m-instruction ;
+    skos:scopeNote "Un maire ne peut pas retirer sa non-opposition à une antenne : l'article 222 de la loi ELAN l'interdit. Les retraits sont donc annulés à la demande de l'opérateur (ex. TA de Marseille, 20 juin 2023). Si la mairie de Plonéour-Lanvern retirait la décision ou la faisait renouveler, ce moyen jouerait contre elle ; hors ce cas, il n'avantage pas les riverains."@fr .
 
 skt:m-competence a skos:Concept ;
     rdfs:label "Compétence du signataire"@fr ;
@@ -316,7 +361,8 @@ skt:m-competence a skos:Concept ;
     skos:definition "Incompétence ou défaut de délégation."@fr ;
     skos:notation "M6.3" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-instruction .
+    skos:broader skt:m-instruction ;
+    skos:scopeNote "Le signataire de l'arrêté doit avoir reçu une délégation de fonctions et de signature suffisamment précise. Retenu à Vallons-de-l'Erdre et à Achy : sursis à statuer, la commune régularise en quelques mois. Facile à vérifier, rarement décisif."@fr .
 
 skt:m-motivation a skos:Concept ;
     rdfs:label "Motivation et procédure contradictoire"@fr ;
@@ -341,7 +387,7 @@ skt:m-securite a skos:Concept ;
     skos:notation "M7" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
-    skos:narrower skt:m-r111-2, skt:m-vent-chute, skt:m-ondes, skt:m-risques-naturels, skt:m-bruit, skt:m-aerodrome, skt:m-police-maire .
+    skos:narrower skt:m-r111-2, skt:m-vent-chute, skt:m-incendie, skt:m-ondes, skt:m-risques-naturels, skt:m-bruit, skt:m-aerodrome, skt:m-police-maire .
 
 skt:m-r111-2 a skos:Concept ;
     rdfs:label "Sécurité et salubrité publiques (R.111-2)"@fr ;
@@ -352,26 +398,35 @@ skt:m-r111-2 a skos:Concept ;
     skos:broader skt:m-securite .
 
 skt:m-vent-chute a skos:Concept ;
-    rdfs:label "Vent, chute, incendie, foudre"@fr ;
-    skos:prefLabel "Vent, chute, incendie, foudre"@fr ;
-    skos:definition "Risque d'effondrement, de chute de glace, d'incendie."@fr ;
+    rdfs:label "Vent, chute, foudre"@fr ;
+    skos:prefLabel "Vent, chute, foudre"@fr ;
+    skos:definition "Risque d'effondrement, de chute de glace ou de matériel en cas de vent ou de cyclone. TA Guadeloupe et CAA Bordeaux (2 octobre 2025, n° 23BX01363) : annulation du permis tacite (cyclones)."@fr ;
     skos:notation "M7.2" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
+
+skt:m-incendie a skos:Concept ;
+    rdfs:label "Risque d'incendie (R.111-2, SDIS)"@fr ;
+    skos:prefLabel "Risque d'incendie (R.111-2, SDIS)"@fr ;
+    skos:definition "Projet au contact d'un massif boisé sans moyens de défense contre l'incendie. TA Toulon, 24 février 2025, n° 2203480 (Cuers, Free) : sursis à statuer de 4 mois pour régulariser (point d'eau incendie validé par le SDIS) ; même vice relevé à Le Beausset (TA Toulon, 6 janvier 2025, n° 2202464)."@fr ;
+    skos:notation "M7.3" ;
+    skos:inScheme skt:Moyens ;
+    skos:broader skt:m-securite ;
+    skos:scopeNote "Le projet est au contact d'un massif boisé sans défense contre l'incendie (point d'eau, accès des secours). Retenu dans le Var (Cuers, Le Beausset) : sursis de 4 mois pour créer un point d'eau validé par le SDIS. Peu transférable en Finistère ; à contrôler si un boisement jouxte la parcelle (un espace boisé classé est à 34 m)."@fr .
 
 skt:m-ondes a skos:Concept ;
     rdfs:label "Ondes, santé et principe de précaution"@fr ;
     skos:prefLabel "Ondes, santé et principe de précaution"@fr ;
     skos:definition "Effets des champs électromagnétiques et principe de précaution (Charte de l'environnement, art. 5). Écarté dans toutes les décisions lues : la police des ondes appartient à l'État."@fr ;
-    skos:notation "M7.3" ;
+    skos:notation "M7.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
 
 skt:m-risques-naturels a skos:Concept ;
     rdfs:label "Risques naturels (inondation, crue, argile)"@fr ;
     skos:prefLabel "Risques naturels (inondation, crue, argile)"@fr ;
-    skos:definition "Plan de prévention des risques, cote de référence, retrait-gonflement des argiles."@fr ;
-    skos:notation "M7.4" ;
+    skos:definition "Plan de prévention des risques, cote de référence, retrait-gonflement des argiles. TA Lyon, 30 mars 2023, n° 2101323 : sursis à statuer, dalle sous la cote de référence en zone bleue du PPRI."@fr ;
+    skos:notation "M7.5" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
 
@@ -379,7 +434,7 @@ skt:m-bruit a skos:Concept ;
     rdfs:label "Bruit et nuisances"@fr ;
     skos:prefLabel "Bruit et nuisances"@fr ;
     skos:definition "Nuisances sonores ou vibrations des équipements."@fr ;
-    skos:notation "M7.5" ;
+    skos:notation "M7.6" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
 
@@ -387,7 +442,7 @@ skt:m-aerodrome a skos:Concept ;
     rdfs:label "Servitudes aéronautiques et balisage"@fr ;
     skos:prefLabel "Servitudes aéronautiques et balisage"@fr ;
     skos:definition "Servitudes de dégagement, balisage lumineux."@fr ;
-    skos:notation "M7.6" ;
+    skos:notation "M7.7" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
 
@@ -395,7 +450,7 @@ skt:m-police-maire a skos:Concept ;
     rdfs:label "Pouvoirs de police du maire"@fr ;
     skos:prefLabel "Pouvoirs de police du maire"@fr ;
     skos:definition "Le maire peut-il réglementer l'implantation des antennes ? Non pour motifs sanitaires (CE, 26 octobre 2011, nos 326492 et 329904)."@fr ;
-    skos:notation "M7.7" ;
+    skos:notation "M7.8" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-securite .
 
@@ -414,7 +469,8 @@ skt:m-dim a skos:Concept ;
     skos:definition "Absence, retard ou insuffisance du dossier d'information transmis au maire. Jamais retenu pour annuler une DP dans le corpus. Peut servir la pression politique."@fr ;
     skos:notation "M8.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-connexes .
+    skos:broader skt:m-connexes ;
+    skos:scopeNote "Le dossier d'information du maire (L.34-9-1 du code des postes, D.98-6-1) relève du droit des communications électroniques, pas de celui de l'urbanisme : le juge applique l'indépendance des législations et écarte le moyen comme inopérant. Jamais retenu dans le corpus pour annuler une déclaration préalable."@fr .
 
 skt:m-decret-2002 a skos:Concept ;
     rdfs:label "Décret du 3 mai 2002 : valeurs limites d'exposition"@fr ;
@@ -448,11 +504,20 @@ skt:m-droits-tiers a skos:Concept ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-connexes .
 
+skt:m-foncier-communal a skos:Concept ;
+    rdfs:label "Acte de la commune propriétaire du terrain (vente, bail)"@fr ;
+    skos:prefLabel "Acte de la commune propriétaire du terrain (vente, bail)"@fr ;
+    skos:definition "Quand le terrain appartient à la commune, la délibération du conseil municipal qui le vend ou le loue à l'opérateur peut être attaquée comme toute décision. Le juge contrôle l'intérêt général de l'opération."@fr ;
+    skos:notation "M9" ;
+    skos:inScheme skt:Moyens ;
+    skos:topConceptOf skt:Moyens ;
+    skos:scopeNote "TA de Limoges, 24 novembre 2022 (Saint-Jouvent, TDF) : la délibération par laquelle le conseil municipal vendait 147 m² de son domaine privé à l'opérateur est annulée, car le pylône était à 48 m d'une habitation, avec un fort impact visuel, et aucune recherche d'autre site n'avait été faite : le juge y voit une erreur manifeste d'appréciation de l'intérêt général. À vérifier pour Kersalous : à qui appartient la parcelle YX 26 ? Si c'est un particulier, ce moyen ne joue pas."@fr .
+
 skt:m-recevabilite a skos:Concept ;
     rdfs:label "Recevabilité du recours"@fr ;
     skos:prefLabel "Recevabilité du recours"@fr ;
     skos:definition "Conditions pour que le juge examine la requête."@fr ;
-    skos:notation "M9" ;
+    skos:notation "M10" ;
     skos:inScheme skt:Moyens ;
     skos:topConceptOf skt:Moyens ;
     skos:narrower skt:m-interet-agir, skt:m-qualite-association, skt:m-notification, skt:m-delai-recours, skt:m-affichage .
@@ -461,15 +526,16 @@ skt:m-interet-agir a skos:Concept ;
     rdfs:label "Intérêt à agir du requérant (L.600-1-2)"@fr ;
     skos:prefLabel "Intérêt à agir du requérant (L.600-1-2)"@fr ;
     skos:definition "Distance, vue directe, nature de la gêne. 60 à 200 m ont été admis avec vue directe."@fr ;
-    skos:notation "M9.1" ;
+    skos:notation "M10.1" ;
     skos:inScheme skt:Moyens ;
-    skos:broader skt:m-recevabilite .
+    skos:broader skt:m-recevabilite ;
+    skos:scopeNote "Pour attaquer une autorisation, il faut justifier d'un intérêt : être voisin dont les conditions d'occupation, d'utilisation ou de jouissance sont directement affectées (L.600-1-2). Le requérant doit préciser l'atteinte. Des distances de 60 à 200 m ont suffi avec vue directe (Plobannalec-Lesconil, Le Vigan, Fégréac) ; la cour administrative d'appel de Toulouse (2023) a jugé sans intérêt des riverains dont le bien n'était pas directement affecté. Environ 15 % des recours sont irrecevables. Autres cas admis : 410 m avec vue directe sur un pylône de 30 m en terrain agricole peu boisé (CAA de Nantes, Cléden-Cap-Sizun, 2026) ; 13 m en ville (TA de Melun, Alfortville) ; 48 m (TA de Limoges)."@fr .
 
 skt:m-qualite-association a skos:Concept ;
     rdfs:label "Qualité d'une association pour agir (L.600-1-1)"@fr ;
     skos:prefLabel "Qualité d'une association pour agir (L.600-1-1)"@fr ;
     skos:definition "Objet statutaire, antériorité des statuts par rapport à l'affichage en mairie."@fr ;
-    skos:notation "M9.2" ;
+    skos:notation "M10.2" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-recevabilite .
 
@@ -477,7 +543,7 @@ skt:m-notification a skos:Concept ;
     rdfs:label "Notification du recours (R.600-1)"@fr ;
     skos:prefLabel "Notification du recours (R.600-1)"@fr ;
     skos:definition "Le requérant doit notifier son recours à l'auteur de la décision et au bénéficiaire dans les quinze jours."@fr ;
-    skos:notation "M9.3" ;
+    skos:notation "M10.3" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-recevabilite .
 
@@ -485,7 +551,7 @@ skt:m-delai-recours a skos:Concept ;
     rdfs:label "Délai de recours et forclusion (R.600-2)"@fr ;
     skos:prefLabel "Délai de recours et forclusion (R.600-2)"@fr ;
     skos:definition "Deux mois à compter de l'affichage sur le terrain. Tardiveté, forclusion."@fr ;
-    skos:notation "M9.4" ;
+    skos:notation "M10.4" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-recevabilite .
 
@@ -493,7 +559,7 @@ skt:m-affichage a skos:Concept ;
     rdfs:label "Affichage de l'autorisation sur le terrain"@fr ;
     skos:prefLabel "Affichage de l'autorisation sur le terrain"@fr ;
     skos:definition "Un affichage irrégulier empêche le délai de courir (R.424-15, A.424-15 et suivants)."@fr ;
-    skos:notation "M9.5" ;
+    skos:notation "M10.5" ;
     skos:inScheme skt:Moyens ;
     skos:broader skt:m-recevabilite .
 
@@ -751,7 +817,7 @@ skt:p-voie a skos:Concept ;
     skos:notation "P1" ;
     skos:inScheme skt:Procedure ;
     skos:topConceptOf skt:Procedure ;
-    skos:narrower skt:p-fond, skt:p-refere, skt:p-appel, skt:p-cassation, skt:p-avis .
+    skos:narrower skt:p-fond, skt:p-refere, skt:p-defere, skt:p-appel, skt:p-cassation, skt:p-avis .
 
 skt:p-fond a skos:Concept ;
     rdfs:label "Recours au fond (excès de pouvoir)"@fr ;
@@ -769,11 +835,19 @@ skt:p-refere a skos:Concept ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-voie .
 
+skt:p-defere a skos:Concept ;
+    rdfs:label "Déféré du préfet (contrôle de légalité)"@fr ;
+    skos:prefLabel "Déféré du préfet (contrôle de légalité)"@fr ;
+    skos:definition "Le préfet attaque lui-même l'autorisation devant le tribunal et peut en demander la suspension. TA Nantes, 20 octobre 2022, n° 2212834 (Guérande, Free) : permis suspendu à la demande du préfet de Loire-Atlantique (loi Littoral)."@fr ;
+    skos:notation "P1.3" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-voie .
+
 skt:p-appel a skos:Concept ;
     rdfs:label "Appel"@fr ;
     skos:prefLabel "Appel"@fr ;
     skos:definition "Recours devant une cour administrative d'appel."@fr ;
-    skos:notation "P1.3" ;
+    skos:notation "P1.4" ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-voie .
 
@@ -781,7 +855,7 @@ skt:p-cassation a skos:Concept ;
     rdfs:label "Cassation"@fr ;
     skos:prefLabel "Cassation"@fr ;
     skos:definition "Recours devant le Conseil d'État."@fr ;
-    skos:notation "P1.4" ;
+    skos:notation "P1.5" ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-voie .
 
@@ -789,7 +863,7 @@ skt:p-avis a skos:Concept ;
     rdfs:label "Avis contentieux"@fr ;
     skos:prefLabel "Avis contentieux"@fr ;
     skos:definition "Avis du Conseil d'État sur une question de droit nouvelle (L.113-1 CJA)."@fr ;
-    skos:notation "P1.5" ;
+    skos:notation "P1.6" ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-voie .
 
@@ -800,7 +874,7 @@ skt:p-mecanisme a skos:Concept ;
     skos:notation "P2" ;
     skos:inScheme skt:Procedure ;
     skos:topConceptOf skt:Procedure ;
-    skos:narrower skt:p-regularisation, skt:p-urgence-presumee, skt:p-recours-abusif, skt:p-frais, skt:p-cristallisation .
+    skos:narrower skt:p-regularisation, skt:p-urgence-presumee, skt:p-recours-abusif, skt:p-demolition, skt:p-frais, skt:p-cristallisation .
 
 skt:p-regularisation a skos:Concept ;
     rdfs:label "Régularisation en cours d'instance"@fr ;
@@ -826,11 +900,19 @@ skt:p-recours-abusif a skos:Concept ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-mecanisme .
 
+skt:p-demolition a skos:Concept ;
+    rdfs:label "Démolition ou mise en conformité (L.480-13, L.480-14)"@fr ;
+    skos:prefLabel "Démolition ou mise en conformité (L.480-13, L.480-14)"@fr ;
+    skos:definition "Après l'annulation définitive d'une autorisation, le tiers peut demander à la commune de saisir le tribunal judiciaire en vue de la démolition. TA Rennes, 4 avril 2025, n° 2203183 (Plomeur, Free) : le refus de la commune est annulé et le juge lui enjoint d'agir."@fr ;
+    skos:notation "P2.4" ;
+    skos:inScheme skt:Procedure ;
+    skos:broader skt:p-mecanisme .
+
 skt:p-frais a skos:Concept ;
     rdfs:label "Frais irrépétibles (L.761-1 CJA)"@fr ;
     skos:prefLabel "Frais irrépétibles (L.761-1 CJA)"@fr ;
     skos:definition "Somme mise à la charge de la partie perdante pour les frais d'avocat."@fr ;
-    skos:notation "P2.4" ;
+    skos:notation "P2.5" ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-mecanisme .
 
@@ -838,7 +920,7 @@ skt:p-cristallisation a skos:Concept ;
     rdfs:label "Cristallisation des moyens (R.600-5)"@fr ;
     skos:prefLabel "Cristallisation des moyens (R.600-5)"@fr ;
     skos:definition "Après un délai, plus de moyen nouveau en première instance."@fr ;
-    skos:notation "P2.5" ;
+    skos:notation "P2.6" ;
     skos:inScheme skt:Procedure ;
     skos:broader skt:p-mecanisme .
 
@@ -847,7 +929,7 @@ skt:Requerant a skos:ConceptScheme ;
     skos:prefLabel "Qui saisit le juge"@fr ;
     skos:definition "Nature du demandeur."@fr ;
     skos:notation "Q" ;
-    skos:hasTopConcept skt:q-riverains, skt:q-association, skt:q-commune, skt:q-operateur, skt:q-indetermine .
+    skos:hasTopConcept skt:q-riverains, skt:q-association, skt:q-commune, skt:q-prefet, skt:q-syndicat, skt:q-operateur, skt:q-indetermine .
 
 skt:q-riverains a skos:Concept ;
     rdfs:label "Particuliers riverains"@fr ;
@@ -893,8 +975,24 @@ skt:q-collectif a skos:Concept ;
 skt:q-commune a skos:Concept ;
     rdfs:label "Commune ou collectivité"@fr ;
     skos:prefLabel "Commune ou collectivité"@fr ;
-    skos:definition "Maire, commune, établissement public."@fr ;
+    skos:definition "Maire, commune, établissement public. Dans les décisions favorables à un tiers, c'est souvent la commune de Nice contre une décision du préfet, ou une commune voisine."@fr ;
     skos:notation "Q3" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:q-prefet a skos:Concept ;
+    rdfs:label "Préfet (déféré du contrôle de légalité)"@fr ;
+    skos:prefLabel "Préfet (déféré du contrôle de légalité)"@fr ;
+    skos:definition "Le préfet attaque lui-même l'autorisation délivrée par un maire (déféré), avec ou sans demande de suspension. Motif le plus fréquent : loi Littoral (Locmaria-Plouzané dans le Finistère, Guérande, Marseillan, Marseille)."@fr ;
+    skos:notation "Q4" ;
+    skos:inScheme skt:Requerant ;
+    skos:topConceptOf skt:Requerant .
+
+skt:q-syndicat a skos:Concept ;
+    rdfs:label "Syndicat de copropriétaires ou société civile"@fr ;
+    skos:prefLabel "Syndicat de copropriétaires ou société civile"@fr ;
+    skos:definition "Copropriété ou société civile immobilière voisine du projet."@fr ;
+    skos:notation "Q5" ;
     skos:inScheme skt:Requerant ;
     skos:topConceptOf skt:Requerant .
 
@@ -902,7 +1000,7 @@ skt:q-operateur a skos:Concept ;
     rdfs:label "Opérateur ou société de pylônes"@fr ;
     skos:prefLabel "Opérateur ou société de pylônes"@fr ;
     skos:definition "Bénéficiaire du projet, qui conteste l'opposition ou le retrait."@fr ;
-    skos:notation "Q4" ;
+    skos:notation "Q6" ;
     skos:inScheme skt:Requerant ;
     skos:topConceptOf skt:Requerant .
 
@@ -910,7 +1008,7 @@ skt:q-indetermine a skos:Concept ;
     rdfs:label "Requérant non déterminé"@fr ;
     skos:prefLabel "Requérant non déterminé"@fr ;
     skos:definition "Non classé automatiquement."@fr ;
-    skos:notation "Q5" ;
+    skos:notation "Q7" ;
     skos:inScheme skt:Requerant ;
     skos:topConceptOf skt:Requerant .
 
@@ -1212,6 +1310,11 @@ skt:l-verifie a skos:Concept ;
 # ═══════════════════════════════════════════════════════════════
 #  TERMES D'ONTOLOGIE POUR LES DÉCISIONS
 # ═══════════════════════════════════════════════════════════════
+ant:concordeAvecConcept a owl:ObjectProperty ;
+    rdfs:label "correspond au concept du corpus"@fr ;
+    rdfs:domain ant:MoyenJuridique ; rdfs:range skos:Concept ;
+    note:note "Relie un moyen du dossier aux concepts de la taxonomie du contentieux, pour retrouver les décisions qui évoquent, retiennent ou écartent un moyen comparable." .
+
 ant:aPourConcept a owl:ObjectProperty ;
     rdfs:label "est classée sous le concept"@fr ;
     rdfs:domain ant:Jurisprudence ; rdfs:range skos:Concept ;
@@ -1301,6 +1404,18 @@ ant:niveauLecture a owl:ObjectProperty ;
     rdfs:domain ant:Jurisprudence ;
     note:note "Ce qui a été fait sur cette décision. Concepts du schéma skt:NiveauLecture."@fr .
 
+ant:statutLoiLittoral a owl:ObjectProperty ;
+    rdfs:label "statut de la commune au regard de la loi Littoral"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Commune littorale, estuarienne ou non littorale. Renseigné pour les décisions des tribunaux de Rennes et Nantes dont la commune est dans le Finistère. Concepts du schéma skt:LoiLittoral."@fr .
+
+ant:communeLittorale a owl:ObjectProperty ;
+    rdfs:label "commune du Finistère concernée"@fr ;
+    rdfs:subPropertyOf ant:aPourConcept ;
+    rdfs:domain ant:Jurisprudence ;
+    note:note "Commune du Finistère citée comme lieu du projet (liste officielle des communes littorales). Concepts du schéma skt:LoiLittoral."@fr .
+
 ant:moyenEcarteDeduit a owl:ObjectProperty ;
     rdfs:label "moyen écarté (déduit du rejet)"@fr ;
     rdfs:subPropertyOf ant:moyenEcarte ;
@@ -1346,3 +1461,16 @@ ant:archiveOrigine a owl:DatatypeProperty ;
 ant:avocatOpenData a owl:DatatypeProperty ;
     rdfs:label "avocat selon la métadonnée de l'open data"@fr ; rdfs:range xsd:string ;
     note:note "Champ Avocat_Requerant de la juridiction, recopié tel quel. Souvent l'avocat de l'opérateur, pas celui des riverains : le côté n'est pas garanti." .
+
+# ── Moyens du dossier reliés à la taxonomie ──
+dos:moyen-seuil-pc ant:concordeAvecConcept skt:m-emprise-locaux .
+dos:moyen-talus ant:concordeAvecConcept skt:m-regle-plantations .
+dos:moyen-zone-humide ant:concordeAvecConcept skt:m-zone-humide .
+dos:moyen-zone-a ant:concordeAvecConcept skt:m-zone-agri-naturelle .
+dos:moyen-covisibilite ant:concordeAvecConcept skt:m-covisibilite, skt:m-abords-mh-pc .
+dos:moyen-affichage ant:concordeAvecConcept skt:m-affichage .
+dos:moyen-numero-panneau ant:concordeAvecConcept skt:m-affichage .
+dos:moyen-dim ant:concordeAvecConcept skt:m-dim .
+dos:moyen-dim-incomplet ant:concordeAvecConcept skt:m-dim .
+dos:moyen-delai-dim ant:concordeAvecConcept skt:m-dim .
+dos:moyen-ondes ant:concordeAvecConcept skt:m-ondes .

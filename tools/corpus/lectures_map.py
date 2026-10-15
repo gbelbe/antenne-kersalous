@@ -67,3 +67,66 @@ PARTIEL={
  "1907380":(["m-rnu"],["m-paysage","m-dossier-incomplet"],"t-verifier"),
  "2301243":(["m-regle-cloture"],["m-desserte","m-paysage","m-zone-agri-naturelle"],"t-verifier"),
 }
+
+# ── Décisions où des riverains ou une association obtiennent annulation, suspension ou sursis (lues en partie, 2026-10-15) ──
+PARTIEL.update({
+ "2307986":(["m-zone-urbaine"],[],"t-verifier"),
+ "2306057":(["m-regle-cloture"],[],"t-verifier"),
+ "2207501":(["m-dossier-incomplet"],["m-r111-2","m-paysage"],"t-verifier"),
+ "2114721":(["m-acces"],["m-regle-implantation","m-regle-plantations","m-r111-2"],"t-verifier"),
+ "2200831":(["m-zone-agri-naturelle"],[],"t-verifier"),
+ "2604207":(["m-qualite-petitionnaire"],[],"t-verifier"),
+ "2203480":(["m-incendie"],[],"t-verifier"),
+ "2300521":(["m-regle-hauteur"],[],"t-verifier"),
+ "2407196":(["m-abf","m-regle-aspect"],[],"t-verifier"),
+ "2202464":(["m-incendie","m-desserte"],[],"t-verifier"),
+ "2404161":(["m-paysage"],[],"t-verifier"),
+ "2103771":(["m-competence"],["m-regle-plantations","m-ondes"],"t-verifier"),
+ "2404854":(["m-qualite-petitionnaire"],[],"t-verifier"),
+ "2102440":(["m-regle-cloture"],["m-dossier-incomplet"],"t-verifier"),
+ "2300868":(["m-acces"],[],"t-verifier"),
+ "2102632":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2303691":(["m-patrimoine"],[],"t-verifier"),
+ "1909132":(["m-desserte","m-regle-aspect"],["m-dim"],"t-verifier"),
+ "1908362":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2007088":(["m-retrait"],["m-r111-2"],"t-verifier"),
+ "2101805":(["m-regle-plantations"],[],"t-verifier"),
+ "2101323":(["m-risques-naturels"],[],"t-verifier"),
+ "2101446":(["m-rnu","m-paysage"],[],"t-verifier"),
+ "2100387":(["m-competence"],["m-dim"],"t-verifier"),
+ "2100398":(["m-captage","m-regle-cloture"],[],"t-verifier"),
+ "2205993":(["m-emplacement-reserve"],[],"t-verifier"),
+ "2003343":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+})
+
+PARTIEL.update({
+ "2301119":(["m-permis-precaire"],[],"t-non-transferable"),
+ "2301120":(["m-permis-precaire"],[],"t-non-transferable"),
+ "2200161":(["m-regle-aspect"],[],"t-verifier"),
+ "2212834":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2205315":(["m-zone-agri-naturelle","m-acces"],[],"t-verifier"),
+})
+
+PARTIEL.update({
+ "2203966":(["m-littoral-urbanisation","m-littoral-espaces","m-risques-naturels"],[],"t-non-transferable"),
+ "2410061":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2105824":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2212831":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2300548":(["m-littoral-urbanisation","m-zone-urbaine"],[],"t-non-transferable"),
+ "2205796":(["m-littoral-urbanisation"],[],"t-non-transferable"),
+ "2205881":(["m-risques-naturels"],[],"t-non-transferable"),
+})
+
+PARTIEL.update({
+ "24NT03613":(["m-littoral-urbanisation"],["m-interet-agir"],"t-non-transferable"),
+ "22LY01034":(["m-desserte"],[],"t-verifier"),
+ "22DA00014":(["m-regle-cloture"],[],"t-verifier"),
+ "23BX01363":(["m-r111-2","m-vent-chute"],[],"t-non-transferable"),
+ "21BX04365":([],["m-risques-naturels"],None),
+ "22BX02047":([],["m-risques-naturels"],None),
+ "20NT02760":([],["m-paysage"],None),
+ "2205616":(["m-littoral-urbanisation"],["m-interet-agir"],"t-non-transferable"),
+ "2514074":(["m-regle-aspect"],["m-interet-agir"],"t-non-transferable"),
+ "2000132":(["m-foncier-communal"],["m-interet-agir"],"t-verifier"),
+ "2000143":(["m-foncier-communal"],["m-interet-agir"],"t-verifier"),
+})

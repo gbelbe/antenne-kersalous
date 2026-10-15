@@ -15,7 +15,7 @@
 
 dos:commune-ploneour a owl:NamedIndividual, ant:Commune ;
     rdfs:label "Plonéour-Lanvern"@fr ; ant:codeInsee "29174" ;
-    note:note "Commune qui instruit et décide. **N'est pas** soumise à la loi Littoral, bien qu'à moins d'un kilomètre de la côte." .
+    note:note "Commune qui instruit et décide. **N'est pas** soumise à la loi Littoral, bien qu'à moins d'un kilomètre de la côte. **Vérifié le 2026-10-15** sur la liste officielle des communes littorales et estuariennes du Finistère (DDTM 29, 121 communes, mise à jour du 19 juin 2019, article R.321-1 du code de l'environnement) : Plonéour-Lanvern (INSEE 29174) n'y figure pas, alors que ses voisines Plomeur, Saint-Jean-Trolimon, Plovan, Pouldreuzic et Pont-l'Abbé y figurent." .
 
 dos:commune-stjean a owl:NamedIndividual, ant:Commune ;
     rdfs:label "Saint-Jean-Trolimon"@fr ; ant:codeInsee "29252" ;
@@ -329,10 +329,6 @@ dos:plu-art-6 a owl:NamedIndividual, ant:RegleDeZone ;
     rdfs:label "PLU Plonéour-Lanvern — art. 6, éléments paysagers"@fr ;
     note:note "Toute suppression de haie ou de talus protégé exige une DP distincte, examinée par une commission créée par le maire, qui peut refuser ou imposer des compensations." .
 
-dos:ce-2011-ondes a owl:NamedIndividual, ant:Jurisprudence ;
-    rdfs:label "CE, 26 octobre 2011 — police des ondes"@fr ;
-    note:note "La police des ondes relève exclusivement de l'État. Un refus fondé sur la santé est illégal : ce moyen est perdu d'avance en contentieux d'urbanisme." .
-
 # ═══════════════════════════════════════════════════════════════
 #  DOCUMENTS
 # ═══════════════════════════════════════════════════════════════
@@ -487,27 +483,26 @@ dos:delai-retrait a owl:NamedIndividual, ant:Delai ;
 dos:moyen-seuil-pc a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Emprise > 20 m² : un permis de construire était requis"@fr ;
     ant:fondementJuridique dos:art-r421-9 ; ant:etayePar dos:doc-dossier-dp ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-forte ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée. **Point d'attention (2026-10-15)** : l'avis du Conseil d'État du 21 mars 2024 (n° 490536), tel que rapporté par un tiers et non lu, exclurait du calcul l'emprise du pylône lui-même ; seuls les locaux techniques compteraient. À lire avant de chiffrer (voir dos:act-lire-avis-ce-2024). **Chiffres de l'opérateur (dossier d'information, 2026-10-15)** : dalle technique 2 m² (dos:m-dalle-technique) mais massif béton du pylône 29,16 m² (dos:m-massif-beton) : le moyen ne tient que si la fondation compte comme emprise au sol ; sinon la dalle de 2 m² reste sous le seuil de 20 m², et c'est un seuil de 5 m² qui sépare alors la déclaration préalable de l'absence de formalité (non vérifié). Le moyen est donc **plus fragile qu'estimé** tant que l'avis du Conseil d'État n'est pas lu." .
 
 dos:moyen-talus a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Destruction de haies/talus protégés non déclarée"@fr ;
     ant:fondementJuridique dos:art-l151-23, dos:plu-art-6 ;
     ant:etayePar dos:doc-dossier-dp ; ant:viseProcedure dos:dp-29174-26-00122 ;
-    ant:force skt:force-forte ;
     note:note "Deux linéaires protégés (121 m et 183 m) touchent la parcelle. Vérifier le tracé de l'accès sur le plan de masse." .
 
 dos:moyen-zone-humide a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Atteinte à la zone humide voisine"@fr ;
     ant:fondementJuridique dos:art-l151-23 ; ant:etayeParMesure dos:m-dist-zone-humide ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "Dépend du tracé de la piste d'accès et de la gestion des eaux pluviales de la dalle. À trancher sur plans." .
 
 dos:moyen-zone-a a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Violation des conditions de la zone A (paysage, activité agricole)"@fr ;
     ant:fondementJuridique dos:plu-regle-a-i-2-3 ;
     ant:etayeParMesure dos:m-covisibilite, dos:m-dist-maison1 ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-moyenne ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "Règle du PLU, donc plus solide qu'un standard général comme R. 111-27." .
 
 dos:moyen-covisibilite a owl:NamedIndividual, ant:MoyenJuridique ;
@@ -515,19 +510,19 @@ dos:moyen-covisibilite a owl:NamedIndividual, ant:MoyenJuridique ;
     ant:fondementJuridique dos:art-r111-27, dos:art-l621-30-patrimoine ;
     ant:etayeParMesure dos:m-covisibilite, dos:m-dist-manoir, dos:m-dist-abords ;
     ant:etayePar dos:doc-carte-covisibilite ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-moyenne ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "Moyen de renfort, jamais autonome : la parcelle est hors périmètre des abords. Apporte surtout un requérant crédible de plus." .
 
 dos:moyen-affichage a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Irrégularité de l'affichage sur le terrain"@fr ;
     ant:fondementJuridique dos:art-r600-2 ; ant:etayePar dos:doc-panneau, dos:doc-photo-panneau ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "N'annule pas l'autorisation, mais empêche le délai de courir. Le moyen qui achète du temps. Constats sur la photo du 14 octobre : numéro de dossier discordant (voir dos:moyen-numero-panneau), mention « Permis de construire » pour une déclaration préalable, surface de plancher laissée vide, droits de recours imprimés en très petits caractères. À apprécier sur place et avec un conseil : aucune de ces anomalies n'est établie comme cause d'irrégularité." .
 
 dos:moyen-numero-panneau a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Numéro de dossier du panneau différent de celui de l'avis de dépôt"@fr ;
     ant:fondementJuridique dos:art-r600-2, dos:art-a424-16 ; ant:etayePar dos:doc-photo-panneau, dos:doc-avis-depot ;
-    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "Le panneau indique « DP 29 174 26 000139 » ; l'avis de dépôt affiché en mairie indique DP 029 174 26 00122. Trois lectures : erreur de recopie de l'opérateur, second dossier distinct, ou lecture erronée d'une écriture manuscrite. **Hypothèse renforcée par le courrier du maire du 9 septembre** (il demande à l'opérateur de renouveler sa demande après la période d'information) : le dossier 000139 pourrait être cette DP renouvelée, décidée le 29 septembre ; dans ce cas la DP du 18 août (00122) aurait été remplacée et la décision attaquable serait celle du 29 septembre. **À trancher en mairie avant tout usage.** Si l'affichage est irrégulier, le délai de recours peut ne pas courir ; la sévérité du juge sur ce type d'erreur n'est pas établie ici." .
 
 dos:art-a424-16 a owl:NamedIndividual, ant:ArticleDeCode ;
@@ -539,25 +534,23 @@ dos:moyen-dim a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Absence de dossier d'information mairie (abandonné : le dossier existe)"@fr ;
     ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
     ant:etayePar dos:doc-dim, dos:doc-courrier-maire ;
-    ant:force skt:force-faible ;
     note:note "**Moyen contredit par deux pièces (2026-10-15).** Le dossier d'information de Bouygues Telecom existe (daté du 2 juillet 2026) et le maire écrit l'avoir reçu le 8 juillet et mis en ligne le 11 juillet. La note précédente (la page de la commune ne montrait que deux dossiers de 2024) se fondait sur une consultation du site dont la date n'est pas connue : soit antérieure au 11 juillet, soit la page n'était pas à jour. Ne pas invoquer l'absence de dossier. Voir plutôt dos:moyen-dim-incomplet et dos:moyen-delai-dim." .
 
 dos:moyen-dim-incomplet a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Dossier d'information incomplet : pas de simulation d'exposition ni de justification de non-partage"@fr ;
     ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
-    ant:etayePar dos:doc-dim, dos:doc-courrier-maire ; ant:force skt:force-a-verifier ;
+    ant:etayePar dos:doc-dim, dos:doc-courrier-maire ;
     note:note "Constats : les tableaux d'estimation du champ reçu (p. 18 du dossier) sont vides sur la copie lue ; le maire demande le 9 septembre la simulation d'exposition et la justification du choix de ne pas partager un site ou un pylône existant (II-D de l'article L. 34-9-1 CPCE). **Limites** : (1) selon le schéma du dossier lui-même (version de gabarit V1121), le maire dispose de **huit jours** à compter de la réception pour demander la simulation, et sa demande date de deux mois après ; (2) l'effet d'un dossier d'information incomplet sur la légalité de l'autorisation d'urbanisme n'est pas établi ici. La justification de non-partage est un sujet distinct, rapproché de l'analyse de redondance de couverture. L'article cité par le maire n'a pas été lu sur Légifrance." .
 
 dos:moyen-delai-dim a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Déclaration préalable déposée avant la fin de la période de consultation du dossier d'information"@fr ;
     ant:fondementJuridique dos:art-l34-9-1-cpce ; ant:viseProcedure dos:dp-29174-26-00122 ;
-    ant:etayePar dos:doc-courrier-maire, dos:doc-dim ; ant:force skt:force-a-verifier ;
+    ant:etayePar dos:doc-courrier-maire, dos:doc-dim ;
     note:note "Faits : dossier d'information reçu le 8 juillet 2026, en ligne le 11 juillet avec une consultation de deux mois jusqu'au 11 septembre ; DP déposée le 18 août, soit 41 jours après la réception. Le maire demande à l'opérateur de **renouveler** sa demande après la période d'information (courrier du 9 septembre). **Deux lectures de la règle** : le schéma du dossier d'information de l'opérateur (V1121) parle d'un mois avant le dépôt de la DP, ce qui serait respecté (41 jours) ; le maire retient deux mois de consultation. Laquelle s'applique dépend du texte en vigueur de l'article L. 34-9-1, **non lu**. Si le délai de deux mois s'impose, la DP du 18 août est prématurée, et la DP au numéro 000139 vue sur le panneau pourrait être la demande renouvelée (hypothèse, voir dos:dp-29174-26-00139)." .
 
 dos:moyen-ondes a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Exposition aux ondes / santé publique"@fr ;
-    ant:fondementJuridique dos:ce-2011-ondes ; ant:viseProcedure dos:dp-29174-26-00122 ;
-    ant:force skt:force-ecarte ;
+    ant:viseProcedure dos:dp-29174-26-00122 ;
     note:note "**Écarté volontairement.** La police des ondes appartient à l'État seul. Invoqué en contentieux d'urbanisme, ce moyen est rejeté et décrédibilise les autres. Conservé dans le graphe pour ne pas être reproposé." .
 
 # ═══════════════════════════════════════════════════════════════
@@ -675,3 +668,8 @@ dos:ev-mise-en-service-prevue a owl:NamedIndividual, ant:Evenement ;
     rdfs:label "Mise en service prévue — 3e trimestre 2027 (indicatif)"@fr ; ant:dateEvenement "2027-07-01"^^xsd:date ;
     ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-dim ;
     note:note "Date **approximative** : « T3 - 2027 » dans le dossier d'information ; le 1er juillet est le début du trimestre." .
+
+dos:act-lire-avis-ce-2024 a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Lire l'avis du Conseil d'État du 21 mars 2024 (n° 490536) sur le calcul de l'emprise"@fr ;
+    ant:menePar dos:vous ; ant:soutient dos:moyen-seuil-pc ; ant:statut skt:a-faire ;
+    note:note "Détermine si l'emprise du pylône compte dans le seuil de 20 m². Les décisions lues du corpus (Nantes, Pluguffan, Biot…) écartent le moyen quand les locaux techniques sont petits, même avec une fondation de 31 m²." .

@@ -1,0 +1,110 @@
+{
+ "colonnes": [
+  "gagné (annulation totale)",
+  "gagné en partie",
+  "sursis pour régulariser",
+  "suspension",
+  "rejeté",
+  "irrecevable",
+  "désistement ou non-lieu"
+ ],
+ "lignes": [
+  {
+   "requerant": "riverains",
+   "n": 276,
+   "gagné (annulation totale)": 14,
+   "gagné en partie": 15,
+   "sursis pour régulariser": 10,
+   "suspension": 0,
+   "rejeté": 232,
+   "irrecevable": 1,
+   "désistement ou non-lieu": 4,
+   "gagne": 39
+  },
+  {
+   "requerant": "association/collectif",
+   "n": 15,
+   "gagné (annulation totale)": 1,
+   "gagné en partie": 1,
+   "sursis pour régulariser": 0,
+   "suspension": 0,
+   "rejeté": 13,
+   "irrecevable": 0,
+   "désistement ou non-lieu": 0,
+   "gagne": 2
+  },
+  {
+   "requerant": "syndicat/SCI",
+   "n": 19,
+   "gagné (annulation totale)": 3,
+   "gagné en partie": 1,
+   "sursis pour régulariser": 0,
+   "suspension": 0,
+   "rejeté": 14,
+   "irrecevable": 0,
+   "désistement ou non-lieu": 1,
+   "gagne": 4
+  },
+  {
+   "requerant": "préfet (déféré)",
+   "n": 4,
+   "gagné (annulation totale)": 3,
+   "gagné en partie": 0,
+   "sursis pour régulariser": 0,
+   "suspension": 0,
+   "rejeté": 1,
+   "irrecevable": 0,
+   "désistement ou non-lieu": 0,
+   "gagne": 3
+  },
+  {
+   "requerant": "commune",
+   "n": 18,
+   "gagné (annulation totale)": 1,
+   "gagné en partie": 1,
+   "sursis pour régulariser": 1,
+   "suspension": 0,
+   "rejeté": 14,
+   "irrecevable": 0,
+   "désistement ou non-lieu": 1,
+   "gagne": 3
+  },
+  {
+   "requerant": "TOUS",
+   "n": 332,
+   "gagné (annulation totale)": 22,
+   "gagné en partie": 18,
+   "sursis pour régulariser": 11,
+   "suspension": 0,
+   "rejeté": 274,
+   "irrecevable": 1,
+   "désistement ou non-lieu": 6,
+   "gagne": 51
+  },
+  {
+   "requerant": "dont au fond",
+   "n": 239,
+   "gagné (annulation totale)": 15,
+   "gagné en partie": 15,
+   "sursis pour régulariser": 11,
+   "suspension": 0,
+   "rejeté": 193,
+   "irrecevable": 1,
+   "désistement ou non-lieu": 4,
+   "gagne": 41
+  },
+  {
+   "requerant": "dont en référé",
+   "n": 93,
+   "gagné (annulation totale)": 7,
+   "gagné en partie": 3,
+   "sursis pour régulariser": 0,
+   "suspension": 0,
+   "rejeté": 81,
+   "irrecevable": 0,
+   "désistement ou non-lieu": 2,
+   "gagne": 10
+  }
+ ],
+ "date": "2026-10-15"
+}

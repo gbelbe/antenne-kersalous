@@ -61,3 +61,6 @@ details summary{cursor:pointer}
 .fct{display:block;font-size:.88rem;padding:2px 0;cursor:pointer}
 select,#cq{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
 @media (max-width:800px){.corpus{grid-template-columns:1fr}.facets{position:static;max-height:none}}
+.juris{background:color-mix(in srgb,var(--accent) 8%,transparent);border-radius:8px;padding:8px 10px;margin-top:8px}
+.dos{border-left:3px solid var(--accent);padding:4px 10px;margin:8px 0 2px;background:color-mix(in srgb,var(--accent) 6%,transparent);border-radius:0 8px 8px 0}
+.moyen h3{font-size:1rem}
