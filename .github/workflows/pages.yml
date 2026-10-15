@@ -1,0 +1,74 @@
+# Publie le site (carte, chronologie, jurisprudence, propriétaires, sources) sur GitHub Pages.
+# Se relance à chaque modification du graphe, des sources publiées, du générateur ou de la configuration.
+#
+# Activation (une seule fois) : Settings → Pages → Build and deployment → Source : « GitHub Actions ».
+# Attention : un site GitHub Pages est PUBLIC, même si le dépôt est privé (sauf offre Enterprise).
+# Facultatif : secret GOOGLE_MAPS_API_KEY (clé Maps Embed API, restreinte à https://<utilisateur>.github.io/*).
+
+name: Publier le site
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - "*.ttl"
+      - "publish.toml"
+      - "requetes.sparql"
+      - "tools/**"
+      - "site-src/**"
+      - "sources/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # pour la date du dernier commit affichée en bas de page
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r tools/requirements.txt
+
+      - name: Construire le site
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: python tools/build_site.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Test de fumée (chaque vue et chaque fiche se rendent)
+        run: node tools/smoke_test.js
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -3,3 +3,6 @@
 
 # generated ontology docs (pyLODE embeds the local file path)
 html/
+
+# site généré (déployé par GitHub Actions, jamais commité)
+_site/

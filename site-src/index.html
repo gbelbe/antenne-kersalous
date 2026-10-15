@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antenne-relais de Plonéour-Lanvern</title>
+<meta name="description" content="Dossier citoyen sur un projet d'antenne-relais : carte, chronologie, jurisprudence, propriétaires de pylônes, sources.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>📡</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+<a class="skip" href="#app">Aller au contenu</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#/"><span class="logo">📡</span><span id="brand-title">Antenne-relais</span></a>
+    <button id="menu-btn" class="menu-btn" aria-label="Menu" aria-expanded="false">☰</button>
+    <nav id="nav" aria-label="Navigation principale">
+      <a href="#/carte" data-r="carte">Carte</a>
+      <a href="#/chronologie" data-r="chronologie">Chronologie</a>
+      <a href="#/dossier" data-r="dossier">Moyens &amp; actions</a>
+      <a href="#/jurisprudence" data-r="jurisprudence">Jurisprudence</a>
+      <a href="#/reseau" data-r="reseau">Pylônes &amp; propriétaires</a>
+      <a href="#/sources" data-r="sources">Sources</a>
+      <a href="#/explorer" data-r="explorer">Explorer</a>
+    </nav>
+    <form id="search" role="search"><input id="q" type="search" placeholder="Rechercher…" aria-label="Rechercher dans le graphe"></form>
+  </div>
+</header>
+<main id="app" class="wrap" tabindex="-1"><p class="muted">Chargement…</p></main>
+<footer class="foot wrap">
+  <p id="disclaimer" class="muted small"></p>
+  <p id="build" class="muted small"></p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

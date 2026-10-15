@@ -1,0 +1,45 @@
+# Configuration de la publication du site (GitHub Pages).
+# Lu par tools/build_site.py. Tout ce qui est publié l'est sur le web PUBLIC.
+
+[site]
+title       = "Antenne-relais de Plonéour-Lanvern"
+subtitle    = "Dossier d'urbanisme DP 029 174 26 00122 — site T18D84 (Kerfilin), Finistère"
+repo_url    = "https://github.com/gbelbe/antenne-kersalous"
+lang        = "fr"
+# Centre de la carte (le projet est lu dans le graphe ; ceci n'est qu'un repli).
+fallback_center = [47.8751, -4.2737]
+disclaimer  = """Document de travail citoyen, établi à partir de sources publiques et de pièces du dossier. Les informations \
+sont accompagnées de leur niveau de preuve : beaucoup viennent de résumés de presse ou de lectures automatiques et \
+ne sont pas vérifiées sur les textes originaux. Ce site n'est pas un avis juridique ; il n'engage ni la commune ni les sociétés citées."""
+
+[privacy]
+# Classes dont les entités sont retirées du site ET du graphe public (nom local de la classe ant:...).
+exclude_classes = ["Batiment"]          # habitations riveraines : position et adresse de particuliers
+# Les personnes physiques sont exclues, sauf celles listées ici (agents publics, personnes nommées sur un avis public).
+allow_persons   = ["dos:personne-huet", "dos:personne-culver"]
+# Entités à retirer explicitement (identifiants préfixés dos:, skt:, src:).
+exclude_ids     = ["dos:vous"]
+# Motifs (expressions régulières) remplacés par [masqué] dans tous les textes publiés.
+redact          = []
+
+[files]
+# Fichiers de sources/ copiés tels quels sur le site (téléchargeables). Tout le reste reste privé.
+# Les courriels et courriers (mail_*.txt, pdf/) ne sont PAS publiés par défaut : à décider au cas par cas.
+publish = [
+  "sources/SHA256SUMS",
+  "sources/parcelle_YX26.geojson",
+  "sources/parcelle_YX26.kml",
+  "sources/rapport-couverture-kersalous.pdf",
+  "sources/anfr/sup_proprietaire_TPO_ID_2026-10-15.txt",
+  "sources/antenne.JPG",
+  "sources/panneau_DP_2026-10-14.jpg",
+  "sources/covisibilite_manoir_trevilit.jpg",
+  "sources/parcelle_YX26_ortho.jpg",
+  "requetes.sparql",
+]
+
+[maps]
+# Clé Google Maps Embed API (facultative). Si absente, la vue Google utilise l'intégration sans clé.
+# Ne JAMAIS la mettre ici : définir la variable d'environnement GOOGLE_MAPS_API_KEY (secret GitHub),
+# et restreindre la clé aux référents https://<utilisateur>.github.io/*.
+env_key = "GOOGLE_MAPS_API_KEY"

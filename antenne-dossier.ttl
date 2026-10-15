@@ -665,3 +665,13 @@ dos:act-reunion-publique a owl:NamedIndividual, ant:Action ;
     rdfs:label "Suivre la réunion d'information publique annoncée par le maire"@fr ;
     ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:statut skt:a-faire ;
     note:note "Date inconnue. Y poser les questions du dossier : simulation d'exposition, justification de non-partage, emprise exacte, hauteur de 32,65 m, calendrier T2/T3 2027." .
+
+dos:ev-travaux-prevus a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Début des travaux prévu — 2e trimestre 2027 (indicatif)"@fr ; ant:dateEvenement "2027-04-01"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-dim ;
+    note:note "Date **approximative** : le dossier d'information annonce « T2 - 2027 », sans jour ; le 1er avril est le début du trimestre, placé là pour la chronologie. Calendrier indicatif de l'opérateur, qui précise ne pas être tenu par lui." .
+
+dos:ev-mise-en-service-prevue a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Mise en service prévue — 3e trimestre 2027 (indicatif)"@fr ; ant:dateEvenement "2027-07-01"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-dim ;
+    note:note "Date **approximative** : « T3 - 2027 » dans le dossier d'information ; le 1er juillet est le début du trimestre." .
