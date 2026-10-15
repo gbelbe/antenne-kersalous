@@ -24,10 +24,10 @@ il est alors dessiné une seconde fois, en doublon, sans parent dans la hiérarc
     rdfs:label "Antenne — ontologie de pilotage"@fr ;
     dcterms:description "Ontologie de suivi d'un dossier d'urbanisme contesté : territoire, acteurs, corpus juridique, procédure, moyens et actions. Conçue pour piloter l'action, pas pour décrire le monde."@fr ;
     dcterms:title "Opposition à un projet d'antenne-relais — ontologie de pilotage"@fr ;
-    owl:versionInfo "0.3.0" ;
+    owl:versionInfo "0.5.0" ;
     note:note """# Comment utiliser ce graphe
 
-Cinq modules : **Territoire**, **Acteurs**, **Corpus**, **Procédure & Action**, **Réseaux** (supports et stations d'antennes existants ou projetés, zones de couverture simulées).
+Cinq modules : **Territoire**, **Acteurs**, **Corpus**, **Procédure & Action**, **Réseaux** (supports et stations d'antennes existants ou projetés, zones de couverture simulées), **Jurisprudence comparée** (décisions rendues sur d'autres antennes : ce qui a annulé, suspendu, retardé ou échoué).
 La classe pivot est `ant:MoyenJuridique` : elle relie un fondement de droit, des preuves
 et les actions à mener. Commencez toujours par elle quand vous vous demandez quoi faire.
 
@@ -158,6 +158,23 @@ ant:estProprietaireDe a owl:ObjectProperty ;
     rdfs:label "est propriétaire de"@fr ;
     rdfs:domain ant:Acteur ;
     rdfs:range ant:Parcelle .
+
+ant:datePublication a owl:DatatypeProperty ;
+    rdfs:label "date de publication"@fr ;
+    rdfs:domain ant:Document ;
+    rdfs:range xsd:date .
+
+ant:evoqueLieu a owl:ObjectProperty ;
+    rdfs:label "évoque le lieu"@fr ;
+    rdfs:domain ant:Document ;
+    rdfs:range ant:Commune ;
+    rdfs:comment "Commune dont un document parle sans qu'elle soit partie au dossier (cas comparable, témoignage)."@fr .
+
+ant:eclaireProjet a owl:ObjectProperty ;
+    rdfs:label "éclaire le projet"@fr ;
+    rdfs:domain ant:Document ;
+    rdfs:range ant:ProjetAntenne ;
+    rdfs:comment "Document de contexte (presse, étude) qui n'est pas une pièce de la procédure."@fr .
 
 ant:etayePar a owl:ObjectProperty ;
     rdfs:label "étayé par le document"@fr ;
@@ -606,7 +623,7 @@ ant:porteurDuSupport a owl:ObjectProperty ;
     rdfs:label "porteur du support"@fr ;
     rdfs:domain ant:SupportAntenne ;
     rdfs:range ant:Entreprise ;
-    note:note "Société qui construit ou gère le support. Renseignée seulement pour le site projeté (demandeur de la DP) : le registre ANFR ne donne pas le propriétaire des supports existants." .
+    note:note "Société qui construit ou gère le support. Renseignée pour le site projeté (demandeur de la DP). Le registre ANFR publie bien un code propriétaire par support (fichier TPO_ID, séparé du fichier principal) : voir l'analyse des propriétaires, distincte de cette propriété." .
 
 ant:hauteurSupport a owl:DatatypeProperty ;
     rdfs:label "hauteur du support (m)"@fr ;
@@ -698,3 +715,145 @@ ant:rang a owl:DatatypeProperty, owl:FunctionalProperty ;
     rdfs:domain ant:NiveauDeCouverture ;
     rdfs:range xsd:integer ;
     note:note "Ordre des niveaux (3 très bonne, 2 bonne, 1 limitée, 0 aucune) : permet de comparer les valeurs de `Mesure` de niveau." .
+
+
+# ═══════════════════════════════════════════════════════════════
+#  MODULE JURISPRUDENCE COMPARÉE (v0.5.0)
+#  Décisions de justice rendues sur d'autres antennes-relais, rattachées aux
+#  moyens du dossier qu'elles éclairent. Une décision n'est ni une pièce de la
+#  procédure ni un texte : c'est un précédent, avec une issue et un degré de vérification.
+# ═══════════════════════════════════════════════════════════════
+
+ant:IssueDecision a owl:Class ;
+    rdfs:label "Issue d'une décision"@fr ;
+    rdfs:comment "Ce que la décision a produit sur le projet d'antenne : annulation, démontage, suspension, rejet, injonction."@fr ;
+    rdfs:subClassOf skos:Concept ;
+    note:note "Concept SKOS et non propriété booléenne : on filtre par issue (« qu'est-ce qui a fait annuler ? ») et par regroupement (collections favorable / défavorable aux riverains) sans rien déduire d'un `skos:broader`." .
+
+ant:dateDecision a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "date de la décision"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range xsd:date .
+
+ant:rendueParJuridiction a owl:ObjectProperty ;
+    rdfs:label "rendue par la juridiction"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range ant:Juridiction .
+
+ant:issueDecision a owl:ObjectProperty ;
+    rdfs:label "issue de la décision"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range ant:IssueDecision .
+
+ant:operateurVise a owl:ObjectProperty ;
+    rdfs:label "opérateur visé"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range ant:Entreprise ;
+    note:note "Opérateur pour lequel l'antenne était installée ou demandée. Absent quand la source ne le nomme pas : ne pas le deviner." .
+
+ant:communeConcernee a owl:ObjectProperty ;
+    rdfs:label "commune concernée"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range ant:Commune .
+
+ant:illustreMoyen a owl:ObjectProperty ;
+    rdfs:label "illustre le moyen"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range ant:MoyenJuridique ;
+    note:note "Un précédent qui a tenu ou échoué sur un moyen comparable à celui du dossier. N'en fait pas une preuve : la ressemblance est à démontrer au cas par cas." .
+
+ant:verifieSurSource a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "vérifiée sur le texte de la décision"@fr ;
+    rdfs:domain ant:Jurisprudence ;
+    rdfs:range xsd:boolean ;
+    note:note "`false` tant que la décision n'a pas été lue sur Légifrance, Judilibre ou ArianeWeb. Toutes les décisions de ce module sont connues par des billets d'avocats ou de presse : aucune ne doit être citée dans un mémoire sans cette vérification." .
+
+
+
+# ═══════════════════════════════════════════════════════════════
+#  MODULE PROPRIÉTÉ DES SUPPORTS (v0.5.0)
+#  Qui possède les pylônes : sociétés de pylônes (TowerCos), opérateurs, collectivités.
+#  Source : registre ANFR, code propriétaire par support (TPO_ID).
+# ═══════════════════════════════════════════════════════════════
+
+ant:SocietePylones a owl:Class ;
+    rdfs:label "Société de pylônes"@fr ;
+    rdfs:comment "Entreprise qui possède et loue des supports d'antennes aux opérateurs (TowerCo) : Phoenix France Infrastructures, Cellnex, Hivory, ATC France, TDF, Totem, On Tower."@fr ;
+    rdfs:subClassOf ant:Entreprise ;
+    note:note "À distinguer de `ant:OperateurMobile`, qui est le locataire. Le demandeur d'une déclaration préalable de pylône est le plus souvent une société de pylônes, pas l'opérateur dont le nom figure sur le panneau." .
+
+ant:TypeProprietaire a owl:Class ;
+    rdfs:label "Type de propriétaire de support"@fr ;
+    rdfs:comment "Catégorie de propriétaire du registre ANFR (champ TPO_ID) : une société, un opérateur, une commune, un syndicat des eaux, un particulier."@fr ;
+    rdfs:subClassOf skos:Concept ;
+    note:note "Concept SKOS : c'est une valeur de facette (filtrer la carte par propriétaire du support). Quand le code désigne une société précise, `ant:designeEntreprise` l'y relie. Le code ANFR regroupe parfois plusieurs filiales d'un même groupe : il ne distingue pas une coentreprise de sa maison mère." .
+
+ant:OperationSurSites a owl:Class ;
+    rdfs:label "Opération sur des sites"@fr ;
+    rdfs:comment "Cession, reprise ou programme de construction de pylônes : qui acquiert, de qui, combien de sites, quand."@fr ;
+    rdfs:subClassOf ant:Evenement ;
+    note:note "Classe réifiée : une cession a un volume, deux parties, une date et des sources, qui ne tiennent pas dans une propriété `filialeDe`." .
+
+ant:EnsembleTerritorial a owl:Class ;
+    rdfs:label "Ensemble territorial"@fr ;
+    rdfs:comment "Département, région ou pays sur lequel porte une mesure agrégée (parts de propriétaires). Sans géométrie."@fr ;
+    rdfs:subClassOf ant:ObjetGeographique .
+
+ant:proprietaireSupport a owl:ObjectProperty ;
+    rdfs:label "propriétaire du support"@fr ;
+    rdfs:domain ant:SupportAntenne ;
+    rdfs:range ant:TypeProprietaire ;
+    note:note "Valeur du registre ANFR (TPO_ID), un seul propriétaire par support. Pour le site projeté, c'est une attente (le demandeur de la DP), pas une donnée ANFR : le support n'existe pas encore au registre." .
+
+ant:codeProprietaireAnfr a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label "code propriétaire ANFR (TPO_ID)"@fr ;
+    rdfs:domain ant:TypeProprietaire ;
+    rdfs:range xsd:integer .
+
+ant:designeEntreprise a owl:ObjectProperty ;
+    rdfs:label "désigne l'entreprise"@fr ;
+    rdfs:domain ant:TypeProprietaire ;
+    rdfs:range ant:Entreprise .
+
+ant:coactionnaireDe a owl:ObjectProperty ;
+    rdfs:label "coactionnaire de"@fr ;
+    rdfs:domain ant:Entreprise ;
+    rdfs:range ant:Entreprise ;
+    note:note "Détention partagée d'une coentreprise. Les parts ne sont pas publiques pour PTI / Bouygues Telecom : seule la majorité de PTI est annoncée." .
+
+ant:acquereur a owl:ObjectProperty ;
+    rdfs:label "acquéreur"@fr ;
+    rdfs:domain ant:OperationSurSites ;
+    rdfs:range ant:Entreprise ;
+    rdfs:comment "Société qui détient les sites à l'issue de l'opération (ou qui les construit, pour un programme)."@fr .
+
+ant:cedant a owl:ObjectProperty ;
+    rdfs:label "cédant"@fr ;
+    rdfs:domain ant:OperationSurSites ;
+    rdfs:range ant:Entreprise .
+
+ant:nombreSites a owl:DatatypeProperty ;
+    rdfs:label "nombre de sites"@fr ;
+    rdfs:domain ant:OperationSurSites ;
+    rdfs:range xsd:integer ;
+    note:note "Chiffre annoncé par les parties, jamais recompté. « Site » n'est pas « support ANFR »." .
+
+ant:surProprietaire a owl:ObjectProperty ;
+    rdfs:label "mesure restreinte au propriétaire"@fr ;
+    rdfs:domain ant:Mesure ;
+    rdfs:range ant:TypeProprietaire .
+
+ant:operateurHeberge a owl:ObjectProperty ;
+    rdfs:label "mesure restreinte aux supports hébergeant l'opérateur"@fr ;
+    rdfs:domain ant:Mesure ;
+    rdfs:range ant:OperateurMobile .
+
+ant:nombreSupports a owl:DatatypeProperty ;
+    rdfs:label "nombre de supports (numérateur)"@fr ;
+    rdfs:domain ant:Mesure ;
+    rdfs:range xsd:integer .
+
+ant:nombreSupportsTotal a owl:DatatypeProperty ;
+    rdfs:label "nombre de supports (dénominateur)"@fr ;
+    rdfs:domain ant:Mesure ;
+    rdfs:range xsd:integer .

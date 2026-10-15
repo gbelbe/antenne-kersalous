@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>DP 29174 26 00122 - Pylone 30 m - Plonéour-Lanvern</name>
+  <Style id="parcelle">
+    <LineStyle><color>ff0000ff</color><width>4</width></LineStyle>
+    <PolyStyle><color>4d0000ff</color></PolyStyle>
+  </Style>
+  <Placemark>
+    <name>Parcelle YX 26 (3 440 m²)</name>
+    <description>Parcelle cadastrale 29174000YX0026 - section YX n°26 - 3 440 m² - zone A (agricole).
+Projet : pylone treillis 30 m + zone technique. DP 29174 26 00122 deposee le 18/08/2026.
+Demandeur : PHOENIX FRANCE INFRASTRUCTURES (SIREN 853958650).
+Adresse indiquee : KERSALOUS 29720 PLONEOUR-LANVERN (le lieu-dit Kersalous est en realite 860 m au nord).</description>
+    <styleUrl>#parcelle</styleUrl>
+    <Polygon><outerBoundaryIs><LinearRing><coordinates>-4.2751702,47.87498476,0 -4.27441415,47.87515016,0 -4.27362787,47.87531263,0 -4.27355977,47.8750769,0 -4.27416105,47.87494463,0 -4.2748586,47.87474456,0 -4.27497878,47.87470798,0 -4.27515585,47.87495456,0 -4.2751702,47.87498476,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+    <name>Centre parcelle 47.874985 N, -4.274491 W</name>
+    <Point><coordinates>-4.274491,47.874985,0</coordinates></Point>
+  </Placemark>
+</Document>
+</kml>

@@ -5,6 +5,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix geo:  <http://www.opengis.net/ont/geosparql#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix src:  <https://kersalous.bzh/provenance/> .
 @prefix note: <https://example.org/ontology/kai-internal-knowledge#> .
 
 # ═══════════════════════════════════════════════════════════════
@@ -298,6 +300,17 @@ dos:doc-dossier-dp a owl:NamedIndividual, ant:Document ;
     rdfs:label "Dossier complet de la DP (pièces DP1 à DP8)"@fr ; ant:natureDocument skt:doc-plan ;
     note:note "**À obtenir — pièce maîtresse.** Contient l'emprise au sol, les photomontages, l'attestation de propriété et l'attestation de mandat." .
 
+dos:doc-photo-panneau a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Photographie du panneau d'affichage (reçue le 2026-10-14, 19 h 11)"@fr ; ant:natureDocument skt:doc-photo ;
+    ant:datePublication "2026-10-14"^^xsd:date ;
+    ant:urlSource "sources/panneau_DP_2026-10-14.jpg"^^xsd:anyURI ;
+    prov:wasDerivedFrom src:photo-panneau ; prov:wasGeneratedBy src:act-lecture-panneau ;
+    note:note "Détenue. Panneau d'un magasin de bricolage rempli à la main ; photo prise à travers un pare-brise, donc visible de la voie publique. Lecture : bénéficiaire Phoenix France Infrastructures ; « DP29174 26 000139 » ; installation d'une antenne relais ; délivrance 29/09/2026 ; mairie de Plonéour-Lanvern ; terrain 3 440 m² ; plancher et architecte : traits ; hauteur 30 m. Autocollant ABC Huissiers « constat dressé par commissaire de justice » avec QR code : constat non obtenu. Date de la prise de vue non lue sur le cliché : le 14 octobre vient du nom du fichier." .
+
+dos:doc-constat-huissier a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Constat de commissaire de justice sur l'affichage (ABC Huissiers)"@fr ; ant:natureDocument skt:doc-constat ;
+    note:note "**Non obtenu.** Mentionné par l'autocollant du panneau. Date et objet inconnus : probablement la date de pose officielle choisie par l'opérateur." .
+
 dos:doc-panneau a owl:NamedIndividual, ant:Document ;
     rdfs:label "Panneau d'affichage sur le terrain"@fr ; ant:natureDocument skt:doc-panneau ;
     note:note "À photographier daté, chaque semaine, dès son apparition. Un panneau absent ou incomplet ne déclenche pas le délai de recours." .
@@ -326,6 +339,12 @@ dos:dp-29174-26-00122 a owl:NamedIndividual, ant:Procedure ;
     ant:porteSurProjet dos:projet-pylone ;
     ant:pieceDuDossier dos:doc-avis-depot, dos:doc-dossier-dp .
 
+dos:dp-29174-26-00139 a owl:NamedIndividual, ant:Procedure ;
+    rdfs:label "DP 29174 26 000139 (numéro lu sur le panneau)"@fr ; ant:numeroDossier "DP29174 26 000139" ;
+    ant:demandeur dos:phoenix-france ; ant:instruitePar dos:mairie-ploneour ;
+    ant:porteSurProjet dos:projet-pylone ; ant:pieceDuDossier dos:doc-photo-panneau ;
+    note:note "**Hypothèse à vérifier, pas un fait.** Numéro manuscrit sur le panneau, différent de DP 029 174 26 00122. Peut être une erreur de recopie (même dossier) ou un second dossier. Si c'est le même dossier, supprimer cette entité et noter l'erreur d'affichage sur dos:moyen-numero-panneau." .
+
 dos:ev-depot a owl:NamedIndividual, ant:Evenement ;
     rdfs:label "Dépôt de la déclaration préalable"@fr ; ant:dateEvenement "2026-08-18"^^xsd:date ;
     ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-avis-depot .
@@ -336,14 +355,20 @@ dos:ev-affichage-mairie a owl:NamedIndividual, ant:Evenement ;
     note:note "Cet affichage ne fait **pas** courir le délai de recours. Seul l'affichage sur le terrain le déclenche." .
 
 dos:ev-decision a owl:NamedIndividual, ant:Evenement ;
-    rdfs:label "Non-opposition tacite (date estimée)"@fr ; ant:dateEvenement "2026-09-18"^^xsd:date ;
-    ant:evenementDe dos:dp-29174-26-00122 ;
-    note:note "Estimation : un mois d'instruction à compter du dépôt. Décalée si des pièces complémentaires ont été demandées. **À confirmer auprès de la mairie.**" .
+    rdfs:label "Décision d'urbanisme (délivrée le 2026-09-29 selon le panneau)"@fr ; ant:dateEvenement "2026-09-29"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-photo-panneau ;
+    note:note "**Date lue sur le panneau d'affichage** (case « date de délivrance », écriture manuscrite), non confirmée par la mairie. Elle remplace l'estimation du 18 septembre (un mois d'instruction après le dépôt du 18 août). Un écart de onze jours suggère une instruction prolongée (consultation, pièces complémentaires), **ou** que la date concerne le dossier au numéro différent lu sur le panneau (voir dos:dp-29174-26-00139). Nature de la décision (non-opposition expresse ou tacite) inconnue : demander l'arrêté ou l'attestation de non-opposition tacite. Le délai de retrait de trois mois (dos:delai-retrait) court de cette décision." .
 
 dos:ev-affichage-terrain a owl:NamedIndividual, ant:Evenement ;
-    rdfs:label "Affichage sur le terrain — date inconnue"@fr ;
-    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-panneau ;
-    note:note "**Événement pivot de tout le calendrier contentieux.** Tant qu'il n'est ni daté ni prouvé, le délai de recours est réputé non déclenché." .
+    rdfs:label "Affichage sur le terrain (panneau posé le 2026-10-14)"@fr ;
+    ant:dateEvenement "2026-10-14"^^xsd:date ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-panneau, dos:doc-photo-panneau ;
+    note:note "**Événement pivot de tout le calendrier contentieux.** Pose du panneau constatée par l'utilisateur le 14 octobre 2026 ; photo reçue le même jour à 19 h 11 (dos:doc-photo-panneau). **Le panneau porte un autocollant « constat dressé par commissaire de justice » (ABC Huissiers) : la date de ce constat est inconnue et peut précéder le 14 octobre.** Par prudence, le délai de recours est à compter de la date la plus ancienne possible tant que le constat n'est pas obtenu (dos:ev-constat-huissier). Le délai ne court utilement que si l'affichage est continu et conforme (R. 600-2) ; numéro de dossier discordant : voir dos:moyen-numero-panneau." .
+
+dos:ev-constat-huissier a owl:NamedIndividual, ant:Evenement ;
+    rdfs:label "Constat d'affichage par commissaire de justice — date inconnue"@fr ;
+    ant:evenementDe dos:dp-29174-26-00122 ; ant:prouvePar dos:doc-constat-huissier ;
+    note:note "Peut précéder la pose observée le 14 octobre. Si c'est le cas, c'est de cette date que court le délai de recours." .
 
 dos:delai-instruction a owl:NamedIndividual, ant:Delai ;
     rdfs:label "Délai d'instruction (1 mois)"@fr ; ant:duree "1 mois" ;
@@ -352,8 +377,9 @@ dos:delai-instruction a owl:NamedIndividual, ant:Delai ;
 
 dos:delai-recours a owl:NamedIndividual, ant:Delai ;
     rdfs:label "Délai de recours contentieux (2 mois)"@fr ; ant:duree "2 mois" ;
+    ant:debuteLe "2026-10-14"^^xsd:date ; ant:expireLe "2026-12-14"^^xsd:date ;
     ant:declenchePar dos:ev-affichage-terrain ; ant:fondementDuDelai dos:art-r600-2 ;
-    note:note "Non déclenché tant que l'affichage sur le terrain n'est pas constaté. Délai de forclusion, et non de prescription." .
+    note:note "Déclenché par la pose du panneau le 14 octobre 2026 (date déclarée, à prouver). Échéance **la plus tardive possible** : 14 décembre 2026, sous réserve d'un affichage continu pendant 2 mois ; **elle serait plus précoce si le constat d'huissier (autocollant ABC Huissiers sur le panneau) date d'avant le 14 octobre**. Un panneau retiré ou irrégulier repousse le point de départ. Ne pas attendre le 14 décembre pour agir : demander la date du constat. Prévoir la notification (15 jours) bien avant. Délai de forclusion, et non de prescription." .
 
 dos:delai-notification a owl:NamedIndividual, ant:Delai ;
     rdfs:label "Notification du recours (15 jours)"@fr ; ant:duree "15 jours" ;
@@ -372,7 +398,7 @@ dos:moyen-seuil-pc a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Emprise > 20 m² : un permis de construire était requis"@fr ;
     ant:fondementJuridique dos:art-r421-9 ; ant:etayePar dos:doc-dossier-dp ;
     ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-forte ;
-    note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée." .
+    note:note "Moyen le plus tranchant. Se vérifie sur le plan de masse : emprise cumulée de la dalle, des armoires, du coffret et de la zone clôturée. **Point d'attention (2026-10-15)** : l'avis du Conseil d'État du 21 mars 2024 (n° 490536), tel que rapporté par un tiers et non lu, exclurait du calcul l'emprise du pylône lui-même ; seuls les locaux techniques compteraient. À lire avant de chiffrer (voir dos:act-lire-avis-ce-2024)." .
 
 dos:moyen-talus a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Destruction de haies/talus protégés non déclarée"@fr ;
@@ -404,9 +430,20 @@ dos:moyen-covisibilite a owl:NamedIndividual, ant:MoyenJuridique ;
 
 dos:moyen-affichage a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Irrégularité de l'affichage sur le terrain"@fr ;
-    ant:fondementJuridique dos:art-r600-2 ; ant:etayePar dos:doc-panneau ;
+    ant:fondementJuridique dos:art-r600-2 ; ant:etayePar dos:doc-panneau, dos:doc-photo-panneau ;
     ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
-    note:note "N'annule pas l'autorisation, mais empêche le délai de courir. Le moyen qui achète du temps." .
+    note:note "N'annule pas l'autorisation, mais empêche le délai de courir. Le moyen qui achète du temps. Constats sur la photo du 14 octobre : numéro de dossier discordant (voir dos:moyen-numero-panneau), mention « Permis de construire » pour une déclaration préalable, surface de plancher laissée vide, droits de recours imprimés en très petits caractères. À apprécier sur place et avec un conseil : aucune de ces anomalies n'est établie comme cause d'irrégularité." .
+
+dos:moyen-numero-panneau a owl:NamedIndividual, ant:MoyenJuridique ;
+    rdfs:label "Numéro de dossier du panneau différent de celui de l'avis de dépôt"@fr ;
+    ant:fondementJuridique dos:art-r600-2, dos:art-a424-16 ; ant:etayePar dos:doc-photo-panneau, dos:doc-avis-depot ;
+    ant:viseProcedure dos:dp-29174-26-00122 ; ant:force skt:force-a-verifier ;
+    note:note "Le panneau indique « DP 29 174 26 000139 » ; l'avis de dépôt affiché en mairie indique DP 029 174 26 00122. Trois lectures : erreur de recopie de l'opérateur, second dossier distinct, ou lecture erronée d'une écriture manuscrite. **À trancher en mairie avant tout usage.** Si l'affichage est irrégulier, le délai de recours peut ne pas courir ; la sévérité du juge sur ce type d'erreur n'est pas établie ici." .
+
+dos:art-a424-16 a owl:NamedIndividual, ant:ArticleDeCode ;
+    rdfs:label "C. urb. art. A. 424-16 et suivants (contenu du panneau)"@fr ; ant:reference "A. 424-16" ;
+    note:note "Mentions obligatoires du panneau : bénéficiaire, date et numéro de l'autorisation, nature du projet, superficie du terrain, adresse de la mairie, droits de recours. **Référence citée de mémoire par l'assistant, non vérifiée sur Légifrance** (niveau « assertion »)." ;
+    prov:wasDerivedFrom src:connaissance-modele .
 
 dos:moyen-dim a owl:NamedIndividual, ant:MoyenJuridique ;
     rdfs:label "Absence de dossier d'information mairie"@fr ;
@@ -476,3 +513,36 @@ dos:act-udap a owl:NamedIndividual, ant:Action ;
     rdfs:label "Saisir l'UDAP pour un avis simple"@fr ;
     ant:menePar dos:proprietaire-manoir ; ant:cible dos:udap-29 ; ant:soutient dos:moyen-covisibilite ;
     ant:statut skt:a-faire .
+
+dos:doc-envoye-special-5g a owl:NamedIndividual, ant:Document ;
+    rdfs:label "Reportage « 5G : les antennes de la colère » — Envoyé spécial, France 2"@fr ;
+    ant:natureDocument skt:doc-reportage ;
+    ant:datePublication "2026-05-28"^^xsd:date ;
+    ant:urlSource "https://www.franceinfo.fr/replay-magazine/france-2/envoye-special/video-5g-les-antennes-de-la-colere_8026961.html"^^xsd:anyURI ;
+    ant:eclaireProjet dos:projet-pylone ;
+    ant:evoqueLieu dos:commune-saintigny, dos:commune-heiligenberg, dos:commune-lormont ;
+    prov:wasDerivedFrom src:franceinfo-envoye-special ; prov:wasGeneratedBy src:act-lecture-franceinfo ;
+    prov:wasAttributedTo src:france-televisions ;
+    note:note "Pièce de contexte, **non vue** : seule la page de présentation a été lue. Le cas de Saintigny (nouveau mât à moins d'un kilomètre d'un mât existant rendant le même service) rejoint le sujet de la redondance traité dans l'analyse de couverture, mais le reportage ne dit rien de Kersalous. À visionner avant citation ; ne pas en tirer d'affirmation sur Phoenix ni sur Bouygues." .
+
+dos:commune-saintigny a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Saintigny (Eure-et-Loir)"@fr ;
+    note:note "Cas comparable cité par le reportage : projet de mât de 212 m à moins d'un kilomètre d'un mât existant de hauteur similaire assurant le même service, contesté par des riverains. Département non précisé par la page ; Eure-et-Loir déduit de la mention du Perche, à vérifier." .
+dos:commune-heiligenberg a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Heiligenberg (Bas-Rhin)"@fr ;
+    note:note "Cas cité par le reportage : zone blanche créée par le démontage d'une grande antenne. Contre-exemple utile : la perte de couverture est la conséquence que l'on doit pouvoir écarter pour Kersalous (voir l'analyse de couverture). Département non précisé par la page ; Bas-Rhin déduit de la mention de l'Alsace, à vérifier." .
+dos:commune-lormont a owl:NamedIndividual, ant:Commune ;
+    rdfs:label "Lormont (Gironde)"@fr ;
+    note:note "Cas cité par le reportage : une habitante dit avoir une antenne de 30 m à environ 50 m de son jardin et une seconde prévue à environ 1 m de son domicile pour un autre opérateur, avec crainte pour la valeur de revente (propos rapportés par la page)." .
+
+dos:act-numero-mairie a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Demander à la mairie le numéro exact du dossier, l'arrêté ou l'attestation de non-opposition et la date de pose du panneau"@fr ;
+    ant:menePar dos:vous ; ant:cible dos:mairie-ploneour ; ant:produit dos:doc-dossier-dp ; ant:soutient dos:moyen-numero-panneau, dos:moyen-affichage ;
+    ant:sousEcheanceDe dos:delai-recours ; ant:statut skt:a-faire ; ant:echeance "2026-10-19"^^xsd:date ;
+    note:note "Échéance **recommandée** par l'assistant, pas légale : le délai de recours a peut-être déjà commencé. Courriel avec accusé de réception, en citant les deux numéros (00122 et 000139)." .
+
+dos:act-constat-huissier a owl:NamedIndividual, ant:Action ;
+    rdfs:label "Obtenir une copie du constat d'ABC Huissiers, ou faire dresser son propre constat"@fr ;
+    ant:menePar dos:vous ; ant:produit dos:doc-constat-huissier ; ant:soutient dos:moyen-affichage ;
+    ant:sousEcheanceDe dos:delai-recours ; ant:statut skt:a-faire ; ant:echeance "2026-10-19"^^xsd:date ;
+    note:note "Échéance recommandée. Le constat de l'opérateur donne la date que l'opérateur invoquera ; un constat de votre côté, daté et photographique, prouve l'état réel de l'affichage (visibilité, lisibilité, continuité)." .

@@ -115,3 +115,23 @@ SELECT ?support ?source ?activite ?agent ?quand WHERE {
      prov:generatedAtTime ?quand .
   ?src rdfs:label ?source . ?a rdfs:label ?activite . ?ag rdfs:label ?agent .
 }
+
+# ── Propriété des supports : part de Phoenix par ensemble territorial ──
+SELECT ?ensemble ?part ?phoenix ?total WHERE {
+  ?m ant:surProprietaire skt:prop-73 ; ant:porteSurObjet/rdfs:label ?ensemble ;
+     ant:valeur ?part ; ant:nombreSupports ?phoenix ; ant:nombreSupportsTotal ?total .
+  FILTER NOT EXISTS { ?m ant:operateurHeberge ?o }
+} ORDER BY DESC(?part)
+
+# ── Qui possède les supports hébergeant Bouygues Telecom en Finistère ──
+SELECT ?proprietaire ?part ?supports WHERE {
+  ?m ant:operateurHeberge <https://kersalous.bzh/dossier/bouygues-telecom> ; ant:surProprietaire/skos:prefLabel ?proprietaire ;
+     ant:porteSurObjet <https://kersalous.bzh/dossier/ens-finistere> ; ant:valeur ?part ; ant:nombreSupports ?supports .
+} ORDER BY DESC(?part)
+
+# ── Décisions de justice qui ont fonctionné pour les riverains ──
+SELECT ?decision ?issue WHERE {
+  ?d a ant:Jurisprudence ; rdfs:label ?decision ; ant:issueDecision ?i .
+  ?i skos:prefLabel ?issue .
+  <https://kersalous.bzh/taxonomie/IssueFavorableRiverains> skos:member ?i .
+}

@@ -28,6 +28,16 @@ skt:doc-constat a skos:Concept,
     skos:topConceptOf skt:Dossier ;
     ant:axe skt:doc-preuve .
 
+skt:doc-reportage a skos:Concept,
+        ant:NatureDocument ;
+    rdfs:label "Reportage ou article de presse"@fr ;
+    skos:altLabel "presse"@fr, "reportage télévisé"@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Reportage ou article de presse"@fr ;
+    skos:topConceptOf skt:Dossier ;
+    ant:axe skt:doc-preuve ;
+    note:note "Pièce de contexte, pas une preuve opposable : un reportage éclaire le débat public (cas comparables, discours des acteurs) mais ne remplace ni un constat ni une décision." .
+
 skt:doc-courriel a skos:Concept,
         ant:NatureDocument ;
     rdfs:label "Courriel"@fr ;
@@ -402,6 +412,7 @@ skt:NatureDocument a skos:Collection ;
     skos:member skt:doc-avis-depot,
         skt:doc-constat,
         skt:doc-courriel,
+        skt:doc-reportage,
         skt:doc-decision,
         skt:doc-lrar,
         skt:doc-matrice,
@@ -516,10 +527,19 @@ Elles forment un vocabulaire à part : une valeur (« Avis de dépôt ») et sa 
 skt:Dossier a skos:ConceptScheme ;
     rdfs:label "Vocabulaire du dossier (juridique et procédure)"@fr ;
     skos:hasTopConcept skt:a-faire,
+        skt:issue-annulation,
+        skt:issue-demontage,
+        skt:issue-suspension,
+        skt:issue-opposition-confirmee,
+        skt:issue-recevabilite,
+        skt:issue-rejet-riverains,
+        skt:issue-injonction,
+        skt:issue-regle,
         skt:doc-avis-depot,
         skt:doc-constat,
         skt:doc-correspondance,
         skt:doc-courriel,
+        skt:doc-reportage,
         skt:doc-decision,
         skt:doc-foncier,
         skt:doc-lrar,
@@ -601,3 +621,941 @@ skt:Reseau a skos:ConceptScheme ;
     skos:definition "Tout ce qui décrit les antennes et les réseaux : générations, systèmes radio, statuts d'installation, opérateurs, niveaux de couverture ARCEP."@fr ;
     note:note """Les anciens vocabulaires (Generation, SystemeRadio, StatutInstallation, Operateur, NiveauDeCouverture) sont conservés comme **collections** (`skos:Collection`) de ce schéma : ils regroupent les concepts sans les emboîter.
 Pas de `skos:broader` ici, exprès : ster le lit comme une contenance (comme « situé dans »), ce qui ferait des valeurs des « lieux » et les retirerait des filtres de la carte. Ce qui distingue encore une valeur d'une autre est sa classe (`ant:Statut`, `ant:TypeDeZone`...)."""@fr .
+
+skt:issue-annulation a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Autorisation annulée"@fr ;
+    skos:definition "Le juge a annulé l'autorisation d'urbanisme, y compris après tentative de régularisation."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Autorisation annulée"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-demontage a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Démontage ordonné"@fr ;
+    skos:definition "Le juge a ordonné l'enlèvement de l'antenne, le plus souvent sous astreinte."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Démontage ordonné"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-suspension a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Chantier suspendu (référé)"@fr ;
+    skos:definition "Le juge des référés a suspendu l'exécution de l'autorisation ou du chantier, en attendant le jugement au fond."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Chantier suspendu (référé)"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-opposition-confirmee a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Opposition de la commune maintenue"@fr ;
+    skos:definition "Le juge a refusé de suspendre ou d'annuler l'opposition à déclaration préalable : l'opérateur n'obtient pas son antenne à ce stade."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Opposition de la commune maintenue"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-recevabilite a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Recevabilité du riverain reconnue"@fr ;
+    skos:definition "Le juge a reconnu l'intérêt à agir du riverain et renvoyé l'affaire au fond."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Recevabilité du riverain reconnue"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-rejet-riverains a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Recours de riverains rejeté"@fr ;
+    skos:definition "Le recours contre l'autorisation a échoué : l'antenne peut être posée ou maintenue."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Recours de riverains rejeté"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-injonction a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Injonction de délivrer la non-opposition"@fr ;
+    skos:definition "Le juge a annulé l'opposition du maire et lui a enjoint de laisser faire l'opérateur."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Injonction de délivrer la non-opposition"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:issue-regle a skos:Concept,
+        ant:IssueDecision ;
+    rdfs:label "Précision de règle"@fr ;
+    skos:definition "Décision ou avis qui fixe une règle (seuil, compétence, motif admissible) sans trancher un projet précis."@fr ;
+    skos:inScheme skt:Dossier ;
+    skos:prefLabel "Précision de règle"@fr ;
+    skos:topConceptOf skt:Dossier .
+
+skt:IssueFavorableRiverains a skos:Collection ;
+    rdfs:label "Issues favorables aux riverains"@fr ;
+    skos:member skt:issue-annulation, skt:issue-demontage, skt:issue-suspension, skt:issue-opposition-confirmee, skt:issue-recevabilite ;
+    skos:prefLabel "Issues favorables aux riverains"@fr ;
+    note:note "Ce qui a **fonctionné** : annulation, démontage, suspension, opposition maintenue, recevabilité. Une suspension ou une recevabilité ne gagne pas le fond : c'est du temps ou une porte ouverte, pas une victoire." .
+
+skt:IssueDefavorableRiverains a skos:Collection ;
+    rdfs:label "Issues défavorables aux riverains"@fr ;
+    skos:member skt:issue-rejet-riverains, skt:issue-injonction ;
+    skos:prefLabel "Issues défavorables aux riverains"@fr ;
+    note:note "Ce qui a **échoué** : recours rejeté, ou injonction faite au maire de laisser l'opérateur installer." .
+
+# ── Propriétaires de supports (ANFR, TPO_ID) ──
+
+skt:prop-1 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ANFR"@fr ;
+    ant:codeProprietaireAnfr 1 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 1 : « ANFR »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ANFR"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-2 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Association"@fr ;
+    ant:codeProprietaireAnfr 2 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 2 : « Association »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Association"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-3 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Aviation Civile"@fr ;
+    ant:codeProprietaireAnfr 3 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 3 : « Aviation Civile »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Aviation Civile"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-4 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "BOUYGUES"@fr ;
+    ant:codeProprietaireAnfr 4 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 4 : « BOUYGUES »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "BOUYGUES"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-5 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "CCI,Ch Metiers,Port Aut,Aérop"@fr ;
+    ant:codeProprietaireAnfr 5 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 5 : « CCI,Ch Metiers,Port Aut,Aérop »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "CCI,Ch Metiers,Port Aut,Aérop"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-6 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Conseil Départemental"@fr ;
+    ant:codeProprietaireAnfr 6 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 6 : « Conseil Départemental »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Conseil Départemental"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-7 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Conseil Régional"@fr ;
+    ant:codeProprietaireAnfr 7 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 7 : « Conseil Régional »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Conseil Régional"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-8 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Coopérative Agricole, Vinicole"@fr ;
+    ant:codeProprietaireAnfr 8 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 8 : « Coopérative Agricole, Vinicole »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Coopérative Agricole, Vinicole"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-9 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Copropriété, Syndic, SCI"@fr ;
+    ant:codeProprietaireAnfr 9 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 9 : « Copropriété, Syndic, SCI »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Copropriété, Syndic, SCI"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-10 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "CROSS"@fr ;
+    ant:codeProprietaireAnfr 10 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 10 : « CROSS »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "CROSS"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-11 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "DDE"@fr ;
+    ant:codeProprietaireAnfr 11 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 11 : « DDE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "DDE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-12 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Autres"@fr ;
+    ant:codeProprietaireAnfr 12 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 12 : « Autres »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Autres"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-13 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "EDF ou GDF"@fr ;
+    ant:codeProprietaireAnfr 13 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 13 : « EDF ou GDF »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "EDF ou GDF"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-14 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Etablissement de soins"@fr ;
+    ant:codeProprietaireAnfr 14 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 14 : « Etablissement de soins »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Etablissement de soins"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-15 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Ets public , Minist, Synd mixt"@fr ;
+    ant:codeProprietaireAnfr 15 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 15 : « Ets public , Minist, Synd mixt »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Ets public , Minist, Synd mixt"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-16 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ORANGE Services Fixes"@fr ;
+    ant:codeProprietaireAnfr 16 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 16 : « ORANGE Services Fixes »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ORANGE Services Fixes"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-17 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Syndicat des eaux, Adduction"@fr ;
+    ant:codeProprietaireAnfr 17 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 17 : « Syndicat des eaux, Adduction »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Syndicat des eaux, Adduction"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-18 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Etat Ministère"@fr ;
+    ant:codeProprietaireAnfr 18 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 18 : « Etat Ministère »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Etat Ministère"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-19 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "La Poste"@fr ;
+    ant:codeProprietaireAnfr 19 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 19 : « La Poste »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "La Poste"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-20 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Météo"@fr ;
+    ant:codeProprietaireAnfr 20 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 20 : « Météo »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Météo"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-21 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ORANGE"@fr ;
+    ant:codeProprietaireAnfr 21 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 21 : « ORANGE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ORANGE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-22 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Particulier"@fr ;
+    ant:codeProprietaireAnfr 22 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 22 : « Particulier »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Particulier"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-23 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Phares et balises"@fr ;
+    ant:codeProprietaireAnfr 23 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 23 : « Phares et balises »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Phares et balises"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-24 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "SNCF Réseau"@fr ;
+    ant:codeProprietaireAnfr 24 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 24 : « SNCF Réseau »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "SNCF Réseau"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-25 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "RTE"@fr ;
+    ant:codeProprietaireAnfr 25 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 25 : « RTE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "RTE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-26 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "SDIS, secours, incendie"@fr ;
+    ant:codeProprietaireAnfr 26 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 26 : « SDIS, secours, incendie »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "SDIS, secours, incendie"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-27 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "SFR"@fr ;
+    ant:codeProprietaireAnfr 27 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 27 : « SFR »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "SFR"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-28 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Société HLM"@fr ;
+    ant:codeProprietaireAnfr 28 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 28 : « Société HLM »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Société HLM"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-29 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Société Privée"@fr ;
+    ant:codeProprietaireAnfr 29 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 29 : « Société Privée »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Société Privée"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-30 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Sociétés d'Autoroutes"@fr ;
+    ant:codeProprietaireAnfr 30 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 30 : « Sociétés d'Autoroutes »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Sociétés d'Autoroutes"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-31 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Sté Réunionn. de Radiotéléph."@fr ;
+    ant:codeProprietaireAnfr 31 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 31 : « Sté Réunionn. de Radiotéléph. »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Sté Réunionn. de Radiotéléph."@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-32 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "TDF"@fr ;
+    ant:codeProprietaireAnfr 32 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 32 : « TDF »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "TDF"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-33 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Towercast"@fr ;
+    ant:codeProprietaireAnfr 33 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 33 : « Towercast »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Towercast"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-34 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Commune, communauté de commune"@fr ;
+    ant:codeProprietaireAnfr 34 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 34 : « Commune, communauté de commune »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Commune, communauté de commune"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-35 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Voies navigables de France"@fr ;
+    ant:codeProprietaireAnfr 35 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 35 : « Voies navigables de France »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Voies navigables de France"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-36 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Altitude Telecom"@fr ;
+    ant:codeProprietaireAnfr 36 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 36 : « Altitude Telecom »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Altitude Telecom"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-37 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Antalis"@fr ;
+    ant:codeProprietaireAnfr 37 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 37 : « Antalis »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Antalis"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-38 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "One Cast"@fr ;
+    ant:codeProprietaireAnfr 38 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 38 : « One Cast »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "One Cast"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-39 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Etat Ministère"@fr ;
+    ant:codeProprietaireAnfr 39 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 39 : « Etat Ministère »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Etat Ministère"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-40 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Onati"@fr ;
+    ant:codeProprietaireAnfr 40 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 40 : « Onati »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Onati"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-41 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "France Caraibes Mobiles"@fr ;
+    ant:codeProprietaireAnfr 41 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 41 : « France Caraibes Mobiles »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "France Caraibes Mobiles"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-42 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "FREE-MOBILE"@fr ;
+    ant:codeProprietaireAnfr 42 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 42 : « FREE-MOBILE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "FREE-MOBILE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-43 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Lagardère Active Média"@fr ;
+    ant:codeProprietaireAnfr 43 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 43 : « Lagardère Active Média »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Lagardère Active Média"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-44 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Outremer Telecom"@fr ;
+    ant:codeProprietaireAnfr 44 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 44 : « Outremer Telecom »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Outremer Telecom"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-45 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "RATP"@fr ;
+    ant:codeProprietaireAnfr 45 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 45 : « RATP »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "RATP"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-46 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Titulaire programme Radio/TV"@fr ;
+    ant:codeProprietaireAnfr 46 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 46 : « Titulaire programme Radio/TV »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Titulaire programme Radio/TV"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-47 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Office des Postes et Telecom"@fr ;
+    ant:codeProprietaireAnfr 47 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 47 : « Office des Postes et Telecom »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Office des Postes et Telecom"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-48 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "9 CEGETEL"@fr ;
+    ant:codeProprietaireAnfr 48 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 48 : « 9 CEGETEL »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "9 CEGETEL"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-49 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "BOLLORE"@fr ;
+    ant:codeProprietaireAnfr 49 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 49 : « BOLLORE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "BOLLORE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-50 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "COMPLETEL"@fr ;
+    ant:codeProprietaireAnfr 50 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 50 : « COMPLETEL »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "COMPLETEL"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-51 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "DIGICEL"@fr ;
+    ant:codeProprietaireAnfr 51 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 51 : « DIGICEL »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "DIGICEL"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-52 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "EUTELSAT"@fr ;
+    ant:codeProprietaireAnfr 52 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 52 : « EUTELSAT »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "EUTELSAT"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-53 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "EXPERTMEDIA"@fr ;
+    ant:codeProprietaireAnfr 53 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 53 : « EXPERTMEDIA »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "EXPERTMEDIA"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-54 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "MEDIASERV"@fr ;
+    ant:codeProprietaireAnfr 54 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 54 : « MEDIASERV »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "MEDIASERV"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-55 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "BELGACOM"@fr ;
+    ant:codeProprietaireAnfr 55 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 55 : « BELGACOM »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "BELGACOM"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-56 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "AIRBUS"@fr ;
+    ant:codeProprietaireAnfr 56 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 56 : « AIRBUS »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "AIRBUS"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-57 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "GUYANE NUMERIQUE"@fr ;
+    ant:codeProprietaireAnfr 57 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 57 : « GUYANE NUMERIQUE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "GUYANE NUMERIQUE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-58 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "DAUPHIN TELECOM"@fr ;
+    ant:codeProprietaireAnfr 58 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 58 : « DAUPHIN TELECOM »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "DAUPHIN TELECOM"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-59 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Itas Tim"@fr ;
+    ant:codeProprietaireAnfr 59 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 59 : « Itas Tim »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Itas Tim"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-60 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "REUNION NUMERIQUE"@fr ;
+    ant:codeProprietaireAnfr 60 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 60 : « REUNION NUMERIQUE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "REUNION NUMERIQUE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-61 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "GLOBECAST"@fr ;
+    ant:codeProprietaireAnfr 61 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 61 : « GLOBECAST »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "GLOBECAST"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-62 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "SNCF"@fr ;
+    ant:codeProprietaireAnfr 62 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 62 : « SNCF »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "SNCF"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-63 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "VITI"@fr ;
+    ant:codeProprietaireAnfr 63 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 63 : « VITI »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "VITI"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-64 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Pacific Mobile Telecom"@fr ;
+    ant:codeProprietaireAnfr 64 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 64 : « Pacific Mobile Telecom »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Pacific Mobile Telecom"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-65 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ATC FRANCE"@fr ;
+    ant:codeProprietaireAnfr 65 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 65 : « ATC FRANCE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ATC FRANCE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-66 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Telco OI"@fr ;
+    ant:codeProprietaireAnfr 66 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 66 : « Telco OI »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Telco OI"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-67 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Service des Postes et Telecom"@fr ;
+    ant:codeProprietaireAnfr 67 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 67 : « Service des Postes et Telecom »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Service des Postes et Telecom"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-68 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "CELLNEX"@fr ;
+    ant:codeProprietaireAnfr 68 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 68 : « CELLNEX »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "CELLNEX"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-69 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ZEOP"@fr ;
+    ant:codeProprietaireAnfr 69 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 69 : « ZEOP »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ZEOP"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-70 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "DGEN"@fr ;
+    ant:codeProprietaireAnfr 70 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 70 : « DGEN »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "DGEN"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-71 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "HUBONE"@fr ;
+    ant:codeProprietaireAnfr 71 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 71 : « HUBONE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "HUBONE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-72 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "HIVORY"@fr ;
+    ant:codeProprietaireAnfr 72 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 72 : « HIVORY »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "HIVORY"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-73 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "PHOENIX FRANCE INFRASTRUCTURES"@fr ;
+    ant:codeProprietaireAnfr 73 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 73 : « PHOENIX FRANCE INFRASTRUCTURES »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "PHOENIX FRANCE INFRASTRUCTURES"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-74 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "TOTEM"@fr ;
+    ant:codeProprietaireAnfr 74 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 74 : « TOTEM »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "TOTEM"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-75 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ON TOWER FRANCE"@fr ;
+    ant:codeProprietaireAnfr 75 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 75 : « ON TOWER FRANCE »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ON TOWER FRANCE"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-76 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "TOWEO"@fr ;
+    ant:codeProprietaireAnfr 76 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 76 : « TOWEO »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "TOWEO"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-77 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Electricité De Tahiti"@fr ;
+    ant:codeProprietaireAnfr 77 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 77 : « Electricité De Tahiti »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Electricité De Tahiti"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-78 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "NEXT TOWER"@fr ;
+    ant:codeProprietaireAnfr 78 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 78 : « NEXT TOWER »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "NEXT TOWER"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-79 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "ONEWEB"@fr ;
+    ant:codeProprietaireAnfr 79 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 79 : « ONEWEB »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "ONEWEB"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-80 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "REGIE HTES PYRENEES HAUT DEBIT"@fr ;
+    ant:codeProprietaireAnfr 80 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 80 : « REGIE HTES PYRENEES HAUT DEBIT »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "REGIE HTES PYRENEES HAUT DEBIT"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-81 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "VALOCIME"@fr ;
+    ant:codeProprietaireAnfr 81 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 81 : « VALOCIME »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "VALOCIME"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-82 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "SYADEN"@fr ;
+    ant:codeProprietaireAnfr 82 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 82 : « SYADEN »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "SYADEN"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:prop-85 a skos:Concept,
+        ant:TypeProprietaire ;
+    rdfs:label "Société des Grands Projets"@fr ;
+    ant:codeProprietaireAnfr 85 ;
+    skos:definition "Propriétaire de support, code ANFR TPO_ID 85 : « Société des Grands Projets »."@fr ;
+    skos:inScheme skt:Proprietaire ;
+    skos:prefLabel "Société des Grands Projets"@fr ;
+    skos:topConceptOf skt:Proprietaire .
+
+skt:ProprietaireSocietePylones a skos:Collection ;
+    rdfs:label "Sociétés de pylônes et de diffusion"@fr ;
+    skos:member skt:prop-32, skt:prop-33, skt:prop-36, skt:prop-38, skt:prop-65, skt:prop-68, skt:prop-71, skt:prop-72, skt:prop-73, skt:prop-74, skt:prop-75, skt:prop-76, skt:prop-78 ;
+    skos:prefLabel "Sociétés de pylônes et de diffusion"@fr ;
+    note:note "Regroupement **proposé par l'auteur**, non fourni par l'ANFR. TDF, Towercast et One Cast sont historiquement des diffuseurs audiovisuels qui louent aussi des pylônes aux opérateurs. Les classements incertains (Altitude Telecom, HubOne, Toweo, Next Tower) sont à vérifier." .
+
+skt:ProprietaireOperateur a skos:Collection ;
+    rdfs:label "Opérateurs de réseau propriétaires de leurs supports"@fr ;
+    skos:member skt:prop-4, skt:prop-16, skt:prop-21, skt:prop-27, skt:prop-42 ;
+    skos:prefLabel "Opérateurs de réseau propriétaires de leurs supports"@fr ;
+    note:note "Regroupement proposé par l'auteur. Un opérateur propriétaire de son support est de plus en plus rare : les parcs ont été cédés à des sociétés de pylônes." .
+
+skt:ProprietairePublic a skos:Collection ;
+    rdfs:label "Collectivités, syndicats et État"@fr ;
+    skos:member skt:prop-6, skt:prop-7, skt:prop-15, skt:prop-17, skt:prop-18, skt:prop-34, skt:prop-39, skt:prop-82 ;
+    skos:prefLabel "Collectivités, syndicats et État"@fr ;
+    note:note "Regroupement proposé par l'auteur : communes, départements, régions, syndicats des eaux, établissements publics." .
+
+skt:ProprietaireAutre a skos:Collection ;
+    rdfs:label "Autres propriétaires (bailleurs, copropriétés, particuliers, entreprises)"@fr ;
+    skos:member skt:prop-1, skt:prop-2, skt:prop-3, skt:prop-5, skt:prop-8, skt:prop-9, skt:prop-10, skt:prop-11, skt:prop-12, skt:prop-13, skt:prop-14, skt:prop-19, skt:prop-20, skt:prop-22, skt:prop-23, skt:prop-24, skt:prop-25, skt:prop-26, skt:prop-28, skt:prop-29, skt:prop-30, skt:prop-31, skt:prop-35, skt:prop-37, skt:prop-40, skt:prop-41, skt:prop-43, skt:prop-44, skt:prop-45, skt:prop-46, skt:prop-47, skt:prop-48, skt:prop-49, skt:prop-50, skt:prop-51, skt:prop-52, skt:prop-53, skt:prop-54, skt:prop-55, skt:prop-56, skt:prop-57, skt:prop-58, skt:prop-59, skt:prop-60, skt:prop-61, skt:prop-62, skt:prop-63, skt:prop-64, skt:prop-66, skt:prop-67, skt:prop-69, skt:prop-70, skt:prop-77, skt:prop-79, skt:prop-80, skt:prop-81, skt:prop-85 ;
+    skos:prefLabel "Autres propriétaires (bailleurs, copropriétés, particuliers, entreprises)"@fr ;
+    note:note "Complément des trois regroupements précédents." .
+
+skt:Proprietaire a skos:ConceptScheme ;
+    rdfs:label "Propriétaires de supports d'antennes (registre ANFR)"@fr ;
+    skos:hasTopConcept skt:prop-1,
+        skt:prop-2,
+        skt:prop-3,
+        skt:prop-4,
+        skt:prop-5,
+        skt:prop-6,
+        skt:prop-7,
+        skt:prop-8,
+        skt:prop-9,
+        skt:prop-10,
+        skt:prop-11,
+        skt:prop-12,
+        skt:prop-13,
+        skt:prop-14,
+        skt:prop-15,
+        skt:prop-16,
+        skt:prop-17,
+        skt:prop-18,
+        skt:prop-19,
+        skt:prop-20,
+        skt:prop-21,
+        skt:prop-22,
+        skt:prop-23,
+        skt:prop-24,
+        skt:prop-25,
+        skt:prop-26,
+        skt:prop-27,
+        skt:prop-28,
+        skt:prop-29,
+        skt:prop-30,
+        skt:prop-31,
+        skt:prop-32,
+        skt:prop-33,
+        skt:prop-34,
+        skt:prop-35,
+        skt:prop-36,
+        skt:prop-37,
+        skt:prop-38,
+        skt:prop-39,
+        skt:prop-40,
+        skt:prop-41,
+        skt:prop-42,
+        skt:prop-43,
+        skt:prop-44,
+        skt:prop-45,
+        skt:prop-46,
+        skt:prop-47,
+        skt:prop-48,
+        skt:prop-49,
+        skt:prop-50,
+        skt:prop-51,
+        skt:prop-52,
+        skt:prop-53,
+        skt:prop-54,
+        skt:prop-55,
+        skt:prop-56,
+        skt:prop-57,
+        skt:prop-58,
+        skt:prop-59,
+        skt:prop-60,
+        skt:prop-61,
+        skt:prop-62,
+        skt:prop-63,
+        skt:prop-64,
+        skt:prop-65,
+        skt:prop-66,
+        skt:prop-67,
+        skt:prop-68,
+        skt:prop-69,
+        skt:prop-70,
+        skt:prop-71,
+        skt:prop-72,
+        skt:prop-73,
+        skt:prop-74,
+        skt:prop-75,
+        skt:prop-76,
+        skt:prop-77,
+        skt:prop-78,
+        skt:prop-79,
+        skt:prop-80,
+        skt:prop-81,
+        skt:prop-82,
+        skt:prop-85 ;
+    skos:prefLabel "Propriétaires de supports d'antennes (registre ANFR)"@fr ;
+    skos:definition "Valeurs du champ TPO_ID du registre ANFR : qui possède le support qui porte les antennes."@fr ;
+    note:note "Source : fichier TPO_ID.txt de l'observatoire ANFR (millésime lu le 2026-10-15), voir src:anfr-sup-proprietaire. Les libellés sont repris tels quels. Les regroupements sont des collections, sans `skos:broader`, comme pour les autres vocabulaires du dossier." .
