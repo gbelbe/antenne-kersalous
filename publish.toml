@@ -4,7 +4,7 @@
 [site]
 title       = "Antenne-relais de Plonéour-Lanvern"
 subtitle    = "Dossier d'urbanisme DP 029 174 26 00122 — site T18D84 (Kerfilin), Finistère"
-repo_url    = "https://github.com/gbelbe/antenne-kersalous"
+repo_url    = "https://github.com/gbelbe/antennes-pays-bigouden"
 lang        = "fr"
 # Centre de la carte (le projet est lu dans le graphe ; ceci n'est qu'un repli).
 fallback_center = [47.8751, -4.2737]
